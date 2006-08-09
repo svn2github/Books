@@ -746,15 +746,21 @@
 				
 			NSSize size = [cover size];
 
-			float height = size.height * (boxSize.width / size.width);
-			float width = boxSize.width;
+			if (size.width > 32 && size.height > 32)
+			{
+				float height = size.height * (boxSize.width / size.width);
+				float width = boxSize.width;
 
-			if (height > 32 && width > 32)
-				boxSize = NSMakeSize (width, height);
+				if (height > 32 && width > 32)
+					boxSize = NSMakeSize (width, height);
+
+				[imageBox setFrame:NSMakeRect (0.0, 0.0, boxSize.width, boxSize.height)];
+			}
+
+			[cover release];
 		}
 	}
 
-	[imageBox setFrame:NSMakeRect (0.0, 0.0, boxSize.width, boxSize.height)];
 
 	[leftView setNeedsDisplay:YES];
 	
