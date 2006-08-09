@@ -142,6 +142,14 @@
 		38039DBC0A04EA5400DFA71F /* PluginManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PluginManager.h; sourceTree = "<group>"; };
 		38039DBD0A04EA5400DFA71F /* PluginManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PluginManager.m; sourceTree = "<group>"; };
 		381119CF08EDC407008FBAEB /* white.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = white.png; sourceTree = "<group>"; };
+		3815D1070A8A96190085540E /* French */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; name = French; path = French.lproj/Localizable.strings; sourceTree = "<group>"; };
+		3815D10A0A8A96220085540E /* French */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; name = French; path = French.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		3815D10D0A8A962A0085540E /* French */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; name = French; path = French.lproj/MainMenu.strings; sourceTree = "<group>"; };
+		3815D1100A8A96370085540E /* French */ = {isa = PBXFileReference; lastKnownFileType = text.rtf; name = French; path = French.lproj/Credits.rtf; sourceTree = "<group>"; };
+		3815D1130A8A96410085540E /* French */ = {isa = PBXFileReference; lastKnownFileType = folder; name = French; path = "French.lproj/Books Help"; sourceTree = "<group>"; };
+		3815D12F0A8A96550085540E /* French */ = {isa = PBXFileReference; lastKnownFileType = wrapper.nib; name = French; path = French.lproj/MainMenu.nib; sourceTree = "<group>"; };
+		3815D1320A8A966B0085540E /* French */ = {isa = PBXFileReference; lastKnownFileType = text.html; name = French; path = French.lproj/empty.html; sourceTree = "<group>"; };
+		3815D1350A8A96730085540E /* French */ = {isa = PBXFileReference; lastKnownFileType = text.html; name = French; path = French.lproj/multiple.html; sourceTree = "<group>"; };
 		382611A909BB5BA7006B3CD7 /* ISBNdb.plugin */ = {isa = PBXFileReference; lastKnownFileType = folder; path = ISBNdb.plugin; sourceTree = "<group>"; };
 		3832912B0A03EF1C00C98833 /* Books Metadata Importer.mdimporter */ = {isa = PBXFileReference; lastKnownFileType = folder; path = "Books Metadata Importer.mdimporter"; sourceTree = "<group>"; };
 		38358E7F0958ED3900E823F3 /* Amazon (US).plugin */ = {isa = PBXFileReference; lastKnownFileType = folder; path = "Amazon (US).plugin"; sourceTree = "<group>"; };
@@ -750,6 +758,7 @@
 			children = (
 				089C165DFE840E0CC02AAC07 /* English */,
 				383DBED00A6AF7D800685384 /* German */,
+				3815D10A0A8A96220085540E /* French */,
 			);
 			name = InfoPlist.strings;
 			sourceTree = "<group>";
@@ -759,6 +768,7 @@
 			children = (
 				29B97319FDCFA39411CA2CEA /* English */,
 				383DBEC40A6ABE2000685384 /* German */,
+				3815D12F0A8A96550085540E /* French */,
 			);
 			name = MainMenu.nib;
 			sourceTree = "<group>";
@@ -768,6 +778,7 @@
 			children = (
 				383DBE9E0A6ABCFA00685384 /* English */,
 				383DBEBB0A6ABD7400685384 /* German */,
+				3815D10D0A8A962A0085540E /* French */,
 			);
 			name = MainMenu.strings;
 			sourceTree = "<group>";
@@ -777,6 +788,7 @@
 			children = (
 				38EDC7EE08EADEC400414B3D /* English */,
 				383DBECB0A6ABEBB00685384 /* German */,
+				3815D1100A8A96370085540E /* French */,
 			);
 			name = Credits.rtf;
 			sourceTree = "<group>";
@@ -786,6 +798,7 @@
 			children = (
 				383DBED20A6AF82900685384 /* English */,
 				384DF8740A723FB6000F9842 /* German */,
+				3815D1070A8A96190085540E /* French */,
 			);
 			name = Localizable.strings;
 			sourceTree = "<group>";
@@ -795,6 +808,7 @@
 			children = (
 				3864540A096CCE6100690649 /* English */,
 				387A4C620A74E97D00FED23D /* German */,
+				3815D1130A8A96410085540E /* French */,
 			);
 			name = "Books Help";
 			sourceTree = "<group>";
@@ -804,6 +818,7 @@
 			children = (
 				3855F60D08E563D200C439F4 /* English */,
 				38FDFC750A7198C6009481C3 /* German */,
+				3815D1320A8A966B0085540E /* French */,
 			);
 			name = empty.html;
 			sourceTree = "<group>";
@@ -813,6 +828,7 @@
 			children = (
 				3855F60F08E563DC00C439F4 /* English */,
 				38FDFCA70A719B0B009481C3 /* German */,
+				3815D1350A8A96730085540E /* French */,
 			);
 			name = multiple.html;
 			sourceTree = "<group>";
