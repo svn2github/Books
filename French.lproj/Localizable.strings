@@ -1,5 +1,5 @@
 /* No comment provided by engineer. */
-"%@ plugin. (No description provided.)" = "Module d'extension %@. (Pas d'informations supplémentaire.)";
+"%@ plugin. (No description provided.)" = "Module d'extension %@. (Pas d'informations suppl√©mentaire.)";
 
 /* No comment provided by engineer. */
 "Alert" = "Attention";
@@ -8,29 +8,29 @@
 "All" = "toutes les";
 
 /* No comment provided by engineer. */
-"Amazon (US)" = "Amazon (É.-U.)";
+"Amazon (US)" = "Amazon (√â.-U.)";
 
 /* No comment provided by engineer. */
 "Any" = "n'importe laquelle des";
 
 /* No comment provided by engineer. */
-"Are you sure you want to delete the selected books?" = "Souhaitez-vouz supprimer les livres sélectionnés?";
+"Are you sure you want to delete the selected books?" = "Souhaitez-vouz supprimer les livres s√©lectionn√©s?";
 
 /* No comment provided by engineer. */
-"Are you sure you want to delete this list? It still contains items." = "Souhaitez-vous supprimer cette liste de livres? Elle contient toujours quelques éléments.";
+"Are you sure you want to delete this list? It still contains items." = "Souhaitez-vous supprimer cette liste de livres? Elle contient toujours quelques √©l√©ments.";
 
 /* No comment provided by engineer. */
-"Are you sure you want to download and install the selected plugin? It may take several minutes." = "Souhaitez-vous installer le module d'extension sélectionné? Il vous faut attendre un tout petit moment, jusqu'à la fin de ce processus.";
+"Are you sure you want to download and install the selected plugin? It may take several minutes." = "Souhaitez-vous installer le module d'extension s√©lectionn√©? Il vous faut attendre un tout petit moment, jusqu'√† la fin de ce processus.";
 
 /* No comment provided by engineer. */
 "Author(s)" = "Auteur(s)";
 "author(s)" = "auteur(s)";
 
 /* No comment provided by engineer. */
-"Batch Quickfill" = "Auto-remplissage des données de plusieurs livres";
+"Batch Quickfill" = "Auto-remplissage des donn√©es de plusieurs livres";
 
 /* No comment provided by engineer. */
-"Batch quickfilling %d items..." = "J'auto-remplisse les données pour %d livres...";
+"Batch quickfilling %d items..." = "J'auto-remplisse les donn√©es pour %d livres...";
 
 /* No comment provided by engineer. */
 "Biography" = "Biographie";
@@ -42,19 +42,19 @@
 "Borrower" = "Emprunteur";
 
 /* No comment provided by engineer. */
-"Can't find application support folder" = "Le dossier ~/Library/Application Support/Books n'a pas été trouvé.";
+"Can't find application support folder" = "Le dossier ~/Library/Application Support/Books n'a pas √©t√© trouv√©.";
 
 /* No comment provided by engineer. */
 "Cancel" = "Annuler";
 
 /* No comment provided by engineer. */
-"Condition" = "État";
+"Condition" = "√âtat";
 
 /* No comment provided by engineer. */
 "contains" = "contient";
 
 /* No comment provided by engineer. */
-"Could not save changes while quitting. Quit anyway?" = "Des changements n'ont pas été sauvegardés. Quitter Books quand-même?";
+"Could not save changes while quitting. Quit anyway?" = "Des changements n'ont pas √©t√© sauvegard√©s. Quitter Books quand-m√™me?";
 
 /* No comment provided by engineer. */
 "Current Value" = "Prix actuel";
@@ -66,58 +66,58 @@
 "Date Finished" = "Fini le";
 
 /* No comment provided by engineer. */
-"Date Lent" = "Date de prêt";
+"Date Lent" = "Date de pr√™t";
 
 /* No comment provided by engineer. */
 "Date Published" = "Date de publ.";
 "date dublished" = "date de publ.";
 
 /* No comment provided by engineer. */
-"Date Started" = "Commencé le";
+"Date Started" = "Commenc√© le";
 
 /* No comment provided by engineer. */
 "Default Display" = "Style d'affichage";
 
 /* No comment provided by engineer. */
-"Delete non-empty list?" = "Souhaitez-vous supprimer la liste de livres qui contient toujours des éléments?";
+"Delete non-empty list?" = "Souhaitez-vous supprimer la liste de livres qui contient toujours des √©l√©ments?";
 
 /* No comment provided by engineer. */
-"Delete selected books?" = "Supprimer les livres sélectionnes?";
+"Delete selected books?" = "Supprimer les livres s√©lectionnes?";
 
 /* No comment provided by engineer. */
 "does not contain" = "ne contient pas";
 
 /* No comment provided by engineer. */
-"Downloading and installing plugin..." = "Je télécharge et j'installe le module d'extension...";
+"Downloading and installing plugin..." = "Je t√©l√©charge et j'installe le module d'extension...";
 
 /* No comment provided by engineer. */
-"Edit Smart List" = "Éditer la liste de livres intell.";
+"Edit Smart List" = "√âditer la liste de livres intell.";
 
 /* No comment provided by engineer. */
-"Edition" = "Édition";
-"edition" = "édition";
+"Edition" = "√âdition";
+"edition" = "√©dition";
 
 /* No comment provided by engineer. */
-"Editor(s)" = "Éditeur(s)";
-"editor(s)" = "éditeur(s)";
+"Editor(s)" = "√âditeur(s)";
+"editor(s)" = "√©diteur(s)";
 
 /* No comment provided by engineer. */
 "ends with" = "finit par";
 
 /* No comment provided by engineer. */
-"Export Data" = "Exporter les données";
+"Export Data" = "Exporter les donn√©es";
 
 /* No comment provided by engineer. */
-"Exporting data to plugin..." = "J'envoye les données au module d'extension...";
+"Exporting data to plugin..." = "J'envoye les donn√©es au module d'extension...";
 
 /* No comment provided by engineer. */
-"Fairy Tales" = "conte de fées";
+"Fairy Tales" = "conte de f√©es";
 
 /* No comment provided by engineer. */
 "Fantasy" = "Fantasy";
 
 /* No comment provided by engineer. */
-"Folk Tales" = "légende";
+"Folk Tales" = "l√©gende";
 
 /* No comment provided by engineer. */
 "Format" = "Format";
@@ -131,7 +131,7 @@
 "Get Info" = "Plus d'infos";
 
 /* No comment provided by engineer. */
-"greater than" = "supérieur à";
+"greater than" = "sup√©rieur √†";
 
 /* No comment provided by engineer. */
 "Hide Cover" = "Masquer l'image";
@@ -150,7 +150,7 @@
 "illustrator(s)" = "illustrateur(s)";
 
 /* No comment provided by engineer. */
-"Import Data" = "Importer les données";
+"Import Data" = "Importer les donn√©es";
 
 /* No comment provided by engineer. */
 "Install Plugin?" = "Installer le module d'extension?";
@@ -162,7 +162,7 @@
 "is not" = "n'est pas";
 
 /* No comment provided by engineer. */
-"Is this your first time running Books? Please set your preferences" = "Est-ce la première fois que vous démarrez Books? Veuillez bien sélectionner vos préférences.";
+"Is this your first time running Books? Please set your preferences" = "Est-ce la premi√®re fois que vous d√©marrez Books? Veuillez bien s√©lectionner vos pr√©f√©rences.";
 
 /* No comment provided by engineer. */
 "ISBN" = "ISBN";
@@ -172,7 +172,7 @@
 "Keep" = "Garder";
 
 /* No comment provided by engineer. */
-"Keep or overwrite existing values?" = "Garder ou ne pas garder les données?";
+"Keep or overwrite existing values?" = "Garder ou ne pas garder les donn√©es?";
 
 /* No comment provided by engineer. */
 "Keywords" = "Mots-clefs";
@@ -183,16 +183,16 @@
 "length" = "pages";
 
 /* No comment provided by engineer. */
-"less than" = "inférieur à";
+"less than" = "inf√©rieur √†";
 
 /* No comment provided by engineer. */
-"Loading data from disk..." = "Chargement des données dépuis le disque dur...";
+"Loading data from disk..." = "Chargement des donn√©es d√©puis le disque dur...";
 
 /* No comment provided by engineer. */
 "Location" = "Emplacement";
 
 /* No comment provided by engineer. */
-"matches regexp" = "d'après le style";
+"matches regexp" = "d'apr√®s le style";
 
 /* No comment provided by engineer. */
 "My Books" = "Mes livres";
@@ -201,7 +201,7 @@
 "Mystery" = "Mystery";
 
 /* No comment provided by engineer. */
-"Myths & Legends" = "Mythes & légendes";
+"Myths & Legends" = "Mythes & l√©gendes";
 
 /* No comment provided by engineer. */
 "New Book" = "Nouveau livre";
@@ -216,13 +216,13 @@
 "No" = "Non";
 
 /* No comment provided by engineer. */
-"No Preferences Found" = "Le fichier préférence n'a pas été trouvé.";
+"No Preferences Found" = "Le fichier pr√©f√©rence n'a pas √©t√© trouv√©.";
 
 /* No comment provided by engineer. */
-"No Quickfill Plugin Selected" = "Aucun module d'extension pour l'auto-remplissage sélectionné.";
+"No Quickfill Plugin Selected" = "Aucun module d'extension pour l'auto-remplissage s√©lectionn√©.";
 
 /* No comment provided by engineer. */
-"No quickfill plugins have been selected. Select one in the preferences." = "Aucun module d'extension sélectionné. Veuillez en sélectionnez un dans les préférences.";
+"No quickfill plugins have been selected. Select one in the preferences." = "Aucun module d'extension s√©lectionn√©. Veuillez en s√©lectionnez un dans les pr√©f√©rences.";
 
 /* No comment provided by engineer. */
 "Non-Fiction" = "essai";
@@ -231,45 +231,45 @@
 "OK" = "Sauvegarder";
 
 /* No comment provided by engineer. */
-"Only one book may be quickfilled at a time." = "Vous ne pouvez pas auto-remplisser les données pour plusieurs livres sélectionnés.";
+"Only one book may be quickfilled at a time." = "Vous ne pouvez pas auto-remplisser les donn√©es pour plusieurs livres s√©lectionn√©s.";
 
 /* No comment provided by engineer. */
 "Overwrite" = "Ne pas garder";
 
 /* No comment provided by engineer. */
-"Owner" = "Propriétaire";
+"Owner" = "Propri√©taire";
 
 /* No comment provided by engineer. */
-"Place Published" = "Lieu d'édition";
-"place published" = "lieu d'édition";
+"Place Published" = "Lieu d'√©dition";
+"place published" = "lieu d'√©dition";
 
 /* No comment provided by engineer. */
-"Plugin Installed" = "Le module d'extension a été installé";
+"Plugin Installed" = "Le module d'extension a √©t√© install√©";
 
 /* No comment provided by engineer. */
-"Poetry" = "Poésie";
+"Poetry" = "Po√©sie";
 
 /* No comment provided by engineer. */
-"Preferences" = "Préférences";
+"Preferences" = "Pr√©f√©rences";
 
 /* No comment provided by engineer. */
-"Publisher" = "Maison d'éd.";
-"publisher" = "maison d'éd.";
+"Publisher" = "Maison d'√©d.";
+"publisher" = "maison d'√©d.";
 
 /* No comment provided by engineer. */
-"Quickfilling item %d of %d..." = "J'auto-remplisse les données du livre %1$d de %2$d...";
+"Quickfilling item %d of %d..." = "J'auto-remplisse les donn√©es du livre %1$d de %2$d...";
 
 /* No comment provided by engineer. */
 "Quit" = "Quitter";
 
 /* No comment provided by engineer. */
-"Quit anyway" = "Quitter quand-même";
+"Quit anyway" = "Quitter quand-m√™me";
 
 /* No comment provided by engineer. */
 "Rating" = "Classement";
 
 /* No comment provided by engineer. */
-"Realistic Fiction" = "Roman réaliste";
+"Realistic Fiction" = "Roman r√©aliste";
 
 /* No comment provided by engineer. */
 "Remove Book" = "Supprimer le livre";
@@ -284,11 +284,11 @@
 "Science Fiction" = "Science-fiction";
 
 /* No comment provided by engineer. */
-"Search Selected List" = "Rechercher la liste de livres sélectionnée";
+"Search Selected List" = "Rechercher la liste de livres s√©lectionn√©e";
 
 /* No comment provided by engineer. */
-"Series" = "Série";
-"series" = "série";
+"Series" = "S√©rie";
+"series" = "s√©rie";
 
 /* No comment provided by engineer. */
 "Short Stories" = "Nouvelle";
@@ -297,23 +297,23 @@
 "Show Cover" = "Afficher l'image";
 
 /* No comment provided by engineer. */
-"Source" = "Acheté à";
+"Source" = "Achet√© √†";
 
 /* No comment provided by engineer. */
 "starts with" = "commence par";
 
 /* No comment provided by engineer. */
-"Test Function" = "Vérifier la fonction";
+"Test Function" = "V√©rifier la fonction";
 
 /* No comment provided by engineer. */
-"The new plugin has been installed. Please restart Books to use the new plugin." = "Le nouveau module d'extension a été installé. Veuillez bien rédemarrer Books.";
+"The new plugin has been installed. Please restart Books to use the new plugin." = "Le nouveau module d'extension a √©t√© install√©. Veuillez bien r√©demarrer Books.";
 
 /* No comment provided by engineer. */
 "Title" = "Titre";
 "title" = "titre";
 
 /* No comment provided by engineer. */
-"Too Many Books Selected" = "Vous avez sélectionnez trop de livres.";
+"Too Many Books Selected" = "Vous avez s√©lectionnez trop de livres.";
 
 /* No comment provided by engineer. */
 "Translator(s)" = "Traducteur(s)";
@@ -335,8 +335,8 @@
 "<p>ISBN: " = "<p>ISBN: ";
 "<p>Format: " = "<p>Format: ";
 "<p>Summary: " = "<p>Sommaire: ";
-"Installed" = "Installé";
-"Not Installed" = "Ne pas installé";
-"Updating Spotlight index..." = "Je mets à jour l'index Spotlight...";
+"Installed" = "Install√©";
+"Not Installed" = "Ne pas install√©";
+"Updating Spotlight index..." = "Je mets √† jour l'index Spotlight...";
 
 
