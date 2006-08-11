@@ -51,7 +51,7 @@
 		}
 	}
 
-	pluginKeys = [plugins allKeys];
+	pluginKeys = [[plugins allKeys] sortedArrayUsingSelector:@selector(caseInsensitiveCompare:)];
 	[pluginKeys retain];
 }
 

@@ -906,7 +906,7 @@
 	if (quickfillPlugins == nil)
 		[self initQuickfillPlugins];
 
-	return [quickfillPlugins allKeys];
+	return [[quickfillPlugins allKeys] sortedArrayUsingSelector:@selector(caseInsensitiveCompare:)];
 }
 
 - (void) setQuickfillPlugins: (NSArray *) list
@@ -1021,7 +1021,7 @@
 	if (importPlugins == nil)
 		[self initImportPlugins];
 
-	return [importPlugins allKeys];
+	return [[importPlugins allKeys] sortedArrayUsingSelector:@selector(caseInsensitiveCompare:)];
 }
 
 - (void) initImportPlugins
@@ -1096,7 +1096,7 @@
 	if (exportPlugins == nil)
 		[self initExportPlugins];
 		
-	return [exportPlugins allKeys];
+	return [[exportPlugins allKeys] sortedArrayUsingSelector:@selector(caseInsensitiveCompare:)];
 }
 
 - (void) setExportPlugins: (NSArray *) list
