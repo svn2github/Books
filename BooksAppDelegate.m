@@ -1460,7 +1460,7 @@
 		}
 		else
 		{
-			int choice = NSRunAlertPanel (NSLocalizedString (@"Delete selected books?", nil), 
+			int choice = NSRunAlertPanel (NSLocalizedString (@"Delete Selected Books?", nil), 
 							NSLocalizedString (@"Are you sure you want to delete the selected books?", nil), NSLocalizedString (@"No", nil), 
 							NSLocalizedString (@"Yes", nil), nil);
 
@@ -1488,7 +1488,7 @@
 
 			if ([items count] != 0)
 			{
-				int choice = NSRunAlertPanel (NSLocalizedString (@"Delete non-empty list?", nil), 
+				int choice = NSRunAlertPanel (NSLocalizedString (@"Delete Non-Empty List?", nil), 
 								NSLocalizedString (@"Are you sure you want to delete this list? It still contains items.", nil), 
 								NSLocalizedString (@"No", nil), NSLocalizedString (@"Yes", nil), nil);
 					
@@ -1947,7 +1947,13 @@
 		siteUrl = NSLocalizedString (@"http://www.google.com/search?q=*isbn*", nil);
 	
 	int i = 0;
-	for (i = 0; i < [books count]; i++)
+	
+	if ([books count] > 10)
+		NSRunAlertPanel (NSLocalizedString (@"Too Many Books Selected", nil), 
+			NSLocalizedString (@"More than ten books have been selected. Only opening the first ten...", nil), 
+			NSLocalizedString (@"OK", nil), nil, nil);
+
+	for (i = 0; i < [books count] && i < 10; i++)
 	{
 		NSString * isbn = [[books objectAtIndex:i] valueForKey:@"isbn"];
 		

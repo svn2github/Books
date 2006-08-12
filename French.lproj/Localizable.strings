@@ -79,7 +79,7 @@
 "Default Display" = "Style d'affichage";
 
 /* No comment provided by engineer. */
-"Delete non-empty list?" = "Souhaitez-vous supprimer la liste de livres qui contient toujours des éléments?";
+"Delete Non-Empty List?" = "Souhaitez-vous supprimer la liste de livres qui contient toujours des éléments?";
 
 /* No comment provided by engineer. */
 "Delete selected books?" = "Supprimer les livres sélectionnes?";
