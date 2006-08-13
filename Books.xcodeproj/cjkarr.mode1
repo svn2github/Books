@@ -318,7 +318,7 @@
 										<key>_historyCapacity</key>
 										<integer>0</integer>
 										<key>bookmark</key>
-										<string>38B4EEF40A8E14C700142E5A</string>
+										<string>389A01580A8E85F700181B62</string>
 										<key>history</key>
 										<array>
 											<string>38470A480A6A68FF008C36C7</string>
@@ -373,7 +373,7 @@
 											<string>38CADA820A8C27B100EE8870</string>
 											<string>38B4EDAF0A8E149E00142E5A</string>
 											<string>38B4EEF20A8E14C700142E5A</string>
-											<string>38B4EDB00A8E149E00142E5A</string>
+											<string>38B609D20A8E6ED70047F5C9</string>
 										</array>
 										<key>prevStack</key>
 										<array>
@@ -430,7 +430,6 @@
 											<string>38CADA860A8C27B100EE8870</string>
 											<string>38CADA870A8C27B100EE8870</string>
 											<string>38CADA880A8C27B100EE8870</string>
-											<string>38B4EEF30A8E14C700142E5A</string>
 										</array>
 									</dict>
 									<key>SplitCount</key>
@@ -488,9 +487,9 @@
 			</array>
 			<key>TableOfContents</key>
 			<array>
-				<string>38B4EEF50A8E14C700142E5A</string>
+				<string>389A01190A8E833C00181B62</string>
 				<string>1CE0B1FE06471DED0097A5F4</string>
-				<string>38B4EEF60A8E14C700142E5A</string>
+				<string>389A011A0A8E833C00181B62</string>
 				<string>1CE0B20306471E060097A5F4</string>
 				<string>1CE0B20506471E060097A5F4</string>
 			</array>
@@ -624,6 +623,7 @@
 	<integer>5</integer>
 	<key>WindowOrderList</key>
 	<array>
+		<string>1C530D57069F1CE1000CFCEE</string>
 		<string>/Volumes/iDisk/Documents/Projects/Books Project/Version Controlled/books-macosx/Books/Books.xcodeproj</string>
 	</array>
 	<key>WindowString</key>
@@ -844,14 +844,12 @@
 							<key>Dock</key>
 							<array>
 								<dict>
-									<key>BecomeActive</key>
-									<true/>
 									<key>ContentConfiguration</key>
 									<dict>
 										<key>PBXProjectModuleGUID</key>
 										<string>1CDD528C0622207200134675</string>
 										<key>PBXProjectModuleLabel</key>
-										<string>Localizable.strings</string>
+										<string>QuickfillSearchWindow.m</string>
 										<key>StatusBarVisibility</key>
 										<true/>
 									</dict>
@@ -872,6 +870,8 @@
 							<string>334pt</string>
 						</dict>
 						<dict>
+							<key>BecomeActive</key>
+							<true/>
 							<key>ContentConfiguration</key>
 							<dict>
 								<key>PBXProjectModuleGUID</key>
@@ -907,8 +907,8 @@
 			<key>TableOfContents</key>
 			<array>
 				<string>1C530D57069F1CE1000CFCEE</string>
-				<string>38B4EDB70A8E149E00142E5A</string>
-				<string>38B4EDB80A8E149E00142E5A</string>
+				<string>389A01150A8E833A00181B62</string>
+				<string>389A01160A8E833A00181B62</string>
 				<string>1CDD528C0622207200134675</string>
 				<string>1CD0528E0623707200166675</string>
 			</array>
@@ -917,7 +917,7 @@
 			<key>WindowToolGUID</key>
 			<string>1C530D57069F1CE1000CFCEE</string>
 			<key>WindowToolIsVisible</key>
-			<true/>
+			<false/>
 		</dict>
 		<dict>
 			<key>Identifier</key>
