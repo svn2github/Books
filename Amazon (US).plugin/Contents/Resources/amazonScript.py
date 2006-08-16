@@ -11,23 +11,24 @@ import sys
 searchLocale = "us"
 
 fieldMap = {
-	  "Asin" : "ASIN",
-      "Authors" : "Authors",
-      "ImageUrlLarge" : "CoverImageURL",
-      "ImageUrlMedium" : "ImageUrlMedium",
-      "ImageUrlSmall" : "ImageUrlSmall",
-      "Isbn" : "isbn",
-      "ListPrice" : "originalValue",
-      "Manufacturer" : "publisher",
-      "Media" : "format",
-      "OurPrice" : "presentValue",
-      "UsedPrice" : "UsedPrice",
-      "ProductName" : "title",
-      "ReleaseDate" : "publishDate",
-      "URL" : "url",
-	  "Reviews" : "reviews",
-      "ProductDescription" : "summary",
-	  "Catalog" : "Catalog"
+	 "Asin" : "ASIN",
+	 "BrowseList" : "Genres",
+ "Authors" : "Authors",
+ "ImageUrlLarge" : "CoverImageURL",
+ "ImageUrlMedium" : "ImageUrlMedium",
+ "ImageUrlSmall" : "ImageUrlSmall",
+ "Isbn" : "isbn",
+ "ListPrice" : "originalValue",
+ "Manufacturer" : "publisher",
+ "Media" : "format",
+ "OurPrice" : "presentValue",
+ "UsedPrice" : "UsedPrice",
+ "ProductName" : "title",
+ "ReleaseDate" : "publishDate",
+ "URL" : "url",
+	 "Reviews" : "reviews",
+ "ProductDescription" : "summary",
+	 "Catalog" : "Catalog"
 	}
 
 book = None
@@ -49,7 +50,7 @@ for field in fields:
 	
 	if (field.firstChild != None):
 		fieldData = replace (replace (replace (field.firstChild.data, "&", ""), "(", ""), ")", "");
-        
+ 
 	if (fieldData != None):
 		if (field.getAttribute ("name") == "title"):
 			title = fieldData
@@ -130,7 +131,7 @@ if (book != None):
 						
 						if (isinstance (value.Author, list)):
 							for author in value.Author:
-								authors += author + ", "
+								authors += author + "; "
 						else:
 							authors += value.Author
 
@@ -158,6 +159,25 @@ if (book != None):
 						
 								fieldElement.appendChild (textElement)
 								bookElement.appendChild (fieldElement)
+
+					elif (key == "BrowseList"):
+						genre = ""
+
+						if (isinstance (value.BrowseNode, list)):
+							for browseNode in value.BrowseNode:
+								genre = genre + browseNode.BrowseName + "; "
+						else:
+							genre = value.BrowseNode.BrowseName
+
+						fieldElement = doc.createElement ("field")
+						fieldElement.setAttribute ("name", "genre");
+
+						textElement = doc.createTextNode (genre)
+
+						fieldElement.appendChild (textElement)
+						bookElement.appendChild (fieldElement)								
+
+
 				else:
 					fieldElement = doc.createElement ("field")
 					fieldElement.setAttribute ("name", name);
