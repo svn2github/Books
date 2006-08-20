@@ -158,16 +158,14 @@
 					PBXFileDataSource_Warnings_ColumnID,
 				);
 			};
-			PBXPerProjectTemplateStateSaveDate = 177386431;
-			PBXWorkspaceStateSaveDate = 177386431;
+			PBXPerProjectTemplateStateSaveDate = 177723969;
+			PBXWorkspaceStateSaveDate = 177723969;
 		};
 		perUserProjectItems = {
 			3802652C0A668694009D71B2 /* PBXTextBookmark */ = 3802652C0A668694009D71B2 /* PBXTextBookmark */;
 			3802652D0A668694009D71B2 /* PBXTextBookmark */ = 3802652D0A668694009D71B2 /* PBXTextBookmark */;
 			380265430A6687DA009D71B2 /* PBXTextBookmark */ = 380265430A6687DA009D71B2 /* PBXTextBookmark */;
 			380A46400A8AD4B000C69A5D /* PBXTextBookmark */ = 380A46400A8AD4B000C69A5D /* PBXTextBookmark */;
-			380A46640A8AD63400C69A5D /* PBXTextBookmark */ = 380A46640A8AD63400C69A5D /* PBXTextBookmark */;
-			380A46660A8AD63400C69A5D /* PBXTextBookmark */ = 380A46660A8AD63400C69A5D /* PBXTextBookmark */;
 			380A46670A8AD63400C69A5D /* PBXTextBookmark */ = 380A46670A8AD63400C69A5D /* PBXTextBookmark */;
 			380A46680A8AD63400C69A5D /* PBXTextBookmark */ = 380A46680A8AD63400C69A5D /* PBXTextBookmark */;
 			380C249C0A898C920092373C /* PBXTextBookmark */ = 380C249C0A898C920092373C /* PBXTextBookmark */;
@@ -186,6 +184,9 @@
 			3815D1640A8A97B00085540E /* PBXTextBookmark */ = 3815D1640A8A97B00085540E /* PBXTextBookmark */;
 			3815D1680A8A97B00085540E /* PBXTextBookmark */ = 3815D1680A8A97B00085540E /* PBXTextBookmark */;
 			381CAFFB0A8C1B44006F0831 /* PBXTextBookmark */ = 381CAFFB0A8C1B44006F0831 /* PBXTextBookmark */;
+			382D34B40A9561F700E5BE09 /* PBXTextBookmark */ = 382D34B40A9561F700E5BE09 /* PBXTextBookmark */;
+			382D34B60A9561F700E5BE09 /* PBXTextBookmark */ = 382D34B60A9561F700E5BE09 /* PBXTextBookmark */;
+			382D34C30A9567C100E5BE09 /* PBXTextBookmark */ = 382D34C30A9567C100E5BE09 /* PBXTextBookmark */;
 			383DBEE90A6AF89E00685384 /* PBXTextBookmark */ = 383DBEE90A6AF89E00685384 /* PBXTextBookmark */;
 			383DBEEB0A6AF89E00685384 /* PBXTextBookmark */ = 383DBEEB0A6AF89E00685384 /* PBXTextBookmark */;
 			383DBEF20A6AF89E00685384 /* PBXTextBookmark */ = 383DBEF20A6AF89E00685384 /* PBXTextBookmark */;
@@ -209,9 +210,23 @@
 			387A01650A75CD9E00447E87 /* PBXTextBookmark */ = 387A01650A75CD9E00447E87 /* PBXTextBookmark */;
 			387A01670A75CD9E00447E87 /* PBXTextBookmark */ = 387A01670A75CD9E00447E87 /* PBXTextBookmark */;
 			387A4C7D0A74E99700FED23D /* PBXTextBookmark */ = 387A4C7D0A74E99700FED23D /* PBXTextBookmark */;
+			38802C0A0A953CD100D97223 /* PBXTextBookmark */ = 38802C0A0A953CD100D97223 /* PBXTextBookmark */;
 			38812FB00A89956D00093EFA /* PBXTextBookmark */ = 38812FB00A89956D00093EFA /* PBXTextBookmark */;
+			38B255F90A97E3E6000DAFC5 /* PBXTextBookmark */ = 38B255F90A97E3E6000DAFC5 /* PBXTextBookmark */;
+			38B255FA0A97E3E6000DAFC5 /* PBXTextBookmark */ = 38B255FA0A97E3E6000DAFC5 /* PBXTextBookmark */;
+			38B255FB0A97E3E6000DAFC5 /* PBXTextBookmark */ = 38B255FB0A97E3E6000DAFC5 /* PBXTextBookmark */;
+			38B255FF0A97E3E6000DAFC5 /* PBXTextBookmark */ = 38B255FF0A97E3E6000DAFC5 /* PBXTextBookmark */;
+			38B256000A97E3E6000DAFC5 /* PBXTextBookmark */ = 38B256000A97E3E6000DAFC5 /* PBXTextBookmark */;
+			38B256020A97E3E6000DAFC5 /* PBXTextBookmark */ = 38B256020A97E3E6000DAFC5 /* PBXTextBookmark */;
+			38B256030A97E3E6000DAFC5 /* PBXTextBookmark */ = 38B256030A97E3E6000DAFC5 /* PBXTextBookmark */;
+			38B256050A97E3E6000DAFC5 /* PBXTextBookmark */ = 38B256050A97E3E6000DAFC5 /* PBXTextBookmark */;
+			38B256070A97E3E6000DAFC5 /* PBXTextBookmark */ = 38B256070A97E3E6000DAFC5 /* PBXTextBookmark */;
+			38B256080A97E3E6000DAFC5 /* PBXTextBookmark */ = 38B256080A97E3E6000DAFC5 /* PBXTextBookmark */;
+			38B2560E0A9803AD000DAFC5 /* PBXTextBookmark */ = 38B2560E0A9803AD000DAFC5 /* PBXTextBookmark */;
+			38B2560F0A9803AD000DAFC5 /* PBXBookmark */ = 38B2560F0A9803AD000DAFC5 /* PBXBookmark */;
+			38B256100A9803AD000DAFC5 /* PBXTextBookmark */ = 38B256100A9803AD000DAFC5 /* PBXTextBookmark */;
+			38B256110A9803AD000DAFC5 /* PBXTextBookmark */ = 38B256110A9803AD000DAFC5 /* PBXTextBookmark */;
 			38B4EDAF0A8E149E00142E5A /* PBXTextBookmark */ = 38B4EDAF0A8E149E00142E5A /* PBXTextBookmark */;
-			38B4EEF20A8E14C700142E5A /* PBXTextBookmark */ = 38B4EEF20A8E14C700142E5A /* PBXTextBookmark */;
 			38B6B1410A7530EE000BD201 /* PBXTextBookmark */ = 38B6B1410A7530EE000BD201 /* PBXTextBookmark */;
 			38CADA6C0A8C267B00EE8870 /* PBXTextBookmark */ = 38CADA6C0A8C267B00EE8870 /* PBXTextBookmark */;
 			38CADA6D0A8C267B00EE8870 /* PBXTextBookmark */ = 38CADA6D0A8C267B00EE8870 /* PBXTextBookmark */;
@@ -224,8 +239,6 @@
 			38CADA870A8C27B100EE8870 /* PBXTextBookmark */ = 38CADA870A8C27B100EE8870 /* PBXTextBookmark */;
 			38CADA880A8C27B100EE8870 /* PBXTextBookmark */ = 38CADA880A8C27B100EE8870 /* PBXTextBookmark */;
 			38CFD3DB0A92B468005FC99F /* PBXTextBookmark */ = 38CFD3DB0A92B468005FC99F /* PBXTextBookmark */;
-			38CFD3DD0A92B468005FC99F /* PBXTextBookmark */ = 38CFD3DD0A92B468005FC99F /* PBXTextBookmark */;
-			38CFD3F40A92B5B2005FC99F /* PBXTextBookmark */ = 38CFD3F40A92B5B2005FC99F /* PBXTextBookmark */;
 			38CFD3FD0A92B5B2005FC99F /* PBXTextBookmark */ = 38CFD3FD0A92B5B2005FC99F /* PBXTextBookmark */;
 			38CFD3FE0A92B5B2005FC99F /* PBXTextBookmark */ = 38CFD3FE0A92B5B2005FC99F /* PBXTextBookmark */;
 			38CFD4000A92B5B2005FC99F /* PBXTextBookmark */ = 38CFD4000A92B5B2005FC99F /* PBXTextBookmark */;
@@ -237,12 +250,6 @@
 			38CFD4190A92B7B9005FC99F /* PBXTextBookmark */ = 38CFD4190A92B7B9005FC99F /* PBXTextBookmark */;
 			38CFD41A0A92B7B9005FC99F /* PBXTextBookmark */ = 38CFD41A0A92B7B9005FC99F /* PBXTextBookmark */;
 			38CFD41B0A92B7B9005FC99F /* PBXTextBookmark */ = 38CFD41B0A92B7B9005FC99F /* PBXTextBookmark */;
-			38CFD41D0A92B7B9005FC99F /* PBXTextBookmark */ = 38CFD41D0A92B7B9005FC99F /* PBXTextBookmark */;
-			38CFD41E0A92B7B9005FC99F /* PBXTextBookmark */ = 38CFD41E0A92B7B9005FC99F /* PBXTextBookmark */;
-			38CFD41F0A92B7B9005FC99F /* PBXTextBookmark */ = 38CFD41F0A92B7B9005FC99F /* PBXTextBookmark */;
-			38CFD4200A92B7B9005FC99F /* PBXTextBookmark */ = 38CFD4200A92B7B9005FC99F /* PBXTextBookmark */;
-			38CFD4210A92B7B9005FC99F /* PBXTextBookmark */ = 38CFD4210A92B7B9005FC99F /* PBXTextBookmark */;
-			38CFD4240A92B807005FC99F /* PBXTextBookmark */ = 38CFD4240A92B807005FC99F /* PBXTextBookmark */;
 			38E66F0D0A746FC4007D4C71 /* PBXTextBookmark */ = 38E66F0D0A746FC4007D4C71 /* PBXTextBookmark */;
 			38F44A8B0A71660100451A7C /* PBXTextBookmark */ = 38F44A8B0A71660100451A7C /* PBXTextBookmark */;
 			38F44A920A71660100451A7C /* PBXTextBookmark */ = 38F44A920A71660100451A7C /* PBXTextBookmark */;
@@ -368,26 +375,6 @@
 		vrLen = 291;
 		vrLoc = 0;
 	};
-	380A46640A8AD63400C69A5D /* PBXTextBookmark */ = {
-		isa = PBXTextBookmark;
-		fRef = 384DF8740A723FB6000F9842 /* German */;
-		name = "German: 329";
-		rLen = 0;
-		rLoc = 9492;
-		rType = 0;
-		vrLen = 1067;
-		vrLoc = 6034;
-	};
-	380A46660A8AD63400C69A5D /* PBXTextBookmark */ = {
-		isa = PBXTextBookmark;
-		fRef = 3815D1070A8A96190085540E /* French */;
-		name = "French: 24";
-		rLen = 0;
-		rLoc = 1050;
-		rType = 0;
-		vrLen = 1075;
-		vrLoc = 771;
-	};
 	380A46670A8AD63400C69A5D /* PBXTextBookmark */ = {
 		isa = PBXTextBookmark;
 		fRef = 3815D10A0A8A96220085540E /* French */;
@@ -482,8 +469,8 @@
 	3815D1070A8A96190085540E /* French */ = {
 		uiCtxt = {
 			sepNavIntBoundsRect = "{{0, 0}, {1686, 5145}}";
-			sepNavSelRange = "{2708, 0}";
-			sepNavVisRect = "{{0, 1072}, {1234, 302}}";
+			sepNavSelRange = "{9585, 0}";
+			sepNavVisRect = "{{0, 4511}, {839, 593}}";
 		};
 	};
 	3815D10A0A8A96220085540E /* French */ = {
@@ -644,6 +631,36 @@
 		path = "/Volumes/iDisk/Documents/Projects/Books Project/Version Controlled/books-macosx/Books/Tab-Delimited Text.app/Contents/Resources/tab-delimited.xsl";
 		sourceTree = "<absolute>";
 	};
+	382D34B40A9561F700E5BE09 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 384DF8740A723FB6000F9842 /* German */;
+		name = "German: 340";
+		rLen = 0;
+		rLoc = 9816;
+		rType = 0;
+		vrLen = 1158;
+		vrLoc = 8661;
+	};
+	382D34B60A9561F700E5BE09 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 38802C0E0A953CD100D97223 /* bibtex2xml.py */;
+		name = "bibtex2xml.py: 1";
+		rLen = 0;
+		rLoc = 0;
+		rType = 0;
+		vrLen = 1096;
+		vrLoc = 2659;
+	};
+	382D34C30A9567C100E5BE09 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 383DBED20A6AF82900685384 /* English */;
+		name = "English: 316";
+		rLen = 0;
+		rLoc = 8681;
+		rType = 0;
+		vrLen = 1061;
+		vrLoc = 7625;
+	};
 	38364417097DC15D00E73AF4 /* BookTitleString.h */ = {
 		uiCtxt = {
 			sepNavIntBoundsRect = "{{0, 0}, {777, 384}}";
@@ -746,8 +763,8 @@
 	383DBED20A6AF82900685384 /* English */ = {
 		uiCtxt = {
 			sepNavIntBoundsRect = "{{0, 0}, {1406, 4755}}";
-			sepNavSelRange = "{7760, 0}";
-			sepNavVisRect = "{{0, 3972}, {839, 593}}";
+			sepNavSelRange = "{8681, 0}";
+			sepNavVisRect = "{{0, 4162}, {839, 593}}";
 			sepNavWindowFrame = "{{38, 294}, {750, 558}}";
 		};
 	};
@@ -864,8 +881,8 @@
 	384DF8740A723FB6000F9842 /* German */ = {
 		uiCtxt = {
 			sepNavIntBoundsRect = "{{0, 0}, {1539, 5145}}";
-			sepNavSelRange = "{2621, 0}";
-			sepNavVisRect = "{{0, 1072}, {1234, 302}}";
+			sepNavSelRange = "{9816, 0}";
+			sepNavVisRect = "{{0, 4526}, {839, 593}}";
 			sepNavWindowFrame = "{{61, 273}, {750, 558}}";
 		};
 	};
@@ -1105,6 +1122,28 @@
 		vrLen = 316;
 		vrLoc = 0;
 	};
+	38802C0A0A953CD100D97223 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 38CFD3F50A92B5B2005FC99F /* amazonScript.py */;
+		name = "amazonScript.py: 15";
+		rLen = 0;
+		rLoc = 255;
+		rType = 0;
+		vrLen = 823;
+		vrLoc = 0;
+	};
+	38802C0E0A953CD100D97223 /* bibtex2xml.py */ = {
+		isa = PBXFileReference;
+		lastKnownFileType = text.script.python;
+		name = bibtex2xml.py;
+		path = "/Volumes/iDisk/Documents/Projects/Books Project/Version Controlled/books-macosx/Books/BibTeX Importer.app/Contents/Resources/bibtex2xml.py";
+		sourceTree = "<absolute>";
+		uiCtxt = {
+			sepNavIntBoundsRect = "{{0, 0}, {839, 8985}}";
+			sepNavSelRange = "{17187, 0}";
+			sepNavVisRect = "{{0, 8096}, {839, 593}}";
+		};
+	};
 	38812FB00A89956D00093EFA /* PBXTextBookmark */ = {
 		isa = PBXTextBookmark;
 		fRef = 8D1107310486CEB800E47090 /* Info.plist */;
@@ -1173,6 +1212,198 @@
 			sepNavWindowFrame = "{{38, 141}, {894, 665}}";
 		};
 	};
+	38B255E60A97E2E9000DAFC5 /* Info.plist */ = {
+		isa = PBXFileReference;
+		lastKnownFileType = text.xml;
+		path = Info.plist;
+		sourceTree = "<group>";
+	};
+	38B255F90A97E3E6000DAFC5 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 3815D1070A8A96190085540E /* French */;
+		name = "French: 322";
+		rLen = 0;
+		rLoc = 9585;
+		rType = 0;
+		vrLen = 1160;
+		vrLoc = 8890;
+	};
+	38B255FA0A97E3E6000DAFC5 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 38802C0E0A953CD100D97223 /* bibtex2xml.py */;
+		name = "bibtex2xml.py: 560";
+		rLen = 0;
+		rLoc = 17187;
+		rType = 0;
+		vrLen = 1283;
+		vrLoc = 16556;
+	};
+	38B255FB0A97E3E6000DAFC5 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 38B255FC0A97E3E6000DAFC5 /* run.sh */;
+		name = "(null): 1";
+		rLen = 0;
+		rLoc = 0;
+		rType = 0;
+		vrLen = 87;
+		vrLoc = 0;
+	};
+	38B255FC0A97E3E6000DAFC5 /* run.sh */ = {
+		isa = PBXFileReference;
+		name = run.sh;
+		path = "/Volumes/iDisk/Documents/Projects/Books Project/Version Controlled/books-macosx/Books/BibTeX Importer.app/Contents/Resources/run.sh";
+		sourceTree = "<absolute>";
+	};
+	38B255FE0A97E3E6000DAFC5 /* bibReader.rb */ = {
+		isa = PBXFileReference;
+		name = bibReader.rb;
+		path = "/Volumes/iDisk/Documents/Projects/Books Project/Version Controlled/books-macosx/Books/BibTeX Importer.app/Contents/Resources/bibReader.rb";
+		sourceTree = "<absolute>";
+		uiCtxt = {
+			sepNavIntBoundsRect = "{{0, 0}, {839, 1065}}";
+			sepNavSelRange = "{0, 0}";
+			sepNavVisRect = "{{0, 465}, {839, 593}}";
+		};
+	};
+	38B255FF0A97E3E6000DAFC5 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 3815D1070A8A96190085540E /* French */;
+		name = "French: 322";
+		rLen = 0;
+		rLoc = 9585;
+		rType = 0;
+		vrLen = 1160;
+		vrLoc = 8890;
+	};
+	38B256000A97E3E6000DAFC5 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 38B256010A97E3E6000DAFC5 /* run.sh */;
+		name = "(null): 1";
+		rLen = 0;
+		rLoc = 0;
+		rType = 0;
+		vrLen = 87;
+		vrLoc = 0;
+	};
+	38B256010A97E3E6000DAFC5 /* run.sh */ = {
+		isa = PBXFileReference;
+		name = run.sh;
+		path = "/Volumes/iDisk/Documents/Projects/Books Project/Version Controlled/books-macosx/Books/BibTeX Importer.app/Contents/Resources/run.sh";
+		sourceTree = "<absolute>";
+	};
+	38B256020A97E3E6000DAFC5 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 38802C0E0A953CD100D97223 /* bibtex2xml.py */;
+		name = "bibtex2xml.py: 1";
+		rLen = 0;
+		rLoc = 0;
+		rType = 0;
+		vrLen = 1291;
+		vrLoc = 11770;
+	};
+	38B256030A97E3E6000DAFC5 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 38B256040A97E3E6000DAFC5 /* bibReader.rb */;
+		name = "(null): 1";
+		rLen = 0;
+		rLoc = 0;
+		rType = 0;
+		vrLen = 760;
+		vrLoc = 800;
+	};
+	38B256040A97E3E6000DAFC5 /* bibReader.rb */ = {
+		isa = PBXFileReference;
+		name = bibReader.rb;
+		path = "/Volumes/iDisk/Documents/Projects/Books Project/Version Controlled/books-macosx/Books/BibTeX Importer.app/Contents/Resources/bibReader.rb";
+		sourceTree = "<absolute>";
+	};
+	38B256050A97E3E6000DAFC5 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 38B256060A97E3E6000DAFC5 /* run.sh */;
+		name = "(null): 1";
+		rLen = 0;
+		rLoc = 0;
+		rType = 0;
+		vrLen = 87;
+		vrLoc = 0;
+	};
+	38B256060A97E3E6000DAFC5 /* run.sh */ = {
+		isa = PBXFileReference;
+		name = run.sh;
+		path = "/Volumes/iDisk/Documents/Projects/Books Project/Version Controlled/books-macosx/Books/BibTeX Importer.app/Contents/Resources/run.sh";
+		sourceTree = "<absolute>";
+	};
+	38B256070A97E3E6000DAFC5 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 38802C0E0A953CD100D97223 /* bibtex2xml.py */;
+		name = "bibtex2xml.py: 560";
+		rLen = 0;
+		rLoc = 17187;
+		rType = 0;
+		vrLen = 1283;
+		vrLoc = 16556;
+	};
+	38B256080A97E3E6000DAFC5 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 38B256090A97E3E6000DAFC5 /* run.sh */;
+		name = "(null): 1";
+		rLen = 0;
+		rLoc = 0;
+		rType = 0;
+		vrLen = 87;
+		vrLoc = 0;
+	};
+	38B256090A97E3E6000DAFC5 /* run.sh */ = {
+		isa = PBXFileReference;
+		name = run.sh;
+		path = "/Volumes/iDisk/Documents/Projects/Books Project/Version Controlled/books-macosx/Books/BibTeX Importer.app/Contents/Resources/run.sh";
+		sourceTree = "<absolute>";
+	};
+	38B2560E0A9803AD000DAFC5 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 38B255FE0A97E3E6000DAFC5 /* bibReader.rb */;
+		name = "bibReader.rb: 1";
+		rLen = 0;
+		rLoc = 0;
+		rType = 0;
+		vrLen = 760;
+		vrLoc = 800;
+	};
+	38B2560F0A9803AD000DAFC5 /* PBXBookmark */ = {
+		isa = PBXBookmark;
+		fRef = 38B255E60A97E2E9000DAFC5 /* Info.plist */;
+	};
+	38B256100A9803AD000DAFC5 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 38B255FE0A97E3E6000DAFC5 /* bibReader.rb */;
+		name = "bibReader.rb: 1";
+		rLen = 0;
+		rLoc = 0;
+		rType = 0;
+		vrLen = 760;
+		vrLoc = 800;
+	};
+	38B256110A9803AD000DAFC5 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 38B256120A9803AD000DAFC5 /* Info.plist */;
+		name = "(null): 30";
+		rLen = 0;
+		rLoc = 955;
+		rType = 0;
+		vrLen = 1096;
+		vrLoc = 0;
+	};
+	38B256120A9803AD000DAFC5 /* Info.plist */ = {
+		isa = PBXFileReference;
+		name = Info.plist;
+		path = "/Volumes/iDisk/Documents/Projects/Books Project/Version Controlled/books-macosx/Books/BibTeX Importer.app/Contents/Info.plist";
+		sourceTree = "<absolute>";
+		uiCtxt = {
+			sepNavIntBoundsRect = "{{0, 0}, {839, 593}}";
+			sepNavSelRange = "{955, 0}";
+			sepNavVisRect = "{{0, 0}, {839, 593}}";
+		};
+	};
 	38B4EDAF0A8E149E00142E5A /* PBXTextBookmark */ = {
 		isa = PBXTextBookmark;
 		fRef = 38FD216A0896E28300C5AD4F /* ExportMenuDelegate.m */;
@@ -1182,16 +1413,6 @@
 		rType = 0;
 		vrLen = 1072;
 		vrLoc = 764;
-	};
-	38B4EEF20A8E14C700142E5A /* PBXTextBookmark */ = {
-		isa = PBXTextBookmark;
-		fRef = 383DBED20A6AF82900685384 /* English */;
-		name = "English: 283";
-		rLen = 0;
-		rLoc = 7760;
-		rType = 0;
-		vrLen = 1120;
-		vrLoc = 7276;
 	};
 	38B6B1410A7530EE000BD201 /* PBXTextBookmark */ = {
 		isa = PBXTextBookmark;
@@ -1342,37 +1563,12 @@
 		vrLen = 1197;
 		vrLoc = 44577;
 	};
-	38CFD3DD0A92B468005FC99F /* PBXTextBookmark */ = {
-		isa = PBXTextBookmark;
-		fRef = 77C8280C06725ACE000B614F /* BooksAppDelegate.m */;
-		name = NSRunAle;
-		rLen = 8;
-		rLoc = 51482;
-		rType = 0;
-		vrLen = 1197;
-		vrLoc = 44577;
-	};
 	38CFD3DF0A92B468005FC99F /* amazonScript.py */ = {
 		isa = PBXFileReference;
 		lastKnownFileType = text.script.python;
 		name = amazonScript.py;
 		path = "/Volumes/iDisk/Documents/Projects/Books Project/Version Controlled/books-macosx/Books/Amazon (US).plugin/Contents/Resources/amazonScript.py";
 		sourceTree = "<absolute>";
-		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {839, 2925}}";
-			sepNavSelRange = "{0, 4826}";
-			sepNavVisRect = "{{0, 2252}, {839, 593}}";
-		};
-	};
-	38CFD3F40A92B5B2005FC99F /* PBXTextBookmark */ = {
-		isa = PBXTextBookmark;
-		fRef = 38CFD3F50A92B5B2005FC99F /* amazonScript.py */;
-		name = "(null): 11";
-		rLen = 0;
-		rLoc = 193;
-		rType = 0;
-		vrLen = 823;
-		vrLoc = 0;
 	};
 	38CFD3F50A92B5B2005FC99F /* amazonScript.py */ = {
 		isa = PBXFileReference;
@@ -1380,11 +1576,6 @@
 		name = amazonScript.py;
 		path = "/Volumes/iDisk/Documents/Projects/Books Project/Version Controlled/books-macosx/Books/Amazon (UK).plugin/Contents/Resources/amazonScript.py";
 		sourceTree = "<absolute>";
-		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {839, 2925}}";
-			sepNavSelRange = "{194, 0}";
-			sepNavVisRect = "{{0, 0}, {839, 593}}";
-		};
 	};
 	38CFD3F70A92B5B2005FC99F /* amazonScript.py */ = {
 		isa = PBXFileReference;
@@ -1392,11 +1583,6 @@
 		name = amazonScript.py;
 		path = "/Volumes/iDisk/Documents/Projects/Books Project/Version Controlled/books-macosx/Books/Amazon (CA).plugin/Contents/Resources/amazonScript.py";
 		sourceTree = "<absolute>";
-		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {839, 2925}}";
-			sepNavSelRange = "{194, 0}";
-			sepNavVisRect = "{{0, 0}, {839, 593}}";
-		};
 	};
 	38CFD3F90A92B5B2005FC99F /* amazonScript.py */ = {
 		isa = PBXFileReference;
@@ -1404,11 +1590,6 @@
 		name = amazonScript.py;
 		path = "/Volumes/iDisk/Documents/Projects/Books Project/Version Controlled/books-macosx/Books/Amazon (DE).plugin/Contents/Resources/amazonScript.py";
 		sourceTree = "<absolute>";
-		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {839, 2925}}";
-			sepNavSelRange = "{194, 0}";
-			sepNavVisRect = "{{0, 0}, {839, 593}}";
-		};
 	};
 	38CFD3FB0A92B5B2005FC99F /* amazonScript.py */ = {
 		isa = PBXFileReference;
@@ -1416,11 +1597,6 @@
 		name = amazonScript.py;
 		path = "/Volumes/iDisk/Documents/Projects/Books Project/Version Controlled/books-macosx/Books/Amazon (FR).plugin/Contents/Resources/amazonScript.py";
 		sourceTree = "<absolute>";
-		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {839, 2925}}";
-			sepNavSelRange = "{194, 0}";
-			sepNavVisRect = "{{0, 0}, {839, 593}}";
-		};
 	};
 	38CFD3FD0A92B5B2005FC99F /* PBXTextBookmark */ = {
 		isa = PBXTextBookmark;
@@ -1444,14 +1620,10 @@
 	};
 	38CFD3FF0A92B5B2005FC99F /* amazonScript.py */ = {
 		isa = PBXFileReference;
+		lastKnownFileType = text.script.python;
 		name = amazonScript.py;
 		path = "/Volumes/iDisk/Documents/Projects/Books Project/Version Controlled/books-macosx/Books/Amazon (UK).plugin/Contents/Resources/amazonScript.py";
 		sourceTree = "<absolute>";
-		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {839, 2925}}";
-			sepNavSelRange = "{255, 0}";
-			sepNavVisRect = "{{0, 0}, {839, 593}}";
-		};
 	};
 	38CFD4000A92B5B2005FC99F /* PBXTextBookmark */ = {
 		isa = PBXTextBookmark;
@@ -1465,6 +1637,7 @@
 	};
 	38CFD4010A92B5B2005FC99F /* amazonScript.py */ = {
 		isa = PBXFileReference;
+		lastKnownFileType = text.script.python;
 		name = amazonScript.py;
 		path = "/Volumes/iDisk/Documents/Projects/Books Project/Version Controlled/books-macosx/Books/Amazon (CA).plugin/Contents/Resources/amazonScript.py";
 		sourceTree = "<absolute>";
@@ -1481,6 +1654,7 @@
 	};
 	38CFD4030A92B5B2005FC99F /* amazonScript.py */ = {
 		isa = PBXFileReference;
+		lastKnownFileType = text.script.python;
 		name = amazonScript.py;
 		path = "/Volumes/iDisk/Documents/Projects/Books Project/Version Controlled/books-macosx/Books/Amazon (DE).plugin/Contents/Resources/amazonScript.py";
 		sourceTree = "<absolute>";
@@ -1497,6 +1671,7 @@
 	};
 	38CFD4050A92B5B2005FC99F /* amazonScript.py */ = {
 		isa = PBXFileReference;
+		lastKnownFileType = text.script.python;
 		name = amazonScript.py;
 		path = "/Volumes/iDisk/Documents/Projects/Books Project/Version Controlled/books-macosx/Books/Amazon (FR).plugin/Contents/Resources/amazonScript.py";
 		sourceTree = "<absolute>";
@@ -1507,11 +1682,6 @@
 		name = amazonScript.py;
 		path = "/Volumes/iDisk/Documents/Projects/Books Project/Version Controlled/books-macosx/Books/Amazon (JP).plugin/Contents/Resources/amazonScript.py";
 		sourceTree = "<absolute>";
-		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {839, 2925}}";
-			sepNavSelRange = "{194, 0}";
-			sepNavVisRect = "{{0, 0}, {839, 593}}";
-		};
 	};
 	38CFD4160A92B7B9005FC99F /* PBXTextBookmark */ = {
 		isa = PBXTextBookmark;
@@ -1575,74 +1745,9 @@
 	};
 	38CFD41C0A92B7B9005FC99F /* amazonScript.py */ = {
 		isa = PBXFileReference;
+		lastKnownFileType = text.script.python;
 		name = amazonScript.py;
 		path = "/Volumes/iDisk/Documents/Projects/Books Project/Version Controlled/books-macosx/Books/Amazon (JP).plugin/Contents/Resources/amazonScript.py";
-		sourceTree = "<absolute>";
-	};
-	38CFD41D0A92B7B9005FC99F /* PBXTextBookmark */ = {
-		isa = PBXTextBookmark;
-		fRef = 38CFD3DF0A92B468005FC99F /* amazonScript.py */;
-		name = "amazonScript.py: 1";
-		rLen = 4826;
-		rLoc = 0;
-		rType = 0;
-		vrLen = 1222;
-		vrLoc = 3531;
-	};
-	38CFD41E0A92B7B9005FC99F /* PBXTextBookmark */ = {
-		isa = PBXTextBookmark;
-		fRef = 38CFD3F70A92B5B2005FC99F /* amazonScript.py */;
-		name = "amazonScript.py: 11";
-		rLen = 0;
-		rLoc = 194;
-		rType = 0;
-		vrLen = 823;
-		vrLoc = 0;
-	};
-	38CFD41F0A92B7B9005FC99F /* PBXTextBookmark */ = {
-		isa = PBXTextBookmark;
-		fRef = 38CFD3F90A92B5B2005FC99F /* amazonScript.py */;
-		name = "amazonScript.py: 11";
-		rLen = 0;
-		rLoc = 194;
-		rType = 0;
-		vrLen = 823;
-		vrLoc = 0;
-	};
-	38CFD4200A92B7B9005FC99F /* PBXTextBookmark */ = {
-		isa = PBXTextBookmark;
-		fRef = 38CFD3FB0A92B5B2005FC99F /* amazonScript.py */;
-		name = "amazonScript.py: 11";
-		rLen = 0;
-		rLoc = 194;
-		rType = 0;
-		vrLen = 823;
-		vrLoc = 0;
-	};
-	38CFD4210A92B7B9005FC99F /* PBXTextBookmark */ = {
-		isa = PBXTextBookmark;
-		fRef = 38CFD4070A92B5B2005FC99F /* amazonScript.py */;
-		name = "amazonScript.py: 11";
-		rLen = 0;
-		rLoc = 194;
-		rType = 0;
-		vrLen = 823;
-		vrLoc = 0;
-	};
-	38CFD4240A92B807005FC99F /* PBXTextBookmark */ = {
-		isa = PBXTextBookmark;
-		fRef = 38CFD4250A92B807005FC99F /* amazonScript.py */;
-		name = "(null): 15";
-		rLen = 0;
-		rLoc = 255;
-		rType = 0;
-		vrLen = 823;
-		vrLoc = 0;
-	};
-	38CFD4250A92B807005FC99F /* amazonScript.py */ = {
-		isa = PBXFileReference;
-		name = amazonScript.py;
-		path = "/Volumes/iDisk/Documents/Projects/Books Project/Version Controlled/books-macosx/Books/Amazon (UK).plugin/Contents/Resources/amazonScript.py";
 		sourceTree = "<absolute>";
 	};
 	38D0C90109057D8300672AA7 /* BookManagedObject.h */ = {

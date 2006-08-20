@@ -557,7 +557,7 @@ def bibtexwasher(filecontents_source):
 def contentshandler(filecontents_source):
      washeddata = bibtexwasher(filecontents_source)
      outdata = bibtexdecoder(washeddata)
-     print '<?xml version="1.0" encoding="iso-8859-1"?>'
+     print '<?xml version="1.0" encoding="utf-8"?>'
      #print '<?xml-stylesheet href="bibtexml.css" type="text/css" ?>'
      print '<!DOCTYPE bibtex:file PUBLIC'
      print '    "-//BibTeXML//DTD XML for BibTeX v1.0//EN"'
