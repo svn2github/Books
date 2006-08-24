@@ -45,7 +45,17 @@ bibxml.elements().each("/bibtex:file/bibtex:entry/bibtex:book") do |book_element
 			newname = name
 		end
 		
-		if (name == "bibtex:bibdate" || name == "bibtex:year")
+		if (name == "bibtex:bibdate" || name == "bibtex:year" || name == "bibtex:month")
+			other_field = book.add_element("field")
+
+			if (name == "bibtex:bibdate")
+				other_field.attributes["name"] = "bibtex-bibdate"
+			elsif (name == "bibtex:year")
+				other_field.attributes["name"] = "bibtex-year"
+			elsif (name == "bibtex:month")
+				other_field.attributes["name"] = "bibtex-month"
+			
+			other_field.add_text(value) 
 
 		elsif (name == "bibtex:author")
 			value = value.tr_s("\n", "").tr_s("\t", "")
