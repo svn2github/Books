@@ -247,7 +247,7 @@
 			imageData = [[NSData alloc] initWithContentsOfFile:imagePath];
 //	}
 	
-	return [imageData autorelease];
+	return [imageData retain];
 }
 
 - (void) setCoverImage: (NSData *) data
@@ -268,7 +268,7 @@
 		[[NSFileManager defaultManager] removeFileAtPath:imagePath handler:nil];
 
 	if (imageData != nil)
-		[imageData release];
+	 	[imageData release];
 		
 	imageData = nil;
 	
