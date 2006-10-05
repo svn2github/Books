@@ -26,6 +26,7 @@
 	[allBundles addObjectsFromArray: [NSBundle allFrameworks]];
     
     managedObjectModel = [[NSManagedObjectModel mergedModelFromBundles: [allBundles allObjects]] retain];
+
     [allBundles release];
     
     return managedObjectModel;
@@ -516,6 +517,8 @@
 
 - (void) awakeFromNib
 {
+	NSLog (@"start");
+	
 	NSToolbar * tb = [[NSToolbar alloc] initWithIdentifier:@"main"];
 	
 	[tb setDelegate:self];
@@ -623,7 +626,11 @@
 
 	[mainWindow makeKeyAndOrderFront:self];
 	
+	[self updateMainPane];
+	
 	[[[NSApplication sharedApplication] delegate] startProgressWindow:NSLocalizedString (@"Loading data from disk...", nil)];
+
+	NSLog (@"end");
 }
 
 - (void) startProgressWindow: (NSString *) message
@@ -758,7 +765,11 @@
 			}
 
 			[cover release];
+
+			[getCover setAction:NSSelectorFromString (@"getCoverWindow:")];
 		}
+		else
+			[getCover setAction:nil];
 	}
 
 
@@ -1555,6 +1566,13 @@
 	[[NSApplication sharedApplication] endSheet:smartListEditorWindow];
 	[smartListEditorWindow orderOut:self];
 }
+
+- (IBAction) cancelSmartList:(id) sender
+{
+	[[NSApplication sharedApplication] endSheet:smartListEditorWindow];
+	[smartListEditorWindow orderOut:self];
+}
+
 
 - (NSArray *) getSelectedBooks
 {

@@ -47,6 +47,8 @@
 		fieldName = @"publisher";
 	else if ([fieldName isEqualToString:NSLocalizedString (@"length", nil)])
 		fieldName = @"length";
+	else if ([fieldName isEqualToString:NSLocalizedString (@"format", nil)])
+		fieldName = @"format";
 	else if ([fieldName isEqualToString:NSLocalizedString (@"edition", nil)])
 		fieldName = @"edition";
 	else if ([fieldName isEqualToString:NSLocalizedString (@"date published", nil)])
@@ -61,6 +63,8 @@
 		fieldName = @"translators";
 	else if ([fieldName isEqualToString:NSLocalizedString (@"list name", nil)])
 		fieldName = @"listName";
+	else if ([fieldName isEqualToString:NSLocalizedString (@"place published", nil)])
+		fieldName = @"publishPlace";
 	
 	if ([fieldValue isEqualToString:@""])
 		return nil;
@@ -132,7 +136,7 @@
 {
 	if (predicate == nil)
 	{
-		[field selectItemWithTitle:@"Title"];
+		[field selectItemWithTitle:NSLocalizedString (@"Title", nil)];
 		[operation selectItemWithTitle:NSLocalizedString (@"contains", nil)];
 		[value setStringValue:@""];
 		

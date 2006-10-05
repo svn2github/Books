@@ -11,6 +11,7 @@
 		38030AD708F4A37A00B2AC82 /* SmartListWindowDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 38030AD608F4A37A00B2AC82 /* SmartListWindowDelegate.m */; };
 		38039DBF0A04EA5400DFA71F /* PluginManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 38039DBD0A04EA5400DFA71F /* PluginManager.m */; };
 		381119D008EDC407008FBAEB /* white.png in Resources */ = {isa = PBXBuildFile; fileRef = 381119CF08EDC407008FBAEB /* white.png */; };
+		3816417D0ACC045900DBFC14 /* Books_DataModel.xcdatamodel in Sources */ = {isa = PBXBuildFile; fileRef = 770B37EC0679A11B001EADE2 /* Books_DataModel.xcdatamodel */; };
 		382611B209BB5BA7006B3CD7 /* ISBNdb.plugin in Resources */ = {isa = PBXBuildFile; fileRef = 382611A909BB5BA7006B3CD7 /* ISBNdb.plugin */; };
 		3832913A0A03EF1C00C98833 /* Books Metadata Importer.mdimporter in Resources */ = {isa = PBXBuildFile; fileRef = 3832912B0A03EF1C00C98833 /* Books Metadata Importer.mdimporter */; };
 		383291590A03F0E300C98833 /* Books Metadata Importer.mdimporter in CopyFiles */ = {isa = PBXBuildFile; fileRef = 3832912B0A03EF1C00C98833 /* Books Metadata Importer.mdimporter */; };
@@ -95,7 +96,6 @@
 		38FD21700896E2EC00C5AD4F /* ExportPluginInterface.m in Sources */ = {isa = PBXBuildFile; fileRef = 38FD216F0896E2EC00C5AD4F /* ExportPluginInterface.m */; };
 		38FDFC740A7198BE009481C3 /* empty.html in Resources */ = {isa = PBXBuildFile; fileRef = 38FDFC730A7198BE009481C3 /* empty.html */; };
 		38FDFCA60A719B05009481C3 /* multiple.html in Resources */ = {isa = PBXBuildFile; fileRef = 38FDFCA50A719B05009481C3 /* multiple.html */; };
-		770B37ED0679A11B001EADE2 /* Books_DataModel.xcdatamodel in Sources */ = {isa = PBXBuildFile; fileRef = 770B37EC0679A11B001EADE2 /* Books_DataModel.xcdatamodel */; };
 		77C8280D06725ACE000B614F /* BooksAppDelegate.h in Resources */ = {isa = PBXBuildFile; fileRef = 77C8280B06725ACE000B614F /* BooksAppDelegate.h */; };
 		77C8280E06725ACE000B614F /* BooksAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 77C8280C06725ACE000B614F /* BooksAppDelegate.m */; };
 		8D11072A0486CEB800E47090 /* MainMenu.nib in Resources */ = {isa = PBXBuildFile; fileRef = 29B97318FDCFA39411CA2CEA /* MainMenu.nib */; };
@@ -199,7 +199,7 @@
 		38666BD40A9E28F2001C33BC /* Spanish */ = {isa = PBXFileReference; lastKnownFileType = text.html; name = Spanish; path = Spanish.lproj/multiple.html; sourceTree = "<group>"; };
 		38666BDA0A9E2925001C33BC /* Spanish */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Spanish; path = Spanish.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		38666BDF0A9E2964001C33BC /* Spanish */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Spanish; path = Spanish.lproj/MainMenu.strings; sourceTree = "<group>"; };
-		38666BE40A9E2B4E001C33BC /* Spanish */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Spanish; path = Spanish.lproj/Localizable.strings; sourceTree = "<group>"; };
+		38666BE40A9E2B4E001C33BC /* Spanish */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; name = Spanish; path = Spanish.lproj/Localizable.strings; sourceTree = "<group>"; };
 		38666BE90A9E2BBD001C33BC /* Spanish */ = {isa = PBXFileReference; lastKnownFileType = wrapper.nib; name = Spanish; path = Spanish.lproj/MainMenu.nib; sourceTree = "<group>"; };
 		38666DAC08E5088600071C56 /* new-list.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "new-list.png"; sourceTree = "<group>"; };
 		38666DAE08E5089800071C56 /* new-book.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "new-book.png"; sourceTree = "<group>"; };
@@ -726,7 +726,7 @@
 			files = (
 				8D11072D0486CEB800E47090 /* main.m in Sources */,
 				77C8280E06725ACE000B614F /* BooksAppDelegate.m in Sources */,
-				770B37ED0679A11B001EADE2 /* Books_DataModel.xcdatamodel in Sources */,
+				3816417D0ACC045900DBFC14 /* Books_DataModel.xcdatamodel in Sources */,
 				3878AF29088FE45E00C72EB3 /* ImportPluginInterface.m in Sources */,
 				38FD21620896E1ED00C5AD4F /* ImportMenuDelegate.m in Sources */,
 				38FD216B0896E28300C5AD4F /* ExportMenuDelegate.m in Sources */,

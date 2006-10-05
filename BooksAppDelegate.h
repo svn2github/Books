@@ -138,6 +138,7 @@
 - (IBAction) newList:(id) sender;
 - (IBAction) editSmartList:(id) sender;
 - (IBAction) saveSmartList:(id) sender;
+- (IBAction) cancelSmartList:(id) sender;
 
 - (IBAction) viewOnline:(id) sender;
 
