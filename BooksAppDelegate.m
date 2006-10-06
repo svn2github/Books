@@ -1,8 +1,27 @@
-//  BooksAppDelegate.m
-//  Books
-//
-//  Created by Chris Karr on 7/13/05.
-//  Copyright __MyCompanyName__ 2005 . All rights reserved.
+/*
+   Copyright (c) 2006 Chris J. Karr
+
+   Permission is hereby granted, free of charge, to any person 
+   obtaining a copy of this software and associated documentation 
+   files (the "Software"), to deal in the Software without restriction, 
+   including without limitation the rights to use, copy, modify, merge, 
+   publish, distribute, sublicense, and/or sell copies of the Software, 
+   and to permit persons to whom the Software is furnished to do so, 
+   subject to the following conditions:
+
+   The above copyright notice and this permission notice shall be 
+   included in all copies or substantial portions of the Software.
+
+   THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, 
+   EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF 
+   MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND 
+   NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS 
+   BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN 
+   ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN 
+   CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE 
+   SOFTWARE.
+*/
+
 
 #import "BooksAppDelegate.h"
 #import "ImportPluginInterface.h"
@@ -263,12 +282,14 @@
 	if (reply != NSTerminateCancel)
 	{
 		BOOL isDir;
-		NSString * path = @"/tmp/books-export";
 
 		NSFileManager * manager = [NSFileManager defaultManager];
 
-		if ([manager fileExistsAtPath:path isDirectory:&isDir])
-			[manager removeFileAtPath:path handler:nil];
+		if ([manager fileExistsAtPath:@"/tmp/books-export" isDirectory:&isDir])
+			[manager removeFileAtPath:@"/tmp/books-export" handler:nil];
+
+		if ([manager fileExistsAtPath:@"tmp/books-quickfill.xml" isDirectory:&isDir])
+			[manager removeFileAtPath:@"tmp/books-quickfill.xml" handler:nil];
 	}
 
     return reply;
@@ -990,6 +1011,13 @@
 		BookManagedObject * book = (BookManagedObject *) [books objectAtIndex:0];
 		NSBundle * quickfillPlugin = (NSBundle *) [quickfillPlugins objectForKey:pluginKey];
 	
+		if (quickfill == nil)
+		{
+			[[NSUserDefaults standardUserDefaults] setObject:@"" forKey:@"Default Quickfill Plugin"];
+			[self quickfill:sender];
+			return;
+		}
+			
 		quickfill = [[QuickfillPluginInterface alloc] init];
 
 		[quickfill importFromBundle:quickfillPlugin forBook:book replace:NO];
