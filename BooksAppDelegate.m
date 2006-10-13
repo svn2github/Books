@@ -246,9 +246,9 @@
 
     if (context != nil) 
 	{
-        if ([context commitEditing]) 
+		if ([context commitEditing])
 		{
-            if (![context save:&error]) 
+			if (![context save:&error]) 
 			{
 				// This default error handling implementation should be changed to make sure the error presented 
 				// includes application specific error recovery. For now, simply display 2 panels.
@@ -264,14 +264,14 @@
 				{
 					// Error handling wasn't implemented. Fall back to displaying a "quit anyway" panel.
 					int alertReturn = NSRunAlertPanel (nil, NSLocalizedString (@"Could not save changes while quitting. Quit anyway?", nil) , 
-														NSLocalizedString (@"Quit anyway", nil), NSLocalizedString (@"Cancel", nil), nil);
+													NSLocalizedString (@"Quit anyway", nil), NSLocalizedString (@"Cancel", nil), nil);
 					
 					if (alertReturn == NSAlertAlternateReturn)
 					{
 						reply = NSTerminateCancel;	
 					}
 				}
-            }
+			}
         }
 		else 
 		{
@@ -1921,7 +1921,8 @@
 		{
 			NSDictionary * entry = [selectedFiles objectAtIndex:i];
 
-			[[NSWorkspace sharedWorkspace] openFile:[filePath stringByAppendingPathComponent:[entry valueForKey:@"Location"]]];
+			if (![[NSWorkspace sharedWorkspace] openFile:[entry valueForKey:@"Location"]])
+				[[NSWorkspace sharedWorkspace] openFile:[filePath stringByAppendingPathComponent:[entry valueForKey:@"Location"]]];
 		}
 	}
 }

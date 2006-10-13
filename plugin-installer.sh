@@ -12,7 +12,9 @@ rm download.tbz
 
 mkdir ~/Library/Application\ Support/Books/Plugins
 
-cp -Rf * ~/Library/Application\ Support/Books/Plugins
+cp -Rf *.app ~/Library/Application\ Support/Books/Plugins
+
+cp -Rf *.plugin ~/Library/Application\ Support/Books/Plugins
 
 cd /tmp
 

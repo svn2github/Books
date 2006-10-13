@@ -565,15 +565,22 @@
 	NSString * filePath = [NSString stringWithFormat:@"%@%@%@/", NSHomeDirectory (),
 								@"/Library/Application Support/Books/Files/", [self getObjectIdString], nil];
 
-    if ([[NSFileManager defaultManager] fileExistsAtPath:location])
-		[[NSFileManager defaultManager] copyPath:location 
-			toPath:[filePath stringByAppendingPathComponent:[location lastPathComponent]] handler:nil];
-	else
-		return;
-
 	NSMutableDictionary * entry = [NSMutableDictionary dictionary];
+
+	if ([[NSUserDefaults standardUserDefaults] boolForKey:@"Copy Files"])
+	{
+		if ([[NSFileManager defaultManager] fileExistsAtPath:location])
+			[[NSFileManager defaultManager] copyPath:location 
+				toPath:[filePath stringByAppendingPathComponent:[location lastPathComponent]] handler:nil];
+		else
+			return;
+
+		[entry setValue:[location lastPathComponent] forKey:@"Location"];
+	}
+	else
+		[entry setValue:location forKey:@"Location"];
+
 	[entry setValue:title forKey:@"Title"];
-	[entry setValue:[location lastPathComponent] forKey:@"Location"];
 	[entry setValue:description forKey:@"Description"];
 	[entry setValue:[[NSWorkspace sharedWorkspace] 
 		iconForFile:[filePath stringByAppendingPathComponent:[entry valueForKey:@"Location"]]] forKey:@"Icon"];
@@ -650,9 +657,13 @@
 	for (i = 0; i < [allObjects count]; i++)
 	{
 		NSMutableDictionary * file = [allObjects objectAtIndex:i];
+
+		NSImage * icon = [[NSWorkspace sharedWorkspace] iconForFile:[file valueForKey:@"Location"]];
 		
-		[file setValue:[[NSWorkspace sharedWorkspace] 
-			iconForFile:[filePath stringByAppendingPathComponent:[file valueForKey:@"Location"]]] forKey:@"Icon"];
+		if (![[NSFileManager defaultManager] fileExistsAtPath:[file valueForKey:@"Location"]])
+			icon = [[NSWorkspace sharedWorkspace] iconForFile:[filePath stringByAppendingPathComponent:[file valueForKey:@"Location"]]];
+			
+		[file setValue:icon forKey:@"Icon"];
 	}
 	
 	return fileSet;
