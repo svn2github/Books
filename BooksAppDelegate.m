@@ -1020,13 +1020,13 @@ typedef struct _monochromePixel
 		BookManagedObject * book = (BookManagedObject *) [books objectAtIndex:0];
 		NSBundle * quickfillPlugin = (NSBundle *) [quickfillPlugins objectForKey:pluginKey];
 
-/*		if (quickfill == nil)
+		if (quickfillPlugin == nil)
 		{
 			[[NSUserDefaults standardUserDefaults] setObject:@"" forKey:@"Default Quickfill Plugin"];
 			[self quickfill:sender];
 			return;
 		}
-*/
+
 		quickfill = [[QuickfillPluginInterface alloc] init];
 
 		[quickfill importFromBundle:quickfillPlugin forBook:book replace:NO];
