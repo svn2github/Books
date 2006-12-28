@@ -24,6 +24,7 @@
 
 
 #import <Cocoa/Cocoa.h>
+#import <Quartz/Quartz.h>
 #import <WebKit/WebKit.h>
 #import "HtmlPageBuilder.h"
 #import "ListManagedObject.h"
@@ -107,6 +108,9 @@
 	IBOutlet QuickfillSearchWindow * quickfillResultsWindow;
 	
 	IBOutlet PluginManager * pluginManager;
+
+	IBOutlet NSWindow * iSightWindow;
+	IBOutlet QCView * iSightView;
 }
 
 - (IBAction)preferences:(id)sender;
@@ -200,5 +204,7 @@
 - (void) stopQuickfill;
 - (IBAction) cancelQuickfill: (id) sender;
 - (QuickfillSearchWindow *) getQuickfillResultsWindow;
+
+- (IBAction) import: (id)sender;
 
 @end

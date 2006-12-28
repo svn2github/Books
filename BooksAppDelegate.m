@@ -32,7 +32,14 @@
 #import "SmartList.h"
 #import "BooksToolbarItem.h"
 #import "BookManagedObject.h"
+#import "MyBarcodeScanner.h"
 
+typedef struct _monochromePixel
+{ 
+	unsigned char grayValue; 
+	unsigned char alpha; 
+} monochromePixel;
+	
 @implementation BooksAppDelegate
 
 - (NSManagedObjectModel *) managedObjectModel 
@@ -499,13 +506,14 @@
 		[item setLabel:NSLocalizedString (@"Export Data", nil)];
 		[item setPaletteLabel:NSLocalizedString (@"Export Data", nil)];
 	}
-	else if ([itemIdentifier isEqualToString:@"test"])
+	else if ([itemIdentifier isEqualToString:@"isight"])
 	{
 		[item setTarget:self];
-		[item setAction:NSSelectorFromString(@"newSmartList:")];
+		[item setAction:NSSelectorFromString(@"isight:")];
 
-		[item setLabel:NSLocalizedString (@"Test Function", nil)];
-		[item setPaletteLabel:NSLocalizedString (@"Test Function", nil)];
+		[item setImage:[NSImage imageNamed:@"camera"]];
+		[item setLabel:NSLocalizedString (@"Open Camera", nil)];
+		[item setPaletteLabel:NSLocalizedString (@"Open Camera", nil)];
 	}
 
 	else if ([itemIdentifier isEqualToString:@"search"])
@@ -519,6 +527,7 @@
 		[item setLabel:NSLocalizedString (@"Search Selected List", nil)];
 		[item setPaletteLabel:NSLocalizedString (@"Search Selected List", nil)];
 	}
+
 	
 	return item;
 }
@@ -526,7 +535,7 @@
 - (NSArray *) toolbarAllowedItemIdentifiers: (NSToolbar *) toolbar
 {
 	return [NSArray arrayWithObjects:@"new-list", @"new-smartlist", @"edit-smartlist", @"new-book", @"remove-book", @"remove-list", @"preferences", 
-		@"get-info", @"get-cover", @"import", @"export", @"search", NSToolbarSeparatorItemIdentifier, 
+		@"get-info", @"get-cover", @"import", @"export", @"search", @"isight", NSToolbarSeparatorItemIdentifier, 
 		NSToolbarSpaceItemIdentifier, NSToolbarFlexibleSpaceItemIdentifier, NSToolbarCustomizeToolbarItemIdentifier, nil];
 }
 
@@ -2020,5 +2029,118 @@
 {
 	return quickfillResultsWindow;
 }
+
+- (IBAction) isight: (id)sender
+{
+	NSLog (@"isight");
+/*
+	if (![iSightWindow isVisible])
+	{
+		[iSightWindow makeKeyAndOrderFront:sender];
+		[iSightView startRendering];
+	}
+	else
+	{
+		NSArray * selected = [self getSelectedBooks];
+	
+		NSImage * image = [iSightView valueForOutputKey:@"ImageOutput"];
+		
+		if ([selected count] == 1)
+			[((BookManagedObject *) [selected objectAtIndex:0]) setValue:[image TIFFRepresentation] forKey:@"coverImage"];
+
+		NSSize mySize = [image size];
+		
+		int row, column, widthInPixels = mySize.width, heightInPixels = mySize.height;
+
+		NSBitmapImageRep *blackAndWhiteRep = 
+		[[NSBitmapImageRep alloc] 
+			initWithBitmapDataPlanes: nil  // Nil pointer tells the kit to allocate the pixel buffer for us.
+			pixelsWide: widthInPixels 
+			pixelsHigh: heightInPixels
+			bitsPerSample: 8
+			samplesPerPixel: 2  
+			hasAlpha: YES
+			isPlanar: NO 
+			colorSpaceName: NSCalibratedWhiteColorSpace // 0 = black, 1 = white in this color space.
+			bytesPerRow: 0     // Passing zero means "you figure it out."
+			bitsPerPixel: 16];  // This must agree with bitsPerSample and samplesPerPixel.
+  
+		monochromePixel * pixels = (monochromePixel *) [blackAndWhiteRep bitmapData];  // -bitmapData returns a void*, not an NSData object ;-)
+
+		[image lockFocus]; // necessary for NSReadPixel() to work.
+	
+		for (row = 0; row < heightInPixels; row++)
+		{
+			for (column = 0; column < widthInPixels; column++)
+			{
+				monochromePixel * thisPixel = &(pixels[((widthInPixels * row) + column)]);
+									
+				NSColor  * pixelColor = NSReadPixel (NSMakePoint (column, heightInPixels - (row +1)));
+							
+				thisPixel->grayValue = rint (255 *   // use this line for positive...
+					(0.299 * [pixelColor redComponent]
+					+ 0.587 * [pixelColor greenComponent]
+					+ 0.114 * [pixelColor blueComponent]));
+									
+				thisPixel->alpha = ([pixelColor alphaComponent]  * 255); // handle the transparency, too
+			}
+		}
+
+		[image unlockFocus];
+
+		float linePixels[320];
+		float lineDeriv[320];
+
+		float white = 0;
+		float lastWhite = 0;
+
+		for (column = 0; column < widthInPixels; column++)
+		{
+			NSColor * color = [blackAndWhiteRep colorAtX:column y:120];
+	
+			white = [color whiteComponent];
+
+			linePixels[column] = white;
+			lineDeriv[column] = lastWhite - white;
+
+			NSLog (@"%3d %1.4f - %1.4f", column, linePixels[column], lineDeriv[column]);
+			
+			lastWhite = white;
+		}
+
+		NSLog (@"\n\n");
+
+		[iSightWindow orderOut:sender];
+		[iSightView stopRendering];
+	}
+*/
+		
+	MyBarcodeScanner *iSight = [MyBarcodeScanner sharedInstance];
+	[iSight setStaysOpen:NO];
+	[iSight setDelegate:self];
+	
+	[iSight setMirrored:YES];
+	
+	[iSight scanForBarcodeWindow:nil];
+}
+
+
+- (void)gotBarcode:(NSString *)barcode 
+{
+	if (([barcode length] == 13 || [barcode length] == 18) && [barcode rangeOfString:@"?"].location == NSNotFound)
+	{
+		NSArray * selected = [self getSelectedBooks];
+		
+		if ([selected count] == 1)
+		{
+			BookManagedObject * book = (BookManagedObject *) [selected objectAtIndex:0];
+			
+			[book setValue:barcode forKey:@"isbn"];
+
+			NSLog (@"%@", barcode);
+		}
+	}
+}
+
 
 @end

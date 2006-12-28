@@ -115,6 +115,8 @@
 		NSString * isbn = [dict valueForKey:@"isbn"];
 		NSString * summary = [dict valueForKey:@"summary"];
 		NSString * format = [dict valueForKey:@"format"];
+		NSString * publisher = [dict valueForKey:@"publisher"];
+		NSString * date = [dict valueForKey:@"publishDate"];
 
 		if (title != nil)
 		{
@@ -134,6 +136,20 @@
 		{
 			[htmlString appendString:NSLocalizedString (@"<p>ISBN: ", nil)];
 			[htmlString appendString:isbn];
+			[htmlString appendString:@"<p>"];
+		}
+
+		if (publisher != nil)
+		{
+			[htmlString appendString:NSLocalizedString (@"<p>Publisher: ", nil)];
+			[htmlString appendString:publisher];
+			[htmlString appendString:@"<p>"];
+		}
+
+		if (date != nil)
+		{
+			[htmlString appendString:NSLocalizedString (@"<p>Date: ", nil)];
+			[htmlString appendString:date];
 			[htmlString appendString:@"<p>"];
 		}
 
