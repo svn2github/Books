@@ -193,6 +193,7 @@
 			381930920B43476000646B67 /* PBXTextBookmark */ = 381930920B43476000646B67 /* PBXTextBookmark */;
 			381930930B43476000646B67 /* PBXTextBookmark */ = 381930930B43476000646B67 /* PBXTextBookmark */;
 			381930940B43476000646B67 /* PBXTextBookmark */ = 381930940B43476000646B67 /* PBXTextBookmark */;
+			3819309C0B4348D000646B67 /* PBXTextBookmark */ = 3819309C0B4348D000646B67 /* PBXTextBookmark */;
 			3826D6550ADD2C2900248329 = 3826D6550ADD2C2900248329 /* PBXTextBookmark */;
 			382D34B60A9561F700E5BE09 = 382D34B60A9561F700E5BE09 /* PBXTextBookmark */;
 			383B40220A9B49850028D07F = 383B40220A9B49850028D07F /* PBXTextBookmark */;
@@ -852,6 +853,16 @@
 		vrLoc = 0;
 	};
 	381930940B43476000646B67 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 3819303D0B43468200646B67 /* MyiSightWindow.m */;
+		name = "MyiSightWindow.m: 1";
+		rLen = 0;
+		rLoc = 0;
+		rType = 0;
+		vrLen = 568;
+		vrLoc = 0;
+	};
+	3819309C0B4348D000646B67 /* PBXTextBookmark */ = {
 		isa = PBXTextBookmark;
 		fRef = 3819303D0B43468200646B67 /* MyiSightWindow.m */;
 		name = "MyiSightWindow.m: 1";

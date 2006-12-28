@@ -258,21 +258,15 @@
 							<key>PBXSmartGroupTreeModuleOutlineStateExpansionKey</key>
 							<array>
 								<string>29B97314FDCFA39411CA2CEA</string>
-								<string>080E96DDFE201D6D7F000001</string>
-								<string>29B97317FDCFA39411CA2CEA</string>
-								<string>29B97323FDCFA39411CA2CEA</string>
-								<string>1058C7A0FEA54F0111CA2CBB</string>
 							</array>
 							<key>PBXSmartGroupTreeModuleOutlineStateSelectionKey</key>
 							<array>
 								<array>
-									<integer>33</integer>
-									<integer>32</integer>
 									<integer>0</integer>
 								</array>
 							</array>
 							<key>PBXSmartGroupTreeModuleOutlineStateVisibleRectKey</key>
-							<string>{{0, 150}, {300, 581}}</string>
+							<string>{{0, 0}, {300, 581}}</string>
 						</dict>
 						<key>PBXTopSmartGroupGIDs</key>
 						<array/>
@@ -321,7 +315,7 @@
 										<key>_historyCapacity</key>
 										<integer>0</integer>
 										<key>bookmark</key>
-										<string>381930940B43476000646B67</string>
+										<string>3819309C0B4348D000646B67</string>
 										<key>history</key>
 										<array>
 											<string>38E66F0D0A746FC4007D4C71</string>
@@ -744,8 +738,8 @@
 		<string>1CD10A99069EF8BA00B06720</string>
 		<string>381930850B43475E00646B67</string>
 		<string>384FEAE0090BD7D500EB0E2A</string>
-		<string>1C0AD2B3069F1EA900FABCE6</string>
 		<string>/Volumes/iDisk/Documents/Projects/Books Project/Version Controlled/books-macosx/Books/Books.xcodeproj</string>
+		<string>1C0AD2B3069F1EA900FABCE6</string>
 	</array>
 	<key>WindowString</key>
 	<string>44 138 1202 640 0 0 1280 778 </string>
