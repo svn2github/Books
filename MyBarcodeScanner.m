@@ -25,13 +25,15 @@
 //At what value of the (read width / ideal single bar width) is a bar considered 4 bars wide.
 #define SEPARATION_VALUE_FOR_3_BARS 3.7
 //the roof limit of how sure ofa  digit value the algorythm can be. The lower the number the more volatile 
-#define SURENESS_LIMIT 6
+#define SURENESS_LIMIT 10
 //At what row to start scanning
 #define FIRST_LINE_SCAN (240 - (NUMBER_OF_LINES_SCANNED /2 * SPACING_BETWEEN_SCAN_LINE))
 //What to set the focus of the external iSights to
 #define CAMERA_FOCUS 0.35
 //Same as NSLog but stays in a shipping program, as serious errors to log to the console.
 #define DLog NSLog
+// Minimum number of digits that need to be scan in one pass to consider the number worthy of adding to information present
+#define MINIMUM_DIGITS_FOR_GOOD_SCAN 8
 
 
 //EAN encoding type
@@ -139,7 +141,7 @@ pascal OSErr MungGrabDataProc(SGChannel c, Ptr p, long len, long *offset, long c
 	NSRect screenFrame = [[NSScreen mainScreen] visibleFrame];
 	iSightWindow = [[MyiSightWindow alloc] initWithContentRect:NSMakeRect(screenFrame.origin.x + 20,screenFrame.size.height - 520,640,480) styleMask:NSTitledWindowMask | NSClosableWindowMask backing:NSBackingStoreBuffered defer:NO];
 	[iSightWindow setFrameAutosaveName:@"iSightWindow"];
-	[iSightWindow setTitle:NSLocalizedString(@"Camera Window", nil)];
+	[iSightWindow setTitle:@"iSight"];
 	[iSightWindow setDelegate:self];
 	[iSightWindow setLevel: NSNormalWindowLevel];
 	[iSightWindow setAlphaValue:1.00];
@@ -551,7 +553,7 @@ bail:
 				// If 7 or more digits were read from the barcode then process number 
 				// and add it to the local number 
 				// Don't check the scanned number if it has 12 digits as it not verfied and it could lead to a lucky checksum and a wrong number
-				if (numberOfDigitsFound > 6) {
+				if (numberOfDigitsFound >= MINIMUM_DIGITS_FOR_GOOD_SCAN) {
 					//NSLog(@"j = %d %d", j, numberOfDigitsFound);
 					foundBarcodeArea = YES;	 //Tells the sequence grabber to draw the lines green as feedback to the user	
 					noMissingNumbers = [self compareAgainstPreviousScans:numberArray previous:previousNumberLocalArray];
@@ -1169,8 +1171,7 @@ int getNumberStripesEAN(int number, double average) {
 }
 
 
-
-//Comapres two barcode numbers and merges them intelligently. That way not wasting previous scans. It keeps a table of how sure it is about a number depending on how many times that number has appeared at that location
+// Compares two barcode numbers and merges them intelligently. That way not wasting previous scans. It keeps a table of how sure it is about a number depending on how many times that number has appeared at that location
 - (BOOL)compareAgainstPreviousScans:(char [3][12])aNumberArray previous:(char [3][12])previousNumberArray {
 	
 	int i;
@@ -1178,31 +1179,33 @@ int getNumberStripesEAN(int number, double average) {
 	
 	for (i = 0; i < 12; i++) {
 		//check other results to fill in ?
-		if (previousNumberArray[0][i] != NOT_FOUND ) {
-			
+		if (previousNumberArray[0][i] != NOT_FOUND ) {			
+			//Number are equal increase sureness until limit
 			if (previousNumberArray[0][i] == aNumberArray[0][i]) {
-				if (previousNumberArray[2][i] == SURENESS_LIMIT - 1)
-					previousNumberArray[2][i] = SURENESS_LIMIT;
-				else 
-					previousNumberArray[2][i] = ++previousNumberArray[2][i];
+				if (previousNumberArray[2][i] != SURENESS_LIMIT)
+					++previousNumberArray[2][i];
 			}
 			else {
 				
 				if (aNumberArray[0][i] == NOT_FOUND) {
-					aNumberArray[0][i] = previousNumberArray[0][i];
-					aNumberArray[1][i] = previousNumberArray[1][i];
+					// A aNumberArray is never used so no need to fill it
+					//aNumberArray[0][i] = previousNumberArray[0][i];
+					//aNumberArray[1][i] = previousNumberArray[1][i];
 				}
 				else {
-					//decide on the sureness index which one stays
+					// decide on the sureness index which one stays
+					// if the previous number sureness ahs dipped under 0 then replace it with the current number 
+					// else if the current number sureness is higher than previous number then replace previous number as well
+					// subtract 1 from sureness as the numbers where not matching
 					if (previousNumberArray[2][i] < 0) {
 						previousNumberArray[0][i] = aNumberArray[0][i];
 						previousNumberArray[1][i] = aNumberArray[1][i];	
 						previousNumberArray[2][i] = 0;
 					}
 					else {
-						if (previousNumberArray[2][i] > 5) {
-							aNumberArray[0][i] = previousNumberArray[0][i];
-							aNumberArray[1][i] = previousNumberArray[1][i];
+						if (previousNumberArray[2][i] < aNumberArray[0][i]) {
+							previousNumberArray[0][i] = aNumberArray[0][i];
+							//previousNumberArray[1][i] = aNumberArray[1][i];	// We leave this line out as we don't want to carry the surenees from a single bad scan
 						}
 						--previousNumberArray[2][i];
 					}
@@ -1670,9 +1673,9 @@ OSErr MakeSequenceGrabChannel(SeqGrabComponent seqGrab, SGChannel *sgchanVideo, 
 - (NSString *)barcodeFromArray:(char [3][12])aNumberArray {
 	//It's a UPC don't include the leading zero from the EAN
 	if (previousNumberGlobalArray[1][6] == 0)
-		return [self stringFromArrray:previousNumberGlobalArray];
+		return [self stringFromArrray:aNumberArray];
 	else
-		return [NSString stringWithFormat:@"%d%@", previousNumberGlobalArray[1][6], [self stringFromArrray:previousNumberGlobalArray]];	
+		return [NSString stringWithFormat:@"%d%@", aNumberArray[1][6], [self stringFromArrray:aNumberArray]];	
 	
 }
 

@@ -12,15 +12,15 @@
 		38039DBF0A04EA5400DFA71F /* PluginManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 38039DBD0A04EA5400DFA71F /* PluginManager.m */; };
 		381119D008EDC407008FBAEB /* white.png in Resources */ = {isa = PBXBuildFile; fileRef = 381119CF08EDC407008FBAEB /* white.png */; };
 		3816417D0ACC045900DBFC14 /* Books_DataModel.xcdatamodel in Sources */ = {isa = PBXBuildFile; fileRef = 770B37EC0679A11B001EADE2 /* Books_DataModel.xcdatamodel */; };
-		381930410B43468200646B67 /* MyiSightWindow.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 3819303B0B43468200646B67 /* MyiSightWindow.h */; };
-		381930420B43468200646B67 /* MyGraphView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3819303C0B43468200646B67 /* MyGraphView.m */; };
-		381930430B43468200646B67 /* MyiSightWindow.m in Sources */ = {isa = PBXBuildFile; fileRef = 3819303D0B43468200646B67 /* MyiSightWindow.m */; };
-		381930440B43468200646B67 /* MyBarcodeScanner.m in Sources */ = {isa = PBXBuildFile; fileRef = 3819303E0B43468200646B67 /* MyBarcodeScanner.m */; };
-		381930450B43468200646B67 /* MyBarcodeScanner.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 3819303F0B43468200646B67 /* MyBarcodeScanner.h */; };
-		381930460B43468200646B67 /* MyGraphView.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 381930400B43468200646B67 /* MyGraphView.h */; };
 		381930480B43469600646B67 /* camera.png in Resources */ = {isa = PBXBuildFile; fileRef = 381930470B43469600646B67 /* camera.png */; };
 		381930510B43470C00646B67 /* QuickTime.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 381930500B43470C00646B67 /* QuickTime.framework */; };
 		381930790B43474300646B67 /* Carbon.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 381930780B43474300646B67 /* Carbon.framework */; };
+		3820367D0B4989F80022E60E /* MyiSightWindow.m in Sources */ = {isa = PBXBuildFile; fileRef = 382036770B4989F80022E60E /* MyiSightWindow.m */; };
+		3820367E0B4989F80022E60E /* MyiSightWindow.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 382036780B4989F80022E60E /* MyiSightWindow.h */; };
+		3820367F0B4989F80022E60E /* MyGraphView.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 382036790B4989F80022E60E /* MyGraphView.h */; };
+		382036800B4989F80022E60E /* MyGraphView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3820367A0B4989F80022E60E /* MyGraphView.m */; };
+		382036810B4989F80022E60E /* MyBarcodeScanner.m in Sources */ = {isa = PBXBuildFile; fileRef = 3820367B0B4989F80022E60E /* MyBarcodeScanner.m */; };
+		382036820B4989F80022E60E /* MyBarcodeScanner.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 3820367C0B4989F80022E60E /* MyBarcodeScanner.h */; };
 		382611B209BB5BA7006B3CD7 /* ISBNdb.plugin in Resources */ = {isa = PBXBuildFile; fileRef = 382611A909BB5BA7006B3CD7 /* ISBNdb.plugin */; };
 		3832913A0A03EF1C00C98833 /* Books Metadata Importer.mdimporter in Resources */ = {isa = PBXBuildFile; fileRef = 3832912B0A03EF1C00C98833 /* Books Metadata Importer.mdimporter */; };
 		383291590A03F0E300C98833 /* Books Metadata Importer.mdimporter in CopyFiles */ = {isa = PBXBuildFile; fileRef = 3832912B0A03EF1C00C98833 /* Books Metadata Importer.mdimporter */; };
@@ -121,9 +121,9 @@
 			dstSubfolderSpec = 16;
 			files = (
 				383291590A03F0E300C98833 /* Books Metadata Importer.mdimporter in CopyFiles */,
-				381930410B43468200646B67 /* MyiSightWindow.h in CopyFiles */,
-				381930450B43468200646B67 /* MyBarcodeScanner.h in CopyFiles */,
-				381930460B43468200646B67 /* MyGraphView.h in CopyFiles */,
+				3820367E0B4989F80022E60E /* MyiSightWindow.h in CopyFiles */,
+				3820367F0B4989F80022E60E /* MyGraphView.h in CopyFiles */,
+				382036820B4989F80022E60E /* MyBarcodeScanner.h in CopyFiles */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -162,15 +162,15 @@
 		3815D12F0A8A96550085540E /* French */ = {isa = PBXFileReference; lastKnownFileType = wrapper.nib; name = French; path = French.lproj/MainMenu.nib; sourceTree = "<group>"; };
 		3815D1320A8A966B0085540E /* French */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; name = French; path = French.lproj/empty.html; sourceTree = "<group>"; };
 		3815D1350A8A96730085540E /* French */ = {isa = PBXFileReference; lastKnownFileType = text.html; name = French; path = French.lproj/multiple.html; sourceTree = "<group>"; };
-		3819303B0B43468200646B67 /* MyiSightWindow.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = MyiSightWindow.h; sourceTree = "<group>"; };
-		3819303C0B43468200646B67 /* MyGraphView.m */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.objc; path = MyGraphView.m; sourceTree = "<group>"; };
-		3819303D0B43468200646B67 /* MyiSightWindow.m */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.objc; path = MyiSightWindow.m; sourceTree = "<group>"; };
-		3819303E0B43468200646B67 /* MyBarcodeScanner.m */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.objc; path = MyBarcodeScanner.m; sourceTree = "<group>"; };
-		3819303F0B43468200646B67 /* MyBarcodeScanner.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = MyBarcodeScanner.h; sourceTree = "<group>"; };
-		381930400B43468200646B67 /* MyGraphView.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = MyGraphView.h; sourceTree = "<group>"; };
 		381930470B43469600646B67 /* camera.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = camera.png; sourceTree = "<group>"; };
 		381930500B43470C00646B67 /* QuickTime.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuickTime.framework; path = /System/Library/Frameworks/QuickTime.framework; sourceTree = "<absolute>"; };
 		381930780B43474300646B67 /* Carbon.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Carbon.framework; path = /System/Library/Frameworks/Carbon.framework; sourceTree = "<absolute>"; };
+		382036770B4989F80022E60E /* MyiSightWindow.m */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.objc; path = MyiSightWindow.m; sourceTree = "<group>"; };
+		382036780B4989F80022E60E /* MyiSightWindow.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = MyiSightWindow.h; sourceTree = "<group>"; };
+		382036790B4989F80022E60E /* MyGraphView.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = MyGraphView.h; sourceTree = "<group>"; };
+		3820367A0B4989F80022E60E /* MyGraphView.m */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.objc; path = MyGraphView.m; sourceTree = "<group>"; };
+		3820367B0B4989F80022E60E /* MyBarcodeScanner.m */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.objc; path = MyBarcodeScanner.m; sourceTree = "<group>"; };
+		3820367C0B4989F80022E60E /* MyBarcodeScanner.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = MyBarcodeScanner.h; sourceTree = "<group>"; };
 		382611A909BB5BA7006B3CD7 /* ISBNdb.plugin */ = {isa = PBXFileReference; lastKnownFileType = folder; path = ISBNdb.plugin; sourceTree = "<group>"; };
 		3832912B0A03EF1C00C98833 /* Books Metadata Importer.mdimporter */ = {isa = PBXFileReference; lastKnownFileType = folder; path = "Books Metadata Importer.mdimporter"; sourceTree = "<group>"; };
 		38358E7F0958ED3900E823F3 /* Amazon (US).plugin */ = {isa = PBXFileReference; lastKnownFileType = folder; path = "Amazon (US).plugin"; sourceTree = "<group>"; };
@@ -441,12 +441,12 @@
 		381930350B43466900646B67 /* Camera Scanner */ = {
 			isa = PBXGroup;
 			children = (
-				3819303B0B43468200646B67 /* MyiSightWindow.h */,
-				3819303C0B43468200646B67 /* MyGraphView.m */,
-				3819303D0B43468200646B67 /* MyiSightWindow.m */,
-				3819303E0B43468200646B67 /* MyBarcodeScanner.m */,
-				3819303F0B43468200646B67 /* MyBarcodeScanner.h */,
-				381930400B43468200646B67 /* MyGraphView.h */,
+				382036770B4989F80022E60E /* MyiSightWindow.m */,
+				382036780B4989F80022E60E /* MyiSightWindow.h */,
+				382036790B4989F80022E60E /* MyGraphView.h */,
+				3820367A0B4989F80022E60E /* MyGraphView.m */,
+				3820367B0B4989F80022E60E /* MyBarcodeScanner.m */,
+				3820367C0B4989F80022E60E /* MyBarcodeScanner.h */,
 			);
 			name = "Camera Scanner";
 			sourceTree = "<group>";
@@ -796,9 +796,9 @@
 				388E122B09F83E82000A3FF5 /* CheckOutManagedObject.m in Sources */,
 				38039DBF0A04EA5400DFA71F /* PluginManager.m in Sources */,
 				38EF4C3D0A4A910D00DA872C /* QuickfillSearchWindow.m in Sources */,
-				381930420B43468200646B67 /* MyGraphView.m in Sources */,
-				381930430B43468200646B67 /* MyiSightWindow.m in Sources */,
-				381930440B43468200646B67 /* MyBarcodeScanner.m in Sources */,
+				3820367D0B4989F80022E60E /* MyiSightWindow.m in Sources */,
+				382036800B4989F80022E60E /* MyGraphView.m in Sources */,
+				382036810B4989F80022E60E /* MyBarcodeScanner.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
