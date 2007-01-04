@@ -309,6 +309,36 @@
 	return [self valueForKey:@"title"];
 }
 
+- (NSArray *) getSecondaryFields:(NSString *) fieldName fromSet:(NSString *) setName
+{
+	NSSet * set = [super valueForKey:setName];
+
+	if (set != nil)
+	{
+		NSMutableArray * fields = [[NSMutableArray alloc] init];
+	
+		NSArray * setArray = [set allObjects];
+		
+		int i = 0;
+		for (i = 0; i < [setArray count]; i++)
+		{
+			NSManagedObject * item = [setArray objectAtIndex:i];
+			
+			NSObject * value = [item valueForKey:fieldName];
+
+			if (value == nil)
+				value = @"";
+
+			[fields addObject:value];
+		}
+		
+		return fields;
+	}
+	else
+		return nil;
+}
+
+
 - (NSString *) getSecondaryField:(NSString *) fieldName fromSet:(NSString *) setName
 {
 	NSSet * set = [super valueForKey:setName];
@@ -410,7 +440,72 @@
 
 - (NSString *) getBorrower
 {
-	return [self getSecondaryField:@"borrower" fromSet:@"copiesOut"];
+	[NSDateFormatter setDefaultFormatterBehavior:NSDateFormatterBehavior10_4];
+	NSString * dateFormat = [[NSUserDefaults standardUserDefaults] stringForKey:@"Custom Date Format"];
+
+	if (dateFormat != nil)
+		formatter = [[NSDateFormatter alloc] initWithDateFormat:dateFormat allowNaturalLanguage:NO];
+	else
+	{
+		formatter = [[NSDateFormatter alloc] init];
+		[formatter setDateStyle:NSDateFormatterLongStyle];
+	}
+
+	NSMutableString * string = [[NSMutableString alloc] initWithString:@""];
+
+	NSArray * borrowers = [self getSecondaryFields:@"borrower" fromSet:@"copiesOut"];
+	NSArray * copies = [self getSecondaryFields:@"copyLent" fromSet:@"copiesOut"];
+	NSArray * datesLent = [self getSecondaryFields:@"dateLent" fromSet:@"copiesOut"];
+	NSArray * datesDue = [self getSecondaryFields:@"dateDue" fromSet:@"copiesOut"];
+
+	NSMutableArray * records = [NSMutableArray array];
+
+	int i = 0;
+
+	for (i = 0; i < [borrowers count]; i++)
+	{
+		NSMutableDictionary * record = [NSMutableDictionary dictionary];
+		
+		[record setValue:[borrowers objectAtIndex:i] forKey:@"borrower"];
+		[record setValue:[copies objectAtIndex:i] forKey:@"copy"];
+		[record setValue:[datesLent objectAtIndex:i] forKey:@"dateLent"];
+		[record setValue:[datesDue objectAtIndex:i] forKey:@"dateDue"];
+
+		[records addObject:record];
+	}
+
+	NSSortDescriptor * lastNameDescriptor=[[[NSSortDescriptor alloc] initWithKey:@"dateLent" ascending:NO] autorelease];
+	NSArray * sortDescriptors=[NSArray arrayWithObject:lastNameDescriptor];
+
+	[records sortUsingDescriptors:sortDescriptors];
+	
+	for (i = 0; i < [records count]; i++)
+	{
+		NSDictionary * record = (NSDictionary *) [records objectAtIndex:i];
+		[string appendString:[record valueForKey:@"borrower"]];
+		[string appendString:@": "];
+		[string appendString:[record valueForKey:@"copy"]];
+
+		[string appendString:@" ("];
+
+		if (![[record valueForKey:@"dateLent"] isEqual:@""])
+			[string appendString:[formatter stringFromDate:[record valueForKey:@"dateLent"]]];
+		else 
+			[string appendString:@"Unknown Lent Date"];
+
+		[string appendString:@" - "];
+			
+		if (![[record valueForKey:@"dateDue"] isEqual:@""])
+			[string appendString:[formatter stringFromDate:[record valueForKey:@"dateDue"]]];
+		else 
+			[string appendString:@"Unknown Due Date"];
+
+		[string appendString:@")"];
+
+		[string appendString:@"; "];
+	}
+	
+	return string;
 }
 
 - (void) setBorrower:(NSString *) value

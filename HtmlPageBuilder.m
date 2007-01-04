@@ -196,6 +196,10 @@
 					[bookDef appendString:field];
 					[bookDef appendString:@"\">"];
 			
+					if ([field isEqualToString:@"borrower"])
+						[printString replaceOccurrencesOfString:@"; " withString:@"<br />\n" 
+							options:nil range:NSMakeRange (0, [printString length])];
+						
 					[bookDef appendString:printString];
 			
 					[bookDef appendString:@"</div>\n"];

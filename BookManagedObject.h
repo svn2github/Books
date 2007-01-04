@@ -30,6 +30,8 @@
 {
 	NSData * imageData;
 	NSMutableSet * fileSet;
+
+	NSDateFormatter * formatter;
 }
 
 - (void) didChangeValueForKey: (NSString *) key;

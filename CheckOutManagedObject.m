@@ -24,9 +24,18 @@
 
 
 #import "CheckOutManagedObject.h"
+#import "BooksAppDelegate.h"
 #import <AddressBook/AddressBook.h>
 
 @implementation CheckOutManagedObject
+
+- (void) didChangeValueForKey: (NSString *) key
+{
+	NSLog (@"changed");
+	[super didChangeValueForKey:key];
+	
+	[((BooksAppDelegate *) [NSApp delegate]) updateMainPane];
+}
 
 - (NSData *) getImage
 {

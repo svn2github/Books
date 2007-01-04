@@ -171,6 +171,8 @@ typedef struct _monochromePixel
 
 - (NSApplicationTerminateReply) applicationShouldTerminate: (NSApplication *) sender 
 {
+	[[NSPasteboard generalPasteboard] setPropertyList:[[NSArray alloc] init] forType:@"Books Book Type"];
+
 	NSUserDefaults * defaults = [NSUserDefaults standardUserDefaults];
 
 	int i = 0;
