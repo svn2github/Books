@@ -171,8 +171,6 @@ typedef struct _monochromePixel
 
 - (NSApplicationTerminateReply) applicationShouldTerminate: (NSApplication *) sender 
 {
-	[[NSPasteboard generalPasteboard] setPropertyList:[[NSArray alloc] init] forType:@"Books Book Type"];
-
 	NSUserDefaults * defaults = [NSUserDefaults standardUserDefaults];
 
 	int i = 0;
@@ -549,8 +547,6 @@ typedef struct _monochromePixel
 
 - (void) awakeFromNib
 {
-	NSLog (@"start");
-	
 	NSToolbar * tb = [[NSToolbar alloc] initWithIdentifier:@"main"];
 	
 	[tb setDelegate:self];
@@ -661,8 +657,6 @@ typedef struct _monochromePixel
 	[self updateMainPane];
 	
 	[[[NSApplication sharedApplication] delegate] startProgressWindow:NSLocalizedString (@"Loading data from disk...", nil)];
-
-	NSLog (@"end");
 }
 
 - (void) startProgressWindow: (NSString *) message
@@ -2034,7 +2028,6 @@ typedef struct _monochromePixel
 
 - (IBAction) isight: (id)sender
 {
-	NSLog (@"isight");
 /*
 	if (![iSightWindow isVisible])
 	{
@@ -2138,8 +2131,6 @@ typedef struct _monochromePixel
 			BookManagedObject * book = (BookManagedObject *) [selected objectAtIndex:0];
 			
 			[book setValue:barcode forKey:@"isbn"];
-
-			NSLog (@"%@", barcode);
 		}
 	}
 }

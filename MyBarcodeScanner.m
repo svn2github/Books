@@ -141,7 +141,7 @@ pascal OSErr MungGrabDataProc(SGChannel c, Ptr p, long len, long *offset, long c
 	NSRect screenFrame = [[NSScreen mainScreen] visibleFrame];
 	iSightWindow = [[MyiSightWindow alloc] initWithContentRect:NSMakeRect(screenFrame.origin.x + 20,screenFrame.size.height - 520,640,480) styleMask:NSTitledWindowMask | NSClosableWindowMask backing:NSBackingStoreBuffered defer:NO];
 	[iSightWindow setFrameAutosaveName:@"iSightWindow"];
-	[iSightWindow setTitle:@"iSight"];
+	[iSightWindow setTitle:NSLocalizedString (@"Camera Window", nil)];
 	[iSightWindow setDelegate:self];
 	[iSightWindow setLevel: NSNormalWindowLevel];
 	[iSightWindow setAlphaValue:1.00];

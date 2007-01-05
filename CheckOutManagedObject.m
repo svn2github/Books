@@ -31,7 +31,6 @@
 
 - (void) didChangeValueForKey: (NSString *) key
 {
-	NSLog (@"changed");
 	[super didChangeValueForKey:key];
 	
 	[((BooksAppDelegate *) [NSApp delegate]) updateMainPane];

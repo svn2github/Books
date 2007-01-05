@@ -33,7 +33,7 @@
 	if ([[listController selectedObjects] count] != 1)
 		return NO;
 
-	selectedRows = rows;
+	selectedRows = [rows retain];
 	
 	NSString * type = @"Books Book Type";
     NSArray * typesArray = [NSArray arrayWithObjects:type, nil];
