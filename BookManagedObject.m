@@ -438,7 +438,7 @@
 
 }
 
-- (NSString *) getBorrower
+- (NSArray *) getCheckOutsArray
 {
 	[NSDateFormatter setDefaultFormatterBehavior:NSDateFormatterBehavior10_4];
 	NSString * dateFormat = [[NSUserDefaults standardUserDefaults] stringForKey:@"Custom Date Format"];
@@ -451,17 +451,14 @@
 		[formatter setDateStyle:NSDateFormatterLongStyle];
 	}
 
-	NSMutableString * string = [[NSMutableString alloc] initWithString:@""];
-
 	NSArray * borrowers = [self getSecondaryFields:@"borrower" fromSet:@"copiesOut"];
 	NSArray * copies = [self getSecondaryFields:@"copyLent" fromSet:@"copiesOut"];
 	NSArray * datesLent = [self getSecondaryFields:@"dateLent" fromSet:@"copiesOut"];
 	NSArray * datesDue = [self getSecondaryFields:@"dateDue" fromSet:@"copiesOut"];
 
-	NSMutableArray * records = [NSMutableArray array];
+	NSMutableArray * records = [[NSMutableArray array] retain];
 
 	int i = 0;
-
 	for (i = 0; i < [borrowers count]; i++)
 	{
 		NSMutableDictionary * record = [NSMutableDictionary dictionary];
@@ -479,6 +476,16 @@
 
 	[records sortUsingDescriptors:sortDescriptors];
 	
+	return records;
+}
+
+- (NSString *) getBorrower
+{
+	NSArray * records = [self getCheckOutsArray];
+
+	NSMutableString * string = [[NSMutableString alloc] init];
+	
+	int i = 0;
 	for (i = 0; i < [records count]; i++)
 	{
 		NSDictionary * record = (NSDictionary *) [records objectAtIndex:i];
@@ -504,6 +511,8 @@
 
 		[string appendString:@"; "];
 	}
+
+	[records release];
 	
 	return string;
 }
@@ -511,6 +520,43 @@
 - (void) setBorrower:(NSString *) value
 {
 
+}
+
+- (NSString *) getLastBorrower
+{
+	NSArray * records = [self getCheckOutsArray];
+
+	if ([records count] > 0)
+		return ((NSString *) [[records objectAtIndex:0] valueForKey:@"borrower"]);
+		
+	return nil;
+}
+
+- (void) setLastBorrower: (NSString *) value
+{
+
+}
+
+- (NSDate *) getLastDateLent
+{
+	NSArray * records = [self getCheckOutsArray];
+
+	if ([records count] > 0)
+		if (![[[records objectAtIndex:0] valueForKey:@"dateLent"] isEqual:@""])
+			return ((NSDate *) [[records objectAtIndex:0] valueForKey:@"dateLent"]);
+		
+	return nil;
+}
+
+- (NSDate *) getLastDateDue
+{
+	NSMutableArray * records = (NSMutableArray *) [self getCheckOutsArray];
+
+	if ([records count] > 0)
+		if (![[[records objectAtIndex:0] valueForKey:@"dateDue"] isEqual:@""])
+			return ((NSDate *) [[records objectAtIndex:0] valueForKey:@"dateDue"]);
+		
+	return nil;
 }
 
 
@@ -556,7 +602,7 @@
 
 - (NSDate *) getDateLent
 {
-	return (NSDate *) [self getSecondaryField:@"dateLent" fromSet:@"copiesOut"];
+	return [self getLastDateLent];
 }
 
 - (void) setDateLent
@@ -566,7 +612,8 @@
 
 - (NSDate *) getDateDue
 {
-	return (NSDate *) [self getSecondaryField:@"dateDue" fromSet:@"copiesOut"];
+//	return (NSDate *) [self getSecondaryField:@"dateDue" fromSet:@"copiesOut"];
+	return [self getLastDateDue];
 }
 
 - (void) setDateDue

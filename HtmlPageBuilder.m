@@ -196,7 +196,7 @@
 					[bookDef appendString:field];
 					[bookDef appendString:@"\">"];
 			
-					if ([field isEqualToString:@"borrower"])
+					if ([field isEqualToString:@"borrowers"])
 						[printString replaceOccurrencesOfString:@"; " withString:@"<br />\n" 
 							options:nil range:NSMakeRange (0, [printString length])];
 						

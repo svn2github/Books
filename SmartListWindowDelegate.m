@@ -69,6 +69,7 @@
 
 - (void) setPredicate: (NSPredicate *) predicate
 {
+NSLog (@"1");
 	NSCompoundPredicate * compPredicate = nil;
 	
 	if (![predicate isKindOfClass:[NSCompoundPredicate class]] && predicate != nil)
@@ -76,29 +77,38 @@
 	else
 		compPredicate = (NSCompoundPredicate *) predicate;
 
+NSLog (@"2");
+
 	[self resetViews];
 	
 	if (predicate == nil)
 		return;
 
+NSLog (@"3");
+
 	NSArray * ruleViews = [[rulesBox contentView] subviews];
 	NSArray * subs = [compPredicate subpredicates];
 
+NSLog (@"4");
 	if ([subs count] == 1)
 	{
 		SmartListRuleView * view = (SmartListRuleView *) [ruleViews objectAtIndex:0];
+NSLog (@"5");
 
 		[view setPredicate:compPredicate];
 	}
 	else
 	{
+NSLog (@"6");
 		int i = 0;
 		for (i = 0; i < [subs count]; i++)
 		{
 			SmartListRuleView * view = (SmartListRuleView *) [ruleViews objectAtIndex:i];
 			NSComparisonPredicate * p = [subs objectAtIndex:i];
+NSLog (@"7");
 
 			[view setPredicate:p];
+NSLog (@"8");
 		}
 	}
 	
