@@ -53,6 +53,7 @@
 	IBOutlet NSTableColumn * enabledColumn;
 	IBOutlet NSSplitView * splitView;
 	IBOutlet NSSplitView * leftView;
+	IBOutlet NSSplitView * rightView;
 
 	IBOutlet NSWindow * progressView;
 	IBOutlet NSProgressIndicator * progressIndicator;

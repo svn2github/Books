@@ -245,6 +245,40 @@ typedef struct _monochromePixel
 
 	[defaults setObject:viewRects forKey:@"Main Scroller Sizes"];
 
+	viewRects = [NSMutableArray array];
+	viewEnum = [[leftView subviews] objectEnumerator];
+
+	while ((view = [viewEnum nextObject]) != nil)
+	{
+		NSRect frame;
+		
+		if ([leftView isSubviewCollapsed:view])
+			frame = NSZeroRect;
+		else
+			frame = [view frame];
+
+		[viewRects addObject:NSStringFromRect (frame)];
+	}
+
+	[defaults setObject:viewRects forKey:@"Left Scroller Sizes"];
+
+	viewRects = [NSMutableArray array];
+	viewEnum = [[rightView subviews] objectEnumerator];
+
+	while ((view = [viewEnum nextObject]) != nil)
+	{
+		NSRect frame;
+		
+		if ([rightView isSubviewCollapsed:view])
+			frame = NSZeroRect;
+		else
+			frame = [view frame];
+
+		[viewRects addObject:NSStringFromRect (frame)];
+	}
+
+	[defaults setObject:viewRects forKey:@"Right Scroller Sizes"];
+
     NSError *error;
     NSManagedObjectContext *context;
     int reply = NSTerminateNow;
@@ -641,6 +675,60 @@ typedef struct _monochromePixel
 		}
 	}
 
+	viewRects = [defaults objectForKey:@"Left Scroller Sizes"];
+	
+	if (viewRects != nil)
+	{
+		NSArray * views = [leftView subviews];
+        int i, count;
+
+        count = MIN ([viewRects count], [views count]);
+
+        for(i = 0; i < count; i++)
+        {
+			NSRect frame = NSRectFromString ([viewRects objectAtIndex:i]);
+
+			if (NSIsEmptyRect (frame))
+			{
+				frame = [[views objectAtIndex:i] frame];
+                        
+				if([leftView isVertical])
+					frame.size.width = 0;
+				else
+					frame.size.height = 0;
+			}
+
+			[[views objectAtIndex:i] setFrame:frame];
+		}
+	}
+
+	viewRects = [defaults objectForKey:@"Right Scroller Sizes"];
+	
+	if (viewRects != nil)
+	{
+		NSArray * views = [rightView subviews];
+        int i, count;
+
+        count = MIN ([viewRects count], [views count]);
+
+        for(i = 0; i < count; i++)
+        {
+			NSRect frame = NSRectFromString ([viewRects objectAtIndex:i]);
+
+			if (NSIsEmptyRect (frame))
+			{
+				frame = [[views objectAtIndex:i] frame];
+                        
+				if([rightView isVertical])
+					frame.size.width = 0;
+				else
+					frame.size.height = 0;
+			}
+
+			[[views objectAtIndex:i] setFrame:frame];
+		}
+	}
+
 	NSString * filePath = [NSString stringWithFormat:@"%@%@", NSHomeDirectory (),
 								@"/Library/Application Support/Books/Files/", nil];
 
@@ -759,15 +847,17 @@ typedef struct _monochromePixel
 		
 		[self refreshComboBoxes:nil];
 	}
-	
-	NSSize boxSize = [imageBox frame].size;
 
+	/* Work Here */
+	
+/*	NSSize boxSize = [imageBox frame].size;
+	
 	if (boxSize.height > 10)
 		boxSize = NSMakeSize (boxSize.width, boxSize.width);
-
+*/
 	NSArray * books = [self getSelectedBooks];
 		
-	if ([books count] == 1 && boxSize.height > 1)
+	if ([books count] == 1) // && boxSize.height > 1)
 	{
 		BookManagedObject * book = (BookManagedObject *) [books objectAtIndex:0];
 			
@@ -775,7 +865,7 @@ typedef struct _monochromePixel
 		
 		if (coverData != nil)
 		{
-			NSImage * cover = [[NSImage alloc] initWithData:coverData];
+/*			NSImage * cover = [[NSImage alloc] initWithData:coverData];
 				
 			NSSize size = [cover size];
 
@@ -786,20 +876,30 @@ typedef struct _monochromePixel
 
 				if (height > 32 && width > 32)
 					boxSize = NSMakeSize (width, height);
-
-				[imageBox setFrame:NSMakeRect (0.0, 0.0, boxSize.width, boxSize.height)];
 			}
 
 			[cover release];
-
+*/
 			[getCover setAction:NSSelectorFromString (@"getCoverWindow:")];
 		}
 		else
 			[getCover setAction:nil];
-	}
+
+/*		NSRect leftFrame = [leftView frame];
+		NSRect boxFrame = [imageBox frame];
+
+		NSLog (@"box: x = %f, y = %f, w = %f, h = %f", boxFrame.origin.x, boxFrame.origin.y, boxFrame.size.width, boxFrame.size.height);
+		
+		float listHeight = leftFrame.size.height - [leftView dividerThickness] - boxSize.height;
+
+		NSLog (@"height = %f, box height = %f, lh = %f", leftFrame.size.height, boxSize.height, listHeight);
+
+		[imageBox setFrame:NSMakeRect (0.0, listHeight, boxSize.width, boxSize.height - (boxFrame.size.height - boxSize.height))];
+		[leftView adjustSubviews];
+*/	}
 
 
-	[leftView setNeedsDisplay:YES];
+//	[leftView setNeedsDisplay:YES];
 	
 	[coverWindow orderOut:self];
 	[getCover setLabel:NSLocalizedString (@"Show Cover", nil)];
