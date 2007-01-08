@@ -50,7 +50,7 @@
 		
 	NSArray * separators = [NSArray arrayWithObjects:@";", @",", @"/", nil];
 	
-	sortString = self;
+	sortString = [[NSMutableString alloc] initWithString:self];
 
 	NSRange range;
 
@@ -60,13 +60,18 @@
 		range = [sortString rangeOfString:[separators objectAtIndex:i]];
 	
 		if (range.location != NSNotFound)
-			sortString = [sortString substringToIndex:range.location];
+			[sortString setString:[self substringToIndex:range.location]];
 	}
 
 	range = [sortString rangeOfString:@" " options:NSBackwardsSearch];
 	
 	if (range.location != NSNotFound)
-		sortString = [sortString substringFromIndex:range.location];
+	{
+		NSString * lastName = [sortString substringFromIndex:range.location + 1];
+		[sortString deleteCharactersInRange:NSMakeRange (range.location, [lastName length])];
+		[sortString insertString:@" " atIndex:0];
+		[sortString insertString:lastName atIndex:0];
+	}
 
 	return sortString;
 }

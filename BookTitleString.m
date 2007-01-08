@@ -69,14 +69,14 @@
 
 			if (range.location == 0)
 			{
-				sortString = [[self substringFromIndex:[ignore length]] retain];
+				sortString = [[NSMutableString alloc] initWithString:[self substringFromIndex:[ignore length]]];
 				
 				return sortString;
 			}
 		}
 	}
 	
-	sortString = [self description];
+	sortString = [[NSMutableString alloc] initWithString:[self description]];
 	
 	return sortString;
 }

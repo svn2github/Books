@@ -29,7 +29,7 @@
 @interface BookTitleString : NSString 
 {
 	NSString * store;
-	NSString * sortString;
+	NSMutableString * sortString;
 }
 
 - (NSComparisonResult) compare: (BookTitleString *) string;

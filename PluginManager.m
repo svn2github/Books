@@ -91,8 +91,23 @@
 	{
 		NSTableColumn * column = [columns objectAtIndex:i];
 	
+		NSString * name = [[[column headerCell] stringValue] lowercaseString];
+		
+		NSSortDescriptor * descriptor = [[NSSortDescriptor alloc] initWithKey:name ascending:YES 
+			selector:@selector(caseInsensitiveCompare:)];
+			
+		[column setSortDescriptorPrototype:descriptor];
+		
 		[[column dataCell] setFont:[NSFont systemFontOfSize:11]];
 	}
+
+	[pluginListTable setSortDescriptors:
+		[NSArray arrayWithObject:[[NSSortDescriptor alloc] initWithKey:@"name" ascending:YES 
+			selector:@selector(caseInsensitiveCompare:)]]];
+
+	[pluginListTable setAllowsEmptySelection:YES];
+	[pluginListTable deselectAll:self];
+	[pluginListTable scrollRowToVisible:0];
 }
 
 - (NSDictionary *) getPlugins
