@@ -46,11 +46,9 @@
 
 - (NSPredicate *) getPredicate
 {
-NSLog (@"a");
 	NSString * operationValue = [operation titleOfSelectedItem];
 	NSString * fieldName = [[field titleOfSelectedItem] lowercaseString];
 	NSString * fieldValue = [value stringValue];
-NSLog (@"b");
 	
 	if ([fieldName isEqualToString:NSLocalizedString (@"title", nil)])
 		fieldName = @"title";
@@ -89,15 +87,11 @@ NSLog (@"b");
 	else if ([fieldName isEqualToString:NSLocalizedString (@"returned on", nil)])
 		fieldName = @"dateDue";
 
-NSLog (@"c");
-	
 	if ([fieldValue isEqualToString:@""])
 		return nil;
-NSLog (@"d");
 
 	if ([fieldValue isEqualToString:NSLocalizedString (@"<empty>", nil)])
 		fieldValue = nil;
-NSLog (@"e");
 
 	NSPredicateOperatorType type = NSInPredicateOperatorType;
 

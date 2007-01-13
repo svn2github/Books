@@ -75,6 +75,7 @@
 		3892A6AB09013AF700FF72C8 /* MainWindowTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3892A6AA09013AF700FF72C8 /* MainWindowTableView.m */; };
 		3892BCB908F708E200F90204 /* new-smartlist.png in Resources */ = {isa = PBXBuildFile; fileRef = 3892BCB808F708E200F90204 /* new-smartlist.png */; };
 		3892BCBB08F708F600F90204 /* edit-smartlist.png in Resources */ = {isa = PBXBuildFile; fileRef = 3892BCBA08F708F600F90204 /* edit-smartlist.png */; };
+		3894C9C50B58516000E7A508 /* camera-22.png in Resources */ = {isa = PBXBuildFile; fileRef = 3894C9C40B58516000E7A508 /* camera-22.png */; };
 		3898563609A93A1400F44932 /* iPod Exporter.app in Resources */ = {isa = PBXBuildFile; fileRef = 3898563509A93A1400F44932 /* iPod Exporter.app */; };
 		38A33A42090845C300016FF0 /* list-small.png in Resources */ = {isa = PBXBuildFile; fileRef = 38A33A40090845C300016FF0 /* list-small.png */; };
 		38A33A48090845FA00016FF0 /* ListManagedObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 38A33A47090845FA00016FF0 /* ListManagedObject.m */; };
@@ -250,6 +251,7 @@
 		3892A6AA09013AF700FF72C8 /* MainWindowTableView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainWindowTableView.m; sourceTree = "<group>"; };
 		3892BCB808F708E200F90204 /* new-smartlist.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "new-smartlist.png"; sourceTree = "<group>"; };
 		3892BCBA08F708F600F90204 /* edit-smartlist.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "edit-smartlist.png"; sourceTree = "<group>"; };
+		3894C9C40B58516000E7A508 /* camera-22.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "camera-22.png"; sourceTree = "<group>"; };
 		3898563509A93A1400F44932 /* iPod Exporter.app */ = {isa = PBXFileReference; lastKnownFileType = wrapper.application; path = "iPod Exporter.app"; sourceTree = "<group>"; };
 		38A33A40090845C300016FF0 /* list-small.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "list-small.png"; sourceTree = "<group>"; };
 		38A33A46090845FA00016FF0 /* ListManagedObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ListManagedObject.h; sourceTree = "<group>"; };
@@ -527,6 +529,7 @@
 		38666DA508E5087200071C56 /* Icons */ = {
 			isa = PBXGroup;
 			children = (
+				3894C9C40B58516000E7A508 /* camera-22.png */,
 				381930470B43469600646B67 /* camera.png */,
 				387468E6096D68EA0016A59A /* export-plugin.icns */,
 				387468A7096D65CA0016A59A /* import-plugin.icns */,
@@ -755,6 +758,7 @@
 				383DBEA30A6ABD0100685384 /* MainMenu.strings in Resources */,
 				383DBED70A6AF83D00685384 /* Localizable.strings in Resources */,
 				381930480B43469600646B67 /* camera.png in Resources */,
+				3894C9C50B58516000E7A508 /* camera-22.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

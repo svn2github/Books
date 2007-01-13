@@ -207,5 +207,6 @@
 - (QuickfillSearchWindow *) getQuickfillResultsWindow;
 
 - (IBAction) import: (id)sender;
+- (IBAction) isight: (id)sender;
 
 @end

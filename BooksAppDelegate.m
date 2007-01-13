@@ -884,19 +884,7 @@ typedef struct _monochromePixel
 		}
 		else
 			[getCover setAction:nil];
-
-/*		NSRect leftFrame = [leftView frame];
-		NSRect boxFrame = [imageBox frame];
-
-		NSLog (@"box: x = %f, y = %f, w = %f, h = %f", boxFrame.origin.x, boxFrame.origin.y, boxFrame.size.width, boxFrame.size.height);
-		
-		float listHeight = leftFrame.size.height - [leftView dividerThickness] - boxSize.height;
-
-		NSLog (@"height = %f, box height = %f, lh = %f", leftFrame.size.height, boxSize.height, listHeight);
-
-		[imageBox setFrame:NSMakeRect (0.0, listHeight, boxSize.width, boxSize.height - (boxFrame.size.height - boxSize.height))];
-		[leftView adjustSubviews];
-*/	}
+	}
 
 
 //	[leftView setNeedsDisplay:YES];
@@ -2128,88 +2116,6 @@ typedef struct _monochromePixel
 
 - (IBAction) isight: (id)sender
 {
-/*
-	if (![iSightWindow isVisible])
-	{
-		[iSightWindow makeKeyAndOrderFront:sender];
-		[iSightView startRendering];
-	}
-	else
-	{
-		NSArray * selected = [self getSelectedBooks];
-	
-		NSImage * image = [iSightView valueForOutputKey:@"ImageOutput"];
-		
-		if ([selected count] == 1)
-			[((BookManagedObject *) [selected objectAtIndex:0]) setValue:[image TIFFRepresentation] forKey:@"coverImage"];
-
-		NSSize mySize = [image size];
-		
-		int row, column, widthInPixels = mySize.width, heightInPixels = mySize.height;
-
-		NSBitmapImageRep *blackAndWhiteRep = 
-		[[NSBitmapImageRep alloc] 
-			initWithBitmapDataPlanes: nil  // Nil pointer tells the kit to allocate the pixel buffer for us.
-			pixelsWide: widthInPixels 
-			pixelsHigh: heightInPixels
-			bitsPerSample: 8
-			samplesPerPixel: 2  
-			hasAlpha: YES
-			isPlanar: NO 
-			colorSpaceName: NSCalibratedWhiteColorSpace // 0 = black, 1 = white in this color space.
-			bytesPerRow: 0     // Passing zero means "you figure it out."
-			bitsPerPixel: 16];  // This must agree with bitsPerSample and samplesPerPixel.
-  
-		monochromePixel * pixels = (monochromePixel *) [blackAndWhiteRep bitmapData];  // -bitmapData returns a void*, not an NSData object ;-)
-
-		[image lockFocus]; // necessary for NSReadPixel() to work.
-	
-		for (row = 0; row < heightInPixels; row++)
-		{
-			for (column = 0; column < widthInPixels; column++)
-			{
-				monochromePixel * thisPixel = &(pixels[((widthInPixels * row) + column)]);
-									
-				NSColor  * pixelColor = NSReadPixel (NSMakePoint (column, heightInPixels - (row +1)));
-							
-				thisPixel->grayValue = rint (255 *   // use this line for positive...
-					(0.299 * [pixelColor redComponent]
-					+ 0.587 * [pixelColor greenComponent]
-					+ 0.114 * [pixelColor blueComponent]));
-									
-				thisPixel->alpha = ([pixelColor alphaComponent]  * 255); // handle the transparency, too
-			}
-		}
-
-		[image unlockFocus];
-
-		float linePixels[320];
-		float lineDeriv[320];
-
-		float white = 0;
-		float lastWhite = 0;
-
-		for (column = 0; column < widthInPixels; column++)
-		{
-			NSColor * color = [blackAndWhiteRep colorAtX:column y:120];
-	
-			white = [color whiteComponent];
-
-			linePixels[column] = white;
-			lineDeriv[column] = lastWhite - white;
-
-			NSLog (@"%3d %1.4f - %1.4f", column, linePixels[column], lineDeriv[column]);
-			
-			lastWhite = white;
-		}
-
-		NSLog (@"\n\n");
-
-		[iSightWindow orderOut:sender];
-		[iSightView stopRendering];
-	}
-*/
-		
 	MyBarcodeScanner *iSight = [MyBarcodeScanner sharedInstance];
 	[iSight setStaysOpen:NO];
 	[iSight setDelegate:self];
@@ -2231,6 +2137,9 @@ typedef struct _monochromePixel
 			BookManagedObject * book = (BookManagedObject *) [selected objectAtIndex:0];
 			
 			[book setValue:barcode forKey:@"isbn"];
+
+			[infoWindow makeKeyAndOrderFront:nil];
+			[getInfo setLabel:NSLocalizedString (@"Hide Info", nil)];
 		}
 	}
 }

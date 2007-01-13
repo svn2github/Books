@@ -268,6 +268,9 @@
 			}
 
 			[[[NSApplication sharedApplication] delegate] saveAction:self];
+
+			[[NSApplication sharedApplication] deactivate];
+			[[NSApplication sharedApplication] activateIgnoringOtherApps:YES];
 			
 			[[[NSApplication sharedApplication] delegate] endProgressWindow];
 		}
