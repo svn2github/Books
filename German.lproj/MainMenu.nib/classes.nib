@@ -17,7 +17,6 @@
                 getCoverWindow = id; 
                 getInfoWindow = id; 
                 import = id; 
-                isight = id; 
                 listQuickfill = id; 
                 newBook = id; 
                 newList = id; 

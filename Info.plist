@@ -42,11 +42,11 @@
 	<key>CFBundlePackageType</key>
 	<string>BOOK</string>
 	<key>CFBundleShortVersionString</key>
-	<string>3.0 beta 7</string>
+	<string>3.0 beta 5a</string>
 	<key>CFBundleSignature</key>
 	<string>AETH</string>
 	<key>CFBundleVersion</key>
-	<string>3.0b7</string>
+	<string>3.0b5a</string>
 	<key>NSAppleScriptEnabled</key>
 	<string>YES</string>
 	<key>NSMainNibFile</key>
