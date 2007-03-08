@@ -156,7 +156,7 @@
 		38039DBD0A04EA5400DFA71F /* PluginManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PluginManager.m; sourceTree = "<group>"; };
 		381119CF08EDC407008FBAEB /* white.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = white.png; sourceTree = "<group>"; };
 		3815D1070A8A96190085540E /* French */ = {isa = PBXFileReference; fileEncoding = 10; lastKnownFileType = text.plist.strings; name = French; path = French.lproj/Localizable.strings; sourceTree = "<group>"; };
-		3815D10A0A8A96220085540E /* French */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; name = French; path = French.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		3815D10A0A8A96220085540E /* French */ = {isa = PBXFileReference; fileEncoding = 10; lastKnownFileType = text.plist.strings; name = French; path = French.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		3815D10D0A8A962A0085540E /* French */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; name = French; path = French.lproj/MainMenu.strings; sourceTree = "<group>"; };
 		3815D1100A8A96370085540E /* French */ = {isa = PBXFileReference; lastKnownFileType = text.rtf; name = French; path = French.lproj/Credits.rtf; sourceTree = "<group>"; };
 		3815D1130A8A96410085540E /* French */ = {isa = PBXFileReference; lastKnownFileType = folder; name = French; path = "French.lproj/Books Help"; sourceTree = "<group>"; };
@@ -190,7 +190,7 @@
 		383DBEBB0A6ABD7400685384 /* German */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = German; path = German.lproj/MainMenu.strings; sourceTree = "<group>"; };
 		383DBEC40A6ABE2000685384 /* German */ = {isa = PBXFileReference; lastKnownFileType = wrapper.nib; name = German; path = German.lproj/MainMenu.nib; sourceTree = "<group>"; };
 		383DBECB0A6ABEBB00685384 /* German */ = {isa = PBXFileReference; lastKnownFileType = text.rtf; name = German; path = German.lproj/Credits.rtf; sourceTree = "<group>"; };
-		383DBED00A6AF7D800685384 /* German */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; name = German; path = German.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		383DBED00A6AF7D800685384 /* German */ = {isa = PBXFileReference; fileEncoding = 10; lastKnownFileType = text.plist.strings; name = German; path = German.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		383DBED20A6AF82900685384 /* English */ = {isa = PBXFileReference; fileEncoding = 10; lastKnownFileType = text.plist.strings; name = English; path = English.lproj/Localizable.strings; sourceTree = "<group>"; };
 		384BD4430959A3660077D553 /* Amazon (UK).plugin */ = {isa = PBXFileReference; lastKnownFileType = folder; path = "Amazon (UK).plugin"; sourceTree = "<group>"; };
 		384BD46B0959A3C70077D553 /* Amazon (DE).plugin */ = {isa = PBXFileReference; lastKnownFileType = folder; path = "Amazon (DE).plugin"; sourceTree = "<group>"; };
@@ -324,7 +324,7 @@
 		77C8280B06725ACE000B614F /* BooksAppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BooksAppDelegate.h; sourceTree = "<group>"; };
 		77C8280C06725ACE000B614F /* BooksAppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BooksAppDelegate.m; sourceTree = "<group>"; };
 		8D1107310486CEB800E47090 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
-		8D1107320486CEB800E47090 /* Books.app */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.application; path = Books.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		8D1107320486CEB800E47090 /* Books.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Books.app; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */

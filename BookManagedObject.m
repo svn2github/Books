@@ -253,18 +253,16 @@
 
 - (NSData *) getCoverImage
 {
-//	if (imageData == nil)
-//	{
-		NSString * objId = [self valueForKey:@"id"];
+	NSString * objId = [self valueForKey:@"id"];
 		
-		NSString * imagePath = [NSString stringWithFormat:@"%@%@%@.book-image", NSHomeDirectory (),
-							@"/Library/Application Support/Books/Images/", objId];
+	NSString * imagePath = [NSString stringWithFormat:@"%@%@%@.book-image", NSHomeDirectory (),
+								@"/Library/Application Support/Books/Images/", objId];
 
-		if (imagePath != nil)
-			imageData = [[NSData alloc] initWithContentsOfFile:imagePath];
-//	}
+	if (imagePath != nil)
+//		imageData = [[NSData alloc] initWithContentsOfFile:imagePath];
+		imageData = [NSData dataWithContentsOfFile:imagePath];
 	
-	return [imageData retain];
+	return imageData;
 }
 
 - (void) setCoverImage: (NSData *) data
