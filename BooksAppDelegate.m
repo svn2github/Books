@@ -2081,6 +2081,7 @@ typedef struct _monochromePixel
 		
 		[fileIcon setImage:[[NSWorkspace sharedWorkspace] iconForFile:fullLocation]];
 		[fileLocation setStringValue:[fullLocation lastPathComponent]];
+		[fileTitle setStringValue:[fullLocation lastPathComponent]];
 	}
 }
 
