@@ -251,6 +251,21 @@
 	return objId;
 }
 
+- (NSString *) getCoverPath
+{
+	NSString * objId = [self valueForKey:@"id"];
+		
+	NSString * imagePath = [NSString stringWithFormat:@"%@%@%@.book-image", NSHomeDirectory (),
+								@"/Library/Application Support/Books/Images/", objId];
+								
+	return imagePath;
+}
+
+- (void) setCoverPath:(NSString *) path
+{
+
+}
+
 - (NSData *) getCoverImage
 {
 	NSString * objId = [self valueForKey:@"id"];

@@ -54,4 +54,7 @@
 - (NSData *) getCoverImage;
 - (void) setValueFromString:(NSString *) valueString forKey:(NSString *) key replace:(BOOL) doReplace;
 
+- (NSString *) getCoverPath;
+- (void) setCoverPath:(NSString *) path;
+
 @end

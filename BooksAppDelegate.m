@@ -33,6 +33,7 @@
 #import "BooksToolbarItem.h"
 #import "BookManagedObject.h"
 #import "MyBarcodeScanner.h"
+#import "CoverWindowDelegate.h"
 
 typedef struct _monochromePixel
 { 
@@ -382,29 +383,7 @@ typedef struct _monochromePixel
 			{
 				NSImage * cover = [[NSImage alloc] initWithData:coverData];
 				
-				NSSize size = [cover size];
-				
-				if (size.height <= 10)
-					return;
-					
-				float newHeight = size.height;
-				float newWidth = size.width;
-				
-				float bound = 400;
-				
-				if (newHeight > bound)
-				{
-					newWidth = newWidth * (bound / newHeight);
-					newHeight = bound;
-				}
-
-				if (newWidth > bound)
-				{
-					newHeight = newHeight * (bound / newWidth);
-					newWidth = bound;
-				}
-				
-				[coverWindow setContentSize:NSMakeSize (newWidth, newHeight)];
+				[detailedCoverView setValue:cover forInputKey:@"Image"];
 				
 				// [coverWindow makeKeyAndOrderFront:sender];
 				[coverWindow orderFront:sender];
@@ -743,6 +722,11 @@ typedef struct _monochromePixel
 	[mainWindow setShowsResizeIndicator:NO];
 	[mainWindow setMovableByWindowBackground:YES];
 	
+	[coverWindow setReleasedWhenClosed:NO];
+	[coverWindow setCanHide:YES];
+	
+	[coverWindow setDelegate:[[CoverWindowDelegate alloc] init]];
+	
 	[mainWindow makeKeyAndOrderFront:self];
 	
 	[self updateMainPane];
@@ -787,6 +771,18 @@ typedef struct _monochromePixel
 		BookManagedObject * object = [selectedObjects objectAtIndex:0];
 		
 		htmlString = [pageBuilder buildPageForObject:object];
+		
+		NSData * coverData = [object getCoverImage];
+		
+		if (coverData != nil)
+		{
+			NSImage * cover = [[NSImage alloc] initWithData:coverData];
+				
+			[mainCoverView setValue:cover forInputKey:@"Image"];
+		}
+		else
+			[mainCoverView setValue:nil forInputKey:@"Image"];
+
 	}
 	else if ([selectedObjects count] > 1)
 		htmlString = [pageBuilder buildPageForArray:selectedObjects];

@@ -81,6 +81,9 @@
 		38A33A48090845FA00016FF0 /* ListManagedObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 38A33A47090845FA00016FF0 /* ListManagedObject.m */; };
 		38A54BEA09003CA2005018C3 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 38A54BE909003CA2005018C3 /* QuartzCore.framework */; };
 		38B0F7D808E9832B00A04B4D /* FieldsDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 38B0F7D708E9832B00A04B4D /* FieldsDataSource.m */; };
+		38B16D730BA1EB9200216A44 /* CoverImageView.qtz in Resources */ = {isa = PBXBuildFile; fileRef = 38B16D720BA1EB9200216A44 /* CoverImageView.qtz */; };
+		38B16DAB0BA1FECE00216A44 /* CoverWindowDelegate.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 38B16DA90BA1FECE00216A44 /* CoverWindowDelegate.h */; };
+		38B16DAC0BA1FECE00216A44 /* CoverWindowDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 38B16DAA0BA1FECE00216A44 /* CoverWindowDelegate.m */; };
 		38B62EB20987D2D200A4A8AD /* Delicious Library Importer.app in Resources */ = {isa = PBXBuildFile; fileRef = 38B62EB10987D2D200A4A8AD /* Delicious Library Importer.app */; };
 		38BD42830BA069FA00F245D8 /* tiger.png in Resources */ = {isa = PBXBuildFile; fileRef = 38BD42820BA069FA00F245D8 /* tiger.png */; };
 		38BD42C10BA06CC800F245D8 /* corner.png in Resources */ = {isa = PBXBuildFile; fileRef = 38BD42C00BA06CC800F245D8 /* corner.png */; };
@@ -88,6 +91,7 @@
 		38CB899D08EF5761007981E6 /* SmartList.m in Sources */ = {isa = PBXBuildFile; fileRef = 38CB899C08EF5761007981E6 /* SmartList.m */; };
 		38CBAC270959EADC00B418FB /* Library of Congress.plugin in Resources */ = {isa = PBXBuildFile; fileRef = 38CBABF10959EADC00B418FB /* Library of Congress.plugin */; };
 		38D0C90309057D8300672AA7 /* BookManagedObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 38D0C90209057D8300672AA7 /* BookManagedObject.m */; };
+		38DE5E640BA1D3E100B4FEC0 /* Quartz.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 38DE5E630BA1D3E100B4FEC0 /* Quartz.framework */; };
 		38E0A87D0908958A00DAAA64 /* smartlist-small.png in Resources */ = {isa = PBXBuildFile; fileRef = 38E0A87C0908958A00DAAA64 /* smartlist-small.png */; };
 		38E94D22090A7639001C2A9E /* AppKitScripting.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 38E94D20090A7639001C2A9E /* AppKitScripting.framework */; };
 		38E94D23090A7639001C2A9E /* AppleScriptKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 38E94D21090A7639001C2A9E /* AppleScriptKit.framework */; };
@@ -127,6 +131,7 @@
 				3820367E0B4989F80022E60E /* MyiSightWindow.h in CopyFiles */,
 				3820367F0B4989F80022E60E /* MyGraphView.h in CopyFiles */,
 				382036820B4989F80022E60E /* MyBarcodeScanner.h in CopyFiles */,
+				38B16DAB0BA1FECE00216A44 /* CoverWindowDelegate.h in CopyFiles */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -261,6 +266,9 @@
 		38A54BE909003CA2005018C3 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = /System/Library/Frameworks/QuartzCore.framework; sourceTree = "<absolute>"; };
 		38B0F7D608E9832B00A04B4D /* FieldsDataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FieldsDataSource.h; sourceTree = "<group>"; };
 		38B0F7D708E9832B00A04B4D /* FieldsDataSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FieldsDataSource.m; sourceTree = "<group>"; };
+		38B16D720BA1EB9200216A44 /* CoverImageView.qtz */ = {isa = PBXFileReference; lastKnownFileType = file; path = CoverImageView.qtz; sourceTree = "<group>"; };
+		38B16DA90BA1FECE00216A44 /* CoverWindowDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CoverWindowDelegate.h; sourceTree = "<group>"; };
+		38B16DAA0BA1FECE00216A44 /* CoverWindowDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CoverWindowDelegate.m; sourceTree = "<group>"; };
 		38B62EB10987D2D200A4A8AD /* Delicious Library Importer.app */ = {isa = PBXFileReference; lastKnownFileType = wrapper.application; path = "Delicious Library Importer.app"; sourceTree = "<group>"; };
 		38BD42820BA069FA00F245D8 /* tiger.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = tiger.png; sourceTree = "<group>"; };
 		38BD42C00BA06CC800F245D8 /* corner.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = corner.png; sourceTree = "<group>"; };
@@ -271,6 +279,7 @@
 		38CBABF10959EADC00B418FB /* Library of Congress.plugin */ = {isa = PBXFileReference; lastKnownFileType = folder; path = "Library of Congress.plugin"; sourceTree = "<group>"; };
 		38D0C90109057D8300672AA7 /* BookManagedObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BookManagedObject.h; sourceTree = "<group>"; };
 		38D0C90209057D8300672AA7 /* BookManagedObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BookManagedObject.m; sourceTree = "<group>"; };
+		38DE5E630BA1D3E100B4FEC0 /* Quartz.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Quartz.framework; path = /System/Library/Frameworks/Quartz.framework; sourceTree = "<absolute>"; };
 		38DF3FF20B8DF59300D55EA4 /* Danish */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Danish; path = Danish.lproj/Localizable.strings; sourceTree = "<group>"; };
 		38DF3FF50B8DF59A00D55EA4 /* Danish */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Danish; path = Danish.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		38DF3FFC0B8DF5B300D55EA4 /* Danish */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Danish; path = Danish.lproj/MainMenu.strings; sourceTree = "<group>"; };
@@ -345,6 +354,7 @@
 				387A013C0A75CC9300447E87 /* Sparkle.framework in Frameworks */,
 				381930510B43470C00646B67 /* QuickTime.framework in Frameworks */,
 				381930790B43474300646B67 /* Carbon.framework in Frameworks */,
+				38DE5E640BA1D3E100B4FEC0 /* Quartz.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -369,6 +379,8 @@
 				38666EA308E516B300071C56 /* HtmlPageBuilder.m */,
 				3892A6A909013AF700FF72C8 /* MainWindowTableView.h */,
 				3892A6AA09013AF700FF72C8 /* MainWindowTableView.m */,
+				38B16DA90BA1FECE00216A44 /* CoverWindowDelegate.h */,
+				38B16DAA0BA1FECE00216A44 /* CoverWindowDelegate.m */,
 			);
 			name = Classes;
 			sourceTree = "<group>";
@@ -376,6 +388,7 @@
 		1058C7A0FEA54F0111CA2CBB /* Linked Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				38DE5E630BA1D3E100B4FEC0 /* Quartz.framework */,
 				381930780B43474300646B67 /* Carbon.framework */,
 				381930500B43470C00646B67 /* QuickTime.framework */,
 				387A013B0A75CC9300447E87 /* Sparkle.framework */,
@@ -432,6 +445,7 @@
 		29B97317FDCFA39411CA2CEA /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				38B16D710BA1EB7400216A44 /* Quartz Composer Files */,
 				38BD42BC0BA06CBB00F245D8 /* UI */,
 				38DF40420B8DF63700D55EA4 /* Localized */,
 				385E3DE9090C572100EA3DA1 /* Spotlight */,
@@ -626,6 +640,14 @@
 			name = "CoreData Objects";
 			sourceTree = "<group>";
 		};
+		38B16D710BA1EB7400216A44 /* Quartz Composer Files */ = {
+			isa = PBXGroup;
+			children = (
+				38B16D720BA1EB9200216A44 /* CoverImageView.qtz */,
+			);
+			name = "Quartz Composer Files";
+			sourceTree = "<group>";
+		};
 		38BD42BC0BA06CBB00F245D8 /* UI */ = {
 			isa = PBXGroup;
 			children = (
@@ -809,6 +831,7 @@
 				3894C9C50B58516000E7A508 /* camera-22.png in Resources */,
 				38BD42830BA069FA00F245D8 /* tiger.png in Resources */,
 				38BD42C10BA06CC800F245D8 /* corner.png in Resources */,
+				38B16D730BA1EB9200216A44 /* CoverImageView.qtz in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -853,6 +876,7 @@
 				3820367D0B4989F80022E60E /* MyiSightWindow.m in Sources */,
 				382036800B4989F80022E60E /* MyGraphView.m in Sources */,
 				382036810B4989F80022E60E /* MyBarcodeScanner.m in Sources */,
+				38B16DAC0BA1FECE00216A44 /* CoverWindowDelegate.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
