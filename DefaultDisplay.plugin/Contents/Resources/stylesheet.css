@@ -3,7 +3,7 @@ body
 	font-family: 'Lucida Grande', LucidaGrande, Lucida, Helvetica, Arial, sans-serif;
 	font-size: 13 point;
 	
-	background-color: white;
+	background-color: #fff;
 	padding: 0;
 	margin: 0;
 }
@@ -22,16 +22,16 @@ div.book-definition {
 	margin: 0;
 }
 
-div.empty-message
+div.empty
 {
-	font-style: italic;
-	padding: 1em;
+	margin: 0;
+	padding: 0;
 }
 
 div.multiple-message
 {
-	font-style: italic;
-	padding: 1em;
+	padding: 0;
+	margin: 0;
 }
 
 p.booklist-item
@@ -46,6 +46,7 @@ div.booklist-title
 	margin: 0;
 	background: #;
 	border-bottom: #ffffff;
+	font-family: "Helvetica Neue";
 }
 
 div.booklist-authors
@@ -53,16 +54,31 @@ div.booklist-authors
 	padding-left: 30px;
 }
 
+/* @group Empty */
+
+div.empty-message
+{
+	margin: 3em;
+	padding: 0;
+	text-align: center;
+	font-size: x-large;
+	color: #7f7f7f;
+	font-weight: bold;
+}
+
+/* @end */
+
+/* @group Book */
+
 div.book-title
 {
-	font-size: larger;
-	background: #005FD7;
+	background: #005FD7 url(tiger.png) repeat-x;
 	padding: 0.5em;
 	margin: 0 0 1em;
 	border-bottom: 1px solid #000080;
 	color: #ffffff;
-	font-weight: bold;
 	text-shadow: 0 1px 2px black;
+	font: bold larger "Helvetica Neue";
 }
 
 div.book-summary
@@ -71,3 +87,20 @@ div.book-summary
 #	border-top: thin solid gray;
 	text-align: justify;
 }
+
+/* @end */
+
+/* @group Multiple */
+
+div.multiple-title
+{
+	background: #005FD7 url(tiger.png) repeat-x;
+	padding: 0.5em;
+	margin: 0;
+	border-bottom: 1px solid #000080;
+	color: #ffffff;
+	text-shadow: 0 1px 2px black;
+	font: bold larger "Helvetica Neue";
+}
+
+/* @end */

@@ -740,6 +740,9 @@ typedef struct _monochromePixel
 	[imageView setTarget:self];
 	[imageView setAction:@selector(getCoverWindow:)];
 
+	[mainWindow setShowsResizeIndicator:NO];
+	[mainWindow setMovableByWindowBackground:YES];
+	
 	[mainWindow makeKeyAndOrderFront:self];
 	
 	[self updateMainPane];
@@ -2042,7 +2045,7 @@ typedef struct _monochromePixel
 
 - (IBAction) uploadFile: (id) sender
 {
-	NSString * sourceFile = [fileLocation stringValue];
+//	NSString * sourceFile = [fileLocation stringValue];
 	NSString * sourceName = [fileTitle stringValue];
 	NSString * sourceDesc = [fileDescription stringValue];
 	
@@ -2052,11 +2055,15 @@ typedef struct _monochromePixel
 	{
 		BookManagedObject * book = (BookManagedObject *) [books objectAtIndex:0];
 
-		[book addNewFile:sourceFile title:sourceName description:sourceDesc];
+		[book addNewFile:fullLocation title:sourceName description:sourceDesc];
 		
+		[fullLocation release];
+		
+		fullLocation = nil;
 		[fileLocation setStringValue:@""];
 		[fileTitle setStringValue:@""];
 		[fileDescription setStringValue:@""];
+		[fileIcon setImage:nil];
 	}
 }
 
@@ -2070,9 +2077,10 @@ typedef struct _monochromePixel
 	
 	if (result == NSOKButton)
 	{
-		NSString * filename = [openPanel filename];
+		fullLocation = [[openPanel filename] retain];
 		
-		[fileLocation setStringValue:filename];
+		[fileIcon setImage:[[NSWorkspace sharedWorkspace] iconForFile:fullLocation]];
+		[fileLocation setStringValue:[fullLocation lastPathComponent]];
 	}
 }
 

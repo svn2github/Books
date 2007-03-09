@@ -49,6 +49,7 @@
                 enabledColumn = NSTableColumn; 
                 fileArrayController = NSArrayController; 
                 fileDescription = NSTextField; 
+                fileIcon = NSImageView; 
                 fileLocation = NSTextField; 
                 fileTitle = NSTextField; 
                 genreCombo = NSComboBox; 

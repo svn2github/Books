@@ -1,66 +1,45 @@
 body
 {
-	font-size: 13 point;
-	
-	background-color: white;
-	padding: 0;
-	margin: 0;
-	color: #000000;
+	background-color: #fff;
+	font-family: Georgia, "Times New Roman", Times, serif;
 }
 
-div
+/* @group Empty */
+
+div.empty
 {
-	display: block;
-	padding-bottom: 0em;
-	margin-bottom: 1em;
-	margin-left: 1em;
-	margin-right: 1em;
-}
-
-div.book-definition {
-	padding: 0;
 	margin: 0;
+	padding: 0;
 }
 
 div.empty-message
 {
-	font-style: italic;
-	padding: 1em;
-}
-
-div.multiple-message
-{
-	font-style: italic;
-	padding: 1em;
-}
-
-p.booklist-item
-{
-	padding-left: 20px;
-}
-
-div.booklist-title
-{
-	font-style: italic;
+	margin: 3em;
+	padding: 0;
+	text-align: center;
+	font-size: x-large;
+	color: #7f7f7f;
 	font-weight: bold;
-	margin: 0;
-	background: #;
-	border-bottom: #ffffff;
 }
 
-div.booklist-authors
-{
-	padding-left: 30px;
+/* @end */
+
+/* @group Book */
+
+div {
+	margin-bottom: 0.5em;
+}
+
+div.book-definition {
+	margin-left: 2em;
 }
 
 div.book-title
 {
-	font-size: larger;
 	font-weight: bold;
-	background: #cccccc;
-	padding: 0.5em;
-	margin: 0 0 1em;
-	border-bottom: 1px solid #000000;
+	font-size: large;
+	margin-left: -1em;
+	margin-top: 1em;
 }
 
 div.book-summary
@@ -69,3 +48,32 @@ div.book-summary
 #	border-top: thin solid gray;
 	text-align: justify;
 }
+
+/* @end */
+
+/* @group Multiple */
+
+div.booklist-authors
+{
+	padding-left: 30px;
+}
+
+div.multiple-message
+{
+	margin-left: 2em;
+}
+
+div.booklist-title {
+	font-weight: bold;
+	font-style: italic;
+}
+
+div.multiple-title
+{
+	font-weight: bold;
+	font-size: large;
+	margin-left: -1em;
+	margin-top: 1em;
+}
+
+/* @end */

@@ -99,6 +99,8 @@
 	IBOutlet NSTextField * fileTitle;
 	IBOutlet NSTextField * fileDescription;
 	IBOutlet NSTextField * fileLocation;
+	IBOutlet NSImageView * fileIcon;
+	NSString * fullLocation;
 	
 	IBOutlet NSWindow * quickfillWindow;
 	IBOutlet NSProgressIndicator * quickfillProgress;
