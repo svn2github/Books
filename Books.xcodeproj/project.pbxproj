@@ -575,7 +575,6 @@
 				38A33A40090845C300016FF0 /* list-small.png */,
 				3892BCB808F708E200F90204 /* new-smartlist.png */,
 				3892BCBA08F708F600F90204 /* edit-smartlist.png */,
-				381119CF08EDC407008FBAEB /* white.png */,
 				3855F6F508E57B5D00C439F4 /* import.png */,
 				38671CC308E44C0A0000E294 /* Books.icns */,
 				38666DAE08E5089800071C56 /* new-book.png */,
@@ -651,6 +650,7 @@
 		38BD42BC0BA06CBB00F245D8 /* UI */ = {
 			isa = PBXGroup;
 			children = (
+				381119CF08EDC407008FBAEB /* white.png */,
 				38BD42C00BA06CC800F245D8 /* corner.png */,
 			);
 			name = UI;

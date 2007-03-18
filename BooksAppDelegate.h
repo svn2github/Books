@@ -114,9 +114,6 @@
 
 	IBOutlet NSWindow * iSightWindow;
 	IBOutlet QCView * iSightView;
-
-	IBOutlet QCView * detailedCoverView;
-	IBOutlet QCView * mainCoverView;
 }
 
 - (IBAction)preferences:(id)sender;

@@ -381,11 +381,12 @@ typedef struct _monochromePixel
 		
 			if (coverData != nil)
 			{
-				NSImage * cover = [[NSImage alloc] initWithData:coverData];
+/*				NSImage * cover = [[NSImage alloc] initWithData:coverData];
 				
 				[detailedCoverView setValue:cover forInputKey:@"Image"];
 				
 				// [coverWindow makeKeyAndOrderFront:sender];
+*/
 				[coverWindow orderFront:sender];
 				[getCover setLabel:NSLocalizedString (@"Hide Cover", nil)];
 			}
@@ -772,6 +773,7 @@ typedef struct _monochromePixel
 		
 		htmlString = [pageBuilder buildPageForObject:object];
 		
+		/*
 		NSData * coverData = [object getCoverImage];
 		
 		if (coverData != nil)
@@ -782,7 +784,7 @@ typedef struct _monochromePixel
 		}
 		else
 			[mainCoverView setValue:nil forInputKey:@"Image"];
-
+		*/
 	}
 	else if ([selectedObjects count] > 1)
 		htmlString = [pageBuilder buildPageForArray:selectedObjects];

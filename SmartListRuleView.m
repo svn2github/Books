@@ -47,44 +47,44 @@
 - (NSPredicate *) getPredicate
 {
 	NSString * operationValue = [operation titleOfSelectedItem];
-	NSString * fieldName = [[field titleOfSelectedItem] lowercaseString];
+	NSString * fieldName = [field titleOfSelectedItem]; /// [[field titleOfSelectedItem] lowercaseString];
 	NSString * fieldValue = [value stringValue];
 	
-	if ([fieldName isEqualToString:NSLocalizedString (@"title", nil)])
+	if ([fieldName isEqualToString:NSLocalizedString (@"Title", nil)])
 		fieldName = @"title";
-	else if ([fieldName isEqualToString:NSLocalizedString (@"series", nil)])
+	else if ([fieldName isEqualToString:NSLocalizedString (@"Series", nil)])
 		fieldName = @"series";
-	else if ([fieldName isEqualToString:NSLocalizedString (@"summary", nil)])
+	else if ([fieldName isEqualToString:NSLocalizedString (@"Summary", nil)])
 		fieldName = @"summary";
-	else if ([fieldName isEqualToString:NSLocalizedString (@"genre", nil)])
+	else if ([fieldName isEqualToString:NSLocalizedString (@"Genre", nil)])
 		fieldName = @"genre";
-	else if ([fieldName isEqualToString:NSLocalizedString (@"keywords", nil)])
+	else if ([fieldName isEqualToString:NSLocalizedString (@"Keywords", nil)])
 		fieldName = @"keywords";
-	else if ([fieldName isEqualToString:NSLocalizedString (@"publisher", nil)])
+	else if ([fieldName isEqualToString:NSLocalizedString (@"Publisher", nil)])
 		fieldName = @"publisher";
-	else if ([fieldName isEqualToString:NSLocalizedString (@"length", nil)])
+	else if ([fieldName isEqualToString:NSLocalizedString (@"Length", nil)])
 		fieldName = @"length";
-	else if ([fieldName isEqualToString:NSLocalizedString (@"format", nil)])
+	else if ([fieldName isEqualToString:NSLocalizedString (@"Format", nil)])
 		fieldName = @"format";
-	else if ([fieldName isEqualToString:NSLocalizedString (@"edition", nil)])
+	else if ([fieldName isEqualToString:NSLocalizedString (@"Edition", nil)])
 		fieldName = @"edition";
-	else if ([fieldName isEqualToString:NSLocalizedString (@"date published", nil)])
+	else if ([fieldName isEqualToString:NSLocalizedString (@"Date Published", nil)])
 		fieldName = @"publishDate";
-	else if ([fieldName isEqualToString:NSLocalizedString (@"author(s)", nil)])
+	else if ([fieldName isEqualToString:NSLocalizedString (@"Author(s)", nil)])
 		fieldName = @"authors";
-	else if ([fieldName isEqualToString:NSLocalizedString (@"editor(s)", nil)])
+	else if ([fieldName isEqualToString:NSLocalizedString (@"Editor(s)", nil)])
 		fieldName = @"editors";
-	else if ([fieldName isEqualToString:NSLocalizedString (@"illustrator(s)", nil)])
+	else if ([fieldName isEqualToString:NSLocalizedString (@"Illustrator(s)", nil)])
 		fieldName = @"illustrators";
-	else if ([fieldName isEqualToString:NSLocalizedString (@"translator(s)", nil)])
+	else if ([fieldName isEqualToString:NSLocalizedString (@"Translator(s)", nil)])
 		fieldName = @"translators";
-	else if ([fieldName isEqualToString:NSLocalizedString (@"list name", nil)])
+	else if ([fieldName isEqualToString:NSLocalizedString (@"List Name", nil)])
 		fieldName = @"listName";
-	else if ([fieldName isEqualToString:NSLocalizedString (@"place published", nil)])
+	else if ([fieldName isEqualToString:NSLocalizedString (@"Place Published", nil)])
 		fieldName = @"publishPlace";
-	else if ([fieldName isEqualToString:NSLocalizedString (@"date lent", nil)])
+	else if ([fieldName isEqualToString:NSLocalizedString (@"Date Lent", nil)])
 		fieldName = @"dateLent";
-	else if ([fieldName isEqualToString:NSLocalizedString (@"returned on", nil)])
+	else if ([fieldName isEqualToString:NSLocalizedString (@"Returned On", nil)])
 		fieldName = @"dateDue";
 
 	if ([fieldValue isEqualToString:@""])
