@@ -44,7 +44,6 @@
                 booksTable = NSTableView; 
                 collectionArrayController = NSArrayController; 
                 coverWindow = NSWindow; 
-                detailedCoverView = QCView; 
                 detailsPane = WebView; 
                 editorsCombo = NSComboBox; 
                 enabledColumn = NSTableColumn; 
@@ -62,7 +61,6 @@
                 infoWindow = NSWindow; 
                 leftView = NSSplitView; 
                 listsTable = NSTableView; 
-                mainCoverView = QCView; 
                 mainWindow = NSWindow; 
                 pluginManager = PluginManager; 
                 prefFieldsTable = NSTableView; 
