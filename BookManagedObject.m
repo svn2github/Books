@@ -712,8 +712,6 @@
 
 - (void) addNewFile: (NSString *) location title: (NSString *) title description: (NSString *) description
 {
-	NSLog (@"location = %@", location);
-	
     [self willChangeValueForKey:@"files"];
 
 	if (fileSet == nil)

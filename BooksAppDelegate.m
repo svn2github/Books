@@ -2151,5 +2151,43 @@ typedef struct _monochromePixel
 	}
 }
 
+- (IBAction) duplicateRecords:(id) sender
+{
+	NSArray * objects = [collectionArrayController selectedObjects];
+	
+	if ([objects count] == 1)
+	{
+		ListManagedObject * list = [objects objectAtIndex:0];
+		
+		if (![list isKindOfClass:[SmartList class]])
+		{
+			NSArray * books = [collectionArrayController selectedObjects];
+
+			NSManagedObjectContext * context = [self managedObjectContext];
+			NSManagedObjectModel * model = [self managedObjectModel];
+			NSEntityDescription * desc = [[model entitiesByName] objectForKey:@"Book"];
+
+			int i = 0;
+			for (i = 0; i < [books count]; i++)
+			{
+				BookManagedObject * record = [books objectAtIndex:i];
+
+				[context lock];
+				BookManagedObject * object = [[BookManagedObject alloc] initWithEntity:desc insertIntoManagedObjectContext:context];
+
+				// Copy values into new record
+			
+				[context insertObject:object];
+
+				[bookArrayController addObject:object];
+				[context unlock];
+			}
+			
+			[booksTable reloadData];
+			
+			[self refreshComboBoxes:nil];
+		}
+	}
+}
 
 @end

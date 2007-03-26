@@ -223,7 +223,6 @@
 	[html replaceOccurrencesOfString:@"-bookdef-" withString:bookDef options:NSCaseInsensitiveSearch 
 		range:NSMakeRange (0, [html length])];
 		
-	// NSLog (@"%@", html);
 	return html;
 }
 
@@ -241,8 +240,6 @@
 	
 	[html replaceOccurrencesOfString:@"-csslink-" withString:cssPath options:NSCaseInsensitiveSearch 
 		range:NSMakeRange (0, [html length])];
-
-	// NSLog (@"%@", html);
 
 	return html;
 }
@@ -293,8 +290,6 @@
 	[html replaceOccurrencesOfString:@"-booklist-" withString:bookList options:NSCaseInsensitiveSearch 
 		range:NSMakeRange (0, [html length])];
 
-	// NSLog (@"%@", html);
-	
 	return html;
 }
 

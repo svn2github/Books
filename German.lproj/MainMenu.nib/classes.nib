@@ -17,6 +17,7 @@
                 getCoverWindow = id; 
                 getInfoWindow = id; 
                 import = id; 
+                isight = id; 
                 listQuickfill = id; 
                 newBook = id; 
                 newList = id; 
@@ -48,6 +49,7 @@
                 enabledColumn = NSTableColumn; 
                 fileArrayController = NSArrayController; 
                 fileDescription = NSTextField; 
+                fileIcon = NSImageView; 
                 fileLocation = NSTextField; 
                 fileTitle = NSTextField; 
                 genreCombo = NSComboBox; 
