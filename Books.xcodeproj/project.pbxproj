@@ -61,7 +61,6 @@
 		38671CC408E44C0A0000E294 /* Books.icns in Resources */ = {isa = PBXBuildFile; fileRef = 38671CC308E44C0A0000E294 /* Books.icns */; };
 		387468A8096D65CA0016A59A /* import-plugin.icns in Resources */ = {isa = PBXBuildFile; fileRef = 387468A7096D65CA0016A59A /* import-plugin.icns */; };
 		387468E7096D68EA0016A59A /* export-plugin.icns in Resources */ = {isa = PBXBuildFile; fileRef = 387468E6096D68EA0016A59A /* export-plugin.icns */; };
-		3874691F096D69600016A59A /* Folder Exporter.app in Resources */ = {isa = PBXBuildFile; fileRef = 3874690E096D69600016A59A /* Folder Exporter.app */; };
 		387469AE096D69E00016A59A /* Library of Congress Importer.app in Resources */ = {isa = PBXBuildFile; fileRef = 38746938096D69E00016A59A /* Library of Congress Importer.app */; };
 		387469AF096D69E00016A59A /* Directory Importer.app in Resources */ = {isa = PBXBuildFile; fileRef = 38746976096D69E00016A59A /* Directory Importer.app */; };
 		387469B1096D69E00016A59A /* Amazon Importer.app in Resources */ = {isa = PBXBuildFile; fileRef = 3874699B096D69E00016A59A /* Amazon Importer.app */; };
@@ -106,12 +105,13 @@
 		38F5751B08F7420400119232 /* BookListArrayController.m in Sources */ = {isa = PBXBuildFile; fileRef = 38F5751A08F7420400119232 /* BookListArrayController.m */; };
 		38F5753108F745EB00119232 /* ListListArrayController.m in Sources */ = {isa = PBXBuildFile; fileRef = 38F5753008F745EB00119232 /* ListListArrayController.m */; };
 		38F95C7F09E5557000082453 /* Tab-Delimited Text Importer.app in Resources */ = {isa = PBXBuildFile; fileRef = 38F95C7E09E5557000082453 /* Tab-Delimited Text Importer.app */; };
-		38FB7003097856A5007A7F7D /* Tab-Delimited Text.app in Resources */ = {isa = PBXBuildFile; fileRef = 38FB7002097856A5007A7F7D /* Tab-Delimited Text.app */; };
 		38FD21620896E1ED00C5AD4F /* ImportMenuDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 38FD21610896E1ED00C5AD4F /* ImportMenuDelegate.m */; };
 		38FD216B0896E28300C5AD4F /* ExportMenuDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 38FD216A0896E28300C5AD4F /* ExportMenuDelegate.m */; };
 		38FD21700896E2EC00C5AD4F /* ExportPluginInterface.m in Sources */ = {isa = PBXBuildFile; fileRef = 38FD216F0896E2EC00C5AD4F /* ExportPluginInterface.m */; };
 		38FDFC740A7198BE009481C3 /* empty.html in Resources */ = {isa = PBXBuildFile; fileRef = 38FDFC730A7198BE009481C3 /* empty.html */; };
 		38FDFCA60A719B05009481C3 /* multiple.html in Resources */ = {isa = PBXBuildFile; fileRef = 38FDFCA50A719B05009481C3 /* multiple.html */; };
+		38FEB2CC0BB985F500E6682C /* Tab-Delimited Text Exporter.app in Resources */ = {isa = PBXBuildFile; fileRef = 38FEB2CB0BB985F500E6682C /* Tab-Delimited Text Exporter.app */; };
+		38FEB2D00BB9860800E6682C /* Books Folder Exporter.app in Resources */ = {isa = PBXBuildFile; fileRef = 38FEB2CF0BB9860800E6682C /* Books Folder Exporter.app */; };
 		77C8280D06725ACE000B614F /* BooksAppDelegate.h in Resources */ = {isa = PBXBuildFile; fileRef = 77C8280B06725ACE000B614F /* BooksAppDelegate.h */; };
 		77C8280E06725ACE000B614F /* BooksAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 77C8280C06725ACE000B614F /* BooksAppDelegate.m */; };
 		8D11072A0486CEB800E47090 /* MainMenu.nib in Resources */ = {isa = PBXBuildFile; fileRef = 29B97318FDCFA39411CA2CEA /* MainMenu.nib */; };
@@ -241,7 +241,6 @@
 		38671CC308E44C0A0000E294 /* Books.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = Books.icns; sourceTree = "<group>"; };
 		387468A7096D65CA0016A59A /* import-plugin.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = "import-plugin.icns"; sourceTree = "<group>"; };
 		387468E6096D68EA0016A59A /* export-plugin.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = "export-plugin.icns"; sourceTree = "<group>"; };
-		3874690E096D69600016A59A /* Folder Exporter.app */ = {isa = PBXFileReference; lastKnownFileType = wrapper.application; path = "Folder Exporter.app"; sourceTree = "<group>"; };
 		38746938096D69E00016A59A /* Library of Congress Importer.app */ = {isa = PBXFileReference; lastKnownFileType = wrapper.application; path = "Library of Congress Importer.app"; sourceTree = "<group>"; };
 		38746976096D69E00016A59A /* Directory Importer.app */ = {isa = PBXFileReference; lastKnownFileType = wrapper.application; path = "Directory Importer.app"; sourceTree = "<group>"; };
 		3874699B096D69E00016A59A /* Amazon Importer.app */ = {isa = PBXFileReference; lastKnownFileType = wrapper.application; path = "Amazon Importer.app"; sourceTree = "<group>"; };
@@ -323,7 +322,6 @@
 		38F5752F08F745EB00119232 /* ListListArrayController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ListListArrayController.h; sourceTree = "<group>"; };
 		38F5753008F745EB00119232 /* ListListArrayController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ListListArrayController.m; sourceTree = "<group>"; };
 		38F95C7E09E5557000082453 /* Tab-Delimited Text Importer.app */ = {isa = PBXFileReference; lastKnownFileType = wrapper.application; path = "Tab-Delimited Text Importer.app"; sourceTree = "<group>"; };
-		38FB7002097856A5007A7F7D /* Tab-Delimited Text.app */ = {isa = PBXFileReference; lastKnownFileType = wrapper.application; path = "Tab-Delimited Text.app"; sourceTree = "<group>"; };
 		38FD21600896E1ED00C5AD4F /* ImportMenuDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImportMenuDelegate.h; sourceTree = "<group>"; };
 		38FD21610896E1ED00C5AD4F /* ImportMenuDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ImportMenuDelegate.m; sourceTree = "<group>"; };
 		38FD21690896E28300C5AD4F /* ExportMenuDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ExportMenuDelegate.h; sourceTree = "<group>"; };
@@ -332,6 +330,8 @@
 		38FD216F0896E2EC00C5AD4F /* ExportPluginInterface.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ExportPluginInterface.m; sourceTree = "<group>"; };
 		38FDFC750A7198C6009481C3 /* German */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; name = German; path = German.lproj/empty.html; sourceTree = "<group>"; };
 		38FDFCA70A719B0B009481C3 /* German */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; name = German; path = German.lproj/multiple.html; sourceTree = "<group>"; };
+		38FEB2CB0BB985F500E6682C /* Tab-Delimited Text Exporter.app */ = {isa = PBXFileReference; lastKnownFileType = wrapper.application; path = "Tab-Delimited Text Exporter.app"; sourceTree = "<group>"; };
+		38FEB2CF0BB9860800E6682C /* Books Folder Exporter.app */ = {isa = PBXFileReference; lastKnownFileType = wrapper.application; path = "Books Folder Exporter.app"; sourceTree = "<group>"; };
 		770B37EC0679A11B001EADE2 /* Books_DataModel.xcdatamodel */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = wrapper.xcdatamodel; path = Books_DataModel.xcdatamodel; sourceTree = "<group>"; };
 		77C82804067257F0000B614F /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = /System/Library/Frameworks/CoreData.framework; sourceTree = "<absolute>"; };
 		77C8280B06725ACE000B614F /* BooksAppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BooksAppDelegate.h; sourceTree = "<group>"; };
@@ -557,9 +557,9 @@
 		385FDD8A090424F900C511B9 /* Export Plugins */ = {
 			isa = PBXGroup;
 			children = (
+				38FEB2CF0BB9860800E6682C /* Books Folder Exporter.app */,
+				38FEB2CB0BB985F500E6682C /* Tab-Delimited Text Exporter.app */,
 				3898563509A93A1400F44932 /* iPod Exporter.app */,
-				38FB7002097856A5007A7F7D /* Tab-Delimited Text.app */,
-				3874690E096D69600016A59A /* Folder Exporter.app */,
 			);
 			name = "Export Plugins";
 			sourceTree = "<group>";
@@ -809,11 +809,9 @@
 				38645458096CCEAA00690649 /* Books Help in Resources */,
 				387468A8096D65CA0016A59A /* import-plugin.icns in Resources */,
 				387468E7096D68EA0016A59A /* export-plugin.icns in Resources */,
-				3874691F096D69600016A59A /* Folder Exporter.app in Resources */,
 				387469AE096D69E00016A59A /* Library of Congress Importer.app in Resources */,
 				387469AF096D69E00016A59A /* Directory Importer.app in Resources */,
 				387469B1096D69E00016A59A /* Amazon Importer.app in Resources */,
-				38FB7003097856A5007A7F7D /* Tab-Delimited Text.app in Resources */,
 				38B62EB20987D2D200A4A8AD /* Delicious Library Importer.app in Resources */,
 				38EA9B8409899DC30081A4D0 /* BibTeX Importer.app in Resources */,
 				3898563609A93A1400F44932 /* iPod Exporter.app in Resources */,
@@ -832,6 +830,8 @@
 				38BD42830BA069FA00F245D8 /* tiger.png in Resources */,
 				38BD42C10BA06CC800F245D8 /* corner.png in Resources */,
 				38B16D730BA1EB9200216A44 /* CoverImageView.qtz in Resources */,
+				38FEB2CC0BB985F500E6682C /* Tab-Delimited Text Exporter.app in Resources */,
+				38FEB2D00BB9860800E6682C /* Books Folder Exporter.app in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

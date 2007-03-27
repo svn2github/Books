@@ -218,6 +218,8 @@
 			<key>Layout</key>
 			<array>
 				<dict>
+					<key>BecomeActive</key>
+					<true/>
 					<key>ContentConfiguration</key>
 					<dict>
 						<key>PBXBottomSmartGroupGIDs</key>
@@ -257,11 +259,15 @@
 							<array>
 								<string>29B97314FDCFA39411CA2CEA</string>
 								<string>29B97317FDCFA39411CA2CEA</string>
+								<string>38EDC56F08EA1DB200414B3D</string>
+								<string>385FDD8A090424F900C511B9</string>
 							</array>
 							<key>PBXSmartGroupTreeModuleOutlineStateSelectionKey</key>
 							<array>
 								<array>
-									<integer>11</integer>
+									<integer>13</integer>
+									<integer>12</integer>
+									<integer>9</integer>
 									<integer>3</integer>
 									<integer>0</integer>
 								</array>
@@ -299,8 +305,6 @@
 					<key>Dock</key>
 					<array>
 						<dict>
-							<key>BecomeActive</key>
-							<true/>
 							<key>ContentConfiguration</key>
 							<dict>
 								<key>PBXProjectModuleGUID</key>
@@ -318,7 +322,7 @@
 										<key>_historyCapacity</key>
 										<integer>0</integer>
 										<key>bookmark</key>
-										<string>3857512E0BB97FCD00EC646B</string>
+										<string>38FEB2D70BB9864100E6682C</string>
 										<key>history</key>
 										<array>
 											<string>386EE6670A7697F2001E7A48</string>
@@ -453,7 +457,7 @@
 											<string>382CC72A0BB80D4200E0BCC9</string>
 											<string>38DBA96C0BB8C30F00F95F16</string>
 											<string>3857512C0BB97FCD00EC646B</string>
-											<string>38071AC00BB9775200BE27E7</string>
+											<string>385752D00BB985D000EC646B</string>
 										</array>
 										<key>prevStack</key>
 										<array>
@@ -647,9 +651,9 @@
 			</array>
 			<key>TableOfContents</key>
 			<array>
-				<string>3857512F0BB97FCD00EC646B</string>
+				<string>38FEB2C90BB985E100E6682C</string>
 				<string>1CE0B1FE06471DED0097A5F4</string>
-				<string>385751300BB97FCD00EC646B</string>
+				<string>38FEB2CA0BB985E100E6682C</string>
 				<string>1CE0B20306471E060097A5F4</string>
 				<string>1CE0B20506471E060097A5F4</string>
 			</array>
@@ -784,6 +788,8 @@
 	<key>WindowOrderList</key>
 	<array>
 		<string>384FEAE0090BD7D500EB0E2A</string>
+		<string>/Volumes/iDisk/Documents/Projects/Books Project/Version Controlled/books-macosx/Books/Books.xcodeproj</string>
+		<string>1C0AD2B3069F1EA900FABCE6</string>
 	</array>
 	<key>WindowString</key>
 	<string>0 189 1160 589 0 0 1280 778 </string>
@@ -863,7 +869,7 @@
 			<key>TableOfContents</key>
 			<array>
 				<string>384FEAE0090BD7D500EB0E2A</string>
-				<string>385751310BB97FCD00EC646B</string>
+				<string>38FEB2D60BB9861900E6682C</string>
 				<string>1CD0528F0623707200166675</string>
 				<string>XCMainBuildResultsModuleGUID</string>
 			</array>
@@ -1225,9 +1231,9 @@
 			<key>TableOfContents</key>
 			<array>
 				<string>1C0AD2B3069F1EA900FABCE6</string>
-				<string>385751320BB97FCD00EC646B</string>
+				<string>38FEB2D80BB9864100E6682C</string>
 				<string>1CD0528B0623707200166675</string>
-				<string>385751330BB97FCD00EC646B</string>
+				<string>38FEB2D90BB9864100E6682C</string>
 			</array>
 			<key>ToolbarConfiguration</key>
 			<string>xcode.toolbar.config.run</string>
