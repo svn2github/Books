@@ -51,7 +51,7 @@ typedef struct _monochromePixel
 	NSMutableSet *allBundles = [[NSMutableSet alloc] init];
 	[allBundles addObject: [NSBundle mainBundle]];
 	[allBundles addObjectsFromArray: [NSBundle allFrameworks]];
-    
+    	
     managedObjectModel = [[NSManagedObjectModel mergedModelFromBundles: [allBundles allObjects]] retain];
 
     [allBundles release];
@@ -1366,6 +1366,20 @@ typedef struct _monochromePixel
 	
 	NSString * dateFormat = [[NSUserDefaults standardUserDefaults] stringForKey:@"Custom Date Format"];
 
+	[NSDateFormatter setDefaultFormatterBehavior:NSDateFormatterBehavior10_4];
+
+	NSDateFormatter * formatter;
+				
+	if (dateFormat != nil)
+		formatter = [[NSDateFormatter alloc] initWithDateFormat:dateFormat allowNaturalLanguage:NO];
+	else
+	{
+		formatter = [[NSDateFormatter alloc] init];
+		[formatter setDateStyle:NSDateFormatterLongStyle];
+	}
+
+	[[datePublished cell] setFormatter:formatter];
+
 	for (i = 0; i < [newColumns count]; i++)
 	{
 		NSDictionary * dict = [newColumns objectAtIndex:i];
@@ -1391,18 +1405,6 @@ typedef struct _monochromePixel
 				[key isEqualToString:@"dateAcquired"] ||
 				[key isEqualToString:@"dateStarted"] )
 			{
-				[NSDateFormatter setDefaultFormatterBehavior:NSDateFormatterBehavior10_4];
-
-				NSDateFormatter * formatter;
-				
-				if (dateFormat != nil)
-					formatter = [[NSDateFormatter alloc] initWithDateFormat:dateFormat allowNaturalLanguage:NO];
-				else
-				{
-					formatter = [[NSDateFormatter alloc] init];
-					[formatter setDateStyle:NSDateFormatterLongStyle];
-				}
-				
 				[[column dataCell] setFormatter:formatter];
 
 				NSSortDescriptor * sortDescriptor = [[NSSortDescriptor alloc] initWithKey:key ascending:YES];

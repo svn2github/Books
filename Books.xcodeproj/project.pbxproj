@@ -11,10 +11,10 @@
 		38030AD708F4A37A00B2AC82 /* SmartListWindowDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 38030AD608F4A37A00B2AC82 /* SmartListWindowDelegate.m */; };
 		38039DBF0A04EA5400DFA71F /* PluginManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 38039DBD0A04EA5400DFA71F /* PluginManager.m */; };
 		381119D008EDC407008FBAEB /* white.png in Resources */ = {isa = PBXBuildFile; fileRef = 381119CF08EDC407008FBAEB /* white.png */; };
-		3816417D0ACC045900DBFC14 /* Books_DataModel.xcdatamodel in Sources */ = {isa = PBXBuildFile; fileRef = 770B37EC0679A11B001EADE2 /* Books_DataModel.xcdatamodel */; };
 		381930480B43469600646B67 /* camera.png in Resources */ = {isa = PBXBuildFile; fileRef = 381930470B43469600646B67 /* camera.png */; };
 		381930510B43470C00646B67 /* QuickTime.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 381930500B43470C00646B67 /* QuickTime.framework */; };
 		381930790B43474300646B67 /* Carbon.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 381930780B43474300646B67 /* Carbon.framework */; };
+		3819D2C70BDA3CE7003283B3 /* Books_DataModel.xcdatamodel in Sources */ = {isa = PBXBuildFile; fileRef = 770B37EC0679A11B001EADE2 /* Books_DataModel.xcdatamodel */; };
 		3820367D0B4989F80022E60E /* MyiSightWindow.m in Sources */ = {isa = PBXBuildFile; fileRef = 382036770B4989F80022E60E /* MyiSightWindow.m */; };
 		3820367E0B4989F80022E60E /* MyiSightWindow.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 382036780B4989F80022E60E /* MyiSightWindow.h */; };
 		3820367F0B4989F80022E60E /* MyGraphView.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 382036790B4989F80022E60E /* MyGraphView.h */; };
@@ -863,7 +863,7 @@
 			files = (
 				8D11072D0486CEB800E47090 /* main.m in Sources */,
 				77C8280E06725ACE000B614F /* BooksAppDelegate.m in Sources */,
-				3816417D0ACC045900DBFC14 /* Books_DataModel.xcdatamodel in Sources */,
+				3819D2C70BDA3CE7003283B3 /* Books_DataModel.xcdatamodel in Sources */,
 				3878AF29088FE45E00C72EB3 /* ImportPluginInterface.m in Sources */,
 				38FD21620896E1ED00C5AD4F /* ImportMenuDelegate.m in Sources */,
 				38FD216B0896E28300C5AD4F /* ExportMenuDelegate.m in Sources */,

@@ -91,6 +91,7 @@
 	IBOutlet NSComboBox * translatorsCombo;
 	IBOutlet NSComboBox * publisherCombo;
 	IBOutlet NSComboBox * userFieldCombo;
+	IBOutlet NSTextField * datePublished;
 
 	IBOutlet NSBox * imageBox;
 	IBOutlet NSImageView * imageView;

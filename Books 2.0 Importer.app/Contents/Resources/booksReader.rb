@@ -65,6 +65,9 @@ listxml.elements().each("/list/book") do |book_element|
 	begin
 		bookxml = REXML::Document.new(File.new(bookxmlpath))
 
+		feedback = book.add_element("feedback")
+		feedback.attributes["submitter"] = "-"
+
 		bookxml.elements().each("/definition/property") do |bookproperty|
 			name = bookproperty.attributes["name"]
 			type = bookproperty.attributes["type"]
@@ -78,6 +81,11 @@ listxml.elements().each("/list/book") do |book_element|
 			elsif (name.to_s() == "Location")
 				copy = book.add_element("copy")
 				copy.attributes["location"] = bookproperty.text
+			elsif (name.to_s() == "Rating")
+				feedback.attributes["rating"] = bookproperty.text
+			elsif (name.to_s() == "Date Read")
+				feedback.attributes["dateFinished"] = bookproperty.text
+				feedback.attributes["dateStarted"] = bookproperty.text
 			else
 				field = book.add_element("field")
 				newname = mapping[name]
