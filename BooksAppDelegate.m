@@ -1383,7 +1383,7 @@ typedef struct _monochromePixel
 		formatter = [[NSDateFormatter alloc] initWithDateFormat:dateFormat allowNaturalLanguage:YES];
 	else
 	{
-		formatter = [[NSDateFormatter alloc] initWithDateFormat:@"%b %d, %Y" allowNaturalLanguage:YES];
+		formatter = [[NSDateFormatter alloc] initWithDateFormat:@"%B %e, %Y" allowNaturalLanguage:YES];
 		[formatter setDateStyle:NSDateFormatterLongStyle];
 	}
 
