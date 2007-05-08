@@ -268,8 +268,6 @@
 
 - (NSData *) getCoverImage
 {
-	// NSLog (@"getting cover image...");
-
 	NSString * objId = [self valueForKey:@"id"];
 		
 	NSString * imagePath = [NSString stringWithFormat:@"%@%@%@.book-image", NSHomeDirectory (),
@@ -277,23 +275,19 @@
 
 	if (imageData == nil)
 		imageData = [[NSData dataWithContentsOfFile:imagePath] retain];
-
-	// NSLog (@"done getting cover image...");
 	
 	return imageData;
 }
 
 - (void) setCoverImage: (NSData *) data
 {
-	// NSLog (@"setting cover image: %@", data);
-	
     [self willChangeValueForKey:@"coverImage"];
 	
 	NSString * objId = [self getObjectIdString];
 		
 	NSString * imagePath = [NSString stringWithFormat:@"%@%@%@.book-image", NSHomeDirectory (),
 							@"/Library/Application Support/Books/Images/", objId];
-
+							
 	if (![[NSFileManager defaultManager] fileExistsAtPath:[imagePath stringByDeletingLastPathComponent]])
 		[[NSFileManager defaultManager] createDirectoryAtPath:[imagePath stringByDeletingLastPathComponent] attributes:nil];
 	
@@ -307,8 +301,6 @@
 		
 	imageData = nil;
 
-	// NSLog (@"done setting cover image...");
-	
     [self didChangeValueForKey:@"coverImage"];
 }
 

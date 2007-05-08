@@ -48,8 +48,8 @@
 	importTask = [[NSTask alloc] init];
 
 	[importTask setStandardOutput:stdoutPipe];
-
 	[importTask setLaunchPath:executablePath];
+	[importTask setCurrentDirectoryPath:[executablePath stringByDeletingLastPathComponent]];
 
 	NSFileHandle * out = [[stdoutPipe fileHandleForReading] retain];
 
@@ -158,6 +158,7 @@
 
 	[importTask setStandardOutput:stdoutPipe];
 	[importTask setLaunchPath:executablePath];
+	[importTask setCurrentDirectoryPath:[executablePath stringByDeletingLastPathComponent]];
 	
 	NSFileHandle * out = [[stdoutPipe fileHandleForReading] retain];
 

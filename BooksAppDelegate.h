@@ -211,5 +211,6 @@
 
 - (IBAction) import: (id)sender;
 - (IBAction) isight: (id)sender;
+- (IBAction) duplicateRecords:(id) sender;
 
 @end

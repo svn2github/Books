@@ -52,6 +52,7 @@
 - (void) setFiles:(NSSet *) fileSet;
 
 - (NSData *) getCoverImage;
+- (void) setCoverImage: (NSData *) data;
 - (void) setValueFromString:(NSString *) valueString forKey:(NSString *) key replace:(BOOL) doReplace;
 
 - (NSString *) getCoverPath;

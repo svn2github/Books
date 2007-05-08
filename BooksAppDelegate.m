@@ -529,7 +529,15 @@ typedef struct _monochromePixel
 		[item setLabel:NSLocalizedString (@"Open Camera", nil)];
 		[item setPaletteLabel:NSLocalizedString (@"Open Camera", nil)];
 	}
+	else if ([itemIdentifier isEqualToString:@"duplicate"])
+	{
+		[item setTarget:self];
+		[item setAction:NSSelectorFromString(@"duplicateRecords:")];
 
+		[item setImage:[NSImage imageNamed:@"dupe"]];
+		[item setLabel:NSLocalizedString (@"Duplicate Book", nil)];
+		[item setPaletteLabel:NSLocalizedString (@"Duplicate Book", nil)];
+	}
 	else if ([itemIdentifier isEqualToString:@"search"])
 	{
 		NSRect fRect = [searchField frame];
@@ -549,7 +557,7 @@ typedef struct _monochromePixel
 - (NSArray *) toolbarAllowedItemIdentifiers: (NSToolbar *) toolbar
 {
 	return [NSArray arrayWithObjects:@"new-list", @"new-smartlist", @"edit-smartlist", @"new-book", @"remove-book", @"remove-list", @"preferences", 
-		@"get-info", @"get-cover", @"import", @"export", @"search", @"isight", NSToolbarSeparatorItemIdentifier, 
+		@"get-info", @"get-cover", @"import", @"export", @"search", @"isight", @"duplicate", NSToolbarSeparatorItemIdentifier, 
 		NSToolbarSpaceItemIdentifier, NSToolbarFlexibleSpaceItemIdentifier, NSToolbarCustomizeToolbarItemIdentifier, nil];
 }
 
@@ -571,8 +579,8 @@ typedef struct _monochromePixel
 	
 	NSButtonCell * checkbox = [[NSButtonCell alloc] init];
 	[checkbox setButtonType:NSSwitchButton];
-	[checkbox setTitle:@""];
 	[checkbox setControlSize:NSSmallControlSize];
+	[checkbox setTitle:@""];
 	
 	[enabledColumn setDataCell:checkbox];
 
@@ -732,7 +740,8 @@ typedef struct _monochromePixel
 	
 	[self updateMainPane];
 	
-	[[[NSApplication sharedApplication] delegate] startProgressWindow:NSLocalizedString (@"Loading data from disk...", nil)];
+	[mainWindow setTitle:@"Books - Loading..."];
+	// [[[NSApplication sharedApplication] delegate] startProgressWindow:NSLocalizedString (@"Loading data from disk...", nil)];
 }
 
 - (void) startProgressWindow: (NSString *) message
@@ -808,11 +817,11 @@ typedef struct _monochromePixel
 	}
 	else if (table == listsTable)
 	{
-		if ([progressView isVisible])
+		/*if ([progressView isVisible])
 		{
 			if ([table selectedRow] != -1)
 				[self endProgressWindow];
-		}
+		} */
 
 		NSArray * selectedObjects = [collectionArrayController selectedObjects];
 
@@ -1371,10 +1380,10 @@ typedef struct _monochromePixel
 	NSDateFormatter * formatter;
 				
 	if (dateFormat != nil)
-		formatter = [[NSDateFormatter alloc] initWithDateFormat:dateFormat allowNaturalLanguage:NO];
+		formatter = [[NSDateFormatter alloc] initWithDateFormat:dateFormat allowNaturalLanguage:YES];
 	else
 	{
-		formatter = [[NSDateFormatter alloc] init];
+		formatter = [[NSDateFormatter alloc] initWithDateFormat:@"%b %d, %Y" allowNaturalLanguage:YES];
 		[formatter setDateStyle:NSDateFormatterLongStyle];
 	}
 
@@ -2163,13 +2172,17 @@ typedef struct _monochromePixel
 		
 		if (![list isKindOfClass:[SmartList class]])
 		{
-			NSArray * books = [collectionArrayController selectedObjects];
+			NSArray * books = [bookArrayController selectedObjects];
 
 			NSManagedObjectContext * context = [self managedObjectContext];
 			NSManagedObjectModel * model = [self managedObjectModel];
 			NSEntityDescription * desc = [[model entitiesByName] objectForKey:@"Book"];
+			NSEntityDescription * fieldDesc = [[model entitiesByName] objectForKey:@"UserDefinedField"];
+			
+			NSArray * props = [desc properties];
 
 			int i = 0;
+
 			for (i = 0; i < [books count]; i++)
 			{
 				BookManagedObject * record = [books objectAtIndex:i];
@@ -2177,8 +2190,45 @@ typedef struct _monochromePixel
 				[context lock];
 				BookManagedObject * object = [[BookManagedObject alloc] initWithEntity:desc insertIntoManagedObjectContext:context];
 
-				// Copy values into new record
-			
+				int j = 0;
+				for (j = 0; j < [props count]; j++)
+				{
+					NSPropertyDescription * propDesc = (NSPropertyDescription *) [props objectAtIndex:j];
+					NSString * name = [propDesc name];
+					
+					if ([propDesc isMemberOfClass:[NSAttributeDescription class]])
+						[object setValue:[record valueForKey:name] forKey:name];
+					else if ([name isEqualToString:@"userFields"])
+					{
+						NSArray * userFields = [[record valueForKey:@"userFields"] allObjects];
+						
+						NSMutableSet * objectFields = [object mutableSetValueForKey:@"userFields"];
+						
+						int k = 0;
+						for (k = 0; k < [userFields count]; k++)
+						{
+							NSManagedObject * fieldPair = [userFields objectAtIndex:k];
+							NSManagedObject * fieldObject = [[NSManagedObject alloc] initWithEntity:fieldDesc 
+								insertIntoManagedObjectContext:context];
+
+							[fieldObject setValue:[fieldPair valueForKey:@"key"] forKey:@"key"];
+							[fieldObject setValue:[fieldPair valueForKey:@"value"] forKey:@"value"];
+	
+							[objectFields addObject:fieldObject];
+						}
+					}
+					else
+						NSLog (@"not duping %@", name);
+				}
+
+				CFUUIDRef uuid = CFUUIDCreate (kCFAllocatorDefault);
+				NSString * uuidString = (NSString *) CFUUIDCreateString (kCFAllocatorDefault, uuid);
+		
+				[object setValue:uuidString forKey:@"id"];
+
+				NSData * cover = [record getCoverImage];
+				[object setCoverImage:[cover copyWithZone:NULL]];
+
 				[context insertObject:object];
 
 				[bookArrayController addObject:object];

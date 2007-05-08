@@ -79,6 +79,7 @@
 		38A33A42090845C300016FF0 /* list-small.png in Resources */ = {isa = PBXBuildFile; fileRef = 38A33A40090845C300016FF0 /* list-small.png */; };
 		38A33A48090845FA00016FF0 /* ListManagedObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 38A33A47090845FA00016FF0 /* ListManagedObject.m */; };
 		38A54BEA09003CA2005018C3 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 38A54BE909003CA2005018C3 /* QuartzCore.framework */; };
+		38AC633C0BEA7CF3004F8DB4 /* dupe.png in Resources */ = {isa = PBXBuildFile; fileRef = 38AC633B0BEA7CF3004F8DB4 /* dupe.png */; };
 		38B0F7D808E9832B00A04B4D /* FieldsDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 38B0F7D708E9832B00A04B4D /* FieldsDataSource.m */; };
 		38B16D730BA1EB9200216A44 /* CoverImageView.qtz in Resources */ = {isa = PBXBuildFile; fileRef = 38B16D720BA1EB9200216A44 /* CoverImageView.qtz */; };
 		38B16DAB0BA1FECE00216A44 /* CoverWindowDelegate.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 38B16DA90BA1FECE00216A44 /* CoverWindowDelegate.h */; };
@@ -272,6 +273,7 @@
 		38A33A46090845FA00016FF0 /* ListManagedObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ListManagedObject.h; sourceTree = "<group>"; };
 		38A33A47090845FA00016FF0 /* ListManagedObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ListManagedObject.m; sourceTree = "<group>"; };
 		38A54BE909003CA2005018C3 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = /System/Library/Frameworks/QuartzCore.framework; sourceTree = "<absolute>"; };
+		38AC633B0BEA7CF3004F8DB4 /* dupe.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = dupe.png; sourceTree = "<group>"; };
 		38B0F7D608E9832B00A04B4D /* FieldsDataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FieldsDataSource.h; sourceTree = "<group>"; };
 		38B0F7D708E9832B00A04B4D /* FieldsDataSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FieldsDataSource.m; sourceTree = "<group>"; };
 		38B16D720BA1EB9200216A44 /* CoverImageView.qtz */ = {isa = PBXFileReference; lastKnownFileType = file; path = CoverImageView.qtz; sourceTree = "<group>"; };
@@ -584,6 +586,7 @@
 		38666DA508E5087200071C56 /* Icons */ = {
 			isa = PBXGroup;
 			children = (
+				38AC633B0BEA7CF3004F8DB4 /* dupe.png */,
 				3894C9C40B58516000E7A508 /* camera-22.png */,
 				381930470B43469600646B67 /* camera.png */,
 				387468E6096D68EA0016A59A /* export-plugin.icns */,
@@ -851,6 +854,7 @@
 				38B16D730BA1EB9200216A44 /* CoverImageView.qtz in Resources */,
 				38FEB2CC0BB985F500E6682C /* Tab-Delimited Text Exporter.app in Resources */,
 				38FEB2D00BB9860800E6682C /* Books Folder Exporter.app in Resources */,
+				38AC633C0BEA7CF3004F8DB4 /* dupe.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
