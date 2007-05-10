@@ -71,6 +71,10 @@
 		3886627309BB79DB001EB1EB /* OPAC SBN.plugin in Resources */ = {isa = PBXBuildFile; fileRef = 3886623D09BB79DB001EB1EB /* OPAC SBN.plugin */; };
 		388AD1CF09F95BEE00BDEDD3 /* Books 2.0 Importer.app in Resources */ = {isa = PBXBuildFile; fileRef = 388AD1CE09F95BEE00BDEDD3 /* Books 2.0 Importer.app */; };
 		388E122B09F83E82000A3FF5 /* CheckOutManagedObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 388E122909F83E82000A3FF5 /* CheckOutManagedObject.m */; };
+		388E1F160BF3425600E8A670 /* BooksDisplay.plugin in Resources */ = {isa = PBXBuildFile; fileRef = 388E1F020BF3425600E8A670 /* BooksDisplay.plugin */; };
+		388E1F270BF3431C00E8A670 /* BrushedDisplay.plugin in Resources */ = {isa = PBXBuildFile; fileRef = 388E1F180BF3431C00E8A670 /* BrushedDisplay.plugin */; };
+		388E1F360BF3433900E8A670 /* SemperDisplay.plugin in Resources */ = {isa = PBXBuildFile; fileRef = 388E1F280BF3433900E8A670 /* SemperDisplay.plugin */; };
+		388E1F7A0BF35B0000E8A670 /* Amazon ECS4 (JP).plugin in Resources */ = {isa = PBXBuildFile; fileRef = 388E1F6F0BF35B0000E8A670 /* Amazon ECS4 (JP).plugin */; };
 		3892A6AB09013AF700FF72C8 /* MainWindowTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3892A6AA09013AF700FF72C8 /* MainWindowTableView.m */; };
 		3892BCB908F708E200F90204 /* new-smartlist.png in Resources */ = {isa = PBXBuildFile; fileRef = 3892BCB808F708E200F90204 /* new-smartlist.png */; };
 		3892BCBB08F708F600F90204 /* edit-smartlist.png in Resources */ = {isa = PBXBuildFile; fileRef = 3892BCBA08F708F600F90204 /* edit-smartlist.png */; };
@@ -255,6 +259,10 @@
 		388AD1CE09F95BEE00BDEDD3 /* Books 2.0 Importer.app */ = {isa = PBXFileReference; lastKnownFileType = wrapper.application; path = "Books 2.0 Importer.app"; sourceTree = "<group>"; };
 		388E122809F83E82000A3FF5 /* CheckOutManagedObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CheckOutManagedObject.h; sourceTree = "<group>"; };
 		388E122909F83E82000A3FF5 /* CheckOutManagedObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CheckOutManagedObject.m; sourceTree = "<group>"; };
+		388E1F020BF3425600E8A670 /* BooksDisplay.plugin */ = {isa = PBXFileReference; lastKnownFileType = folder; path = BooksDisplay.plugin; sourceTree = "<group>"; };
+		388E1F180BF3431C00E8A670 /* BrushedDisplay.plugin */ = {isa = PBXFileReference; lastKnownFileType = folder; path = BrushedDisplay.plugin; sourceTree = "<group>"; };
+		388E1F280BF3433900E8A670 /* SemperDisplay.plugin */ = {isa = PBXFileReference; lastKnownFileType = folder; path = SemperDisplay.plugin; sourceTree = "<group>"; };
+		388E1F6F0BF35B0000E8A670 /* Amazon ECS4 (JP).plugin */ = {isa = PBXFileReference; lastKnownFileType = folder; path = "Amazon ECS4 (JP).plugin"; sourceTree = "<group>"; };
 		3892A6A909013AF700FF72C8 /* MainWindowTableView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainWindowTableView.h; sourceTree = "<group>"; };
 		3892A6AA09013AF700FF72C8 /* MainWindowTableView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainWindowTableView.m; sourceTree = "<group>"; };
 		3892BCB808F708E200F90204 /* new-smartlist.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "new-smartlist.png"; sourceTree = "<group>"; };
@@ -628,6 +636,9 @@
 		3892A5F20900D4E000FF72C8 /* Display Plugins */ = {
 			isa = PBXGroup;
 			children = (
+				388E1F280BF3433900E8A670 /* SemperDisplay.plugin */,
+				388E1F180BF3431C00E8A670 /* BrushedDisplay.plugin */,
+				388E1F020BF3425600E8A670 /* BooksDisplay.plugin */,
 				38EDC5EA08EA279900414B3D /* ClassicDisplay.plugin */,
 				38EDC5C808EA23A300414B3D /* DefaultDisplay.plugin */,
 			);
@@ -679,6 +690,7 @@
 		38D84AC6095777A2002E39DB /* Quickfill Plugins */ = {
 			isa = PBXGroup;
 			children = (
+				388E1F6F0BF35B0000E8A670 /* Amazon ECS4 (JP).plugin */,
 				384BD4B00959A4280077D553 /* Amazon (CA).plugin */,
 				384BD46B0959A3C70077D553 /* Amazon (DE).plugin */,
 				384BD4CA0959A4490077D553 /* Amazon (FR).plugin */,
@@ -855,6 +867,10 @@
 				38FEB2CC0BB985F500E6682C /* Tab-Delimited Text Exporter.app in Resources */,
 				38FEB2D00BB9860800E6682C /* Books Folder Exporter.app in Resources */,
 				38AC633C0BEA7CF3004F8DB4 /* dupe.png in Resources */,
+				388E1F160BF3425600E8A670 /* BooksDisplay.plugin in Resources */,
+				388E1F270BF3431C00E8A670 /* BrushedDisplay.plugin in Resources */,
+				388E1F360BF3433900E8A670 /* SemperDisplay.plugin in Resources */,
+				388E1F7A0BF35B0000E8A670 /* Amazon ECS4 (JP).plugin in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
