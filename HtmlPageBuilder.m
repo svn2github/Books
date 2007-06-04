@@ -79,7 +79,7 @@
 
 	if (pluginKey == nil || [pluginKey isEqualToString:@""])
 	{
-		int alertReturn = NSRunAlertPanel (NSLocalizedString (@"No Preferences Found", nil), NSLocalizedString (@"Is this your first time running Books? Please set your preferences", nil), 
+/*		int alertReturn = NSRunAlertPanel (NSLocalizedString (@"No Preferences Found", nil), NSLocalizedString (@"Is this your first time running Books? Please set your preferences", nil), 
 							NSLocalizedString (@"OK", nil), nil, nil);
 					
 		if (alertReturn == NSAlertDefaultReturn)
@@ -91,6 +91,13 @@
 		}
 		
 		return nil;
+*/
+
+		[[NSUserDefaults standardUserDefaults] setObject:NSLocalizedString (@"Default Display", nil) forKey:@"Default Display Plugin"];
+		[[NSUserDefaults standardUserDefaults] setObject:NSLocalizedString (@"Books 2.0 Importer", nil) forKey:@"Default Import Plugin"];
+		[[NSUserDefaults standardUserDefaults] setObject:NSLocalizedString (@"Amazon (US)", nil) forKey:@"Default Quickfill Plugin"];
+
+		return [self getDisplayPlugin];
 	}
 
 	return (NSBundle *) [[self getDisplayPlugins] objectForKey:pluginKey];

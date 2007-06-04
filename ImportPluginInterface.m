@@ -307,7 +307,7 @@
 
 		if ([[valueString substringToIndex:1] isEqualToString:@"/"])
 			mutableString = [NSMutableString stringWithFormat:@"file://%@", valueString, nil];
-		
+
 		[mutableString replaceOccurrencesOfString:@" " withString:@"%20" options:nil range:NSMakeRange (0, [mutableString length])];
 		
 		key = @"coverImage";

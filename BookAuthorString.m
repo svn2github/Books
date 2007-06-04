@@ -58,7 +58,7 @@
 	for (i = 0; i < [separators count]; i++)
 	{
 		range = [sortString rangeOfString:[separators objectAtIndex:i]];
-	
+		
 		if (range.location != NSNotFound)
 			[sortString setString:[self substringToIndex:range.location]];
 	}

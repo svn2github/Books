@@ -861,7 +861,7 @@
 
 	NSManagedObjectContext * context = [bookObject managedObjectContext];
 	
-	if ([key isEqual:@"CoverImageURL"] || [key isEqual:@"coverImage"])
+	if (([key isEqual:@"CoverImageURL"] || [key isEqual:@"coverImage"]) && ! ([valueString isEqualToString:@""]))
 	{
 		NSMutableString * mutableString = [NSMutableString stringWithString:valueString];
 
