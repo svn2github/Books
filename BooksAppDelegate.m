@@ -740,7 +740,7 @@ typedef struct _monochromePixel
 	
 	[self updateMainPane];
 	
-	[mainWindow setTitle:@"Books - Loading..."];
+	[mainWindow setTitle:NSLocalizedString (@"Books - Loading...", nil)];
 	// [[[NSApplication sharedApplication] delegate] startProgressWindow:NSLocalizedString (@"Loading data from disk...", nil)];
 }
 

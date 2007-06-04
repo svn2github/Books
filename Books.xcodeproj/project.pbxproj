@@ -22,6 +22,7 @@
 		382036810B4989F80022E60E /* MyBarcodeScanner.m in Sources */ = {isa = PBXBuildFile; fileRef = 3820367B0B4989F80022E60E /* MyBarcodeScanner.m */; };
 		382036820B4989F80022E60E /* MyBarcodeScanner.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 3820367C0B4989F80022E60E /* MyBarcodeScanner.h */; };
 		382611B209BB5BA7006B3CD7 /* ISBNdb.plugin in Resources */ = {isa = PBXBuildFile; fileRef = 382611A909BB5BA7006B3CD7 /* ISBNdb.plugin */; };
+		3826FA850C14535B00EB2E43 /* Books Help in Resources */ = {isa = PBXBuildFile; fileRef = 3826FA840C14535B00EB2E43 /* Books Help */; };
 		3832913A0A03EF1C00C98833 /* Books Metadata Importer.mdimporter in Resources */ = {isa = PBXBuildFile; fileRef = 3832912B0A03EF1C00C98833 /* Books Metadata Importer.mdimporter */; };
 		383291590A03F0E300C98833 /* Books Metadata Importer.mdimporter in CopyFiles */ = {isa = PBXBuildFile; fileRef = 3832912B0A03EF1C00C98833 /* Books Metadata Importer.mdimporter */; };
 		38358E8A0958ED3900E823F3 /* Amazon (US).plugin in Resources */ = {isa = PBXBuildFile; fileRef = 38358E7F0958ED3900E823F3 /* Amazon (US).plugin */; };
@@ -183,6 +184,7 @@
 		3820367B0B4989F80022E60E /* MyBarcodeScanner.m */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.objc; path = MyBarcodeScanner.m; sourceTree = "<group>"; };
 		3820367C0B4989F80022E60E /* MyBarcodeScanner.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = MyBarcodeScanner.h; sourceTree = "<group>"; };
 		382611A909BB5BA7006B3CD7 /* ISBNdb.plugin */ = {isa = PBXFileReference; lastKnownFileType = folder; path = ISBNdb.plugin; sourceTree = "<group>"; };
+		3826F9430C1451EA00EB2E43 /* English */ = {isa = PBXFileReference; lastKnownFileType = folder; name = English; path = "English.lproj/Books Help"; sourceTree = "<group>"; };
 		3832912B0A03EF1C00C98833 /* Books Metadata Importer.mdimporter */ = {isa = PBXFileReference; lastKnownFileType = folder; path = "Books Metadata Importer.mdimporter"; sourceTree = "<group>"; };
 		38358E7F0958ED3900E823F3 /* Amazon (US).plugin */ = {isa = PBXFileReference; lastKnownFileType = folder; path = "Amazon (US).plugin"; sourceTree = "<group>"; };
 		38364417097DC15D00E73AF4 /* BookTitleString.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BookTitleString.h; sourceTree = "<group>"; };
@@ -354,7 +356,7 @@
 		77C8280B06725ACE000B614F /* BooksAppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BooksAppDelegate.h; sourceTree = "<group>"; };
 		77C8280C06725ACE000B614F /* BooksAppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BooksAppDelegate.m; sourceTree = "<group>"; };
 		8D1107310486CEB800E47090 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
-		8D1107320486CEB800E47090 /* Books.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Books.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		8D1107320486CEB800E47090 /* Books.app */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.application; path = Books.app; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -697,6 +699,7 @@
 		38DF40420B8DF63700D55EA4 /* Localized */ = {
 			isa = PBXGroup;
 			children = (
+				3826FA840C14535B00EB2E43 /* Books Help */,
 				29B97318FDCFA39411CA2CEA /* MainMenu.nib */,
 				3855F60B08E5637200C439F4 /* HTML Display */,
 				383DBED60A6AF83D00685384 /* Localizable.strings */,
@@ -859,6 +862,7 @@
 				388E1F270BF3431C00E8A670 /* BrushedDisplay.plugin in Resources */,
 				388E1F360BF3433900E8A670 /* SemperDisplay.plugin in Resources */,
 				388E1F7A0BF35B0000E8A670 /* Amazon ECS4 (JP).plugin in Resources */,
+				3826FA850C14535B00EB2E43 /* Books Help in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -940,6 +944,14 @@
 				3894BA9A0BC44F9F00D0FC2E /* Italian */,
 			);
 			name = MainMenu.nib;
+			sourceTree = "<group>";
+		};
+		3826FA840C14535B00EB2E43 /* Books Help */ = {
+			isa = PBXVariantGroup;
+			children = (
+				3826F9430C1451EA00EB2E43 /* English */,
+			);
+			name = "Books Help";
 			sourceTree = "<group>";
 		};
 		383DBEA20A6ABD0100685384 /* MainMenu.strings */ = {
