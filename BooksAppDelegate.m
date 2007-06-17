@@ -739,7 +739,7 @@ typedef struct _monochromePixel
 	[mainWindow makeKeyAndOrderFront:self];
 	
 	[self updateMainPane];
-	
+
 	[mainWindow setTitle:NSLocalizedString (@"Books - Loading...", nil)];
 	// [[[NSApplication sharedApplication] delegate] startProgressWindow:NSLocalizedString (@"Loading data from disk...", nil)];
 }
@@ -781,19 +781,6 @@ typedef struct _monochromePixel
 		BookManagedObject * object = [selectedObjects objectAtIndex:0];
 		
 		htmlString = [pageBuilder buildPageForObject:object];
-		
-		/*
-		NSData * coverData = [object getCoverImage];
-		
-		if (coverData != nil)
-		{
-			NSImage * cover = [[NSImage alloc] initWithData:coverData];
-				
-			[mainCoverView setValue:cover forInputKey:@"Image"];
-		}
-		else
-			[mainCoverView setValue:nil forInputKey:@"Image"];
-		*/
 	}
 	else if ([selectedObjects count] > 1)
 		htmlString = [pageBuilder buildPageForArray:selectedObjects];
@@ -817,17 +804,43 @@ typedef struct _monochromePixel
 	}
 	else if (table == listsTable)
 	{
-		/*if ([progressView isVisible])
+		NSUserDefaults * prefs = [NSUserDefaults standardUserDefaults];
+
+		if ([prefs boolForKey:@"Separate Lists"])
 		{
-			if ([table selectedRow] != -1)
-				[self endProgressWindow];
-		} */
+			[collectionArrayController setSortDescriptors:
+				[NSArray arrayWithObject:[[NSSortDescriptor alloc] initWithKey:@"sortName" ascending:YES]]];
+		}
+		else
+		{
+			[collectionArrayController setSortDescriptors:
+				[NSArray arrayWithObject:[[NSSortDescriptor alloc] initWithKey:@"name" ascending:YES]]];
+		}
 
 		NSArray * selectedObjects = [collectionArrayController selectedObjects];
 
 		if ([selectedObjects count] > 0)
 		{
 			ListManagedObject * list = [selectedObjects objectAtIndex:0];
+
+			NSDictionary * sorts = [prefs dictionaryForKey:@"Table Sorting"];
+	
+			if (sorts != nil)
+			{
+				NSDictionary * desc = [sorts objectForKey:[[[list objectID] URIRepresentation] absoluteString]];
+
+				if (desc != nil)
+				{
+					BOOL ascend = NO;
+				
+					if ([[desc valueForKey:@"ascend"] isEqual:@"YES"])
+						ascend = YES;
+
+					NSSortDescriptor * sort = [[NSSortDescriptor alloc] initWithKey:[desc valueForKey:@"key"] ascending:ascend];
+
+					[booksTable setSortDescriptors:[NSArray arrayWithObject:sort]];
+				}
+			}
 			
 			if ([list isKindOfClass:[SmartList class]])
 			{
@@ -852,9 +865,6 @@ typedef struct _monochromePixel
 			[removeList setAction:nil];
 		}
 
-		[collectionArrayController setSortDescriptors:
-			[NSArray arrayWithObject:[[NSSortDescriptor alloc] initWithKey:@"name" ascending:YES]]];
-		
 		[self refreshComboBoxes:nil];
 	}
 
@@ -1618,36 +1628,54 @@ typedef struct _monochromePixel
 {
 	[[[searchTextField cell] cancelButtonCell] performClick:self];
 	
-	NSArray * objects = [collectionArrayController selectedObjects];
+	NSArray * lists = [collectionArrayController arrangedObjects];
 	
-	if ([objects count] == 1)
+	int listCount = 0;
+	
+	int i = 0;
+	for (i = 0; i < [lists count]; i++)
 	{
-		ListManagedObject * list = [objects objectAtIndex:0];
+		NSObject * list = [lists objectAtIndex:i];
 		
-		if ([list isKindOfClass:[SmartList class]])
-			[collectionArrayController remove:self];
-		else
-		{
-			NSMutableSet * items = [list mutableSetValueForKey:@"items"];
+		if (![list isKindOfClass:[SmartList class]])
+			listCount = listCount + 1;
+	}
 
-			if ([items count] != 0)
-			{
-				int choice = NSRunAlertPanel (NSLocalizedString (@"Delete Non-Empty List?", nil), 
-								NSLocalizedString (@"Are you sure you want to delete this list? It still contains items.", nil), 
-								NSLocalizedString (@"No", nil), NSLocalizedString (@"Yes", nil), nil);
-					
-				if (choice == NSAlertAlternateReturn)
-				{
-					[bookArrayController setSelectedObjects:[bookArrayController arrangedObjects]];
-					[bookArrayController remove:self];
-					
-					[collectionArrayController remove:self];
-				}
-			}
-			else
+	if (listCount > 1)
+	{
+		NSArray * objects = [collectionArrayController selectedObjects];
+	
+		if ([objects count] == 1)
+		{
+			ListManagedObject * list = [objects objectAtIndex:0];
+		
+			if ([list isKindOfClass:[SmartList class]])
 				[collectionArrayController remove:self];
+			else
+			{
+				NSMutableSet * items = [list mutableSetValueForKey:@"items"];
+
+				if ([items count] != 0)
+				{
+					int choice = NSRunAlertPanel (NSLocalizedString (@"Delete Non-Empty List?", nil), 
+									NSLocalizedString (@"Are you sure you want to delete this list? It still contains items.", nil), 
+									NSLocalizedString (@"No", nil), NSLocalizedString (@"Yes", nil), nil);
+					
+					if (choice == NSAlertAlternateReturn)
+					{
+						[bookArrayController setSelectedObjects:[bookArrayController arrangedObjects]];
+						[bookArrayController remove:self];
+					
+						[collectionArrayController remove:self];
+					}
+				}
+				else
+					[collectionArrayController remove:self];
+			}
 		}
 	}
+	else
+		NSRunAlertPanel (NSLocalizedString (@"Can Not Remove List", nil),  NSLocalizedString (@"The remaining list can not be removed.", nil), NSLocalizedString (@"OK", nil), nil, nil);
 }
 
 - (IBAction) editSmartList:(id) sender
@@ -2217,8 +2245,6 @@ typedef struct _monochromePixel
 							[objectFields addObject:fieldObject];
 						}
 					}
-					else
-						NSLog (@"not duping %@", name);
 				}
 
 				CFUUIDRef uuid = CFUUIDCreate (kCFAllocatorDefault);
@@ -2241,5 +2267,47 @@ typedef struct _monochromePixel
 		}
 	}
 }
+
+
+- (void) tableView: (NSTableView *) tableView didClickTableColumn: (NSTableColumn *) tableColumn
+{
+	NSUserDefaults * prefs = [NSUserDefaults standardUserDefaults];
+	
+	NSDictionary * sorts = [prefs dictionaryForKey:@"Table Sorting"];
+	
+	if (sorts == nil)
+		sorts = [NSDictionary dictionary];
+	
+	NSMutableDictionary * newSorts = [NSMutableDictionary dictionaryWithDictionary:sorts];
+	
+	NSArray * descs = [[tableColumn tableView] sortDescriptors];
+	
+	int selected = [collectionArrayController selectionIndex];
+	
+	ListManagedObject * currentList = [[collectionArrayController arrangedObjects] objectAtIndex:selected];
+	
+	if (currentList != nil)
+	{
+		NSSortDescriptor * sort = [descs objectAtIndex:0];
+		
+		NSMutableDictionary * desc = [NSMutableDictionary dictionary];
+		
+		if ([sort ascending])
+			[desc setValue:@"YES" forKey:@"ascend"];
+		else
+			[desc setValue:@"NO" forKey:@"ascend"];
+
+		[desc setValue:[sort key] forKey:@"key"];
+
+		[newSorts setObject:desc forKey:[[[currentList objectID] URIRepresentation] absoluteString]];
+	}
+	
+	[prefs setValue:newSorts forKey:@"Table Sorting"];
+}
+
+- (IBAction) donate: (id)sender
+{
+	[[NSWorkspace sharedWorkspace] openURL:[NSURL URLWithString:@"http://books.aetherial.net/donate/"]];
+}	
 
 @end

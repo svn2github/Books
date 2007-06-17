@@ -33,6 +33,9 @@
 - (NSData *) getIcon;
 - (void) setIcon: (NSData *) icon;
 
+- (NSString *) getSortName;
+- (void) setSortName: (NSString *) name;
+
 - (NSArray *) getBooks;
 
 - (BOOL) getCanAdd;

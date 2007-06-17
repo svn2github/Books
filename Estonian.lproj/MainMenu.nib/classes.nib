@@ -13,6 +13,8 @@
                 cancelQuickfill = id; 
                 cancelSmartList = id; 
                 clearSpotlightIndex = id; 
+                donate = id; 
+                duplicateRecords = id; 
                 editSmartList = id; 
                 getCoverWindow = id; 
                 getInfoWindow = id; 

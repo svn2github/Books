@@ -79,23 +79,10 @@
 
 	if (pluginKey == nil || [pluginKey isEqualToString:@""])
 	{
-/*		int alertReturn = NSRunAlertPanel (NSLocalizedString (@"No Preferences Found", nil), NSLocalizedString (@"Is this your first time running Books? Please set your preferences", nil), 
-							NSLocalizedString (@"OK", nil), nil, nil);
-					
-		if (alertReturn == NSAlertDefaultReturn)
-		{
-			[[NSUserDefaults standardUserDefaults] setObject:NSLocalizedString (@"Default Display", nil) forKey:@"Default Display Plugin"];
-			[[NSUserDefaults standardUserDefaults] setObject:NSLocalizedString (@"Books 2.0 Importer", nil) forKey:@"Default Import Plugin"];
-			[[NSUserDefaults standardUserDefaults] setObject:NSLocalizedString (@"Amazon (US)", nil) forKey:@"Default Quickfill Plugin"];
-			[((BooksAppDelegate *) [[NSApplication sharedApplication] delegate]) preferences:self];
-		}
-		
-		return nil;
-*/
-
-		[[NSUserDefaults standardUserDefaults] setObject:NSLocalizedString (@"Default Display", nil) forKey:@"Default Display Plugin"];
-		[[NSUserDefaults standardUserDefaults] setObject:NSLocalizedString (@"Books 2.0 Importer", nil) forKey:@"Default Import Plugin"];
-		[[NSUserDefaults standardUserDefaults] setObject:NSLocalizedString (@"Amazon (US)", nil) forKey:@"Default Quickfill Plugin"];
+		[[NSUserDefaults standardUserDefaults] setObject:@"Default Display" forKey:@"Default Display Plugin"];
+		[[NSUserDefaults standardUserDefaults] setObject:@"Books 2.0 Importer" forKey:@"Default Import Plugin"];
+		[[NSUserDefaults standardUserDefaults] setObject:@"Books Folder Exporter" forKey:@"Default Export Plugin"];
+		[[NSUserDefaults standardUserDefaults] setObject:@"Amazon (US)" forKey:@"Default Quickfill Plugin"];
 
 		return [self getDisplayPlugin];
 	}

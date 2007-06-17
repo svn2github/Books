@@ -9,7 +9,7 @@
 		<key>1939</key>
 		<string>318 491 220 64 0 0 1280 778 </string>
 		<key>29</key>
-		<string>229 734 334 44 0 0 1280 778 </string>
+		<string>435 734 334 44 0 0 1280 778 </string>
 	</dict>
 	<key>IBFramework Version</key>
 	<string>446.1</string>
@@ -21,6 +21,11 @@
 	</array>
 	<key>IBOldestOS</key>
 	<integer>4</integer>
+	<key>IBOpenObjects</key>
+	<array>
+		<integer>29</integer>
+		<integer>384</integer>
+	</array>
 	<key>IBSystem Version</key>
 	<string>8P2137</string>
 	<key>IBUsesTextArchiving</key>

@@ -213,4 +213,6 @@
 - (IBAction) isight: (id)sender;
 - (IBAction) duplicateRecords:(id) sender;
 
+- (IBAction) donate: (id)sender;
+
 @end

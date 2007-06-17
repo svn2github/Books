@@ -117,4 +117,9 @@
 
 }
 
+- (NSString *) getSortName
+{
+	return [@"1 " stringByAppendingString:[self valueForKey:@"name"]];
+}
+
 @end

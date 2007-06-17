@@ -1,5 +1,6 @@
 #!/bin/sh
+cat /tmp/books-export/books-export.xml | tr "\r" " " | tr "\n" " " | tr "\t" " " > /tmp/books-export/books-export-nnl.xml
 
-# /usr/bin/xsltproc tab-delimited.xsl /tmp/books-export/books-export.xml > "$1"
+mv /tmp/books-export/books-export-nnl.xml /tmp/books-export/books-export.xml
 
-java -jar tab-delimited.jar $1
+java -jar tab-delimited.jar "$1"
