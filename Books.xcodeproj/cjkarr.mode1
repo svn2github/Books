@@ -319,7 +319,7 @@
 										<key>_historyCapacity</key>
 										<integer>0</integer>
 										<key>bookmark</key>
-										<string>38DF58690C25A09E00957812</string>
+										<string>38DF586A0C25B42500957812</string>
 										<key>history</key>
 										<array>
 											<string>386EE6670A7697F2001E7A48</string>
@@ -971,6 +971,7 @@
 		<string>384FEAE0090BD7D500EB0E2A</string>
 		<string>1C530D57069F1CE1000CFCEE</string>
 		<string>1C0AD2B3069F1EA900FABCE6</string>
+		<string>/Volumes/iDisk/Documents/Projects/Books Project/Version Controlled/books-macosx/Books/Books.xcodeproj</string>
 	</array>
 	<key>WindowString</key>
 	<string>0 130 1280 648 0 0 1280 778 </string>
