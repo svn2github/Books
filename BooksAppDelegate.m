@@ -34,6 +34,7 @@
 #import "BookManagedObject.h"
 #import "MyBarcodeScanner.h"
 #import "CoverWindowDelegate.h"
+#import "NotificationInterface.h"
 
 typedef struct _monochromePixel
 { 
@@ -737,9 +738,37 @@ typedef struct _monochromePixel
 	[coverWindow setDelegate:[[CoverWindowDelegate alloc] init]];
 	
 	[mainWindow makeKeyAndOrderFront:self];
+
+	NSCharacterSet * set = [NSCharacterSet characterSetWithCharactersInString:@";"];
+	[genreTokens setTokenizingCharacterSet:set];
+	[genreTokens setCompletionDelay:0.25];
+	genres = [[NSMutableSet alloc] init];
+
+	[authorTokens setTokenizingCharacterSet:set];
+	[authorTokens setCompletionDelay:0.25];
+	authors = [[NSMutableSet alloc] init];
+
+	[editorTokens setTokenizingCharacterSet:set];
+	[editorTokens setCompletionDelay:0.25];
+	editors = [[NSMutableSet alloc] init];
+
+	[illustratorTokens setTokenizingCharacterSet:set];
+	[illustratorTokens setCompletionDelay:0.25];
+	illustrators = [[NSMutableSet alloc] init];
+
+	[translatorTokens setTokenizingCharacterSet:set];
+	[translatorTokens setCompletionDelay:0.25];
+	translators = [[NSMutableSet alloc] init];
+
+	[keywordTokens setTokenizingCharacterSet:set];
+	[keywordTokens setCompletionDelay:0.25];
+	keywords = [[NSMutableSet alloc] init];
 	
+	[summary setFieldEditor:NO];
 	[self updateMainPane];
 
+	[NotificationInterface start];
+	
 	[mainWindow setTitle:NSLocalizedString (@"Books - Loading...", nil)];
 	// [[[NSApplication sharedApplication] delegate] startProgressWindow:NSLocalizedString (@"Loading data from disk...", nil)];
 }
@@ -864,8 +893,6 @@ typedef struct _monochromePixel
 			[removeBook setAction:nil];
 			[removeList setAction:nil];
 		}
-
-		[self refreshComboBoxes:nil];
 	}
 
 	/* Work Here */
@@ -906,103 +933,34 @@ typedef struct _monochromePixel
 			[getCover setAction:nil];
 	}
 
-
 //	[leftView setNeedsDisplay:YES];
 	
 	[coverWindow orderOut:self];
 	[getCover setLabel:NSLocalizedString (@"Show Cover", nil)];
-	
+
+	[self refreshComboBoxes:nil];
 //	if (![[NSUserDefaults standardUserDefaults] boolForKey:@"Snappy"])
 }
 
 - (void) refreshComboBoxes: (NSArray *) books
 {
-	if (books == nil)
-	{
-		NSFetchRequest * fetch = [[NSFetchRequest alloc] init];
-		[fetch setEntity:[NSEntityDescription entityForName:@"Book" inManagedObjectContext:[self managedObjectContext]]];
+	NSFetchRequest * fetch = [[NSFetchRequest alloc] init];
+	[fetch setEntity:[NSEntityDescription entityForName:@"Book" inManagedObjectContext:[self managedObjectContext]]];
 
-		NSError * error = nil;
-		NSArray * results = [[self managedObjectContext] executeFetchRequest:fetch error:&error];
+	NSError * error = nil;
+	books = [[self managedObjectContext] executeFetchRequest:fetch error:&error];
 		
-		if (results != nil)
-			[self refreshComboBoxes:results];
-		
-		return;
-	}
-
-	[genreCombo removeAllItems];
-	[authorsCombo removeAllItems];
-	[editorsCombo removeAllItems];
-	[illustratorsCombo removeAllItems];
-	[translatorsCombo removeAllItems];
-	[publisherCombo removeAllItems];
-
-	NSMutableSet * genres = [NSMutableSet set];
-	NSMutableSet * authors = [NSMutableSet set];
-	NSMutableSet * editors = [NSMutableSet set];
-	NSMutableSet * illustrators = [NSMutableSet set];
-	NSMutableSet * translators = [NSMutableSet set];
 	NSMutableSet * publishers = [NSMutableSet set];
 	NSMutableSet * userFieldNames = [NSMutableSet set];
 
-	NSUserDefaults * defaults = [NSUserDefaults standardUserDefaults];
-		
-	NSNumber * useDefaultGenres = [defaults valueForKey:@"Use Default Genres"];
+	[self updateTokens];
 
-	if (useDefaultGenres == nil || [useDefaultGenres boolValue])
-	{
-		[genres addObject:NSLocalizedString (@"Biography", nil)];
-		[genres addObject:NSLocalizedString (@"Fantasy", nil)];
-		[genres addObject:NSLocalizedString (@"Fairy Tales", nil)];
-		[genres addObject:NSLocalizedString (@"Historical Fiction", nil)];
-		[genres addObject:NSLocalizedString (@"Myths & Legends", nil)];
-		[genres addObject:NSLocalizedString (@"Poetry", nil)];
-		[genres addObject:NSLocalizedString (@"Science Fiction", nil)];
-		[genres addObject:NSLocalizedString (@"Folk Tales", nil)];
-		[genres addObject:NSLocalizedString (@"Mystery", nil)];
-		[genres addObject:NSLocalizedString (@"Non-Fiction", nil)];
-		[genres addObject:NSLocalizedString (@"Realistic Fiction", nil)];
-		[genres addObject:NSLocalizedString (@"Short Stories", nil)];
-	}
-
-	NSString * customGenres = [defaults valueForKey:@"Custom Genres"];
-			
-	if (customGenres != nil)
-	{
-		NSArray * genreStrings = [customGenres componentsSeparatedByString:@"\n"];
-				
-		int j = 0;
-		for (j = 0; j < [genreStrings count]; j++)
-			[genres addObject:[genreStrings objectAtIndex:j]];
-	}
-				
 	int i = 0;
 	for (i = 0; i < [books count]; i++)
 	{
 		BookManagedObject * book = (BookManagedObject *) [books objectAtIndex:i];
 		
-		NSString * genreString = [book valueForKey:@"genre"];
-		NSString * authorString = [book valueForKey:@"authors"];
-		NSString * editorString = [book valueForKey:@"editors"];
-		NSString * illustratorString = [book valueForKey:@"illustrators"];
-		NSString * translatorString = [book valueForKey:@"translators"];
 		NSString * publisherString = [book valueForKey:@"publisher"];
-
-		if (genreString != nil)
-			[genres addObject:genreString];
-
-		if (authorString != nil)
-			[authors addObject:authorString];
-
-		if (editorString != nil)
-			[editors addObject:editorString];
-
-		if (illustratorString != nil)
-			[illustrators addObject:illustratorString];
-
-		if (translatorString != nil)
-			[translators addObject:translatorString];
 
 		if (publisherString != nil)
 			[publishers addObject:publisherString];
@@ -1020,21 +978,19 @@ typedef struct _monochromePixel
 			if (fieldString != nil)
 				[userFieldNames addObject:fieldString];
 		}
-		
 	}
 
-	NSArray * lists = [NSArray arrayWithObjects:genres, authors, editors, illustrators, translators, publishers, userFieldNames, nil];
-	NSArray * listCombos = [NSArray arrayWithObjects:genreCombo, authorsCombo, editorsCombo, illustratorsCombo, 
-								translatorsCombo, publisherCombo, userFieldCombo, nil];
+	NSArray * lists = [NSArray arrayWithObjects: publishers, userFieldNames, nil];
+	NSArray * listCombos = [NSArray arrayWithObjects: publisherCombo, userFieldCombo, nil];
 
 	for (i = 0; i < [lists count] && i < [listCombos count]; i++)
 	{
+		[[listCombos objectAtIndex:i] removeAllItems];
+
 		NSMutableArray * array = [NSMutableArray arrayWithArray:[[lists objectAtIndex:i] allObjects]];
 		[array sortUsingSelector:@selector(compare:)];
 		
-		int j = 0;
-		for (j = 0; j < [array count]; j++)
-			[[listCombos objectAtIndex:i] addItemWithObjectValue:[array objectAtIndex:j]];
+		[[listCombos objectAtIndex:i] addItemsWithObjectValues:array];
 	}
 }
 
@@ -1641,14 +1597,13 @@ typedef struct _monochromePixel
 			listCount = listCount + 1;
 	}
 
-	if (listCount > 1)
+	NSArray * objects = [collectionArrayController selectedObjects];
+	ListManagedObject * list = [objects objectAtIndex:0];
+
+	if (listCount > 1 || [list isKindOfClass:[SmartList class]])
 	{
-		NSArray * objects = [collectionArrayController selectedObjects];
-	
 		if ([objects count] == 1)
 		{
-			ListManagedObject * list = [objects objectAtIndex:0];
-		
 			if ([list isKindOfClass:[SmartList class]])
 				[collectionArrayController remove:self];
 			else
@@ -2309,5 +2264,154 @@ typedef struct _monochromePixel
 {
 	[[NSWorkspace sharedWorkspace] openURL:[NSURL URLWithString:@"http://books.aetherial.net/donate/"]];
 }	
+
+- (NSArray *) getSuggestionForString: (NSString *) substring source:(NSSet *) source
+{
+	NSCharacterSet * set = [NSCharacterSet characterSetWithCharactersInString:@" "];
+	
+	NSMutableArray * suggestions = [NSMutableArray array];
+
+	NSArray * array = [source allObjects];
+		
+	int i = 0;
+	for (i = 0; i < [array count]; i++)
+	{
+		NSString * value = (NSString *) [array objectAtIndex:i];
+		
+		value = [value stringByTrimmingCharactersInSet:set];
+
+		if ([[value lowercaseString] hasPrefix:[substring lowercaseString]])
+		{
+			if (![suggestions containsObject:value])
+				[suggestions addObject:value];
+		}
+	}
+	
+	[suggestions sortUsingSelector:@selector(compare:)];
+	return suggestions;
+}
+
+- (NSArray *)tokenField:(NSTokenField *)tokenField shouldAddObjects:(NSArray *)tokens atIndex:(unsigned)index
+{
+	return tokens;
+}
+
+
+- (NSArray *) tokenField: (NSTokenField *) tokenField completionsForSubstring: (NSString *) substring indexOfToken: (int) tokenIndex
+	indexOfSelectedItem: (int *) selectedIndex
+{
+	NSString * tokenString = [tokenField stringValue];
+	
+	while ([substring characterAtIndex:0] == 0xfffc)
+		substring = [substring substringFromIndex:1];
+
+	while ([tokenString characterAtIndex:0] == 0xfffc)
+		tokenString = [tokenString substringFromIndex:1];
+
+	if (![tokenString hasPrefix:substring])
+		return [NSArray array];
+
+	if (tokenField == genreTokens)
+		return [self getSuggestionForString:substring source:genres];
+	else if (tokenField == authorTokens)
+		return [self getSuggestionForString:substring source:authors];
+	else if (tokenField == editorTokens)
+		return [self getSuggestionForString:substring source:editors];
+	else if (tokenField == illustratorTokens)
+		return [self getSuggestionForString:substring source:illustrators];
+	else if (tokenField == translatorTokens)
+		return [self getSuggestionForString:substring source:translators];
+	else if (tokenField == keywordTokens)
+		return [self getSuggestionForString:substring source:keywords];
+
+	// [tokenField selectText:nil];
+	
+	return [NSArray array] ;
+}
+
+- (void) updateTokens
+{
+	if ([genres count] < 1)
+	{
+		NSUserDefaults * defaults = [NSUserDefaults standardUserDefaults];
+		
+		NSNumber * useDefaultGenres = [defaults valueForKey:@"Use Default Genres"];
+
+		if (useDefaultGenres == nil || [useDefaultGenres boolValue])
+		{
+			[genres addObject:NSLocalizedString (@"Biography", nil)];
+			[genres addObject:NSLocalizedString (@"Fantasy", nil)];
+			[genres addObject:NSLocalizedString (@"Fairy Tales", nil)];
+			[genres addObject:NSLocalizedString (@"Historical Fiction", nil)];
+			[genres addObject:NSLocalizedString (@"Myths & Legends", nil)];
+			[genres addObject:NSLocalizedString (@"Poetry", nil)];
+			[genres addObject:NSLocalizedString (@"Science Fiction", nil)];
+			[genres addObject:NSLocalizedString (@"Folk Tales", nil)];
+			[genres addObject:NSLocalizedString (@"Mystery", nil)];
+			[genres addObject:NSLocalizedString (@"Non-Fiction", nil)];
+			[genres addObject:NSLocalizedString (@"Realistic Fiction", nil)];
+			[genres addObject:NSLocalizedString (@"Short Stories", nil)];
+		}
+
+		NSString * customGenres = [defaults valueForKey:@"Custom Genres"];
+
+		if (customGenres != nil)
+		{
+			NSArray * genreStrings = [customGenres componentsSeparatedByString:@"\n"];
+				
+			int j = 0;
+			for (j = 0; j < [genreStrings count]; j++)
+				[genres addObject:[genreStrings objectAtIndex:j]];
+		}
+	}
+
+	NSFetchRequest * fetch = [[NSFetchRequest alloc] init];
+	[fetch setEntity:[NSEntityDescription entityForName:@"Book" inManagedObjectContext:[self managedObjectContext]]];
+
+	NSError * error = nil;
+	NSArray * books = [[self managedObjectContext] executeFetchRequest:fetch error:&error];
+
+	NSArray * fields = [NSArray arrayWithObjects:@"genre", @"authors", @"editors", @"illustrators", @"translators", @"keywords", nil];
+	NSArray * tokenArrays = [NSArray arrayWithObjects:genres, authors, editors, illustrators, translators, keywords, nil];
+	
+	int i = 0;
+	for (i = 0; i < [books count]; i++)
+	{
+		BookManagedObject * book = (BookManagedObject *) [books objectAtIndex:i];
+		
+		int j = 0;
+		for (j = 0; j < [fields count] && j < [tokenArrays count]; j++)
+		{
+			NSString * string = [book valueForKey:[fields objectAtIndex:j]];
+
+			if (string != nil)
+			{
+				NSArray * strings = [string componentsSeparatedByString:@";"];
+				[[tokenArrays objectAtIndex:j] addObjectsFromArray:strings];
+			}
+		}
+	}
+}
+
+- (BOOL)textView:(NSTextView *)aTextView doCommandBySelector:(SEL)aSelector
+{
+	if (aSelector == @selector(insertNewline:))
+	{
+		[aTextView insertNewlineIgnoringFieldEditor:nil];
+		return YES;
+	}
+	else if (aSelector == @selector(insertTab:))
+	{
+		[infoWindow selectNextKeyView:nil];
+		return YES;
+	}	
+	else if (aSelector == @selector(insertBacktab:))
+	{
+		[infoWindow selectPreviousKeyView:nil];
+		return YES;
+	}
+		
+	return NO;
+}
 
 @end

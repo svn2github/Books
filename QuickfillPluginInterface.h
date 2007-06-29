@@ -34,6 +34,7 @@
 	BOOL replace;
 	
 	NSString * executablePath;
+	NSString * lastSource;
 }
 
 - (void) batchImportFromBundle: (NSBundle *) bundle forBook: (BookManagedObject *) bookObject replace:(BOOL) doReplace;
@@ -41,10 +42,7 @@
 - (void) importFromBundle: (NSBundle *) bundle forBook: (BookManagedObject *) book replace:(BOOL) doReplace;
 - (void) killTask;
 
-// - (void) setDataForBook: (BookManagedObject *) book fromXml:(NSXMLDocument *) xml;
+- (void) setDataForBook: (BookManagedObject *) book fromXml:(NSXMLDocument *) xml;
 - (NSXMLDocument *) getXmlDocumentForBook:(BookManagedObject *) book;
-
-- (void) setDataForBook: (BookManagedObject *) bookObject fromXml:(NSXMLDocument *) xml;
-
 
 @end

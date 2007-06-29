@@ -115,6 +115,26 @@
 
 	IBOutlet NSWindow * iSightWindow;
 	IBOutlet QCView * iSightView;
+
+	IBOutlet NSTokenField * genreTokens;
+	NSMutableSet * genres;
+
+	IBOutlet NSTokenField * authorTokens;
+	NSMutableSet * authors;
+
+	IBOutlet NSTokenField * editorTokens;
+	NSMutableSet * editors;
+
+	IBOutlet NSTokenField * illustratorTokens;
+	NSMutableSet * illustrators;
+
+	IBOutlet NSTokenField * translatorTokens;
+	NSMutableSet * translators;
+
+	IBOutlet NSTokenField * keywordTokens;
+	NSMutableSet * keywords;
+
+	IBOutlet NSTextView * summary;
 }
 
 - (IBAction)preferences:(id)sender;
@@ -214,5 +234,7 @@
 - (IBAction) duplicateRecords:(id) sender;
 
 - (IBAction) donate: (id)sender;
+
+- (void) updateTokens;
 
 @end

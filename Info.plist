@@ -9,6 +9,22 @@
 		<dict>
 			<key>CFBundleTypeExtensions</key>
 			<array>
+				<string>plugin</string>
+			</array>
+			<key>CFBundleTypeIconFile</key>
+			<string>import-plugin.icns</string>
+			<key>CFBundleTypeName</key>
+			<string>BooksPlugin</string>
+			<key>CFBundleTypeRole</key>
+			<string>None</string>
+			<key>LSTypeIsPackage</key>
+			<false/>
+			<key>NSPersistentStoreTypeKey</key>
+			<string>XML</string>
+		</dict>
+		<dict>
+			<key>CFBundleTypeExtensions</key>
+			<array>
 				<string>BooksItem</string>
 			</array>
 			<key>CFBundleTypeIconFile</key>
@@ -55,13 +71,11 @@
 	<string>NSApplication</string>
 	<key>OSAScriptingDefinition</key>
 	<string>Books.sdef</string>
-	
-	<key>SmartCrashReports_CompanyName</key> 
-	<string>Chris Karr</string> 
-	<key>SmartCrashReports_EmailTicket</key> 
-	<string>SCR-CB89FEB471</string>
-	
 	<key>SUFeedURL</key>
 	<string>http://books.aetherial.net/downloads/appcast.xml</string>
+	<key>SmartCrashReports_CompanyName</key>
+	<string>Chris Karr</string>
+	<key>SmartCrashReports_EmailTicket</key>
+	<string>SCR-CB89FEB471</string>
 </dict>
 </plist>

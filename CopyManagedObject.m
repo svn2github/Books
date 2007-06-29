@@ -33,10 +33,12 @@
 	[super awakeFromInsert];
 	
 	ABPerson * me = [[ABAddressBook sharedAddressBook] me];
-	
-	NSString * name = [NSString stringWithFormat:@"%@ %@", [me valueForProperty:kABFirstNameProperty], [me valueForProperty:kABLastNameProperty], nil];
-	
-	[self setValue:name forKey:@"owner"];
+
+	if (me != nil)
+	{
+		NSString * name = [NSString stringWithFormat:@"%@ %@", [me valueForProperty:kABFirstNameProperty], [me valueForProperty:kABLastNameProperty], nil];
+		[self setValue:name forKey:@"owner"];
+	}
 }
 
 @end

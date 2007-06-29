@@ -25,6 +25,7 @@
 #import "QuickfillPluginInterface.h"
 #import "BooksAppDelegate.h"
 #import <CoreData/CoreData.h>
+#import "NotificationInterface.h"
 
 @implementation QuickfillPluginInterface
 
@@ -172,8 +173,11 @@
 	
 	[importTask launch];
 
+	lastSource = (NSString *) [bundle objectForInfoDictionaryKey:@"BooksPluginName"];
+	
 	[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(finishImport:) 
-		name:NSFileHandleReadToEndOfFileCompletionNotification object:nil];
+		name:NSFileHandleReadToEndOfFileCompletionNotification 
+		object:nil];
 
 	[out readToEndOfFileInBackgroundAndNotify];
 }
@@ -183,7 +187,7 @@
 	[[NSNotificationCenter defaultCenter] removeObserver:self];
 	
 	NSDictionary * userInfo = [notification userInfo];
-	
+
 	NSData * importData = [userInfo valueForKey:NSFileHandleNotificationDataItem];
 
 	NSXMLDocument * xml = [[NSXMLDocument alloc] initWithData:importData options:NSXMLDocumentTidyXML error:nil];
@@ -231,6 +235,12 @@
 
 		[xml release];
 		xml = nil;
+
+		NSString * desc = [NSString stringWithFormat:
+			NSLocalizedString (@"Books has finished searching %@. %d items found.", nil), lastSource, 
+			[[quickfillArray arrangedObjects] count], nil];
+				
+		[NotificationInterface sendMessage:desc withTitle:NSLocalizedString (@"Lookup Complete", nil)];
 	}
 
 	[((BooksAppDelegate *) [NSApp delegate]) stopQuickfill];
@@ -246,6 +256,8 @@
 
 - (void) setDataForBook: (BookManagedObject *) bookObject fromXml:(NSXMLDocument *) xml
 {
+	NSLog (@"hello");
+	
 	if (xml != nil)
 	{
 		NSXMLElement * root = (NSXMLElement *) [[xml rootElement] childAtIndex:0];
@@ -275,7 +287,11 @@
 
 				NSXMLNode * nameAttribute = [bookField attributeForName:@"name"];
 
-				[bookObject setValueFromString:[bookField stringValue] forKey:[nameAttribute stringValue] replace:replace];
+				NSString * field = [nameAttribute stringValue];
+
+				NSLog (@"field = %@", field);
+				
+				[bookObject setValueFromString:[bookField stringValue] forKey:field replace:replace];
 			}
 		}
 	}

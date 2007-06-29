@@ -86,6 +86,8 @@
 		fieldName = @"dateLent";
 	else if ([fieldName isEqualToString:NSLocalizedString (@"Returned On", nil)])
 		fieldName = @"dateDue";
+	else if ([fieldName isEqualToString:NSLocalizedString (@"ISBN", nil)])
+		fieldName = @"isbn";
 
 	if ([fieldValue isEqualToString:@""])
 		return nil;

@@ -859,6 +859,17 @@
 	else if (value != nil && ![value isEqual:@""] && doReplace == NO) 
 		return;
 
+	if ([key isEqualToString:@"authors"])
+		[bookObject willChangeValueForKey:@"authorArray"];
+	else if ([key isEqualToString:@"editors"])
+		[bookObject willChangeValueForKey:@"editorArray"];
+	else if ([key isEqualToString:@"illustrators"])
+		[bookObject willChangeValueForKey:@"illustratorArray"];
+	else if ([key isEqualToString:@"translators"])
+		[bookObject willChangeValueForKey:@"translatorArray"];
+	else if ([key isEqualToString:@"genre"])
+		[bookObject willChangeValueForKey:@"genreArray"];
+
 	NSManagedObjectContext * context = [bookObject managedObjectContext];
 	
 	if (([key isEqual:@"CoverImageURL"] || [key isEqual:@"coverImage"]) && ! ([valueString isEqualToString:@""]))
@@ -939,9 +950,110 @@
 			NSLog (@"%@", [localException reason]);
 		NS_ENDHANDLER
 	NS_ENDHANDLER
-	
+
 	[context unlock];
+
+	if ([key isEqualToString:@"authors"])
+		[bookObject didChangeValueForKey:@"authorArray"];
+	else if ([key isEqualToString:@"editors"])
+		[bookObject didChangeValueForKey:@"editorArray"];
+	else if ([key isEqualToString:@"illustrators"])
+		[bookObject didChangeValueForKey:@"illustratorArray"];
+	else if ([key isEqualToString:@"translators"])
+		[bookObject didChangeValueForKey:@"translatorArray"];
+	else if ([key isEqualToString:@"genre"])
+		[bookObject didChangeValueForKey:@"genreArray"];
 }
 
+
+- (NSArray *) getTokenArray:(NSString *) field
+{
+	NSString * string = (NSString *) [self valueForKey:field];
+	
+	if (string == nil)
+		return [NSArray array];
+		
+	return [string componentsSeparatedByString:@";"];
+}
+
+- (void) setTokenArray:(NSArray *) values field:(NSString *) field
+{
+	int i = 0;
+	
+	NSMutableString * string = [NSMutableString string];
+	
+	for (i = 0; i < [values count]; i++)
+	{
+		NSString * value = [values objectAtIndex:i];
+		
+		if (![string isEqualToString:@""])
+			[string appendString:@"; "];
+
+		[string appendString:value];
+	}
+	
+	[self setValue:string forKey:field];
+}
+
+
+- (void) setGenreArray:(NSArray *) values
+{
+	[self setTokenArray:values field:@"genre"];
+}
+
+- (NSArray *) getGenreArray
+{
+	return [self getTokenArray:@"genre"];
+}
+
+- (void) setAuthorArray:(NSArray *) values
+{
+	[self setTokenArray:values field:@"authors"];
+}
+
+- (NSArray *) getAuthorArray
+{
+	return [self getTokenArray:@"authors"];
+}
+
+- (void) setIllustratorArray:(NSArray *) values
+{
+	[self setTokenArray:values field:@"illustrators"];
+}
+
+- (NSArray *) getIllustratorArray
+{
+	return [self getTokenArray:@"illustrators"];
+}
+
+- (void) setTranslatorArray:(NSArray *) values
+{
+	[self setTokenArray:values field:@"translators"];
+}
+
+- (NSArray *) getTranslatorArray
+{
+	return [self getTokenArray:@"translators"];
+}
+
+- (void) setEditorArray:(NSArray *) values
+{
+	[self setTokenArray:values field:@"editors"];
+}
+
+- (NSArray *) getEditorArray
+{
+	return [self getTokenArray:@"editors"];
+}
+
+- (void) setKeywordArray:(NSArray *) values
+{
+	[self setTokenArray:values field:@"keywords"];
+}
+
+- (NSArray *) getKeywordArray
+{
+	return [self getTokenArray:@"keywords"];
+}
 
 @end

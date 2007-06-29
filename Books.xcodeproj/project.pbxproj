@@ -21,6 +21,10 @@
 		382036800B4989F80022E60E /* MyGraphView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3820367A0B4989F80022E60E /* MyGraphView.m */; };
 		382036810B4989F80022E60E /* MyBarcodeScanner.m in Sources */ = {isa = PBXBuildFile; fileRef = 3820367B0B4989F80022E60E /* MyBarcodeScanner.m */; };
 		382036820B4989F80022E60E /* MyBarcodeScanner.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 3820367C0B4989F80022E60E /* MyBarcodeScanner.h */; };
+		3822F3C80C3499BA00475D9F /* NotificationInterface.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 3822F3C60C3499B900475D9F /* NotificationInterface.h */; };
+		3822F3C90C3499BA00475D9F /* NotificationInterface.m in Sources */ = {isa = PBXBuildFile; fileRef = 3822F3C70C3499B900475D9F /* NotificationInterface.m */; };
+		3822F4FA0C34A48000475D9F /* Growl.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3822F4F90C34A48000475D9F /* Growl.framework */; };
+		3822F5020C34A48300475D9F /* Growl.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 3822F4F90C34A48000475D9F /* Growl.framework */; };
 		382611B209BB5BA7006B3CD7 /* ISBNdb.plugin in Resources */ = {isa = PBXBuildFile; fileRef = 382611A909BB5BA7006B3CD7 /* ISBNdb.plugin */; };
 		3826FA850C14535B00EB2E43 /* Books Help in Resources */ = {isa = PBXBuildFile; fileRef = 3826FA840C14535B00EB2E43 /* Books Help */; };
 		3832913A0A03EF1C00C98833 /* Books Metadata Importer.mdimporter in Resources */ = {isa = PBXBuildFile; fileRef = 3832912B0A03EF1C00C98833 /* Books Metadata Importer.mdimporter */; };
@@ -137,6 +141,7 @@
 				3820367F0B4989F80022E60E /* MyGraphView.h in CopyFiles */,
 				382036820B4989F80022E60E /* MyBarcodeScanner.h in CopyFiles */,
 				38B16DAB0BA1FECE00216A44 /* CoverWindowDelegate.h in CopyFiles */,
+				3822F3C80C3499BA00475D9F /* NotificationInterface.h in CopyFiles */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -146,6 +151,7 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
+				3822F5020C34A48300475D9F /* Growl.framework in CopyFiles */,
 				387A01520A75CD2300447E87 /* Sparkle.framework in CopyFiles */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -184,6 +190,9 @@
 		3820367A0B4989F80022E60E /* MyGraphView.m */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.objc; path = MyGraphView.m; sourceTree = "<group>"; };
 		3820367B0B4989F80022E60E /* MyBarcodeScanner.m */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.objc; path = MyBarcodeScanner.m; sourceTree = "<group>"; };
 		3820367C0B4989F80022E60E /* MyBarcodeScanner.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = MyBarcodeScanner.h; sourceTree = "<group>"; };
+		3822F3C60C3499B900475D9F /* NotificationInterface.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NotificationInterface.h; sourceTree = "<group>"; };
+		3822F3C70C3499B900475D9F /* NotificationInterface.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NotificationInterface.m; sourceTree = "<group>"; };
+		3822F4F90C34A48000475D9F /* Growl.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Growl.framework; sourceTree = "<group>"; };
 		382611A909BB5BA7006B3CD7 /* ISBNdb.plugin */ = {isa = PBXFileReference; lastKnownFileType = folder; path = ISBNdb.plugin; sourceTree = "<group>"; };
 		3826F9430C1451EA00EB2E43 /* English */ = {isa = PBXFileReference; lastKnownFileType = folder; name = English; path = "English.lproj/Books Help"; sourceTree = "<group>"; };
 		3832912B0A03EF1C00C98833 /* Books Metadata Importer.mdimporter */ = {isa = PBXFileReference; lastKnownFileType = folder; path = "Books Metadata Importer.mdimporter"; sourceTree = "<group>"; };
@@ -375,6 +384,7 @@
 				381930510B43470C00646B67 /* QuickTime.framework in Frameworks */,
 				381930790B43474300646B67 /* Carbon.framework in Frameworks */,
 				38DE5E640BA1D3E100B4FEC0 /* Quartz.framework in Frameworks */,
+				3822F4FA0C34A48000475D9F /* Growl.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -384,7 +394,7 @@
 		080E96DDFE201D6D7F000001 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
-				381930350B43466900646B67 /* Camera Scanner */,
+				3822F3BC0C34990D00475D9F /* Third Party Integration */,
 				384FDCDB090B3D1900EB0E2A /* AppleScript */,
 				38A339AF09080C5700016FF0 /* CoreData Objects */,
 				3825FE4B08FA9BC1007572AA /* Plugin Interfaces */,
@@ -408,6 +418,7 @@
 		1058C7A0FEA54F0111CA2CBB /* Linked Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				3822F4F90C34A48000475D9F /* Growl.framework */,
 				38DE5E630BA1D3E100B4FEC0 /* Quartz.framework */,
 				381930780B43474300646B67 /* Carbon.framework */,
 				381930500B43470C00646B67 /* QuickTime.framework */,
@@ -508,6 +519,24 @@
 				3820367C0B4989F80022E60E /* MyBarcodeScanner.h */,
 			);
 			name = "Camera Scanner";
+			sourceTree = "<group>";
+		};
+		3822F3BC0C34990D00475D9F /* Third Party Integration */ = {
+			isa = PBXGroup;
+			children = (
+				3822F3C40C34994A00475D9F /* Notifications */,
+				381930350B43466900646B67 /* Camera Scanner */,
+			);
+			name = "Third Party Integration";
+			sourceTree = "<group>";
+		};
+		3822F3C40C34994A00475D9F /* Notifications */ = {
+			isa = PBXGroup;
+			children = (
+				3822F3C60C3499B900475D9F /* NotificationInterface.h */,
+				3822F3C70C3499B900475D9F /* NotificationInterface.m */,
+			);
+			name = Notifications;
 			sourceTree = "<group>";
 		};
 		3823A0ED08ED70BD0003F104 /* Table Data Sources */ = {
@@ -909,6 +938,7 @@
 				382036800B4989F80022E60E /* MyGraphView.m in Sources */,
 				382036810B4989F80022E60E /* MyBarcodeScanner.m in Sources */,
 				38B16DAC0BA1FECE00216A44 /* CoverWindowDelegate.m in Sources */,
+				3822F3C90C3499BA00475D9F /* NotificationInterface.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1046,8 +1076,10 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(FRAMEWORK_SEARCH_PATHS_QUOTED_1)",
+					"$(FRAMEWORK_SEARCH_PATHS_QUOTED_2)",
 				);
 				FRAMEWORK_SEARCH_PATHS_QUOTED_1 = "\"$(SRCROOT)\"";
+				FRAMEWORK_SEARCH_PATHS_QUOTED_2 = "\"$(SRCROOT)\"";
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_ENABLE_FIX_AND_CONTINUE = YES;
 				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
@@ -1074,8 +1106,10 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(FRAMEWORK_SEARCH_PATHS_QUOTED_1)",
+					"$(FRAMEWORK_SEARCH_PATHS_QUOTED_2)",
 				);
 				FRAMEWORK_SEARCH_PATHS_QUOTED_1 = "\"$(SRCROOT)\"";
+				FRAMEWORK_SEARCH_PATHS_QUOTED_2 = "\"$(SRCROOT)\"";
 				GCC_ENABLE_FIX_AND_CONTINUE = NO;
 				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
 				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
@@ -1100,8 +1134,10 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(FRAMEWORK_SEARCH_PATHS_QUOTED_1)",
+					"$(FRAMEWORK_SEARCH_PATHS_QUOTED_2)",
 				);
 				FRAMEWORK_SEARCH_PATHS_QUOTED_1 = "\"$(SRCROOT)\"";
+				FRAMEWORK_SEARCH_PATHS_QUOTED_2 = "\"$(SRCROOT)\"";
 				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
 				GCC_GENERATE_DEBUGGING_SYMBOLS = NO;
 				GCC_MODEL_TUNING = G5;

@@ -27,6 +27,7 @@
 #import "BooksAppDelegate.h"
 #import "CheckOutManagedObject.h"
 #import "CopyManagedObject.h"
+#import "NotificationInterface.h"
 
 @implementation ImportPluginInterface
 
@@ -67,6 +68,7 @@
 
 	[importTask launch];
 
+	int bookCount = 0;
 	while ([importTask isRunning])
 	{
 		NSMutableData * importData = [NSMutableData data];
@@ -242,6 +244,8 @@
 					[context lock];
 					[items addObject:bookObject];
 					[context unlock];
+
+					bookCount++;
 					
 					[bookObject release];
 				}
@@ -279,6 +283,10 @@
 		xml = nil;
 	}
 
+	NSString * desc = [NSString stringWithFormat:
+		NSLocalizedString (@"Books has finished importing %d records.", nil), bookCount, nil];
+	[NotificationInterface sendMessage:desc withTitle:NSLocalizedString (@"Import Complete", nil)];
+
 	[pool release];
 
 	[noteCenter removeObserver:self];
@@ -301,10 +309,10 @@
 
 	NSObject * value = nil;
 	
-	if ([key isEqual:@"CoverImageURL"] || [key isEqual:@"coverImage"])
+	if (([key isEqual:@"CoverImageURL"] || [key isEqual:@"coverImage"]) && ![valueString isEqualToString:@""]) 
 	{
 		NSMutableString * mutableString = [NSMutableString stringWithString:valueString];
-
+		
 		if ([[valueString substringToIndex:1] isEqualToString:@"/"])
 			mutableString = [NSMutableString stringWithFormat:@"file://%@", valueString, nil];
 

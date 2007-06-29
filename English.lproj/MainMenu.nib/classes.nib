@@ -41,6 +41,7 @@
             CLASS = BooksAppDelegate; 
             LANGUAGE = ObjC; 
             OUTLETS = {
+                authorTokens = NSTokenField; 
                 authorsCombo = NSComboBox; 
                 bookArrayController = NSArrayController; 
                 booksTable = NSTableView; 
@@ -48,6 +49,7 @@
                 coverWindow = NSWindow; 
                 datePublished = NSTextField; 
                 detailsPane = WebView; 
+                editorTokens = NSTokenField; 
                 editorsCombo = NSComboBox; 
                 enabledColumn = NSTableColumn; 
                 fileArrayController = NSArrayController; 
@@ -56,12 +58,15 @@
                 fileLocation = NSTextField; 
                 fileTitle = NSTextField; 
                 genreCombo = NSComboBox; 
+                genreTokens = NSTokenField; 
                 iSightView = QCView; 
                 iSightWindow = NSWindow; 
+                illustratorTokens = NSTokenField; 
                 illustratorsCombo = NSComboBox; 
                 imageBox = NSBox; 
                 imageView = NSImageView; 
                 infoWindow = NSWindow; 
+                keywordTokens = NSTokenField; 
                 leftView = NSSplitView; 
                 listsTable = NSTableView; 
                 mainWindow = NSWindow; 
@@ -81,6 +86,8 @@
                 selectedBook = NSObjectController; 
                 smartListEditorWindow = NSWindow; 
                 splitView = NSSplitView; 
+                summary = NSTextView; 
+                translatorTokens = NSTokenField; 
                 translatorsCombo = NSComboBox; 
                 userFieldCombo = NSComboBox; 
             }; 
