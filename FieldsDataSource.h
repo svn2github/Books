@@ -27,13 +27,17 @@
 
 @interface FieldsDataSource : NSObject 
 {
-	NSMutableArray * fields;
+	NSMutableArray * listFields;
+	NSMutableArray * bookFields;
+	IBOutlet NSTableView * listTable;
+	IBOutlet NSTableView * bookTable;
 }
 
 - (int)numberOfRowsInTableView:(NSTableView *)aTableView;
 - (id)tableView:(NSTableView *)aTableView objectValueForTableColumn:(NSTableColumn *)aTableColumn row:(int)rowIndex;
 - (void)tableView:(NSTableView *)aTableView setObjectValue:(id)anObject forTableColumn:(NSTableColumn *)aTableColumn row:(int)rowIndex;
 
-- (NSMutableArray *) getFields;
+- (NSMutableArray *) getListFields;
+- (NSMutableArray *) getBookFields;
 
 @end

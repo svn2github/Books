@@ -585,12 +585,21 @@ typedef struct _monochromePixel
 	
 	[enabledColumn setDataCell:checkbox];
 
-	NSArray * prefColumns = [prefFieldsTable tableColumns];
+	NSArray * columns = [listFieldsTable tableColumns];
 	
 	int i = 0;
-	for (i = 0; i < [prefColumns count]; i++)
+	for (i = 0; i < [columns count]; i++)
 	{
-		NSTableColumn * column = [prefColumns objectAtIndex:i];
+		NSTableColumn * column = [columns objectAtIndex:i];
+		
+		[[column dataCell] setFont:[NSFont systemFontOfSize:11]];
+	}
+
+	columns = [bookFieldsTable tableColumns];
+	
+	for (i = 0; i < [columns count]; i++)
+	{
+		NSTableColumn * column = [columns objectAtIndex:i];
 		
 		[[column dataCell] setFont:[NSFont systemFontOfSize:11]];
 	}
@@ -741,7 +750,7 @@ typedef struct _monochromePixel
 
 	NSCharacterSet * set = [NSCharacterSet characterSetWithCharactersInString:@";"];
 	[genreTokens setTokenizingCharacterSet:set];
-	[genreTokens setCompletionDelay:0.25];
+	[genreTokens setCompletionDelay:0.75];
 	genres = [[NSMutableSet alloc] init];
 
 	[authorTokens setTokenizingCharacterSet:set];
@@ -1400,7 +1409,7 @@ typedef struct _monochromePixel
 	}
 
 	
-	NSString * customString = [prefs objectForKey:@"Custom User Display Fields"];
+	NSString * customString = [prefs objectForKey:@"Custom List User Fields"];
 
 	if (customString != nil && ![customString isEqual:@""])
 	{
@@ -2300,16 +2309,13 @@ typedef struct _monochromePixel
 - (NSArray *) tokenField: (NSTokenField *) tokenField completionsForSubstring: (NSString *) substring indexOfToken: (int) tokenIndex
 	indexOfSelectedItem: (int *) selectedIndex
 {
-	NSString * tokenString = [tokenField stringValue];
+	// NSString * tokenString = [tokenField stringValue];
 	
-	while ([substring characterAtIndex:0] == 0xfffc)
-		substring = [substring substringFromIndex:1];
+	// while ([tokenString characterAtIndex:0] == 0xfffc)
+	//	tokenString = [tokenString substringFromIndex:1];
 
-	while ([tokenString characterAtIndex:0] == 0xfffc)
-		tokenString = [tokenString substringFromIndex:1];
-
-	if (![tokenString hasPrefix:substring])
-		return [NSArray array];
+	// if (![tokenString hasPrefix:substring])
+	//	return [NSArray array];
 
 	if (tokenField == genreTokens)
 		return [self getSuggestionForString:substring source:genres];
@@ -2371,7 +2377,8 @@ typedef struct _monochromePixel
 	NSError * error = nil;
 	NSArray * books = [[self managedObjectContext] executeFetchRequest:fetch error:&error];
 
-	NSArray * fields = [NSArray arrayWithObjects:@"genre", @"authors", @"editors", @"illustrators", @"translators", @"keywords", nil];
+	NSArray * fields = [NSArray arrayWithObjects:@"genreArray", @"authorArray", @"editorArray", 
+							@"illustratorArray", @"translatorArray", @"keywordArray", nil];
 	NSArray * tokenArrays = [NSArray arrayWithObjects:genres, authors, editors, illustrators, translators, keywords, nil];
 	
 	int i = 0;
@@ -2382,15 +2389,14 @@ typedef struct _monochromePixel
 		int j = 0;
 		for (j = 0; j < [fields count] && j < [tokenArrays count]; j++)
 		{
-			NSString * string = [book valueForKey:[fields objectAtIndex:j]];
+			NSArray * array = [book valueForKey:[fields objectAtIndex:j]];
 
-			if (string != nil)
-			{
-				NSArray * strings = [string componentsSeparatedByString:@";"];
-				[[tokenArrays objectAtIndex:j] addObjectsFromArray:strings];
-			}
+			if (array != nil)
+				[[tokenArrays objectAtIndex:j] addObjectsFromArray:array];
 		}
 	}
+	
+	[fetch release];
 }
 
 - (BOOL)textView:(NSTextView *)aTextView doCommandBySelector:(SEL)aSelector
@@ -2412,6 +2418,21 @@ typedef struct _monochromePixel
 	}
 		
 	return NO;
+}
+
+- (NSArray *) tokenField: (NSTokenField *) tokenField readFromPasteboard: (NSPasteboard *) pboard
+{
+	NSArray * tokens = (NSArray *) [NSUnarchiver unarchiveObjectWithData:[pboard dataForType:@"NSGeneralPboardType"]];	
+	return tokens;
+}
+
+
+- (BOOL) tokenField:(NSTokenField *) tokenField writeRepresentedObjects:(NSArray *) objects 
+	toPasteboard:(NSPasteboard *) pboard
+{
+	NSData * data = [NSArchiver archivedDataWithRootObject:[NSArray array]];
+	[pboard declareTypes:[NSArray arrayWithObject:@"NSGeneralPboardType"] owner:self];
+	return [pboard setData:data forType:@"NSGeneralPboardType"];
 }
 
 @end

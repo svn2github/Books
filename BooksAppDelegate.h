@@ -49,7 +49,9 @@
 	IBOutlet NSTableView * listsTable;
 	
 	IBOutlet WebView * detailsPane;
-	IBOutlet NSTableView * prefFieldsTable;
+
+	IBOutlet NSTableView * listFieldsTable;
+	IBOutlet NSTableView * bookFieldsTable;
 	IBOutlet NSTableColumn * enabledColumn;
 	IBOutlet NSSplitView * splitView;
 	IBOutlet NSSplitView * leftView;

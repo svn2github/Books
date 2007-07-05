@@ -31,6 +31,11 @@
 
 @implementation BookManagedObject
 
+- (BookManagedObject *) init
+{
+	return self;
+}
+
 - (void) didChangeValueForKey: (NSString *) key
 {
 	[super didChangeValueForKey:key];
@@ -836,6 +841,93 @@
     [self didChangeValueForKey:@"files"];
 }
 
+- (NSArray *) getTokenArray:(NSString *) field
+{
+	NSString * string = (NSString *) [self valueForKey:field];
+	
+	if (string == nil)
+		return [[NSArray alloc] init];
+		
+	return [[string componentsSeparatedByString:@";"] retain];
+}
+
+- (void) setTokenArray:(NSArray *) values field:(NSString *) field
+{
+	int i = 0;
+	
+	NSMutableString * string = [NSMutableString string];
+	
+	for (i = 0; i < [values count]; i++)
+	{
+		NSString * value = [values objectAtIndex:i];
+		
+		if (![string isEqualToString:@""])
+			[string appendString:@"; "];
+
+		[string appendString:value];
+	}
+	
+	[self setValue:string forKey:field];
+}
+
+- (void) setGenreArray:(NSArray *) values
+{
+	[self setTokenArray:values field:@"genre"];
+}
+
+- (NSArray *) getGenreArray
+{
+	return [self getTokenArray:@"genre"];
+}
+- (void) setAuthorArray:(NSArray *) values
+{
+	[self setTokenArray:values field:@"authors"];
+}
+
+- (NSArray *) getAuthorArray
+{
+	return [self getTokenArray:@"authors"];
+}
+- (void) setEditorArray:(NSArray *) values
+{
+	[self setTokenArray:values field:@"editors"];
+}
+
+- (NSArray *) getEditorArray
+{
+	return [self getTokenArray:@"editors"];
+}
+
+- (void) setIllustratorArray:(NSArray *) values
+{
+	[self setTokenArray:values field:@"illustrators"];
+}
+
+- (NSArray *) getIllustratorArray
+{
+	return [self getTokenArray:@"illustrators"];
+}
+- (void) setTranslatorArray:(NSArray *) values
+{
+	[self setTokenArray:values field:@"translators"];
+}
+
+- (NSArray *) getTranslatorArray
+{
+	return [self getTokenArray:@"translators"];
+}
+
+- (void) setKeywordArray:(NSArray *) values
+{
+	[self setTokenArray:values field:@"keywords"];
+}
+
+- (NSArray *) getKeywordArray
+{
+	return [self getTokenArray:@"keywords"];
+}
+
+
 - (void) setValueFromString:(NSString *) valueString forKey:(NSString *) key replace:(BOOL) doReplace
 {
 	BookManagedObject * bookObject = self;
@@ -954,7 +1046,7 @@
 	[context unlock];
 
 	if ([key isEqualToString:@"authors"])
-		[bookObject didChangeValueForKey:@"authorArray"];
+		[self didChangeValueForKey:@"authorArray"];
 	else if ([key isEqualToString:@"editors"])
 		[bookObject didChangeValueForKey:@"editorArray"];
 	else if ([key isEqualToString:@"illustrators"])
@@ -963,97 +1055,6 @@
 		[bookObject didChangeValueForKey:@"translatorArray"];
 	else if ([key isEqualToString:@"genre"])
 		[bookObject didChangeValueForKey:@"genreArray"];
-}
-
-
-- (NSArray *) getTokenArray:(NSString *) field
-{
-	NSString * string = (NSString *) [self valueForKey:field];
-	
-	if (string == nil)
-		return [NSArray array];
-		
-	return [string componentsSeparatedByString:@";"];
-}
-
-- (void) setTokenArray:(NSArray *) values field:(NSString *) field
-{
-	int i = 0;
-	
-	NSMutableString * string = [NSMutableString string];
-	
-	for (i = 0; i < [values count]; i++)
-	{
-		NSString * value = [values objectAtIndex:i];
-		
-		if (![string isEqualToString:@""])
-			[string appendString:@"; "];
-
-		[string appendString:value];
-	}
-	
-	[self setValue:string forKey:field];
-}
-
-
-- (void) setGenreArray:(NSArray *) values
-{
-	[self setTokenArray:values field:@"genre"];
-}
-
-- (NSArray *) getGenreArray
-{
-	return [self getTokenArray:@"genre"];
-}
-
-- (void) setAuthorArray:(NSArray *) values
-{
-	[self setTokenArray:values field:@"authors"];
-}
-
-- (NSArray *) getAuthorArray
-{
-	return [self getTokenArray:@"authors"];
-}
-
-- (void) setIllustratorArray:(NSArray *) values
-{
-	[self setTokenArray:values field:@"illustrators"];
-}
-
-- (NSArray *) getIllustratorArray
-{
-	return [self getTokenArray:@"illustrators"];
-}
-
-- (void) setTranslatorArray:(NSArray *) values
-{
-	[self setTokenArray:values field:@"translators"];
-}
-
-- (NSArray *) getTranslatorArray
-{
-	return [self getTokenArray:@"translators"];
-}
-
-- (void) setEditorArray:(NSArray *) values
-{
-	[self setTokenArray:values field:@"editors"];
-}
-
-- (NSArray *) getEditorArray
-{
-	return [self getTokenArray:@"editors"];
-}
-
-- (void) setKeywordArray:(NSArray *) values
-{
-	[self setTokenArray:values field:@"keywords"];
-}
-
-- (NSArray *) getKeywordArray
-{
-	return [self getTokenArray:@"keywords"];
 }
 
 @end

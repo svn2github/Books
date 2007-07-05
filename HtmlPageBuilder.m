@@ -125,23 +125,37 @@
 	[html replaceOccurrencesOfString:@"-csslink-" withString:cssPath options:NSCaseInsensitiveSearch 
 		range:NSMakeRange (0, [html length])];
 
-	NSArray * fields = nil;
-	
 	NSUserDefaults * prefs = [NSUserDefaults standardUserDefaults];
 	
 	NSNumber * customFields = [prefs objectForKey:@"Custom Detail Fields"];
-	NSString * customString = [prefs objectForKey:@"Detail Fields"];
+	NSMutableArray * fields = [NSMutableArray array];
+	NSString * customString = [prefs objectForKey:@"Custom Book User Fields"];
 	
-	if (customString != nil && customFields != nil && [customFields boolValue])
-		fields = [customString componentsSeparatedByString:@"\n"];
+	if (customFields != nil && [customFields boolValue])
+	{
+		NSArray * detailFields = [prefs objectForKey:@"Detail Fields"];
+		
+		int i = 0;
+		for (i = 0; i < [detailFields count]; i++)
+		{
+			NSDictionary * field = [detailFields objectAtIndex:i];
+			
+			NSNumber * enabled = [field valueForKey:@"Enabled"];
+			
+			if (enabled != nil && [enabled boolValue])
+				[fields addObject:[field valueForKey:@"Key"]];
+		}
+
+		[fields addObjectsFromArray:[customString componentsSeparatedByString:@"\n"]];
+	}
 	else
 	{
 		NSString * fieldsPath = [self getCsvPath];
 	
-		NSString * fieldsString = [NSString stringWithContentsOfFile:fieldsPath encoding:NSUTF8StringEncoding
-			error:&error];
+		NSString * fieldsString = [NSString stringWithContentsOfFile:fieldsPath 
+			encoding:NSUTF8StringEncoding error:&error];
 
-		fields = [fieldsString componentsSeparatedByString:@","];
+		[fields addObjectsFromArray:[fieldsString componentsSeparatedByString:@","]];
 	}	
 	
 	NSMutableString * bookDef = [NSMutableString string];

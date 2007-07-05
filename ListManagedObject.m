@@ -52,8 +52,8 @@
 	BooksAppDelegate * delegate = [[NSApplication sharedApplication] delegate];
 	
 	NSIndexSpecifier * specifier = [[NSIndexSpecifier alloc] 
-										initWithContainerClassDescription:[NSScriptClassDescription classDescriptionForClass:[delegate class]] 
-										containerSpecifier:[delegate objectSpecifier]
+										initWithContainerClassDescription:((NSScriptClassDescription *) [NSScriptClassDescription classDescriptionForClass:[delegate class]]) 
+										containerSpecifier: [delegate objectSpecifier]
 										key:@"booklists"];
 	
 	return specifier;
