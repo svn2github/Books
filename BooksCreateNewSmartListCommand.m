@@ -25,7 +25,7 @@
 
 #import "BooksCreateNewSmartListCommand.h"
 #import "BooksAppDelegate.h"
-#import "SmartList.h"
+#import "SmartListManagedObject.h"
 
 @implementation BooksCreateNewSmartListCommand
 
@@ -39,7 +39,7 @@
 	if ([args objectForKey:@"called"] != nil)
 		listName = [args objectForKey:@"called"];
 
-	SmartList * obj = [(BooksAppDelegate *) [[NSApplication sharedApplication] delegate] 
+	SmartListManagedObject * obj = [(BooksAppDelegate *) [[NSApplication sharedApplication] delegate] 
 								asCreateNewSmartList:listName];
 
 	if ([args objectForKey:@"withrules"] != nil)

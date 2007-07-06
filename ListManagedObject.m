@@ -69,11 +69,6 @@
 
 }
 
-/* - (NSString *) getName
-{
-	return [ListNameString stringWithString:[self primitiveValueForKey:@"name"]];
-}*/
-
 - (NSString *) getSortName
 {
 	return [@"0 " stringByAppendingString:[self valueForKey:@"name"]];

@@ -27,7 +27,7 @@
 #import "BooksAppDelegate.h"
 #import "BookManagedObject.h"
 #import "ListManagedObject.h"
-#import "SmartList.h"
+#import "SmartListManagedObject.h"
 
 @implementation ExportPluginInterface
 
@@ -279,7 +279,7 @@
 
 		for (i = 0; i < [smartLists count]; i++)
 		{
-			SmartList * list = [smartLists objectAtIndex:i];
+			SmartListManagedObject * list = [smartLists objectAtIndex:i];
 			NSXMLElement * element = [[NSXMLElement alloc] initWithXMLString:@"<SmartList />" error:&error];
 
 			[element addAttribute:[NSXMLNode attributeWithName:@"name" stringValue:[list valueForKey:@"name"]]];

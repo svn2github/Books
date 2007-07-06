@@ -32,7 +32,6 @@
                 selectBooksTable = id; 
                 selectListsTable = id; 
                 trashFiles = id; 
-                updateBooksTable = id; 
                 uploadFile = id; 
                 viewOnline = id; 
             }; 
@@ -41,7 +40,6 @@
             OUTLETS = {
                 bookArrayController = NSArrayController; 
                 bookFieldsTable = NSTableView; 
-                booksTable = NSTableView; 
                 collectionArrayController = NSArrayController; 
                 coverWindow = NSWindow; 
                 datePublished = NSTextField; 
@@ -59,7 +57,6 @@
                 infoWindow = NSWindow; 
                 leftView = NSSplitView; 
                 listFieldsTable = NSTableView; 
-                listsTable = NSTableView; 
                 mainWindow = NSWindow; 
                 pluginManager = PluginManager; 
                 preferencesWindow = NSWindow; 
@@ -76,6 +73,7 @@
                 splitView = NSSplitView; 
                 spotlightInterface = BooksSpotlightInterface; 
                 summary = NSTextView; 
+                tableViewDelegate = BooksTableViewDelegate; 
                 tokenDelegate = BooksTokenViewDelegate; 
                 toolbarDelegate = BooksToolbarDelegate; 
                 userFieldCombo = NSComboBox; 
@@ -90,6 +88,20 @@
                 bookArrayController = NSArrayController; 
                 booksAppDelegate = BooksAppDelegate; 
                 collectionArrayController = NSArrayController; 
+            }; 
+            SUPERCLASS = NSObject; 
+        }, 
+        {
+            CLASS = BooksTableViewDelegate; 
+            LANGUAGE = ObjC; 
+            OUTLETS = {
+                bookArrayController = NSArrayController; 
+                booksAppDelegate = NSObject; 
+                booksTable = NSTableView; 
+                collectionArrayController = NSArrayController; 
+                listsTable = NSTableView; 
+                spotlightInterface = BooksSpotlightInterface; 
+                toolbarDelegate = BooksToolbarDelegate; 
             }; 
             SUPERCLASS = NSObject; 
         }, 
@@ -125,9 +137,13 @@
         }, 
         {CLASS = ExportPluginInterface; LANGUAGE = ObjC; SUPERCLASS = NSObject; }, 
         {
-            CLASS = FieldsDataSource; 
+            CLASS = FieldsTableViewDelegate; 
             LANGUAGE = ObjC; 
-            OUTLETS = {bookTable = NSTableView; listTable = NSTableView; }; 
+            OUTLETS = {
+                bookFieldsTable = NSTableView; 
+                listFieldsTable = NSTableView; 
+                tableViewDelegate = BooksTableViewDelegate; 
+            }; 
             SUPERCLASS = NSObject; 
         }, 
         {CLASS = FirstResponder; LANGUAGE = ObjC; SUPERCLASS = NSObject; }, 

@@ -24,7 +24,7 @@
 
 
 #import "BookManagedObject.h"
-#import "SmartList.h"
+#import "SmartListManagedObject.h"
 #import "BooksAppDelegate.h"
 #import "BookTitleString.h"
 #import "BookAuthorString.h"
@@ -145,7 +145,7 @@
 
 - (void) setList: (ListManagedObject *) newList
 {
-	if ([newList isKindOfClass:[SmartList class]] || newList == nil || [[self valueForKey:@"list"] isEqual:newList])
+	if ([newList isKindOfClass:[SmartListManagedObject class]] || newList == nil || [[self valueForKey:@"list"] isEqual:newList])
 		return;
 		
 	[self willChangeValueForKey:@"list"];	

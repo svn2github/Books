@@ -28,8 +28,7 @@
 #import "ExportPluginInterface.h"
 #import "QuickfillPluginInterface.h"
 #import "HtmlPageBuilder.h"
-#import "FieldsDataSource.h"
-#import "SmartList.h"
+#import "SmartListManagedObject.h"
 #import "BookManagedObject.h"
 #import "MyBarcodeScanner.h"
 #import "CoverWindowDelegate.h"
@@ -174,59 +173,7 @@ typedef struct _monochromePixel
 {
 	NSUserDefaults * defaults = [NSUserDefaults standardUserDefaults];
 
-	int i = 0;
-
-	NSArray * tableColumns = [booksTable tableColumns];
-
-	NSMutableArray * columnWidths = [NSMutableArray array];
-	
-	NSMutableArray * columns = [NSMutableArray arrayWithArray:[defaults objectForKey:@"Display Fields"]];
-	
-	for (i = [tableColumns count] - 1; i >=0 ; i--)
-	{
-		NSTableColumn * column = [tableColumns objectAtIndex:i];
-		
-		NSString * identifier = [column identifier];
-		
-		int j = 0;
-		for (j = 0; j < [columns count]; j++)
-		{
-			NSDictionary * dict = [columns objectAtIndex:j];
-			
-			if ([[dict objectForKey:@"Key"] isEqual:identifier])
-			{
-				[columns removeObject:dict];
-				
-				[columns insertObject:dict atIndex:0];
-			}
-		}
-		
-		[columnWidths insertObject:[NSNumber numberWithFloat:[column width]] atIndex:0];
-	}
-
-	[defaults setObject:columnWidths forKey:@"Main Window Column Widths"];
-
-	[defaults setObject:columns forKey:@"Display Fields"];
-
-	NSArray * sortDescriptors = [booksTable sortDescriptors];
-	NSMutableArray * savedSortDescriptors = [NSMutableArray array];
-	
-	for (i = 0; i < [sortDescriptors count]; i++)
-	{
-		NSSortDescriptor * descriptor = [sortDescriptors objectAtIndex:i];
-
-		NSMutableDictionary * values = [NSMutableDictionary dictionary];
-		[values setObject:[descriptor key] forKey:@"key"];
-		
-		if ([descriptor ascending])
-			[values setObject:@"yes" forKey:@"ascending"];
-		else
-			[values setObject:@"no" forKey:@"ascending"];
-		
-		[savedSortDescriptors addObject:values];
-	}
-
-	[defaults setObject:savedSortDescriptors forKey:@"Books Table Sorting"];
+	[tableViewDelegate save];
 
 	NSMutableArray * viewRects = [NSMutableArray array];
 	NSEnumerator * viewEnum = [[splitView subviews] objectEnumerator];
@@ -406,6 +353,8 @@ typedef struct _monochromePixel
 
 - (void) awakeFromNib
 {
+	NSUserDefaults * defaults = [NSUserDefaults standardUserDefaults];
+	
 	NSToolbar * tb = [[NSToolbar alloc] initWithIdentifier:@"main"];
 	
 	[tb setDelegate:toolbarDelegate];
@@ -414,72 +363,26 @@ typedef struct _monochromePixel
 	
 	[mainWindow setToolbar:tb];
 	
-	NSButtonCell * checkbox = [[NSButtonCell alloc] init];
-	[checkbox setButtonType:NSSwitchButton];
-	[checkbox setControlSize:NSSmallControlSize];
-	[checkbox setTitle:@""];
-	
-	[enabledColumn setDataCell:checkbox];
+	[tableViewDelegate updateBooksTable];
+	[tableViewDelegate restore];
 
-	NSArray * columns = [listFieldsTable tableColumns];
-	
-	int i = 0;
-	for (i = 0; i < [columns count]; i++)
+	NSString * dateFormat = [[NSUserDefaults standardUserDefaults] stringForKey:@"Custom Date Format"];
+
+	[NSDateFormatter setDefaultFormatterBehavior:NSDateFormatterBehavior10_4];
+
+	NSDateFormatter * formatter;
+				
+	if (dateFormat != nil)
+		formatter = [[NSDateFormatter alloc] initWithDateFormat:dateFormat allowNaturalLanguage:YES];
+	else
 	{
-		NSTableColumn * column = [columns objectAtIndex:i];
-		
-		[[column dataCell] setFont:[NSFont systemFontOfSize:11]];
+		formatter = [[NSDateFormatter alloc] initWithDateFormat:@"%B %e, %Y" allowNaturalLanguage:YES];
+		[formatter setDateStyle:NSDateFormatterLongStyle];
 	}
 
-	columns = [bookFieldsTable tableColumns];
-	
-	for (i = 0; i < [columns count]; i++)
-	{
-		NSTableColumn * column = [columns objectAtIndex:i];
-		
-		[[column dataCell] setFont:[NSFont systemFontOfSize:11]];
-	}
-	
-	[self updateBooksTable:self];
+	[[datePublished cell] setFormatter:formatter];
 
-	NSUserDefaults * defaults = [NSUserDefaults standardUserDefaults];
 
-	NSArray * columnWidths = [defaults arrayForKey:@"Main Window Column Widths"];
-	NSArray * tableColumns = [booksTable tableColumns];
-	
-	if (columnWidths != nil)
-	{
-		int i = 0;
-		for (i = 0; i < [columnWidths count] && i < [tableColumns count]; i++)
-		{
-			NSNumber * width = [columnWidths objectAtIndex:i];
-			[[tableColumns objectAtIndex:i] setWidth:[width floatValue]];
-		}
-	}
-
-	NSArray * booksSorting = [defaults arrayForKey:@"Books Table Sorting"];
-
-	NSMutableArray * sortDescriptors = [NSMutableArray array];
-	
-	int j = 0;
-	for (j = 0; j < [booksSorting count]; j++)
-	{
-		NSDictionary * dict = (NSDictionary *) [booksSorting objectAtIndex:j];
-		
-		NSSortDescriptor * descriptor = nil;
-		
-		NSString * key = (NSString *) [dict objectForKey:@"key"];
-		
-		if ([[dict objectForKey:@"ascending"] isEqual:@"yes"])
-			descriptor = [[NSSortDescriptor alloc] initWithKey:key ascending:YES];
-		else
-			descriptor = [[NSSortDescriptor alloc] initWithKey:key ascending:NO];
-	
-		[sortDescriptors addObject:descriptor];
-	}
-
-	[booksTable setSortDescriptors:sortDescriptors];
-	
 	/* Resize Main Scroller */
 	
 	NSArray * viewRects = [defaults objectForKey:@"Main Scroller Sizes"];
@@ -569,8 +472,6 @@ typedef struct _monochromePixel
 	if (![[NSFileManager defaultManager] fileExistsAtPath:filePath])
 		[[NSFileManager defaultManager] createDirectoryAtPath:filePath attributes:nil];
 
-	[listsTable registerForDraggedTypes:[NSArray arrayWithObject:@"Books Book Type"]];
-
 	[imageView setTarget:self];
 	[imageView setAction:@selector(getCoverWindow:)];
 
@@ -613,8 +514,6 @@ typedef struct _monochromePixel
 
 - (void) updateMainPane
 {
-//	[self tableViewSelectionDidChange:[NSNotification notificationWithName:@"BooksRefreshView" object:booksTable]];
-
 	WebFrame * mainFrame = [detailsPane mainFrame];
 
 	NSArray * selectedObjects = [bookArrayController selectedObjects];
@@ -637,112 +536,6 @@ typedef struct _monochromePixel
 	[mainFrame loadHTMLString:htmlString baseURL:localhost];
 }
 
-- (void) tableViewSelectionDidChange: (NSNotification *) notification
-{
-	NSTableView * table = [notification object];
-
-	if (table == booksTable)
-		[self updateMainPane];
-	else if (table == listsTable)
-	{
-		if (openFilename != nil)
-		{
-			NSLog (@"opening %@", openFilename);
-			
-			[spotlightInterface openFile:openFilename];
-			[openFilename release];
-			openFilename = nil;
-		}
-
-		NSUserDefaults * prefs = [NSUserDefaults standardUserDefaults];
-
-		if ([prefs boolForKey:@"Separate Lists"])
-		{
-			[collectionArrayController setSortDescriptors:
-				[NSArray arrayWithObject:[[NSSortDescriptor alloc] initWithKey:@"sortName" ascending:YES]]];
-		}
-		else
-		{
-			[collectionArrayController setSortDescriptors:
-				[NSArray arrayWithObject:[[NSSortDescriptor alloc] initWithKey:@"name" ascending:YES]]];
-		}
-
-		NSArray * selectedObjects = [collectionArrayController selectedObjects];
-
-		if ([selectedObjects count] > 0)
-		{
-			ListManagedObject * list = [selectedObjects objectAtIndex:0];
-
-			NSDictionary * sorts = [prefs dictionaryForKey:@"Table Sorting"];
-	
-			if (sorts != nil)
-			{
-				NSDictionary * desc = [sorts objectForKey:[[[list objectID] URIRepresentation] absoluteString]];
-
-				if (desc != nil)
-				{
-					BOOL ascend = NO;
-				
-					if ([[desc valueForKey:@"ascend"] isEqual:@"YES"])
-						ascend = YES;
-
-					NSSortDescriptor * sort = [[NSSortDescriptor alloc] initWithKey:[desc valueForKey:@"key"] ascending:ascend];
-
-					[booksTable setSortDescriptors:[NSArray arrayWithObject:sort]];
-				}
-			}
-			
-			if ([list isKindOfClass:[SmartList class]])
-			{
-				[toolbarDelegate setNewBookAction:nil];
-				[toolbarDelegate setEditSmartListAction:NSSelectorFromString(@"editSmartList:")];
-				[toolbarDelegate setRemoveBookAction:nil];
-				[toolbarDelegate setRemoveListAction:NSSelectorFromString(@"removeList:")];
-			}
-			else
-			{
-				[toolbarDelegate setNewBookAction:NSSelectorFromString(@"newBook:")];
-				[toolbarDelegate setEditSmartListAction:nil];
-				[toolbarDelegate setRemoveBookAction:NSSelectorFromString(@"removeBook:")];
-				[toolbarDelegate setRemoveListAction:NSSelectorFromString(@"removeList:")];
-			}
-		}
-		else
-		{
-			[toolbarDelegate setNewBookAction:nil];
-			[toolbarDelegate setEditSmartListAction:nil];
-			[toolbarDelegate setRemoveBookAction:nil];
-			[toolbarDelegate setRemoveListAction:nil];
-		}
-	}
-
-	/* Work Here */
-	
-/*	NSSize boxSize = [imageBox frame].size;
-	
-	if (boxSize.height > 10)
-		boxSize = NSMakeSize (boxSize.width, boxSize.width);
-*/
-	NSArray * books = [self getSelectedBooks];
-		
-	if ([books count] == 1)
-	{
-		BookManagedObject * book = (BookManagedObject *) [books objectAtIndex:0];
-			
-		NSData * coverData = [book getCoverImage];
-		
-		if (coverData != nil)
-			[toolbarDelegate setGetCoverAction:NSSelectorFromString (@"getCoverWindow:")];
-		else
-			[toolbarDelegate setGetCoverAction:nil];
-	}
-	
-	[coverWindow orderOut:self];
-	[toolbarDelegate setGetCoverLabel:NSLocalizedString (@"Show Cover", nil)];
-
-	[self refreshComboBoxes:nil];
-//	if (![[NSUserDefaults standardUserDefaults] boolForKey:@"Snappy"])
-}
 
 - (void) refreshComboBoxes: (NSArray *) books
 {
@@ -1087,148 +880,6 @@ typedef struct _monochromePixel
 		[toolbarDelegate setGetCoverLabel:NSLocalizedString (@"Show Cover", nil)];
 }
 
-- (IBAction)updateBooksTable:(id)sender;
-{
-	NSUserDefaults * prefs = [NSUserDefaults standardUserDefaults];
-	
-	NSArray * newColumns = [prefs arrayForKey:@"Display Fields"];
-
-	NSArray * oldColumns = [NSArray arrayWithArray:[listsTable tableColumns]];
-
-	if ([oldColumns count] == 0)
-	{
-		NSTableColumn * column = [[NSTableColumn alloc] initWithIdentifier:@"icon"];
-		[[column headerCell] setStringValue:@""];
-		[column setDataCell:[[NSImageCell alloc] init]];
-		[column bind:@"data" toObject:collectionArrayController withKeyPath:@"arrangedObjects.icon" options: nil];
-		[column setWidth:16.0];
-		[column setResizingMask:NSTableColumnNoResizing];
-		
-		[listsTable addTableColumn:column];
-
-		column = [[NSTableColumn alloc] initWithIdentifier:@"name"];
-		[[column headerCell] setStringValue:@"Lists"];
-		[column bind:@"value" toObject:collectionArrayController withKeyPath:@"arrangedObjects.name" options: nil];
-		[column setResizingMask:NSTableColumnAutoresizingMask];
-		[[column dataCell] setFont:[NSFont systemFontOfSize:11]];
-		[listsTable addTableColumn:column];
-		[column setWidth:([listsTable frame].size.width - 16)];
-		[collectionArrayController setSortDescriptors:
-			[NSArray arrayWithObject:[[NSSortDescriptor alloc] initWithKey:@"name" ascending:YES]]];
-	}
-
-	[collectionArrayController setSortDescriptors:
-		[NSArray arrayWithObject:[[NSSortDescriptor alloc] initWithKey:@"name" ascending:YES]]];
-
-	oldColumns = [NSArray arrayWithArray:[booksTable tableColumns]];
-	
-	int i = 0;
-	
-	for (i = 0; i < [oldColumns count]; i++)
-		[booksTable removeTableColumn:[oldColumns objectAtIndex:i]];
-
-	if ([newColumns count] == 0)
-	{
-		NSMutableDictionary * title = [NSMutableDictionary dictionary];
-		[title setValue:@"title" forKey:@"Key"];
-		[title setValue:NSLocalizedString (@"Title", nil) forKey:@"Title"];
-		[title setValue:[NSNumber numberWithInt:1] forKey:@"Enabled"];
-
-		newColumns = [NSArray arrayWithObject:title];
-	}
-	
-	NSString * dateFormat = [[NSUserDefaults standardUserDefaults] stringForKey:@"Custom Date Format"];
-
-	[NSDateFormatter setDefaultFormatterBehavior:NSDateFormatterBehavior10_4];
-
-	NSDateFormatter * formatter;
-				
-	if (dateFormat != nil)
-		formatter = [[NSDateFormatter alloc] initWithDateFormat:dateFormat allowNaturalLanguage:YES];
-	else
-	{
-		formatter = [[NSDateFormatter alloc] initWithDateFormat:@"%B %e, %Y" allowNaturalLanguage:YES];
-		[formatter setDateStyle:NSDateFormatterLongStyle];
-	}
-
-	[[datePublished cell] setFormatter:formatter];
-
-	for (i = 0; i < [newColumns count]; i++)
-	{
-		NSDictionary * dict = [newColumns objectAtIndex:i];
-
-		NSString * key = [dict objectForKey:@"Key"];
-		NSString * title = NSLocalizedString ([dict objectForKey:@"Title"], nil);
-		NSString * enabled = [[dict objectForKey:@"Enabled"] description];
-
-		if ([enabled isEqualToString:@"1"])
-		{
-			NSTableColumn * column = [[NSTableColumn alloc] initWithIdentifier:key];
-		
-			[[column headerCell] setStringValue:title];
-			[[column dataCell] setFont:[NSFont systemFontOfSize:11]];
-			
-			[column bind:@"value" toObject:bookArrayController withKeyPath:[@"arrangedObjects." stringByAppendingString:key] 
-			options: nil];
-			
-			if ([key isEqualToString:@"publishDate"] || 
-				[key isEqualToString:@"dateLent"] ||
-				[key isEqualToString:@"dateDue"] ||
-				[key isEqualToString:@"dateFinished"] ||
-				[key isEqualToString:@"dateAcquired"] ||
-				[key isEqualToString:@"dateStarted"] )
-			{
-				[[column dataCell] setFormatter:formatter];
-
-				NSSortDescriptor * sortDescriptor = [[NSSortDescriptor alloc] initWithKey:key ascending:YES];
-				
-				[column setSortDescriptorPrototype:sortDescriptor];
-			}
-			else
-			{
-				NSSortDescriptor * sortDescriptor = [[NSSortDescriptor alloc] initWithKey:key ascending:YES];
-				
-				[column setSortDescriptorPrototype:sortDescriptor];
-			}
-
-			[column setEditable:NO];
-			
-			[booksTable addTableColumn:column];
-		}
-	}
-
-	
-	NSString * customString = [prefs objectForKey:@"Custom List User Fields"];
-
-	if (customString != nil && ![customString isEqual:@""])
-	{
-		NSArray * fields = [customString componentsSeparatedByString:@"\n"];
-
-		for (i = 0; i < [fields count]; i++)
-		{
-			NSString * field = [fields objectAtIndex:i];
-
-			NSTableColumn * column = [[NSTableColumn alloc] initWithIdentifier:field];
-		
-			[[column headerCell] setStringValue:field];
-			[[column dataCell] setFont:[NSFont systemFontOfSize:11]];
-			
-			[column bind:@"value" toObject:bookArrayController 
-				withKeyPath:[@"arrangedObjects." stringByAppendingString:field] options: nil];
-			
-			NSSortDescriptor * sortDescriptor = [[NSSortDescriptor alloc] initWithKey:field ascending:YES];
-				
-			[column setSortDescriptorPrototype:sortDescriptor];
-
-			[column setEditable:NO];
-			
-			[booksTable addTableColumn:column];
-		}
-	}		
-	
-	[booksTable setDoubleAction:@selector(getInfoWindow:)];
-}
-
 - (IBAction) save: (id)sender
 {
     NSError *error = nil;
@@ -1248,14 +899,14 @@ typedef struct _monochromePixel
 
 	NSEntityDescription * desc = [[model entitiesByName] objectForKey:@"SmartList"];
 
-	SmartList * sc = [[SmartList alloc] initWithEntity:desc insertIntoManagedObjectContext:context];
+	SmartListManagedObject * sc = [[SmartListManagedObject alloc] initWithEntity:desc insertIntoManagedObjectContext:context];
 	[sc setValue:NSLocalizedString (@"New Smart List", nil) forKey:@"name"];
 	
 	[context lock];
 	[context insertObject:sc];
 	[context unlock];
 
-	[listsTable reloadData];
+	[tableViewDelegate reloadListsTable];
 
 	NSPredicate * newPredicate = [NSPredicate predicateWithFormat:@"title CONTAINS[c] \"Book\""];
 	NSString * name = @"New Smart List";
@@ -1267,9 +918,9 @@ typedef struct _monochromePixel
 	{
 		NSString * listName = [[lists objectAtIndex:i] valueForKey:@"name"];
 		
-		if ([[lists objectAtIndex:i] isMemberOfClass:[SmartList class]])
+		if ([[lists objectAtIndex:i] isMemberOfClass:[SmartListManagedObject class]])
 		{
-			SmartList * list = [lists objectAtIndex:i];
+			SmartListManagedObject * list = [lists objectAtIndex:i];
 			
 			if ([newPredicate isEqual:[list getPredicate]]  && [name isEqual:listName])
 				[collectionArrayController setSelectedObjects:[NSArray arrayWithObject:list]];
@@ -1298,7 +949,7 @@ typedef struct _monochromePixel
 	[collectionArrayController setSortDescriptors:
 		[NSArray arrayWithObject:[[NSSortDescriptor alloc] initWithKey:@"name" ascending:YES]]];
 
-	[listsTable reloadData];
+	[tableViewDelegate reloadListsTable];
 }
 
 - (IBAction) newBook:(id) sender
@@ -1313,7 +964,7 @@ typedef struct _monochromePixel
 	{
 		ListManagedObject * list = [objects objectAtIndex:0];
 		
-		if ([list isKindOfClass:[SmartList class]])
+		if ([list isKindOfClass:[SmartListManagedObject class]])
 		{
 
 		}
@@ -1334,7 +985,7 @@ typedef struct _monochromePixel
 			[bookArrayController addObject:object];
 			[context unlock];
 
-			[booksTable reloadData];
+			[tableViewDelegate reloadBooksTable];
 
 			if (![infoWindow isVisible])
 			{
@@ -1362,7 +1013,7 @@ typedef struct _monochromePixel
 	{
 		ListManagedObject * list = [objects objectAtIndex:0];
 		
-		if ([list isKindOfClass:[SmartList class]])
+		if ([list isKindOfClass:[SmartListManagedObject class]])
 		{
 
 		}
@@ -1391,18 +1042,18 @@ typedef struct _monochromePixel
 	{
 		NSObject * list = [lists objectAtIndex:i];
 		
-		if (![list isKindOfClass:[SmartList class]])
+		if (![list isKindOfClass:[SmartListManagedObject class]])
 			listCount = listCount + 1;
 	}
 
 	NSArray * objects = [collectionArrayController selectedObjects];
 	ListManagedObject * list = [objects objectAtIndex:0];
 
-	if (listCount > 1 || [list isKindOfClass:[SmartList class]])
+	if (listCount > 1 || [list isKindOfClass:[SmartListManagedObject class]])
 	{
 		if ([objects count] == 1)
 		{
-			if ([list isKindOfClass:[SmartList class]])
+			if ([list isKindOfClass:[SmartListManagedObject class]])
 				[collectionArrayController remove:self];
 			else
 			{
@@ -1439,9 +1090,9 @@ typedef struct _monochromePixel
 	{
 		ListManagedObject * list = [objects objectAtIndex:0];
 		
-		if ([list isKindOfClass:[SmartList class]])
+		if ([list isKindOfClass:[SmartListManagedObject class]])
 		{
-			[[smartListEditorWindow delegate] setPredicate:[((SmartList *)list) getPredicate]];
+			[[smartListEditorWindow delegate] setPredicate:[((SmartListManagedObject *) list) getPredicate]];
 
 			[[NSApplication sharedApplication] beginSheet:smartListEditorWindow modalForWindow:mainWindow
 					modalDelegate:self didEndSelector:nil contextInfo:NULL];
@@ -1459,11 +1110,11 @@ typedef struct _monochromePixel
 
 		[list willChangeValueForKey:@"items"];
 		
-		if ([list isKindOfClass:[SmartList class]])
+		if ([list isKindOfClass:[SmartListManagedObject class]])
 		{
 			NSPredicate * p = [[smartListEditorWindow delegate] getPredicate];
 			
-			[((SmartList *)list) setPredicate:p];
+			[((SmartListManagedObject *) list) setPredicate:p];
 		}
 		
 		[list didChangeValueForKey:@"items"];
@@ -1474,7 +1125,7 @@ typedef struct _monochromePixel
 		[collectionArrayController setSelectionIndexes:selection];
 	}
 
-	[booksTable reloadData];
+	[tableViewDelegate reloadBooksTable];
 	
 //	[[NSApplication sharedApplication] endModalSession:session];
 	[[NSApplication sharedApplication] endSheet:smartListEditorWindow];
@@ -1528,7 +1179,7 @@ typedef struct _monochromePixel
 	int i = 0;
 	for (i = 0; i < [fetchedItems count]; i++)
 	{
-		if (![[fetchedItems objectAtIndex:i] isKindOfClass:[SmartList class]])
+		if (![[fetchedItems objectAtIndex:i] isKindOfClass:[SmartListManagedObject class]])
 			[results addObject:[fetchedItems objectAtIndex:i]];
 	}
 	
@@ -1551,12 +1202,12 @@ typedef struct _monochromePixel
 
 - (void) selectListsTable: (id) sender
 {
-	[mainWindow makeFirstResponder:listsTable];
+	[mainWindow makeFirstResponder:[tableViewDelegate getListsTable]];
 }
 
 - (void) selectBooksTable: (id) sender
 {
-	[mainWindow makeFirstResponder:booksTable];
+	[mainWindow makeFirstResponder:[tableViewDelegate getBooksTable]];
 }
 
 - (BOOL)application:(NSApplication *)sender delegateHandlesKey:(NSString *)key
@@ -1609,7 +1260,7 @@ typedef struct _monochromePixel
 	
 	[context unlock];
 
-	[listsTable reloadData];
+	[tableViewDelegate reloadListsTable];
 
 	return object;
 }
@@ -1622,7 +1273,7 @@ typedef struct _monochromePixel
 	NSEntityDescription * desc = [[model entitiesByName] objectForKey:@"SmartList"];
 
 	[context lock];
-	SmartList * object = [[SmartList alloc] initWithEntity:desc insertIntoManagedObjectContext:context];
+	SmartListManagedObject * object = [[SmartListManagedObject alloc] initWithEntity:desc insertIntoManagedObjectContext:context];
 
 	if (listName != nil)
 		[object setValue:listName forKey:@"name"];	
@@ -1633,7 +1284,7 @@ typedef struct _monochromePixel
 	
 	[context unlock];
 
-	[listsTable reloadData];
+	[tableViewDelegate reloadListsTable];
 
 	return object;
 }
@@ -1838,7 +1489,7 @@ typedef struct _monochromePixel
 
 - (IBAction) isight: (id)sender
 {
-	MyBarcodeScanner *iSight = [MyBarcodeScanner sharedInstance];
+	MyBarcodeScanner * iSight = [MyBarcodeScanner sharedInstance];
 	[iSight setStaysOpen:NO];
 	[iSight setDelegate:self];
 	
@@ -1848,7 +1499,7 @@ typedef struct _monochromePixel
 }
 
 
-- (void)gotBarcode:(NSString *)barcode 
+- (void) gotBarcode:(NSString *)barcode 
 {
 	if (([barcode length] == 13 || [barcode length] == 18) && [barcode rangeOfString:@"?"].location == NSNotFound)
 	{
@@ -1874,7 +1525,7 @@ typedef struct _monochromePixel
 	{
 		ListManagedObject * list = [objects objectAtIndex:0];
 		
-		if (![list isKindOfClass:[SmartList class]])
+		if (![list isKindOfClass:[SmartListManagedObject class]])
 		{
 			NSArray * books = [bookArrayController selectedObjects];
 
@@ -1937,47 +1588,11 @@ typedef struct _monochromePixel
 				[context unlock];
 			}
 			
-			[booksTable reloadData];
+			[tableViewDelegate reloadBooksTable];
 			
 			[self refreshComboBoxes:nil];
 		}
 	}
-}
-
-- (void) tableView: (NSTableView *) tableView didClickTableColumn: (NSTableColumn *) tableColumn
-{
-	NSUserDefaults * prefs = [NSUserDefaults standardUserDefaults];
-	
-	NSDictionary * sorts = [prefs dictionaryForKey:@"Table Sorting"];
-	
-	if (sorts == nil)
-		sorts = [NSDictionary dictionary];
-	
-	NSMutableDictionary * newSorts = [NSMutableDictionary dictionaryWithDictionary:sorts];
-	
-	NSArray * descs = [[tableColumn tableView] sortDescriptors];
-	
-	int selected = [collectionArrayController selectionIndex];
-	
-	ListManagedObject * currentList = [[collectionArrayController arrangedObjects] objectAtIndex:selected];
-	
-	if (currentList != nil)
-	{
-		NSSortDescriptor * sort = [descs objectAtIndex:0];
-		
-		NSMutableDictionary * desc = [NSMutableDictionary dictionary];
-		
-		if ([sort ascending])
-			[desc setValue:@"YES" forKey:@"ascend"];
-		else
-			[desc setValue:@"NO" forKey:@"ascend"];
-
-		[desc setValue:[sort key] forKey:@"key"];
-
-		[newSorts setObject:desc forKey:[[[currentList objectID] URIRepresentation] absoluteString]];
-	}
-	
-	[prefs setValue:newSorts forKey:@"Table Sorting"];
 }
 
 - (IBAction) donate: (id)sender
@@ -2005,5 +1620,10 @@ typedef struct _monochromePixel
 		
 	return NO;
 } 
+
+- (void) orderCoverWindowOut
+{
+	[coverWindow orderOut:self];
+}
 
 @end

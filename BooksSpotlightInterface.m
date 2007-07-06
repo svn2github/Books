@@ -7,7 +7,7 @@
 //
 
 #import "BooksSpotlightInterface.h"
-#import "SmartList.h"
+#import "SmartListManagedObject.h"
 #import "BookManagedObject.h"
 #import "BooksAppDelegate.h"
 
@@ -62,7 +62,7 @@
 	{
 		ListManagedObject * list = [lists objectAtIndex:i];
 		
-		if (![list isKindOfClass:[SmartList class]])
+		if (![list isKindOfClass:[SmartListManagedObject class]])
 		{
 			NSArray * books = [list getBooks];
 	

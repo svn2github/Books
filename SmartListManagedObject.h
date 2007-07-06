@@ -26,7 +26,7 @@
 #import <Cocoa/Cocoa.h>
 #import "ListManagedObject.h"
 
-@interface SmartList : ListManagedObject
+@interface SmartListManagedObject : ListManagedObject
 {
 	NSPredicate * predicate;
 

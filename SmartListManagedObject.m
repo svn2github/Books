@@ -23,10 +23,10 @@
 */
 
 
-#import "SmartList.h"
+#import "SmartListManagedObject.h"
 #import "SmartListNameString.h"
 
-@implementation SmartList
+@implementation SmartListManagedObject
 
 - (NSPredicate *) getPredicate
 {

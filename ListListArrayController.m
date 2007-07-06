@@ -24,7 +24,7 @@
 
 
 #import "ListListArrayController.h"
-#import "SmartList.h""
+#import "SmartListManagedObject.h""
 #import "BooksAppDelegate.h"
 
 @implementation ListListArrayController
@@ -46,7 +46,7 @@
 
 	ListManagedObject * list = [[self arrangedObjects] objectAtIndex:row];
 	
-	if ([list isKindOfClass:[SmartList class]])
+	if ([list isKindOfClass:[SmartListManagedObject class]])
 		return NSDragOperationNone;
 		
     [tv setDropRow:row dropOperation:NSTableViewDropOn];

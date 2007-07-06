@@ -93,15 +93,18 @@
 		38A33A48090845FA00016FF0 /* ListManagedObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 38A33A47090845FA00016FF0 /* ListManagedObject.m */; };
 		38A54BEA09003CA2005018C3 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 38A54BE909003CA2005018C3 /* QuartzCore.framework */; };
 		38AC633C0BEA7CF3004F8DB4 /* dupe.png in Resources */ = {isa = PBXBuildFile; fileRef = 38AC633B0BEA7CF3004F8DB4 /* dupe.png */; };
-		38B0F7D808E9832B00A04B4D /* FieldsDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 38B0F7D708E9832B00A04B4D /* FieldsDataSource.m */; };
 		38B16D730BA1EB9200216A44 /* CoverImageView.qtz in Resources */ = {isa = PBXBuildFile; fileRef = 38B16D720BA1EB9200216A44 /* CoverImageView.qtz */; };
 		38B16DAB0BA1FECE00216A44 /* CoverWindowDelegate.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 38B16DA90BA1FECE00216A44 /* CoverWindowDelegate.h */; };
 		38B16DAC0BA1FECE00216A44 /* CoverWindowDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 38B16DAA0BA1FECE00216A44 /* CoverWindowDelegate.m */; };
 		38B62EB20987D2D200A4A8AD /* Delicious Library Importer.app in Resources */ = {isa = PBXBuildFile; fileRef = 38B62EB10987D2D200A4A8AD /* Delicious Library Importer.app */; };
 		38BD42830BA069FA00F245D8 /* tiger.png in Resources */ = {isa = PBXBuildFile; fileRef = 38BD42820BA069FA00F245D8 /* tiger.png */; };
 		38BD42C10BA06CC800F245D8 /* corner.png in Resources */ = {isa = PBXBuildFile; fileRef = 38BD42C00BA06CC800F245D8 /* corner.png */; };
+		38C0D5020C3E152800DC777B /* BooksTableViewDelegate.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 38C0D5000C3E152800DC777B /* BooksTableViewDelegate.h */; };
+		38C0D5030C3E152800DC777B /* BooksTableViewDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 38C0D5010C3E152800DC777B /* BooksTableViewDelegate.m */; };
+		38C0D62C0C3E1DF600DC777B /* FieldsTableViewDelegate.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 38C0D62A0C3E1DF600DC777B /* FieldsTableViewDelegate.h */; };
+		38C0D62D0C3E1DF600DC777B /* FieldsTableViewDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 38C0D62B0C3E1DF600DC777B /* FieldsTableViewDelegate.m */; };
 		38CA6A11090C822E007CE32A /* QuickfillPluginInterface.m in Sources */ = {isa = PBXBuildFile; fileRef = 38CA6A0F090C822E007CE32A /* QuickfillPluginInterface.m */; };
-		38CB899D08EF5761007981E6 /* SmartList.m in Sources */ = {isa = PBXBuildFile; fileRef = 38CB899C08EF5761007981E6 /* SmartList.m */; };
+		38CB899D08EF5761007981E6 /* SmartListManagedObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 38CB899C08EF5761007981E6 /* SmartListManagedObject.m */; };
 		38CBAC270959EADC00B418FB /* Library of Congress.plugin in Resources */ = {isa = PBXBuildFile; fileRef = 38CBABF10959EADC00B418FB /* Library of Congress.plugin */; };
 		38D0C90309057D8300672AA7 /* BookManagedObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 38D0C90209057D8300672AA7 /* BookManagedObject.m */; };
 		38DE5E640BA1D3E100B4FEC0 /* Quartz.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 38DE5E630BA1D3E100B4FEC0 /* Quartz.framework */; };
@@ -150,6 +153,8 @@
 				383E541B0C3DD1C0000F06BF /* BooksToolbarDelegate.h in CopyFiles */,
 				383E55100C3DDAFC000F06BF /* BooksSpotlightInterface.h in CopyFiles */,
 				383E55F70C3DE4AD000F06BF /* BooksTokenViewDelegate.h in CopyFiles */,
+				38C0D5020C3E152800DC777B /* BooksTableViewDelegate.h in CopyFiles */,
+				38C0D62C0C3E1DF600DC777B /* FieldsTableViewDelegate.h in CopyFiles */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -300,14 +305,16 @@
 		38A33A47090845FA00016FF0 /* ListManagedObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ListManagedObject.m; sourceTree = "<group>"; };
 		38A54BE909003CA2005018C3 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = /System/Library/Frameworks/QuartzCore.framework; sourceTree = "<absolute>"; };
 		38AC633B0BEA7CF3004F8DB4 /* dupe.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = dupe.png; sourceTree = "<group>"; };
-		38B0F7D608E9832B00A04B4D /* FieldsDataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FieldsDataSource.h; sourceTree = "<group>"; };
-		38B0F7D708E9832B00A04B4D /* FieldsDataSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FieldsDataSource.m; sourceTree = "<group>"; };
 		38B16D720BA1EB9200216A44 /* CoverImageView.qtz */ = {isa = PBXFileReference; lastKnownFileType = file; path = CoverImageView.qtz; sourceTree = "<group>"; };
 		38B16DA90BA1FECE00216A44 /* CoverWindowDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CoverWindowDelegate.h; sourceTree = "<group>"; };
 		38B16DAA0BA1FECE00216A44 /* CoverWindowDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CoverWindowDelegate.m; sourceTree = "<group>"; };
 		38B62EB10987D2D200A4A8AD /* Delicious Library Importer.app */ = {isa = PBXFileReference; lastKnownFileType = wrapper.application; path = "Delicious Library Importer.app"; sourceTree = "<group>"; };
 		38BD42820BA069FA00F245D8 /* tiger.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = tiger.png; sourceTree = "<group>"; };
 		38BD42C00BA06CC800F245D8 /* corner.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = corner.png; sourceTree = "<group>"; };
+		38C0D5000C3E152800DC777B /* BooksTableViewDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BooksTableViewDelegate.h; sourceTree = "<group>"; };
+		38C0D5010C3E152800DC777B /* BooksTableViewDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BooksTableViewDelegate.m; sourceTree = "<group>"; };
+		38C0D62A0C3E1DF600DC777B /* FieldsTableViewDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FieldsTableViewDelegate.h; sourceTree = "<group>"; };
+		38C0D62B0C3E1DF600DC777B /* FieldsTableViewDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FieldsTableViewDelegate.m; sourceTree = "<group>"; };
 		38C4B2F40BC44DB80027226E /* Estonian */ = {isa = PBXFileReference; lastKnownFileType = wrapper.nib; name = Estonian; path = Estonian.lproj/MainMenu.nib; sourceTree = "<group>"; };
 		38C4B2F80BC44DD00027226E /* Estonian */ = {isa = PBXFileReference; lastKnownFileType = text.html; name = Estonian; path = Estonian.lproj/empty.html; sourceTree = "<group>"; };
 		38C4B2FB0BC44DDA0027226E /* Estonian */ = {isa = PBXFileReference; lastKnownFileType = text.html; name = Estonian; path = Estonian.lproj/multiple.html; sourceTree = "<group>"; };
@@ -317,8 +324,8 @@
 		38C4B3070BC44E050027226E /* Estonian */ = {isa = PBXFileReference; lastKnownFileType = text.rtf; name = Estonian; path = Estonian.lproj/Credits.rtf; sourceTree = "<group>"; };
 		38CA6A0E090C822E007CE32A /* QuickfillPluginInterface.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QuickfillPluginInterface.h; sourceTree = "<group>"; };
 		38CA6A0F090C822E007CE32A /* QuickfillPluginInterface.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QuickfillPluginInterface.m; sourceTree = "<group>"; };
-		38CB899B08EF5761007981E6 /* SmartList.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SmartList.h; sourceTree = "<group>"; };
-		38CB899C08EF5761007981E6 /* SmartList.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SmartList.m; sourceTree = "<group>"; };
+		38CB899B08EF5761007981E6 /* SmartListManagedObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SmartListManagedObject.h; sourceTree = "<group>"; };
+		38CB899C08EF5761007981E6 /* SmartListManagedObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SmartListManagedObject.m; sourceTree = "<group>"; };
 		38CBABF10959EADC00B418FB /* Library of Congress.plugin */ = {isa = PBXFileReference; lastKnownFileType = folder; path = "Library of Congress.plugin"; sourceTree = "<group>"; };
 		38D0C90109057D8300672AA7 /* BookManagedObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BookManagedObject.h; sourceTree = "<group>"; };
 		38D0C90209057D8300672AA7 /* BookManagedObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BookManagedObject.m; sourceTree = "<group>"; };
@@ -409,15 +416,10 @@
 				383E54170C3DD174000F06BF /* Refactored */,
 				3822F3BC0C34990D00475D9F /* Third Party Integration */,
 				384FDCDB090B3D1900EB0E2A /* AppleScript */,
-				38A339AF09080C5700016FF0 /* CoreData Objects */,
 				3825FE4B08FA9BC1007572AA /* Plugin Interfaces */,
-				38F5751D08F7420F00119232 /* Array Controllers */,
 				38030AC408F4A02600B2AC82 /* Smart List Editor */,
-				3823A0ED08ED70BD0003F104 /* Table Data Sources */,
 				77C8280B06725ACE000B614F /* BooksAppDelegate.h */,
 				77C8280C06725ACE000B614F /* BooksAppDelegate.m */,
-				3892A6A909013AF700FF72C8 /* MainWindowTableView.h */,
-				3892A6AA09013AF700FF72C8 /* MainWindowTableView.m */,
 			);
 			name = Classes;
 			sourceTree = "<group>";
@@ -546,15 +548,6 @@
 			name = Notifications;
 			sourceTree = "<group>";
 		};
-		3823A0ED08ED70BD0003F104 /* Table Data Sources */ = {
-			isa = PBXGroup;
-			children = (
-				38B0F7D608E9832B00A04B4D /* FieldsDataSource.h */,
-				38B0F7D708E9832B00A04B4D /* FieldsDataSource.m */,
-			);
-			name = "Table Data Sources";
-			sourceTree = "<group>";
-		};
 		3825FE4B08FA9BC1007572AA /* Plugin Interfaces */ = {
 			isa = PBXGroup;
 			children = (
@@ -579,6 +572,7 @@
 		383E54170C3DD174000F06BF /* Refactored */ = {
 			isa = PBXGroup;
 			children = (
+				38C0D6D50C3E240900DC777B /* Data Model */,
 				383E541D0C3DD1C7000F06BF /* User Interface Delegate */,
 				383E550E0C3DDAFC000F06BF /* BooksSpotlightInterface.h */,
 				383E550F0C3DDAFC000F06BF /* BooksSpotlightInterface.m */,
@@ -607,6 +601,7 @@
 		383E55030C3DDA3B000F06BF /* Windows */ = {
 			isa = PBXGroup;
 			children = (
+				38C0D6290C3E1DE300DC777B /* Preferences */,
 				383E55F30C3DE470000F06BF /* Info Window */,
 				383E55070C3DDA89000F06BF /* Main Window */,
 				383E55060C3DDA81000F06BF /* Cover Window */,
@@ -628,6 +623,10 @@
 			children = (
 				38666EA208E516B300071C56 /* HtmlPageBuilder.h */,
 				38666EA308E516B300071C56 /* HtmlPageBuilder.m */,
+				38C0D5000C3E152800DC777B /* BooksTableViewDelegate.h */,
+				38C0D5010C3E152800DC777B /* BooksTableViewDelegate.m */,
+				3892A6A909013AF700FF72C8 /* MainWindowTableView.h */,
+				3892A6AA09013AF700FF72C8 /* MainWindowTableView.m */,
 			);
 			name = "Main Window";
 			sourceTree = "<group>";
@@ -747,31 +746,6 @@
 			name = "Display Plugins";
 			sourceTree = "<group>";
 		};
-		38A339AF09080C5700016FF0 /* CoreData Objects */ = {
-			isa = PBXGroup;
-			children = (
-				383A7F5F098B0A7700C96423 /* SmartListNameString.h */,
-				383A7F60098B0A7700C96423 /* SmartListNameString.m */,
-				383A7F50098B094F00C96423 /* ListNameString.h */,
-				383A7F51098B094F00C96423 /* ListNameString.m */,
-				388E122809F83E82000A3FF5 /* CheckOutManagedObject.h */,
-				388E122909F83E82000A3FF5 /* CheckOutManagedObject.m */,
-				38364417097DC15D00E73AF4 /* BookTitleString.h */,
-				38364418097DC15D00E73AF4 /* BookTitleString.m */,
-				38F3318C09805B0400155EBA /* BookAuthorString.h */,
-				38F3318D09805B0400155EBA /* BookAuthorString.m */,
-				38A33A46090845FA00016FF0 /* ListManagedObject.h */,
-				38A33A47090845FA00016FF0 /* ListManagedObject.m */,
-				38CB899B08EF5761007981E6 /* SmartList.h */,
-				38CB899C08EF5761007981E6 /* SmartList.m */,
-				38D0C90109057D8300672AA7 /* BookManagedObject.h */,
-				38D0C90209057D8300672AA7 /* BookManagedObject.m */,
-				3836515809F5AA4000BD9A77 /* CopyManagedObject.h */,
-				3836515909F5AA4000BD9A77 /* CopyManagedObject.m */,
-			);
-			name = "CoreData Objects";
-			sourceTree = "<group>";
-		};
 		38B16D710BA1EB7400216A44 /* Quartz Composer Files */ = {
 			isa = PBXGroup;
 			children = (
@@ -787,6 +761,70 @@
 				38BD42C00BA06CC800F245D8 /* corner.png */,
 			);
 			name = UI;
+			sourceTree = "<group>";
+		};
+		38C0D6290C3E1DE300DC777B /* Preferences */ = {
+			isa = PBXGroup;
+			children = (
+				38C0D62A0C3E1DF600DC777B /* FieldsTableViewDelegate.h */,
+				38C0D62B0C3E1DF600DC777B /* FieldsTableViewDelegate.m */,
+			);
+			name = Preferences;
+			sourceTree = "<group>";
+		};
+		38C0D6D50C3E240900DC777B /* Data Model */ = {
+			isa = PBXGroup;
+			children = (
+				38C0D6D90C3E244D00DC777B /* Core Data Objects */,
+				38C0D6D60C3E240F00DC777B /* Array Controllers */,
+			);
+			name = "Data Model";
+			sourceTree = "<group>";
+		};
+		38C0D6D60C3E240F00DC777B /* Array Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				38F5751908F7420400119232 /* BookListArrayController.h */,
+				38F5751A08F7420400119232 /* BookListArrayController.m */,
+				38F5752F08F745EB00119232 /* ListListArrayController.h */,
+				38F5753008F745EB00119232 /* ListListArrayController.m */,
+				383651A309F5CED400BD9A77 /* PeopleArrayController.h */,
+				383651A409F5CED400BD9A77 /* PeopleArrayController.m */,
+			);
+			name = "Array Controllers";
+			sourceTree = "<group>";
+		};
+		38C0D6D90C3E244D00DC777B /* Core Data Objects */ = {
+			isa = PBXGroup;
+			children = (
+				38D0C90109057D8300672AA7 /* BookManagedObject.h */,
+				38D0C90209057D8300672AA7 /* BookManagedObject.m */,
+				388E122809F83E82000A3FF5 /* CheckOutManagedObject.h */,
+				388E122909F83E82000A3FF5 /* CheckOutManagedObject.m */,
+				3836515809F5AA4000BD9A77 /* CopyManagedObject.h */,
+				3836515909F5AA4000BD9A77 /* CopyManagedObject.m */,
+				38A33A46090845FA00016FF0 /* ListManagedObject.h */,
+				38A33A47090845FA00016FF0 /* ListManagedObject.m */,
+				38CB899B08EF5761007981E6 /* SmartListManagedObject.h */,
+				38CB899C08EF5761007981E6 /* SmartListManagedObject.m */,
+				38C0D6DA0C3E247100DC777B /* Utilities */,
+			);
+			name = "Core Data Objects";
+			sourceTree = "<group>";
+		};
+		38C0D6DA0C3E247100DC777B /* Utilities */ = {
+			isa = PBXGroup;
+			children = (
+				38F3318C09805B0400155EBA /* BookAuthorString.h */,
+				38F3318D09805B0400155EBA /* BookAuthorString.m */,
+				38364417097DC15D00E73AF4 /* BookTitleString.h */,
+				38364418097DC15D00E73AF4 /* BookTitleString.m */,
+				383A7F50098B094F00C96423 /* ListNameString.h */,
+				383A7F51098B094F00C96423 /* ListNameString.m */,
+				383A7F5F098B0A7700C96423 /* SmartListNameString.h */,
+				383A7F60098B0A7700C96423 /* SmartListNameString.m */,
+			);
+			name = Utilities;
 			sourceTree = "<group>";
 		};
 		38D84AC6095777A2002E39DB /* Quickfill Plugins */ = {
@@ -830,19 +868,6 @@
 				3892A5F10900D4D700FF72C8 /* Import Plugins */,
 			);
 			name = Plugins;
-			sourceTree = "<group>";
-		};
-		38F5751D08F7420F00119232 /* Array Controllers */ = {
-			isa = PBXGroup;
-			children = (
-				38F5751908F7420400119232 /* BookListArrayController.h */,
-				38F5751A08F7420400119232 /* BookListArrayController.m */,
-				38F5752F08F745EB00119232 /* ListListArrayController.h */,
-				38F5753008F745EB00119232 /* ListListArrayController.m */,
-				383651A309F5CED400BD9A77 /* PeopleArrayController.h */,
-				383651A409F5CED400BD9A77 /* PeopleArrayController.m */,
-			);
-			name = "Array Controllers";
 			sourceTree = "<group>";
 		};
 		7756732906782D8800D1FEB8 /* Models */ = {
@@ -991,8 +1016,7 @@
 				38FD216B0896E28300C5AD4F /* ExportMenuDelegate.m in Sources */,
 				38FD21700896E2EC00C5AD4F /* ExportPluginInterface.m in Sources */,
 				38666EA408E516B300071C56 /* HtmlPageBuilder.m in Sources */,
-				38B0F7D808E9832B00A04B4D /* FieldsDataSource.m in Sources */,
-				38CB899D08EF5761007981E6 /* SmartList.m in Sources */,
+				38CB899D08EF5761007981E6 /* SmartListManagedObject.m in Sources */,
 				38030ACE08F4A0BD00B2AC82 /* SmartListRuleView.m in Sources */,
 				38030AD708F4A37A00B2AC82 /* SmartListWindowDelegate.m in Sources */,
 				38F5751B08F7420400119232 /* BookListArrayController.m in Sources */,
@@ -1021,6 +1045,8 @@
 				383E541C0C3DD1C0000F06BF /* BooksToolbarDelegate.m in Sources */,
 				383E55110C3DDAFC000F06BF /* BooksSpotlightInterface.m in Sources */,
 				383E55F80C3DE4AD000F06BF /* BooksTokenViewDelegate.m in Sources */,
+				38C0D5030C3E152800DC777B /* BooksTableViewDelegate.m in Sources */,
+				38C0D62D0C3E1DF600DC777B /* FieldsTableViewDelegate.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

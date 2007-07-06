@@ -35,12 +35,14 @@
 #import "BooksToolbarDelegate.h"
 #import "BooksSpotlightInterface.h"
 #import "BooksTokenViewDelegate.h"
+#import "BooksTableViewDelegate.h"
 
 @interface BooksAppDelegate : NSObject 
 {
     IBOutlet BooksToolbarDelegate * toolbarDelegate;
     IBOutlet BooksSpotlightInterface * spotlightInterface;
     IBOutlet BooksTokenViewDelegate * tokenDelegate;
+	IBOutlet BooksTableViewDelegate * tableViewDelegate;
 
     IBOutlet NSWindow * mainWindow;
     IBOutlet NSWindow * infoWindow;
@@ -49,18 +51,11 @@
     IBOutlet NSWindow * smartListEditorWindow;
 	
 	IBOutlet NSArrayController * collectionArrayController;
-
 	IBOutlet NSArrayController * bookArrayController;
 	IBOutlet NSObjectController * selectedBook;
 
-	IBOutlet NSTableView * booksTable;
-	IBOutlet NSTableView * listsTable;
-	
 	IBOutlet WebView * detailsPane;
 
-	IBOutlet NSTableView * listFieldsTable;
-	IBOutlet NSTableView * bookFieldsTable;
-	IBOutlet NSTableColumn * enabledColumn;
 	IBOutlet NSSplitView * splitView;
 	IBOutlet NSSplitView * leftView;
 	IBOutlet NSSplitView * rightView;
@@ -80,13 +75,6 @@
 	
 	NSModalSession session;
 	
-	NSString * newTitle;
-	
-	/* IBOutlet NSComboBox * genreCombo;
-	IBOutlet NSComboBox * authorsCombo;
-	IBOutlet NSComboBox * editorsCombo;
-	IBOutlet NSComboBox * illustratorsCombo;
-	IBOutlet NSComboBox * translatorsCombo; */
 	IBOutlet NSComboBox * publisherCombo;
 	IBOutlet NSComboBox * userFieldCombo;
 	IBOutlet NSTextField * datePublished;
@@ -111,9 +99,6 @@
 	
 	IBOutlet PluginManager * pluginManager;
 
-	IBOutlet NSWindow * iSightWindow;
-	IBOutlet QCView * iSightView;
-
 	IBOutlet NSTextView * summary;
 	
 	NSString * openFilename;
@@ -137,7 +122,6 @@
 - (void)awakeFromNib;
 
 - (void) updateMainPane;
-- (void)tableViewSelectionDidChange:(NSNotification *)aNotification;
 
 - (NSArray *) getQuickfillPlugins;
 - (void) setQuickfillPlugins: (NSArray *) list;
@@ -153,8 +137,6 @@
 - (void) initExportPlugins;
 
 - (IBAction)quickfill:(id)sender;
-
-- (IBAction)updateBooksTable:(id)sender;
 
 - (IBAction) newBook:(id) sender;
 
@@ -205,5 +187,6 @@
 - (IBAction) duplicateRecords:(id) sender;
 
 - (IBAction) donate: (id)sender;
+- (void) orderCoverWindowOut;
 
 @end
