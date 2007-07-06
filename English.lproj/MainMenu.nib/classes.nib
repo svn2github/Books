@@ -12,7 +12,6 @@
                 browseFile = id; 
                 cancelQuickfill = id; 
                 cancelSmartList = id; 
-                clearSpotlightIndex = id; 
                 donate = id; 
                 duplicateRecords = id; 
                 editSmartList = id; 
@@ -34,15 +33,12 @@
                 selectListsTable = id; 
                 trashFiles = id; 
                 updateBooksTable = id; 
-                updateSpotlightIndex = id; 
                 uploadFile = id; 
                 viewOnline = id; 
             }; 
             CLASS = BooksAppDelegate; 
             LANGUAGE = ObjC; 
             OUTLETS = {
-                authorTokens = NSTokenField; 
-                authorsCombo = NSComboBox; 
                 bookArrayController = NSArrayController; 
                 bookFieldsTable = NSTableView; 
                 booksTable = NSTableView; 
@@ -50,24 +46,17 @@
                 coverWindow = NSWindow; 
                 datePublished = NSTextField; 
                 detailsPane = WebView; 
-                editorTokens = NSTokenField; 
-                editorsCombo = NSComboBox; 
                 enabledColumn = NSTableColumn; 
                 fileArrayController = NSArrayController; 
                 fileDescription = NSTextField; 
                 fileIcon = NSImageView; 
                 fileLocation = NSTextField; 
                 fileTitle = NSTextField; 
-                genreCombo = NSComboBox; 
-                genreTokens = NSTokenField; 
                 iSightView = QCView; 
                 iSightWindow = NSWindow; 
-                illustratorTokens = NSTokenField; 
-                illustratorsCombo = NSComboBox; 
                 imageBox = NSBox; 
                 imageView = NSImageView; 
                 infoWindow = NSWindow; 
-                keywordTokens = NSTokenField; 
                 leftView = NSSplitView; 
                 listFieldsTable = NSTableView; 
                 listsTable = NSTableView; 
@@ -82,15 +71,49 @@
                 quickfillResultsWindow = QuickfillSearchWindow; 
                 quickfillWindow = NSWindow; 
                 rightView = NSSplitView; 
-                searchField = NSView; 
-                searchTextField = NSSearchField; 
                 selectedBook = NSObjectController; 
                 smartListEditorWindow = NSWindow; 
                 splitView = NSSplitView; 
+                spotlightInterface = BooksSpotlightInterface; 
                 summary = NSTextView; 
-                translatorTokens = NSTokenField; 
-                translatorsCombo = NSComboBox; 
+                tokenDelegate = BooksTokenViewDelegate; 
+                toolbarDelegate = BooksToolbarDelegate; 
                 userFieldCombo = NSComboBox; 
+            }; 
+            SUPERCLASS = NSObject; 
+        }, 
+        {
+            ACTIONS = {clearSpotlightIndex = id; updateSpotlightIndex = id; }; 
+            CLASS = BooksSpotlightInterface; 
+            LANGUAGE = ObjC; 
+            OUTLETS = {
+                bookArrayController = NSArrayController; 
+                booksAppDelegate = BooksAppDelegate; 
+                collectionArrayController = NSArrayController; 
+            }; 
+            SUPERCLASS = NSObject; 
+        }, 
+        {
+            CLASS = BooksTokenViewDelegate; 
+            LANGUAGE = ObjC; 
+            OUTLETS = {
+                authorTokens = NSTokenField; 
+                booksAppDelegate = NSObject; 
+                editorTokens = NSTokenField; 
+                genreTokens = NSTokenField; 
+                illustratorTokens = NSTokenField; 
+                keywordTokens = NSTokenField; 
+                translatorTokens = NSTokenField; 
+            }; 
+            SUPERCLASS = NSObject; 
+        }, 
+        {
+            CLASS = BooksToolbarDelegate; 
+            LANGUAGE = ObjC; 
+            OUTLETS = {
+                booksAppDelegate = BooksAppDelegate; 
+                searchField = NSView; 
+                searchTextField = NSSearchField; 
             }; 
             SUPERCLASS = NSObject; 
         }, 

@@ -1,5 +1,5 @@
 /*
-   Copyright (c) 2006 Chris J. Karr
+   Copyright (c) 2007 Chris J. Karr
 
    Permission is hereby granted, free of charge, to any person 
    obtaining a copy of this software and associated documentation 
@@ -22,17 +22,36 @@
    SOFTWARE.
 */
 
-
 #import <Cocoa/Cocoa.h>
 
-
-@interface BooksToolbarItem : NSToolbarItem 
+@interface BooksToolbarDelegate : NSObject 
 {
-	BOOL enableBool;
-	SEL itemAction;
+	IBOutlet NSView * searchField;
+	IBOutlet NSSearchField * searchTextField;
+
+	NSToolbarItem * getInfo;
+	NSToolbarItem * getCover;
+	NSToolbarItem * editSmartList;
+	NSToolbarItem * newBook;
+	NSToolbarItem * removeBook;
+	NSToolbarItem * removeList;
+
+	IBOutlet NSObject * booksAppDelegate;
 }
 
-- (void) setEnabled:(BOOL) enable;
-- (BOOL) isEnabled;
+- (NSToolbarItem *)toolbar:(NSToolbar *) toolbar itemForItemIdentifier:(NSString *) itemIdentifier willBeInsertedIntoToolbar:(BOOL) flag;
+- (NSArray *)toolbarAllowedItemIdentifiers:(NSToolbar *) toolbar;
+- (NSArray *)toolbarDefaultItemIdentifiers:(NSToolbar *) toolbar;
+
+- (void) setGetCoverLabel:(NSString *) label;
+- (void) setGetInfoLabel:(NSString *) label;
+
+- (void) setNewBookAction:(SEL) action;
+- (void) setRemoveBookAction:(SEL) action;
+- (void) setEditSmartListAction:(SEL) action;
+- (void) setRemoveListAction:(SEL) action;
+- (void) setGetCoverAction:(SEL) action;
+
+- (void) cancelSearch;
 
 @end

@@ -16,10 +16,11 @@
 	target = window;
 }
 
-- (BOOL)windowShouldClose:(id)sender
+- (BOOL)windowShouldClose:(id) sender
 {
 	[((BooksAppDelegate *) [[NSApplication sharedApplication] delegate]) getCoverWindow:sender];
 	
 	return NO;
 }
+
 @end

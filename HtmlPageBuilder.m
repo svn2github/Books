@@ -252,7 +252,7 @@
 	return html;
 }
 
-- (NSString *) buildPageForArray: (NSArray *) array
+- (NSString *) buildPageForArray:(NSArray *) array
 {
 	NSBundle * bundle = [NSBundle mainBundle];
 	NSString * path = [bundle pathForResource:@"multiple" ofType:@"html"];

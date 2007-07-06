@@ -33,8 +33,6 @@
 }
 
 - (NSString *) getCssPath;
-
-// (String) getCssPath ()
 - (NSString *) buildPageForObject: (BookManagedObject *) object;
 - (NSString *) buildEmptyPage;
 - (NSString *) buildPageForArray: (NSArray *) array;

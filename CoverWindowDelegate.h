@@ -15,5 +15,5 @@
 }
 
 - (void) setTarget:(NSWindow *) window;
-- (BOOL)windowShouldClose:(id)sender;
+- (BOOL) windowShouldClose:(id) sender;
 @end

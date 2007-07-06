@@ -32,8 +32,16 @@
 #import "PluginManager.h"
 #import "QuickfillSearchWindow.h"
 
+#import "BooksToolbarDelegate.h"
+#import "BooksSpotlightInterface.h"
+#import "BooksTokenViewDelegate.h"
+
 @interface BooksAppDelegate : NSObject 
 {
+    IBOutlet BooksToolbarDelegate * toolbarDelegate;
+    IBOutlet BooksSpotlightInterface * spotlightInterface;
+    IBOutlet BooksTokenViewDelegate * tokenDelegate;
+
     IBOutlet NSWindow * mainWindow;
     IBOutlet NSWindow * infoWindow;
     IBOutlet NSWindow * coverWindow;
@@ -63,16 +71,6 @@
 	
     NSManagedObjectModel * managedObjectModel;
     NSManagedObjectContext * managedObjectContext;
-
-	NSToolbarItem * getInfo;
-	NSToolbarItem * getCover;
-	NSToolbarItem * editSmartList;
-	NSToolbarItem * newBook;
-	NSToolbarItem * removeBook;
-	NSToolbarItem * removeList;
-
-	IBOutlet NSView * searchField;
-	IBOutlet NSSearchField * searchTextField;
 	
 	NSMutableDictionary * importPlugins;
 	NSMutableDictionary * quickfillPlugins;
@@ -84,13 +82,11 @@
 	
 	NSString * newTitle;
 	
-	NSData * loadData;
-	
-	IBOutlet NSComboBox * genreCombo;
+	/* IBOutlet NSComboBox * genreCombo;
 	IBOutlet NSComboBox * authorsCombo;
 	IBOutlet NSComboBox * editorsCombo;
 	IBOutlet NSComboBox * illustratorsCombo;
-	IBOutlet NSComboBox * translatorsCombo;
+	IBOutlet NSComboBox * translatorsCombo; */
 	IBOutlet NSComboBox * publisherCombo;
 	IBOutlet NSComboBox * userFieldCombo;
 	IBOutlet NSTextField * datePublished;
@@ -118,25 +114,9 @@
 	IBOutlet NSWindow * iSightWindow;
 	IBOutlet QCView * iSightView;
 
-	IBOutlet NSTokenField * genreTokens;
-	NSMutableSet * genres;
-
-	IBOutlet NSTokenField * authorTokens;
-	NSMutableSet * authors;
-
-	IBOutlet NSTokenField * editorTokens;
-	NSMutableSet * editors;
-
-	IBOutlet NSTokenField * illustratorTokens;
-	NSMutableSet * illustrators;
-
-	IBOutlet NSTokenField * translatorTokens;
-	NSMutableSet * translators;
-
-	IBOutlet NSTokenField * keywordTokens;
-	NSMutableSet * keywords;
-
 	IBOutlet NSTextView * summary;
+	
+	NSString * openFilename;
 }
 
 - (IBAction)preferences:(id)sender;
@@ -153,12 +133,6 @@
 - (NSWindow *) mainWindow;
 - (NSWindow *) infoWindow;
 - (NSUndoManager *) windowWillReturnUndoManager:(NSWindow *) sender;
-
-// Toolbar Methods
-
-- (NSToolbarItem *)toolbar:(NSToolbar *)toolbar itemForItemIdentifier:(NSString *)itemIdentifier willBeInsertedIntoToolbar:(BOOL)flag;
-- (NSArray *)toolbarAllowedItemIdentifiers:(NSToolbar *)toolbar;
-- (NSArray *)toolbarDefaultItemIdentifiers:(NSToolbar *)toolbar;
 
 - (void)awakeFromNib;
 
@@ -214,11 +188,6 @@
 
 - (NSArray *) getBooklists;
 
-// Spotlight
-- (void) loadDataFromOutside;
-- (IBAction) updateSpotlightIndex: (id) sender;
-- (IBAction) clearSpotlightIndex: (id) sender;
-
 - (IBAction) listQuickfill: (id)sender;
 
 - (IBAction) openFiles: (id) sender;
@@ -236,7 +205,5 @@
 - (IBAction) duplicateRecords:(id) sender;
 
 - (IBAction) donate: (id)sender;
-
-- (void) updateTokens;
 
 @end

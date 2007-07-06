@@ -256,8 +256,6 @@
 
 - (void) setDataForBook: (BookManagedObject *) bookObject fromXml:(NSXMLDocument *) xml
 {
-	NSLog (@"hello");
-	
 	if (xml != nil)
 	{
 		NSXMLElement * root = (NSXMLElement *) [[xml rootElement] childAtIndex:0];
@@ -289,8 +287,6 @@
 
 				NSString * field = [nameAttribute stringValue];
 
-				NSLog (@"field = %@", field);
-				
 				[bookObject setValueFromString:[bookField stringValue] forKey:field replace:replace];
 			}
 		}

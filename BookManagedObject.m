@@ -1057,4 +1057,12 @@
 		[bookObject didChangeValueForKey:@"genreArray"];
 }
 
+- (void) setTitle: (NSString *) title
+{
+    [self willChangeValueForKey:@"title"];
+	[self setPrimitiveValue:title forKey:@"title"];
+    [self didChangeValueForKey:@"title"];
+}
+
+
 @end

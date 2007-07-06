@@ -30,7 +30,6 @@
 #import "HtmlPageBuilder.h"
 #import "FieldsDataSource.h"
 #import "SmartList.h"
-#import "BooksToolbarItem.h"
 #import "BookManagedObject.h"
 #import "MyBarcodeScanner.h"
 #import "CoverWindowDelegate.h"
@@ -353,12 +352,12 @@ typedef struct _monochromePixel
 	if ([infoWindow isVisible])
 	{
 		[infoWindow orderOut:sender];
-		[getInfo setLabel:NSLocalizedString (@"Get Info", nil)];
+		[toolbarDelegate setGetInfoLabel:NSLocalizedString (@"Get Info", nil)];
 	}
 	else
 	{
 		[infoWindow makeKeyAndOrderFront:sender];
-		[getInfo setLabel:NSLocalizedString (@"Hide Info", nil)];
+		[toolbarDelegate setGetInfoLabel:NSLocalizedString (@"Hide Info", nil)];
 	}
 }
 
@@ -368,7 +367,7 @@ typedef struct _monochromePixel
 	if ([coverWindow isVisible])
 	{
 		[coverWindow orderOut:sender];
-		[getCover setLabel:NSLocalizedString (@"Show Cover", nil)];
+		[toolbarDelegate setGetCoverLabel:NSLocalizedString (@"Show Cover", nil)];
 	}
 	else
 	{
@@ -389,7 +388,7 @@ typedef struct _monochromePixel
 				// [coverWindow makeKeyAndOrderFront:sender];
 */
 				[coverWindow orderFront:sender];
-				[getCover setLabel:NSLocalizedString (@"Hide Cover", nil)];
+				[toolbarDelegate setGetCoverLabel:NSLocalizedString (@"Hide Cover", nil)];
 			}
 		}
 	}
@@ -405,174 +404,11 @@ typedef struct _monochromePixel
 	[NSThread detachNewThreadSelector:NSSelectorFromString(@"ExportToBundle") toTarget:export withObject:exportPlugin];
 }
 
-- (NSToolbarItem *) toolbar: (NSToolbar *) toolbar itemForItemIdentifier: (NSString *) itemIdentifier willBeInsertedIntoToolbar: (BOOL) flag
-{
-	NSToolbarItem * item = [[NSToolbarItem alloc] initWithItemIdentifier:itemIdentifier];
-	[item setLabel:itemIdentifier];
-	
-	if ([itemIdentifier isEqualToString:@"new-list"])
-	{
-		[item setTarget:self];
-		[item setAction:NSSelectorFromString(@"newList:")];
-
-		[item setImage:[NSImage imageNamed:@"new-list"]];
-		[item setLabel:NSLocalizedString (@"New List", nil)];
-		[item setPaletteLabel:NSLocalizedString (@"New List", nil)];
-	}
-	else if ([itemIdentifier isEqualToString:@"new-smartlist"])
-	{
-		[item setTarget:self];
-		[item setAction:NSSelectorFromString(@"newSmartList:")];
-
-		[item setImage:[NSImage imageNamed:@"new-smartlist"]];
-		[item setLabel:NSLocalizedString (@"New Smart List", nil)];
-		[item setPaletteLabel:NSLocalizedString (@"New Smart List", nil)];
-	}
-	else if ([itemIdentifier isEqualToString:@"edit-smartlist"])
-	{
-		[item setTarget:self];
-		[item setAction:NSSelectorFromString(@"editSmartList:")];
-
-		[item setImage:[NSImage imageNamed:@"edit-smartlist"]];
-		[item setLabel:NSLocalizedString (@"Edit Smart List", nil)];
-		[item setPaletteLabel:NSLocalizedString (@"Edit Smart List", nil)];
-		
-		editSmartList = item;
-	}
-	else if ([itemIdentifier isEqualToString:@"remove-list"])
-	{
-		[item setTarget:self];
-		[item setAction:NSSelectorFromString(@"removeList:")];
-
-		[item setImage:[NSImage imageNamed:@"remove-list"]];
-		[item setLabel:NSLocalizedString (@"Remove List", nil)];
-		[item setPaletteLabel:NSLocalizedString (@"Remove List", nil)];
-
-		removeList = item;
-	}
-	else if ([itemIdentifier isEqualToString:@"remove-book"])
-	{
-		[item setTarget:self];
-		[item setAction:NSSelectorFromString(@"removeBook:")];
-
-		[item setImage:[NSImage imageNamed:@"remove-book"]];
-		[item setLabel:NSLocalizedString (@"Remove Book", nil)];
-		[item setPaletteLabel:NSLocalizedString (@"Remove Book", nil)];
-
-		removeBook = item;
-	}
-	else if ([itemIdentifier isEqualToString:@"new-book"])
-	{
-		[item setTarget:self];
-		[item setAction:NSSelectorFromString(@"newBook:")];
-
-		[item setImage:[NSImage imageNamed:@"new-book"]];
-		[item setLabel:NSLocalizedString (@"New Book", nil)];
-		[item setPaletteLabel:NSLocalizedString (@"New Book", nil)];
-
-		newBook = item;
-	}
-	else if ([itemIdentifier isEqualToString:@"preferences"])
-	{
-		[item setTarget:self];
-		[item setAction:NSSelectorFromString(@"preferences:")];
-
-		[item setImage:[NSImage imageNamed:@"preferences"]];
-		[item setLabel:NSLocalizedString (@"Preferences", nil)];
-		[item setPaletteLabel:NSLocalizedString (@"Preferences", nil)];
-	}
-	else if ([itemIdentifier isEqualToString:@"get-info"])
-	{
-		[item setTarget:self];
-		[item setAction:NSSelectorFromString(@"getInfoWindow:")];
-
-		[item setImage:[NSImage imageNamed:@"get-info"]];
-		[item setLabel:NSLocalizedString (@"Get Info", nil)];
-		[item setPaletteLabel:NSLocalizedString (@"Get Info", nil)];
-		
-		getInfo = item;
-	}
-	else if ([itemIdentifier isEqualToString:@"get-cover"])
-	{
-		[item setTarget:self];
-		[item setAction:NSSelectorFromString(@"getCoverWindow:")];
-
-		[item setImage:[NSImage imageNamed:@"get-cover"]];
-		[item setLabel:NSLocalizedString (@"Show Cover", nil)];
-		[item setPaletteLabel:NSLocalizedString (@"Show Cover", nil)];
-		
-		getCover = item;
-	}
-	else if ([itemIdentifier isEqualToString:@"import"])
-	{
-		[item setTarget:self];
-		[item setAction:NSSelectorFromString(@"import:")];
-
-		[item setImage:[NSImage imageNamed:@"import"]];
-		[item setLabel:NSLocalizedString (@"Import Data", nil)];
-		[item setPaletteLabel:NSLocalizedString (@"Import Data", nil)];
-	}
-	else if ([itemIdentifier isEqualToString:@"export"])
-	{
-//		[item setTarget:self];
-//		[item setAction:NSSelectorFromString(@"getCoverWindow:")];
-
-		[item setImage:[NSImage imageNamed:@"export"]];
-		[item setLabel:NSLocalizedString (@"Export Data", nil)];
-		[item setPaletteLabel:NSLocalizedString (@"Export Data", nil)];
-	}
-	else if ([itemIdentifier isEqualToString:@"isight"])
-	{
-		[item setTarget:self];
-		[item setAction:NSSelectorFromString(@"isight:")];
-
-		[item setImage:[NSImage imageNamed:@"camera"]];
-		[item setLabel:NSLocalizedString (@"Open Camera", nil)];
-		[item setPaletteLabel:NSLocalizedString (@"Open Camera", nil)];
-	}
-	else if ([itemIdentifier isEqualToString:@"duplicate"])
-	{
-		[item setTarget:self];
-		[item setAction:NSSelectorFromString(@"duplicateRecords:")];
-
-		[item setImage:[NSImage imageNamed:@"dupe"]];
-		[item setLabel:NSLocalizedString (@"Duplicate Book", nil)];
-		[item setPaletteLabel:NSLocalizedString (@"Duplicate Book", nil)];
-	}
-	else if ([itemIdentifier isEqualToString:@"search"])
-	{
-		NSRect fRect = [searchField frame];
-		[item setView:searchField];
-
-		[item setMinSize:fRect.size];
-		[item setMaxSize:fRect.size];
-		
-		[item setLabel:NSLocalizedString (@"Search Selected List", nil)];
-		[item setPaletteLabel:NSLocalizedString (@"Search Selected List", nil)];
-	}
-
-	
-	return item;
-}
-
-- (NSArray *) toolbarAllowedItemIdentifiers: (NSToolbar *) toolbar
-{
-	return [NSArray arrayWithObjects:@"new-list", @"new-smartlist", @"edit-smartlist", @"new-book", @"remove-book", @"remove-list", @"preferences", 
-		@"get-info", @"get-cover", @"import", @"export", @"search", @"isight", @"duplicate", NSToolbarSeparatorItemIdentifier, 
-		NSToolbarSpaceItemIdentifier, NSToolbarFlexibleSpaceItemIdentifier, NSToolbarCustomizeToolbarItemIdentifier, nil];
-}
-
-- (NSArray *) toolbarDefaultItemIdentifiers: (NSToolbar *) toolbar
-{
-	return [NSArray arrayWithObjects:@"new-list", @"new-smartlist", @"edit-smartlist", @"new-book", @"remove-book", @"remove-list", NSToolbarSpaceItemIdentifier, 
-	@"get-info", @"get-cover", NSToolbarFlexibleSpaceItemIdentifier, @"search", nil];
-}
-
 - (void) awakeFromNib
 {
 	NSToolbar * tb = [[NSToolbar alloc] initWithIdentifier:@"main"];
 	
-	[tb setDelegate:self];
+	[tb setDelegate:toolbarDelegate];
 	[tb setAllowsUserCustomization:YES];
 	[tb setAutosavesConfiguration:YES];
 	
@@ -747,31 +583,6 @@ typedef struct _monochromePixel
 	[coverWindow setDelegate:[[CoverWindowDelegate alloc] init]];
 	
 	[mainWindow makeKeyAndOrderFront:self];
-
-	NSCharacterSet * set = [NSCharacterSet characterSetWithCharactersInString:@";"];
-	[genreTokens setTokenizingCharacterSet:set];
-	[genreTokens setCompletionDelay:0.75];
-	genres = [[NSMutableSet alloc] init];
-
-	[authorTokens setTokenizingCharacterSet:set];
-	[authorTokens setCompletionDelay:0.25];
-	authors = [[NSMutableSet alloc] init];
-
-	[editorTokens setTokenizingCharacterSet:set];
-	[editorTokens setCompletionDelay:0.25];
-	editors = [[NSMutableSet alloc] init];
-
-	[illustratorTokens setTokenizingCharacterSet:set];
-	[illustratorTokens setCompletionDelay:0.25];
-	illustrators = [[NSMutableSet alloc] init];
-
-	[translatorTokens setTokenizingCharacterSet:set];
-	[translatorTokens setCompletionDelay:0.25];
-	translators = [[NSMutableSet alloc] init];
-
-	[keywordTokens setTokenizingCharacterSet:set];
-	[keywordTokens setCompletionDelay:0.25];
-	keywords = [[NSMutableSet alloc] init];
 	
 	[summary setFieldEditor:NO];
 	[self updateMainPane];
@@ -831,17 +642,18 @@ typedef struct _monochromePixel
 	NSTableView * table = [notification object];
 
 	if (table == booksTable)
-	{
-		if (loadData != nil)
-		{
-			[self loadDataFromOutside];
-			loadData = nil;
-		}
-
 		[self updateMainPane];
-	}
 	else if (table == listsTable)
 	{
+		if (openFilename != nil)
+		{
+			NSLog (@"opening %@", openFilename);
+			
+			[spotlightInterface openFile:openFilename];
+			[openFilename release];
+			openFilename = nil;
+		}
+
 		NSUserDefaults * prefs = [NSUserDefaults standardUserDefaults];
 
 		if ([prefs boolForKey:@"Separate Lists"])
@@ -882,25 +694,25 @@ typedef struct _monochromePixel
 			
 			if ([list isKindOfClass:[SmartList class]])
 			{
-				[newBook setAction:nil];
-				[editSmartList setAction:NSSelectorFromString(@"editSmartList:")];
-				[removeBook setAction:nil];
-				[removeList setAction:NSSelectorFromString(@"removeList:")];
+				[toolbarDelegate setNewBookAction:nil];
+				[toolbarDelegate setEditSmartListAction:NSSelectorFromString(@"editSmartList:")];
+				[toolbarDelegate setRemoveBookAction:nil];
+				[toolbarDelegate setRemoveListAction:NSSelectorFromString(@"removeList:")];
 			}
 			else
 			{
-				[newBook setAction:NSSelectorFromString(@"newBook:")];
-				[editSmartList setAction:nil];
-				[removeBook setAction:NSSelectorFromString(@"removeBook:")];
-				[removeList setAction:NSSelectorFromString(@"removeList:")];
+				[toolbarDelegate setNewBookAction:NSSelectorFromString(@"newBook:")];
+				[toolbarDelegate setEditSmartListAction:nil];
+				[toolbarDelegate setRemoveBookAction:NSSelectorFromString(@"removeBook:")];
+				[toolbarDelegate setRemoveListAction:NSSelectorFromString(@"removeList:")];
 			}
 		}
 		else
 		{
-			[newBook setAction:nil];
-			[editSmartList setAction:nil];
-			[removeBook setAction:nil];
-			[removeList setAction:nil];
+			[toolbarDelegate setNewBookAction:nil];
+			[toolbarDelegate setEditSmartListAction:nil];
+			[toolbarDelegate setRemoveBookAction:nil];
+			[toolbarDelegate setRemoveListAction:nil];
 		}
 	}
 
@@ -913,39 +725,20 @@ typedef struct _monochromePixel
 */
 	NSArray * books = [self getSelectedBooks];
 		
-	if ([books count] == 1) // && boxSize.height > 1)
+	if ([books count] == 1)
 	{
 		BookManagedObject * book = (BookManagedObject *) [books objectAtIndex:0];
 			
 		NSData * coverData = [book getCoverImage];
 		
 		if (coverData != nil)
-		{
-/*			NSImage * cover = [[NSImage alloc] initWithData:coverData];
-				
-			NSSize size = [cover size];
-
-			if (size.width > 32 && size.height > 32)
-			{
-				float height = size.height * (boxSize.width / size.width);
-				float width = boxSize.width;
-
-				if (height > 32 && width > 32)
-					boxSize = NSMakeSize (width, height);
-			}
-
-			[cover release];
-*/
-			[getCover setAction:NSSelectorFromString (@"getCoverWindow:")];
-		}
+			[toolbarDelegate setGetCoverAction:NSSelectorFromString (@"getCoverWindow:")];
 		else
-			[getCover setAction:nil];
+			[toolbarDelegate setGetCoverAction:nil];
 	}
-
-//	[leftView setNeedsDisplay:YES];
 	
 	[coverWindow orderOut:self];
-	[getCover setLabel:NSLocalizedString (@"Show Cover", nil)];
+	[toolbarDelegate setGetCoverLabel:NSLocalizedString (@"Show Cover", nil)];
 
 	[self refreshComboBoxes:nil];
 //	if (![[NSUserDefaults standardUserDefaults] boolForKey:@"Snappy"])
@@ -962,7 +755,7 @@ typedef struct _monochromePixel
 	NSMutableSet * publishers = [NSMutableSet set];
 	NSMutableSet * userFieldNames = [NSMutableSet set];
 
-	[self updateTokens];
+	[tokenDelegate updateTokens];
 
 	int i = 0;
 	for (i = 0; i < [books count]; i++)
@@ -1289,13 +1082,9 @@ typedef struct _monochromePixel
 		[[NSApplication sharedApplication] terminate:self];
 	}
 	else if (window == infoWindow)
-	{
-		[getInfo setLabel:NSLocalizedString (@"Get Info", nil)];
-	}
+		[toolbarDelegate setGetInfoLabel:NSLocalizedString (@"Get Info", nil)];
 	else if (window == coverWindow)
-	{
-		[getCover setLabel:NSLocalizedString (@"Show Cover", nil)];
-	}
+		[toolbarDelegate setGetCoverLabel:NSLocalizedString (@"Show Cover", nil)];
 }
 
 - (IBAction)updateBooksTable:(id)sender;
@@ -1591,7 +1380,7 @@ typedef struct _monochromePixel
 
 - (IBAction) removeList:(id) sender
 {
-	[[[searchTextField cell] cancelButtonCell] performClick:self];
+	[toolbarDelegate cancelSearch];
 	
 	NSArray * lists = [collectionArrayController arrangedObjects];
 	
@@ -1851,87 +1640,10 @@ typedef struct _monochromePixel
 
 - (BOOL)application:(NSApplication *)theApplication openFile:(NSString *)filename
 {
-	loadData = [[NSData dataWithContentsOfFile:filename] retain];
-	
-	[self loadDataFromOutside];
-	
-	return YES;
+	openFilename = [filename retain];
+	return [spotlightInterface openFile:(NSString *) filename];
 }
 
-- (void) loadDataFromOutside
-{
-	NSPropertyListFormat format = NSPropertyListBinaryFormat_v1_0;
-
-	NSString * error = nil;
-	
-	NSDictionary * metadata = [NSPropertyListSerialization propertyListFromData:loadData mutabilityOption:NSPropertyListImmutable 
-									format:&format errorDescription:&error];
-
-	NSArray * lists = [collectionArrayController arrangedObjects];
-	
-	int i = 0;
-	for (i = 0; i < [lists count]; i++)
-	{
-		NSString * name = [[lists objectAtIndex:i] valueForKey:@"name"];
-		
-		if ([name isEqualToString:[metadata valueForKey:@"listName"]])
-		{
-			[collectionArrayController setSelectedObjects:[NSArray arrayWithObject:[lists objectAtIndex:i]]];
-		}
-	}
-	
-	NSArray * books = [bookArrayController arrangedObjects];
-	
-	for (i = 0; i < [books count]; i++)
-	{
-		NSString * id = [[books objectAtIndex:i] valueForKey:@"id"];
-		
-		if ([id isEqualToString:[metadata valueForKey:@"id"]])
-		{
-			[bookArrayController setSelectedObjects:[NSArray arrayWithObject:[books objectAtIndex:i]]];
-		}
-	}
-}
-
-- (IBAction) updateSpotlightIndex: (id) sender
-{
-	[self startProgressWindow:NSLocalizedString (@"Updating Spotlight index...", nil)];
-
-	NSArray * lists = [collectionArrayController arrangedObjects];
-	
-	int i = 0;
-	for (i = 0; i < [lists count]; i++)
-	{
-		ListManagedObject * list = [lists objectAtIndex:i];
-		
-		if (![list isKindOfClass:[SmartList class]])
-		{
-			NSArray * books = [list getBooks];
-	
-			int j = 0;
-			for (j = 0; j < [books count]; j++)
-			{
-				BookManagedObject * book = [books objectAtIndex:j];
-				
-				[book writeSpotlightFile];
-			}
-		}
-	}
-
-	[self endProgressWindow];
-}
-
-- (IBAction) clearSpotlightIndex: (id) sender
-{
-	BOOL isDir;
-	NSString * path = [NSString stringWithFormat:@"%@%@", NSHomeDirectory (),
-						@"/Library/Caches/Metadata/Books"];
-
-	NSFileManager * manager = [NSFileManager defaultManager];
-
-	if ([manager fileExistsAtPath:path isDirectory:&isDir])
-		[manager removeFileAtPath:path handler:nil];
-}
 
 - (IBAction) listQuickfill: (id)sender
 {
@@ -2149,7 +1861,7 @@ typedef struct _monochromePixel
 			[book setValue:barcode forKey:@"isbn"];
 
 			[infoWindow makeKeyAndOrderFront:nil];
-			[getInfo setLabel:NSLocalizedString (@"Hide Info", nil)];
+			[toolbarDelegate setGetInfoLabel:NSLocalizedString (@"Hide Info", nil)];
 		}
 	}
 }
@@ -2232,7 +1944,6 @@ typedef struct _monochromePixel
 	}
 }
 
-
 - (void) tableView: (NSTableView *) tableView didClickTableColumn: (NSTableColumn *) tableColumn
 {
 	NSUserDefaults * prefs = [NSUserDefaults standardUserDefaults];
@@ -2274,131 +1985,6 @@ typedef struct _monochromePixel
 	[[NSWorkspace sharedWorkspace] openURL:[NSURL URLWithString:@"http://books.aetherial.net/donate/"]];
 }	
 
-- (NSArray *) getSuggestionForString: (NSString *) substring source:(NSSet *) source
-{
-	NSCharacterSet * set = [NSCharacterSet characterSetWithCharactersInString:@" "];
-	
-	NSMutableArray * suggestions = [NSMutableArray array];
-
-	NSArray * array = [source allObjects];
-		
-	int i = 0;
-	for (i = 0; i < [array count]; i++)
-	{
-		NSString * value = (NSString *) [array objectAtIndex:i];
-		
-		value = [value stringByTrimmingCharactersInSet:set];
-
-		if ([[value lowercaseString] hasPrefix:[substring lowercaseString]])
-		{
-			if (![suggestions containsObject:value])
-				[suggestions addObject:value];
-		}
-	}
-	
-	[suggestions sortUsingSelector:@selector(compare:)];
-	return suggestions;
-}
-
-- (NSArray *)tokenField:(NSTokenField *)tokenField shouldAddObjects:(NSArray *)tokens atIndex:(unsigned)index
-{
-	return tokens;
-}
-
-
-- (NSArray *) tokenField: (NSTokenField *) tokenField completionsForSubstring: (NSString *) substring indexOfToken: (int) tokenIndex
-	indexOfSelectedItem: (int *) selectedIndex
-{
-	// NSString * tokenString = [tokenField stringValue];
-	
-	// while ([tokenString characterAtIndex:0] == 0xfffc)
-	//	tokenString = [tokenString substringFromIndex:1];
-
-	// if (![tokenString hasPrefix:substring])
-	//	return [NSArray array];
-
-	if (tokenField == genreTokens)
-		return [self getSuggestionForString:substring source:genres];
-	else if (tokenField == authorTokens)
-		return [self getSuggestionForString:substring source:authors];
-	else if (tokenField == editorTokens)
-		return [self getSuggestionForString:substring source:editors];
-	else if (tokenField == illustratorTokens)
-		return [self getSuggestionForString:substring source:illustrators];
-	else if (tokenField == translatorTokens)
-		return [self getSuggestionForString:substring source:translators];
-	else if (tokenField == keywordTokens)
-		return [self getSuggestionForString:substring source:keywords];
-
-	// [tokenField selectText:nil];
-	
-	return [NSArray array] ;
-}
-
-- (void) updateTokens
-{
-	if ([genres count] < 1)
-	{
-		NSUserDefaults * defaults = [NSUserDefaults standardUserDefaults];
-		
-		NSNumber * useDefaultGenres = [defaults valueForKey:@"Use Default Genres"];
-
-		if (useDefaultGenres == nil || [useDefaultGenres boolValue])
-		{
-			[genres addObject:NSLocalizedString (@"Biography", nil)];
-			[genres addObject:NSLocalizedString (@"Fantasy", nil)];
-			[genres addObject:NSLocalizedString (@"Fairy Tales", nil)];
-			[genres addObject:NSLocalizedString (@"Historical Fiction", nil)];
-			[genres addObject:NSLocalizedString (@"Myths & Legends", nil)];
-			[genres addObject:NSLocalizedString (@"Poetry", nil)];
-			[genres addObject:NSLocalizedString (@"Science Fiction", nil)];
-			[genres addObject:NSLocalizedString (@"Folk Tales", nil)];
-			[genres addObject:NSLocalizedString (@"Mystery", nil)];
-			[genres addObject:NSLocalizedString (@"Non-Fiction", nil)];
-			[genres addObject:NSLocalizedString (@"Realistic Fiction", nil)];
-			[genres addObject:NSLocalizedString (@"Short Stories", nil)];
-		}
-
-		NSString * customGenres = [defaults valueForKey:@"Custom Genres"];
-
-		if (customGenres != nil)
-		{
-			NSArray * genreStrings = [customGenres componentsSeparatedByString:@"\n"];
-				
-			int j = 0;
-			for (j = 0; j < [genreStrings count]; j++)
-				[genres addObject:[genreStrings objectAtIndex:j]];
-		}
-	}
-
-	NSFetchRequest * fetch = [[NSFetchRequest alloc] init];
-	[fetch setEntity:[NSEntityDescription entityForName:@"Book" inManagedObjectContext:[self managedObjectContext]]];
-
-	NSError * error = nil;
-	NSArray * books = [[self managedObjectContext] executeFetchRequest:fetch error:&error];
-
-	NSArray * fields = [NSArray arrayWithObjects:@"genreArray", @"authorArray", @"editorArray", 
-							@"illustratorArray", @"translatorArray", @"keywordArray", nil];
-	NSArray * tokenArrays = [NSArray arrayWithObjects:genres, authors, editors, illustrators, translators, keywords, nil];
-	
-	int i = 0;
-	for (i = 0; i < [books count]; i++)
-	{
-		BookManagedObject * book = (BookManagedObject *) [books objectAtIndex:i];
-		
-		int j = 0;
-		for (j = 0; j < [fields count] && j < [tokenArrays count]; j++)
-		{
-			NSArray * array = [book valueForKey:[fields objectAtIndex:j]];
-
-			if (array != nil)
-				[[tokenArrays objectAtIndex:j] addObjectsFromArray:array];
-		}
-	}
-	
-	[fetch release];
-}
-
 - (BOOL)textView:(NSTextView *)aTextView doCommandBySelector:(SEL)aSelector
 {
 	if (aSelector == @selector(insertNewline:))
@@ -2418,21 +2004,6 @@ typedef struct _monochromePixel
 	}
 		
 	return NO;
-}
-
-- (NSArray *) tokenField: (NSTokenField *) tokenField readFromPasteboard: (NSPasteboard *) pboard
-{
-	NSArray * tokens = (NSArray *) [NSUnarchiver unarchiveObjectWithData:[pboard dataForType:@"NSGeneralPboardType"]];	
-	return tokens;
-}
-
-
-- (BOOL) tokenField:(NSTokenField *) tokenField writeRepresentedObjects:(NSArray *) objects 
-	toPasteboard:(NSPasteboard *) pboard
-{
-	NSData * data = [NSArchiver archivedDataWithRootObject:[NSArray array]];
-	[pboard declareTypes:[NSArray arrayWithObject:@"NSGeneralPboardType"] owner:self];
-	return [pboard setData:data forType:@"NSGeneralPboardType"];
-}
+} 
 
 @end
