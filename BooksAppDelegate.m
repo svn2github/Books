@@ -366,20 +366,11 @@ typedef struct _monochromePixel
 	[tableViewDelegate updateBooksTable];
 	[tableViewDelegate restore];
 
-	NSString * dateFormat = [[NSUserDefaults standardUserDefaults] stringForKey:[[NSApp delegate] getDateFormatString]];
+	NSString * dateFormat = [self getDateFormatString];
 
 	[NSDateFormatter setDefaultFormatterBehavior:NSDateFormatterBehavior10_4];
 
-	NSDateFormatter * formatter;
-				
-	if (dateFormat != nil)
-		formatter = [[NSDateFormatter alloc] initWithDateFormat:dateFormat allowNaturalLanguage:YES];
-	else
-	{
-		formatter = [[NSDateFormatter alloc] initWithDateFormat:@"%B %e, %Y" allowNaturalLanguage:YES];
-		[formatter setDateStyle:NSDateFormatterLongStyle];
-	}
-
+	NSDateFormatter * formatter = [[NSDateFormatter alloc] initWithDateFormat:dateFormat allowNaturalLanguage:YES];
 	[[datePublished cell] setFormatter:formatter];
 
 
@@ -1635,6 +1626,7 @@ typedef struct _monochromePixel
     [self didChangeValueForKey:@"now"];
 
 	[tableViewDelegate updateBooksTable];
+	[[datePublished cell] setFormatter:[[NSDateFormatter alloc] initWithDateFormat:format allowNaturalLanguage:YES]];
 }
 
 - (NSString *) getDateFormatString
