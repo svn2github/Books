@@ -458,7 +458,7 @@
 - (NSArray *) getCheckOutsArray
 {
 	[NSDateFormatter setDefaultFormatterBehavior:NSDateFormatterBehavior10_4];
-	NSString * dateFormat = [[NSUserDefaults standardUserDefaults] stringForKey:@"Custom Date Format"];
+	NSString * dateFormat = [[NSApp delegate] getDateFormatString];
 
 	if (dateFormat != nil)
 		formatter = [[NSDateFormatter alloc] initWithDateFormat:dateFormat allowNaturalLanguage:NO];

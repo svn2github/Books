@@ -114,36 +114,18 @@
 	
 	if ([genres count] < 1)
 	{
-		NSUserDefaults * defaults = [NSUserDefaults standardUserDefaults];
-		
-		NSNumber * useDefaultGenres = [defaults valueForKey:@"Use Default Genres"];
-
-		if (useDefaultGenres == nil || [useDefaultGenres boolValue])
-		{
-			[genres addObject:NSLocalizedString (@"Biography", nil)];
-			[genres addObject:NSLocalizedString (@"Fantasy", nil)];
-			[genres addObject:NSLocalizedString (@"Fairy Tales", nil)];
-			[genres addObject:NSLocalizedString (@"Historical Fiction", nil)];
-			[genres addObject:NSLocalizedString (@"Myths & Legends", nil)];
-			[genres addObject:NSLocalizedString (@"Poetry", nil)];
-			[genres addObject:NSLocalizedString (@"Science Fiction", nil)];
-			[genres addObject:NSLocalizedString (@"Folk Tales", nil)];
-			[genres addObject:NSLocalizedString (@"Mystery", nil)];
-			[genres addObject:NSLocalizedString (@"Non-Fiction", nil)];
-			[genres addObject:NSLocalizedString (@"Realistic Fiction", nil)];
-			[genres addObject:NSLocalizedString (@"Short Stories", nil)];
-		}
-
-		NSString * customGenres = [defaults valueForKey:@"Custom Genres"];
-
-		if (customGenres != nil)
-		{
-			NSArray * genreStrings = [customGenres componentsSeparatedByString:@"\n"];
-				
-			int j = 0;
-			for (j = 0; j < [genreStrings count]; j++)
-				[genres addObject:[genreStrings objectAtIndex:j]];
-		}
+		[genres addObject:NSLocalizedString (@"Biography", nil)];
+		[genres addObject:NSLocalizedString (@"Fantasy", nil)];
+		[genres addObject:NSLocalizedString (@"Fairy Tales", nil)];
+		[genres addObject:NSLocalizedString (@"Historical Fiction", nil)];
+		[genres addObject:NSLocalizedString (@"Myths & Legends", nil)];
+		[genres addObject:NSLocalizedString (@"Poetry", nil)];
+		[genres addObject:NSLocalizedString (@"Science Fiction", nil)];
+		[genres addObject:NSLocalizedString (@"Folk Tales", nil)];
+		[genres addObject:NSLocalizedString (@"Mystery", nil)];
+		[genres addObject:NSLocalizedString (@"Non-Fiction", nil)];
+		[genres addObject:NSLocalizedString (@"Realistic Fiction", nil)];
+		[genres addObject:NSLocalizedString (@"Short Stories", nil)];
 	}
 
 	NSFetchRequest * fetch = [[NSFetchRequest alloc] init];

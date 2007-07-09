@@ -160,20 +160,9 @@
 	
 	NSMutableString * bookDef = [NSMutableString string];
 
-	if (formatter == nil)
-	{
-		[NSDateFormatter setDefaultFormatterBehavior:NSDateFormatterBehavior10_4];
-
-		NSString * dateFormat = [[NSUserDefaults standardUserDefaults] stringForKey:@"Custom Date Format"];
-		
-		if (dateFormat != nil)
-			formatter = [[NSDateFormatter alloc] initWithDateFormat:dateFormat allowNaturalLanguage:NO];
-		else
-		{
-			formatter = [[NSDateFormatter alloc] init];
-			[formatter setDateStyle:NSDateFormatterLongStyle];
-		}
-	}
+	[NSDateFormatter setDefaultFormatterBehavior:NSDateFormatterBehavior10_4];
+	NSString * dateFormat = [[NSApp delegate] getDateFormatString];
+	NSDateFormatter * formatter = [[NSDateFormatter alloc] initWithDateFormat:dateFormat allowNaturalLanguage:NO];
 	
 	int i = 0;
 	for (i = 0; i < [fields count]; i++)

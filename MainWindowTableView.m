@@ -33,12 +33,71 @@
 	unichar arrow = [[event characters] characterAtIndex:0];
 	
 	if (arrow == NSLeftArrowFunctionKey)
-		[((BooksAppDelegate *) [[NSApplication sharedApplication] delegate]) selectListsTable:self];
+		[((BooksAppDelegate *) [NSApp delegate]) selectListsTable:self];
 	else if (arrow == NSRightArrowFunctionKey)
-		[((BooksAppDelegate *) [[NSApplication sharedApplication] delegate]) selectBooksTable:self];
+		[((BooksAppDelegate *) [NSApp delegate]) selectBooksTable:self];
+	else if (arrow == 13 || arrow == 3)
+		[((BooksAppDelegate *) [NSApp delegate]) getInfoWindow:self];
 	// else if (arrow == ' ')
 	//	[((BooksAppDelegate *) [[NSApplication sharedApplication] delegate]) pageContent:self];
 	else
 		[super keyDown:event];
 }
+
+- (NSMenu *) menuForEvent:(NSEvent *)theEvent
+{
+	if (self == [[self delegate] getListsTable])
+	{
+		// Code from http://lists.apple.com/archives/Cocoa-dev/2003/Aug/msg01442.html
+	
+		int row = [self rowAtPoint:[self convertPoint:[theEvent locationInWindow] fromView:nil]];
+
+		if (row != -1) 
+			[self selectRow:row byExtendingSelection: NO];
+
+		NSMenu * menu = [[NSMenu alloc] init];
+		[menu addItemWithTitle:NSLocalizedString (@"Rename List", nil) action:NSSelectorFromString(@"renameList:") keyEquivalent:@""];
+		[menu addItemWithTitle:NSLocalizedString (@"Delete List", nil) action:NSSelectorFromString(@"deleteList:") keyEquivalent:@""];
+
+		return menu;
+	}
+	else if (self == [[self delegate] getBooksTable])
+	{
+		int row = [self rowAtPoint:[self convertPoint:[theEvent locationInWindow] fromView:nil]];
+
+		if (row != -1) 
+			[self selectRow:row byExtendingSelection: NO];
+
+		NSMenu * menu = [[NSMenu alloc] init];
+		[menu addItemWithTitle:NSLocalizedString (@"Delete Book", nil) action:NSSelectorFromString(@"deleteBook:") keyEquivalent:@""];
+
+		return menu;
+	}
+
+	return nil;
+}
+
+- (IBAction) renameList: (id) sender
+{
+	if (self == [[self delegate] getListsTable])
+	{
+		int row = [self selectedRow];
+
+		if (row != -1) 
+			[self editColumn:1 row:row withEvent:nil select:YES];
+	}
+}
+
+- (IBAction) deleteList: (id) sender
+{
+	if (self == [[self delegate] getListsTable])
+		[((BooksAppDelegate *) [NSApp delegate]) removeList:(id) sender];
+}
+
+- (IBAction) deleteBook: (id) sender
+{
+	if (self == [[self delegate] getBooksTable])
+		[((BooksAppDelegate *) [NSApp delegate]) removeBook:(id) sender];
+}
+
 @end

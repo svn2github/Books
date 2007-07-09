@@ -139,8 +139,11 @@
 - (IBAction)quickfill:(id)sender;
 
 - (IBAction) newBook:(id) sender;
+- (IBAction) removeBook:(id) sender;
 
 - (IBAction) newList:(id) sender;
+- (IBAction) removeList:(id) sender;
+
 - (IBAction) editSmartList:(id) sender;
 - (IBAction) saveSmartList:(id) sender;
 - (IBAction) cancelSmartList:(id) sender;
@@ -188,5 +191,7 @@
 
 - (IBAction) donate: (id)sender;
 - (void) orderCoverWindowOut;
+
+- (NSString *) getDateFormatString;
 
 @end

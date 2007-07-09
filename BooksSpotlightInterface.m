@@ -23,9 +23,6 @@
 									format:&format errorDescription:&error];
 
 	NSArray * lists = [collectionArrayController arrangedObjects];
-	
-
-	NSLog (@"looking for list %@", [metadata valueForKey:@"listName"]);
 
 	int i = 0;
 	for (i = 0; i < [lists count]; i++)
@@ -36,8 +33,6 @@
 			[collectionArrayController setSelectedObjects:[NSArray arrayWithObject:[lists objectAtIndex:i]]];
 	}
 
-	NSLog (@"looking for book %@", [metadata valueForKey:@"id"]);
-	
 	NSArray * books = [bookArrayController arrangedObjects];
 	
 	for (i = 0; i < [books count]; i++)

@@ -33,8 +33,6 @@
     IBOutlet WebView *details;
     IBOutlet NSTableView *list;
     IBOutlet NSPanel *panel;
-    IBOutlet id statusSpinner;
-    IBOutlet id statusText;
     IBOutlet id quickfillResults;
 	
 	NSString * pluginName;

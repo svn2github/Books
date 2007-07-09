@@ -36,8 +36,8 @@
 
 - (NSArray *) toolbarDefaultItemIdentifiers: (NSToolbar *) toolbar
 {
-	return [NSArray arrayWithObjects:@"new-list", @"new-smartlist", @"edit-smartlist", @"new-book", @"remove-book", @"remove-list", NSToolbarSpaceItemIdentifier, 
-	@"get-info", @"get-cover", NSToolbarFlexibleSpaceItemIdentifier, @"search", nil];
+	return [NSArray arrayWithObjects:@"new-list", @"new-smartlist", @"edit-smartlist", @"new-book", @"remove-book", @"remove-list", 
+	@"get-info",  NSToolbarFlexibleSpaceItemIdentifier, @"search", nil];
 }
 
 - (NSToolbarItem *) toolbar: (NSToolbar *) toolbar itemForItemIdentifier: (NSString *) itemIdentifier willBeInsertedIntoToolbar: (BOOL) flag

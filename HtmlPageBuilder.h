@@ -29,7 +29,6 @@
 @interface HtmlPageBuilder : NSObject 
 {
 	NSMutableDictionary * displayPlugins;
-	NSDateFormatter * formatter;
 }
 
 - (NSString *) getCssPath;

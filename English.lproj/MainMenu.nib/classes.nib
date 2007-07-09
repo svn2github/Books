@@ -39,24 +39,19 @@
             LANGUAGE = ObjC; 
             OUTLETS = {
                 bookArrayController = NSArrayController; 
-                bookFieldsTable = NSTableView; 
                 collectionArrayController = NSArrayController; 
                 coverWindow = NSWindow; 
                 datePublished = NSTextField; 
                 detailsPane = WebView; 
-                enabledColumn = NSTableColumn; 
                 fileArrayController = NSArrayController; 
                 fileDescription = NSTextField; 
                 fileIcon = NSImageView; 
                 fileLocation = NSTextField; 
                 fileTitle = NSTextField; 
-                iSightView = QCView; 
-                iSightWindow = NSWindow; 
                 imageBox = NSBox; 
                 imageView = NSImageView; 
                 infoWindow = NSWindow; 
                 leftView = NSSplitView; 
-                listFieldsTable = NSTableView; 
                 mainWindow = NSWindow; 
                 pluginManager = PluginManager; 
                 preferencesWindow = NSWindow; 
@@ -166,7 +161,6 @@
         {
             CLASS = PeopleArrayController; 
             LANGUAGE = ObjC; 
-            OUTLETS = {lendingRecords = NSArrayController; mugshot = NSImageView; }; 
             SUPERCLASS = NSArrayController; 
         }, 
         {
@@ -191,8 +185,6 @@
                 list = NSTableView; 
                 panel = NSPanel; 
                 quickfillResults = id; 
-                statusSpinner = id; 
-                statusText = id; 
             }; 
             SUPERCLASS = NSObject; 
         }, 

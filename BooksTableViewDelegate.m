@@ -29,16 +29,17 @@
 
 		NSUserDefaults * prefs = [NSUserDefaults standardUserDefaults];
 
-		if ([prefs boolForKey:@"Separate Lists"])
+/*		if ([prefs boolForKey:@"Separate Lists"])
 		{
 			[collectionArrayController setSortDescriptors:
 				[NSArray arrayWithObject:[[NSSortDescriptor alloc] initWithKey:@"sortName" ascending:YES]]];
 		}
 		else
-		{
+		{ 
+*/
 			[collectionArrayController setSortDescriptors:
 				[NSArray arrayWithObject:[[NSSortDescriptor alloc] initWithKey:@"name" ascending:YES]]];
-		}
+//		}
 
 		NSArray * selectedObjects = [collectionArrayController selectedObjects];
 
@@ -315,20 +316,11 @@
 			[[column dataCell] setFont:[NSFont systemFontOfSize:11]];
 			
 			[column bind:@"value" toObject:bookArrayController withKeyPath:[@"arrangedObjects." stringByAppendingString:key] 
-			options: nil];
-			
+				options: nil];
 
-			NSString * dateFormat = [[NSUserDefaults standardUserDefaults] stringForKey:@"Custom Date Format"];
+			NSString * dateFormat = [[NSApp delegate] getDateFormatString];
 			[NSDateFormatter setDefaultFormatterBehavior:NSDateFormatterBehavior10_4];
-			NSDateFormatter * formatter;
-			
-			if (dateFormat != nil)
-				formatter = [[NSDateFormatter alloc] initWithDateFormat:dateFormat allowNaturalLanguage:YES];
-			else
-			{
-				formatter = [[NSDateFormatter alloc] initWithDateFormat:@"%B %e, %Y" allowNaturalLanguage:YES];
-				[formatter setDateStyle:NSDateFormatterLongStyle];
-			}
+			NSDateFormatter * formatter = [[NSDateFormatter alloc] initWithDateFormat:dateFormat allowNaturalLanguage:YES];
 
 			if ([key isEqualToString:@"publishDate"] || 
 				[key isEqualToString:@"dateLent"] ||

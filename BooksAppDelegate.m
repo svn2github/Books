@@ -366,7 +366,7 @@ typedef struct _monochromePixel
 	[tableViewDelegate updateBooksTable];
 	[tableViewDelegate restore];
 
-	NSString * dateFormat = [[NSUserDefaults standardUserDefaults] stringForKey:@"Custom Date Format"];
+	NSString * dateFormat = [[NSUserDefaults standardUserDefaults] stringForKey:[[NSApp delegate] getDateFormatString]];
 
 	[NSDateFormatter setDefaultFormatterBehavior:NSDateFormatterBehavior10_4];
 
@@ -1624,6 +1624,42 @@ typedef struct _monochromePixel
 - (void) orderCoverWindowOut
 {
 	[coverWindow orderOut:self];
+}
+
+- (void) setDateFormatString:(NSString *) format
+{
+    [self willChangeValueForKey:@"now"];
+
+	[[NSUserDefaults standardUserDefaults] setValue:format forKey:@"Custom Date Format"];
+	
+    [self didChangeValueForKey:@"now"];
+
+	[tableViewDelegate updateBooksTable];
+}
+
+- (NSString *) getDateFormatString
+{
+	NSString * format = [[NSUserDefaults standardUserDefaults] stringForKey:@"Custom Date Format"];
+	
+	if (format == nil)
+		format = @"%B %e, %Y";
+	
+	return format;
+}
+
+- (NSString *) getNow
+{
+	NSString * dateFormat = [self getDateFormatString];
+	
+	[NSDateFormatter setDefaultFormatterBehavior:NSDateFormatterBehavior10_4];
+	NSDateFormatter * formatter = [[NSDateFormatter alloc] initWithDateFormat:dateFormat allowNaturalLanguage:YES];
+
+	return [formatter stringFromDate:[NSDate date]];
+}
+
+- (void) setNow: (NSString *) now
+{
+
 }
 
 @end

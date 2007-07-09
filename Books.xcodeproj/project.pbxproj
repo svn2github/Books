@@ -93,7 +93,6 @@
 		38A33A48090845FA00016FF0 /* ListManagedObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 38A33A47090845FA00016FF0 /* ListManagedObject.m */; };
 		38A54BEA09003CA2005018C3 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 38A54BE909003CA2005018C3 /* QuartzCore.framework */; };
 		38AC633C0BEA7CF3004F8DB4 /* dupe.png in Resources */ = {isa = PBXBuildFile; fileRef = 38AC633B0BEA7CF3004F8DB4 /* dupe.png */; };
-		38B16D730BA1EB9200216A44 /* CoverImageView.qtz in Resources */ = {isa = PBXBuildFile; fileRef = 38B16D720BA1EB9200216A44 /* CoverImageView.qtz */; };
 		38B16DAB0BA1FECE00216A44 /* CoverWindowDelegate.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 38B16DA90BA1FECE00216A44 /* CoverWindowDelegate.h */; };
 		38B16DAC0BA1FECE00216A44 /* CoverWindowDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 38B16DAA0BA1FECE00216A44 /* CoverWindowDelegate.m */; };
 		38B62EB20987D2D200A4A8AD /* Delicious Library Importer.app in Resources */ = {isa = PBXBuildFile; fileRef = 38B62EB10987D2D200A4A8AD /* Delicious Library Importer.app */; };
@@ -305,7 +304,6 @@
 		38A33A47090845FA00016FF0 /* ListManagedObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ListManagedObject.m; sourceTree = "<group>"; };
 		38A54BE909003CA2005018C3 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = /System/Library/Frameworks/QuartzCore.framework; sourceTree = "<absolute>"; };
 		38AC633B0BEA7CF3004F8DB4 /* dupe.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = dupe.png; sourceTree = "<group>"; };
-		38B16D720BA1EB9200216A44 /* CoverImageView.qtz */ = {isa = PBXFileReference; lastKnownFileType = file; path = CoverImageView.qtz; sourceTree = "<group>"; };
 		38B16DA90BA1FECE00216A44 /* CoverWindowDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CoverWindowDelegate.h; sourceTree = "<group>"; };
 		38B16DAA0BA1FECE00216A44 /* CoverWindowDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CoverWindowDelegate.m; sourceTree = "<group>"; };
 		38B62EB10987D2D200A4A8AD /* Delicious Library Importer.app */ = {isa = PBXFileReference; lastKnownFileType = wrapper.application; path = "Delicious Library Importer.app"; sourceTree = "<group>"; };
@@ -413,11 +411,11 @@
 		080E96DDFE201D6D7F000001 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
-				383E54170C3DD174000F06BF /* Refactored */,
-				3822F3BC0C34990D00475D9F /* Third Party Integration */,
-				384FDCDB090B3D1900EB0E2A /* AppleScript */,
+				38C0D6D50C3E240900DC777B /* Data Model */,
 				3825FE4B08FA9BC1007572AA /* Plugin Interfaces */,
-				38030AC408F4A02600B2AC82 /* Smart List Editor */,
+				38470D330C3E2954003F4939 /* System Integration */,
+				3822F3BC0C34990D00475D9F /* Third Party Integration */,
+				383E541D0C3DD1C7000F06BF /* User Interface */,
 				77C8280B06725ACE000B614F /* BooksAppDelegate.h */,
 				77C8280C06725ACE000B614F /* BooksAppDelegate.m */,
 			);
@@ -485,7 +483,6 @@
 		29B97317FDCFA39411CA2CEA /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				38B16D710BA1EB7400216A44 /* Quartz Composer Files */,
 				38BD42BC0BA06CBB00F245D8 /* UI */,
 				38DF40420B8DF63700D55EA4 /* Localized */,
 				385E3DE9090C572100EA3DA1 /* Spotlight */,
@@ -569,24 +566,14 @@
 			name = "Plugin Interfaces";
 			sourceTree = "<group>";
 		};
-		383E54170C3DD174000F06BF /* Refactored */ = {
+		383E541D0C3DD1C7000F06BF /* User Interface */ = {
 			isa = PBXGroup;
 			children = (
-				38C0D6D50C3E240900DC777B /* Data Model */,
-				383E541D0C3DD1C7000F06BF /* User Interface Delegate */,
-				383E550E0C3DDAFC000F06BF /* BooksSpotlightInterface.h */,
-				383E550F0C3DDAFC000F06BF /* BooksSpotlightInterface.m */,
-			);
-			name = Refactored;
-			sourceTree = "<group>";
-		};
-		383E541D0C3DD1C7000F06BF /* User Interface Delegate */ = {
-			isa = PBXGroup;
-			children = (
-				383E55030C3DDA3B000F06BF /* Windows */,
+				38030AC408F4A02600B2AC82 /* Smart List Editor */,
 				383E54F60C3DD9D3000F06BF /* Toolbar */,
+				383E55030C3DDA3B000F06BF /* Windows */,
 			);
-			name = "User Interface Delegate";
+			name = "User Interface";
 			sourceTree = "<group>";
 		};
 		383E54F60C3DD9D3000F06BF /* Toolbar */ = {
@@ -646,6 +633,16 @@
 				383E55F60C3DE4AD000F06BF /* BooksTokenViewDelegate.m */,
 			);
 			name = Controls;
+			sourceTree = "<group>";
+		};
+		38470D330C3E2954003F4939 /* System Integration */ = {
+			isa = PBXGroup;
+			children = (
+				384FDCDB090B3D1900EB0E2A /* AppleScript */,
+				383E550E0C3DDAFC000F06BF /* BooksSpotlightInterface.h */,
+				383E550F0C3DDAFC000F06BF /* BooksSpotlightInterface.m */,
+			);
+			name = "System Integration";
 			sourceTree = "<group>";
 		};
 		384FDCDB090B3D1900EB0E2A /* AppleScript */ = {
@@ -744,14 +741,6 @@
 				38EDC5C808EA23A300414B3D /* DefaultDisplay.plugin */,
 			);
 			name = "Display Plugins";
-			sourceTree = "<group>";
-		};
-		38B16D710BA1EB7400216A44 /* Quartz Composer Files */ = {
-			isa = PBXGroup;
-			children = (
-				38B16D720BA1EB9200216A44 /* CoverImageView.qtz */,
-			);
-			name = "Quartz Composer Files";
 			sourceTree = "<group>";
 		};
 		38BD42BC0BA06CBB00F245D8 /* UI */ = {
@@ -989,7 +978,6 @@
 				3894C9C50B58516000E7A508 /* camera-22.png in Resources */,
 				38BD42830BA069FA00F245D8 /* tiger.png in Resources */,
 				38BD42C10BA06CC800F245D8 /* corner.png in Resources */,
-				38B16D730BA1EB9200216A44 /* CoverImageView.qtz in Resources */,
 				38FEB2CC0BB985F500E6682C /* Tab-Delimited Text Exporter.app in Resources */,
 				38FEB2D00BB9860800E6682C /* Books Folder Exporter.app in Resources */,
 				38AC633C0BEA7CF3004F8DB4 /* dupe.png in Resources */,
