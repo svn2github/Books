@@ -315,7 +315,7 @@
 								<key>PBXProjectModuleGUID</key>
 								<string>1CE0B20306471E060097A5F4</string>
 								<key>PBXProjectModuleLabel</key>
-								<string>BooksAppDelegate.m</string>
+								<string>BooksTableViewDelegate.m</string>
 								<key>PBXSplitModuleInNavigatorKey</key>
 								<dict>
 									<key>Split0</key>
@@ -323,11 +323,11 @@
 										<key>PBXProjectModuleGUID</key>
 										<string>1CE0B20406471E060097A5F4</string>
 										<key>PBXProjectModuleLabel</key>
-										<string>BooksAppDelegate.m</string>
+										<string>BooksTableViewDelegate.m</string>
 										<key>_historyCapacity</key>
 										<integer>0</integer>
 										<key>bookmark</key>
-										<string>38E3121F0C41D4E300514762</string>
+										<string>3823AFAD0C48672E008BE19F</string>
 										<key>history</key>
 										<array>
 											<string>3815D1510A8A97B00085540E</string>
@@ -509,10 +509,6 @@
 											<string>38470D360C3EBAC1003F4939</string>
 											<string>38470D370C3EBAC1003F4939</string>
 											<string>38470D380C3EBAC1003F4939</string>
-											<string>38470D3A0C3EBAC1003F4939</string>
-											<string>38470D3C0C3EBAC1003F4939</string>
-											<string>38470D3E0C3EBAC1003F4939</string>
-											<string>38470D400C3EBAC1003F4939</string>
 											<string>381417720C3F1F320077F28D</string>
 											<string>381417730C3F1F320077F28D</string>
 											<string>381417750C3F1F320077F28D</string>
@@ -525,10 +521,10 @@
 											<string>38DF85540C41C8A900E799BC</string>
 											<string>38DF85830C41CA0200E799BC</string>
 											<string>38DF85A20C41CB8700E799BC</string>
-											<string>38DF85C50C41CCB700E799BC</string>
 											<string>38DF85C60C41CCB700E799BC</string>
 											<string>38DF85E20C41CF6B00E799BC</string>
-											<string>38E3121A0C41D40A00514762</string>
+											<string>38F12E250C447BE000E76CEC</string>
+											<string>3823AFAC0C48672E008BE19F</string>
 										</array>
 										<key>prevStack</key>
 										<array>
@@ -727,10 +723,6 @@
 											<string>38C0D5C90C3E1C2B00DC777B</string>
 											<string>38C0D6890C3E211500DC777B</string>
 											<string>38C0D68E0C3E211500DC777B</string>
-											<string>38470D480C3EBAC1003F4939</string>
-											<string>38470D4A0C3EBAC1003F4939</string>
-											<string>38470D4C0C3EBAC1003F4939</string>
-											<string>38470D4E0C3EBAC1003F4939</string>
 											<string>381417880C3F1F970077F28D</string>
 										</array>
 									</dict>
@@ -789,9 +781,9 @@
 			</array>
 			<key>TableOfContents</key>
 			<array>
-				<string>38E312110C41D37D00514762</string>
+				<string>3823AFA30C47FD35008BE19F</string>
 				<string>1CE0B1FE06471DED0097A5F4</string>
-				<string>38E312120C41D37D00514762</string>
+				<string>3823AFA40C47FD35008BE19F</string>
 				<string>1CE0B20306471E060097A5F4</string>
 				<string>1CE0B20506471E060097A5F4</string>
 			</array>
@@ -925,8 +917,8 @@
 	<integer>5</integer>
 	<key>WindowOrderList</key>
 	<array>
-		<string>384FEAE0090BD7D500EB0E2A</string>
 		<string>1C0AD2B3069F1EA900FABCE6</string>
+		<string>384FEAE0090BD7D500EB0E2A</string>
 		<string>/Users/cjkarr/Desktop/src/Books/Books.xcodeproj</string>
 	</array>
 	<key>WindowString</key>
@@ -946,14 +938,12 @@
 					<key>Dock</key>
 					<array>
 						<dict>
-							<key>BecomeActive</key>
-							<true/>
 							<key>ContentConfiguration</key>
 							<dict>
 								<key>PBXProjectModuleGUID</key>
 								<string>1CD0528F0623707200166675</string>
 								<key>PBXProjectModuleLabel</key>
-								<string>BooksAppDelegate.m</string>
+								<string></string>
 								<key>StatusBarVisibility</key>
 								<true/>
 							</dict>
@@ -1009,7 +999,7 @@
 			<key>TableOfContents</key>
 			<array>
 				<string>384FEAE0090BD7D500EB0E2A</string>
-				<string>38E3121C0C41D40A00514762</string>
+				<string>3823AFA90C482F24008BE19F</string>
 				<string>1CD0528F0623707200166675</string>
 				<string>XCMainBuildResultsModuleGUID</string>
 			</array>
@@ -1020,7 +1010,7 @@
 			<key>WindowToolGUID</key>
 			<string>384FEAE0090BD7D500EB0E2A</string>
 			<key>WindowToolIsVisible</key>
-			<true/>
+			<false/>
 		</dict>
 		<dict>
 			<key>FirstTimeWindowDisplayed</key>
@@ -1373,9 +1363,9 @@
 			<key>TableOfContents</key>
 			<array>
 				<string>1C0AD2B3069F1EA900FABCE6</string>
-				<string>38E3121D0C41D40A00514762</string>
+				<string>3823AFAA0C482F24008BE19F</string>
 				<string>1CD0528B0623707200166675</string>
-				<string>38E3121E0C41D40A00514762</string>
+				<string>3823AFAB0C482F24008BE19F</string>
 			</array>
 			<key>ToolbarConfiguration</key>
 			<string>xcode.toolbar.config.run</string>
@@ -1384,7 +1374,7 @@
 			<key>WindowToolGUID</key>
 			<string>1C0AD2B3069F1EA900FABCE6</string>
 			<key>WindowToolIsVisible</key>
-			<true/>
+			<false/>
 		</dict>
 		<dict>
 			<key>FirstTimeWindowDisplayed</key>
