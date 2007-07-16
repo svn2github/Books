@@ -536,21 +536,16 @@ typedef struct _monochromePixel
 	NSError * error = nil;
 	books = [[self managedObjectContext] executeFetchRequest:fetch error:&error];
 		
-	NSMutableSet * publishers = [NSMutableSet set];
 	NSMutableSet * userFieldNames = [NSMutableSet set];
 
 	[tokenDelegate updateTokens];
+	[comboBoxDelegate updateTokens];
 
 	int i = 0;
 	for (i = 0; i < [books count]; i++)
 	{
 		BookManagedObject * book = (BookManagedObject *) [books objectAtIndex:i];
 		
-		NSString * publisherString = [book valueForKey:@"publisher"];
-
-		if (publisherString != nil)
-			[publishers addObject:publisherString];
-
 		NSMutableSet * userFields = [book mutableSetValueForKey:@"userFields"];
 		NSArray * allFields = [userFields allObjects];
 		
@@ -566,8 +561,8 @@ typedef struct _monochromePixel
 		}
 	}
 
-	NSArray * lists = [NSArray arrayWithObjects: publishers, userFieldNames, nil];
-	NSArray * listCombos = [NSArray arrayWithObjects: publisherCombo, userFieldCombo, nil];
+	NSArray * lists = [NSArray arrayWithObjects: userFieldNames, nil];
+	NSArray * listCombos = [NSArray arrayWithObjects: userFieldCombo, nil];
 
 	for (i = 0; i < [lists count] && i < [listCombos count]; i++)
 	{

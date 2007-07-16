@@ -26,6 +26,8 @@
                 openFiles = id; 
                 preferences = id; 
                 quickfill = id; 
+                removeBook = id; 
+                removeList = id; 
                 save = id; 
                 saveAction = id; 
                 saveSmartList = id; 
@@ -40,6 +42,7 @@
             OUTLETS = {
                 bookArrayController = NSArrayController; 
                 collectionArrayController = NSArrayController; 
+                comboBoxDelegate = BooksTextFieldDelegate; 
                 coverWindow = NSWindow; 
                 datePublished = NSTextField; 
                 detailsPane = WebView; 
@@ -58,7 +61,6 @@
                 progressIndicator = NSProgressIndicator; 
                 progressText = NSTextField; 
                 progressView = NSWindow; 
-                publisherCombo = NSComboBox; 
                 quickfillProgress = NSProgressIndicator; 
                 quickfillResultsWindow = QuickfillSearchWindow; 
                 quickfillWindow = NSWindow; 
@@ -97,6 +99,20 @@
                 listsTable = NSTableView; 
                 spotlightInterface = BooksSpotlightInterface; 
                 toolbarDelegate = BooksToolbarDelegate; 
+            }; 
+            SUPERCLASS = NSObject; 
+        }, 
+        {
+            CLASS = BooksTextFieldDelegate; 
+            LANGUAGE = ObjC; 
+            OUTLETS = {
+                authors = id; 
+                editors = id; 
+                genre = id; 
+                illustrators = id; 
+                keywords = id; 
+                publisher = id; 
+                translators = id; 
             }; 
             SUPERCLASS = NSObject; 
         }, 

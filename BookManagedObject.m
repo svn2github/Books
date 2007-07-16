@@ -1064,5 +1064,58 @@
     [self didChangeValueForKey:@"title"];
 }
 
+- (void) setGenre: (NSString *) value
+{
+    [self willChangeValueForKey:@"genreArray"];
+    [self willChangeValueForKey:@"genre"];
+	[super setPrimitiveValue:value forKey:@"genre"];
+    [self didChangeValueForKey:@"genreArray"];
+    [self didChangeValueForKey:@"genre"];
+}
+
+- (void) setAuthors: (NSString *) value
+{
+    [self willChangeValueForKey:@"authorArray"];
+    [self willChangeValueForKey:@"authors"];
+	[super setPrimitiveValue:value forKey:@"authors"];
+    [self didChangeValueForKey:@"authorArray"];
+    [self didChangeValueForKey:@"authors"];
+}
+
+- (void) setIllustrators: (NSString *) value
+{
+    [self willChangeValueForKey:@"illustratorArray"];
+    [self willChangeValueForKey:@"illustrators"];
+	[super setPrimitiveValue:value forKey:@"illustrators"];
+    [self didChangeValueForKey:@"illustratorArray"];
+    [self didChangeValueForKey:@"illustrators"];
+}
+
+- (void) setEditors: (NSString *) value
+{
+    [self willChangeValueForKey:@"editorArray"];
+    [self willChangeValueForKey:@"editors"];
+	[super setPrimitiveValue:value forKey:@"editors"];
+    [self didChangeValueForKey:@"editorArray"];
+    [self didChangeValueForKey:@"editors"];
+}
+
+- (void) setTranslators: (NSString *) value
+{
+    [self willChangeValueForKey:@"translatorArray"];
+    [self willChangeValueForKey:@"translators"];
+	[super setPrimitiveValue:value forKey:@"translators"];
+    [self didChangeValueForKey:@"translatorArray"];
+    [self didChangeValueForKey:@"trasnlators"];
+}
+
+- (void) setKeywords: (NSString *) value
+{
+    [self willChangeValueForKey:@"keywordArray"];
+    [self willChangeValueForKey:@"keywords"];
+	[super setPrimitiveValue:value forKey:@"keywords"];
+    [self didChangeValueForKey:@"keywordArray"];
+    [self didChangeValueForKey:@"keywords"];
+}
 
 @end

@@ -116,6 +116,8 @@
 		38EDC5D208EA23A300414B3D /* DefaultDisplay.plugin in Resources */ = {isa = PBXBuildFile; fileRef = 38EDC5C808EA23A300414B3D /* DefaultDisplay.plugin */; };
 		38EDC5F408EA279900414B3D /* ClassicDisplay.plugin in Resources */ = {isa = PBXBuildFile; fileRef = 38EDC5EA08EA279900414B3D /* ClassicDisplay.plugin */; };
 		38EF4C3D0A4A910D00DA872C /* QuickfillSearchWindow.m in Sources */ = {isa = PBXBuildFile; fileRef = 38EF4C3B0A4A910D00DA872C /* QuickfillSearchWindow.m */; };
+		38F1A7EB0C4BC3CA001F2F4A /* BooksTextFieldDelegate.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 38F1A7E90C4BC3CA001F2F4A /* BooksTextFieldDelegate.h */; };
+		38F1A7EC0C4BC3CA001F2F4A /* BooksTextFieldDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 38F1A7EA0C4BC3CA001F2F4A /* BooksTextFieldDelegate.m */; };
 		38F3318F09805B0400155EBA /* BookAuthorString.m in Sources */ = {isa = PBXBuildFile; fileRef = 38F3318D09805B0400155EBA /* BookAuthorString.m */; };
 		38F509BB09AAE0A50048C340 /* Booxter Importer.app in Resources */ = {isa = PBXBuildFile; fileRef = 38F509BA09AAE0A50048C340 /* Booxter Importer.app */; };
 		38F5751B08F7420400119232 /* BookListArrayController.m in Sources */ = {isa = PBXBuildFile; fileRef = 38F5751A08F7420400119232 /* BookListArrayController.m */; };
@@ -154,6 +156,7 @@
 				383E55F70C3DE4AD000F06BF /* BooksTokenViewDelegate.h in CopyFiles */,
 				38C0D5020C3E152800DC777B /* BooksTableViewDelegate.h in CopyFiles */,
 				38C0D62C0C3E1DF600DC777B /* FieldsTableViewDelegate.h in CopyFiles */,
+				38F1A7EB0C4BC3CA001F2F4A /* BooksTextFieldDelegate.h in CopyFiles */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -360,6 +363,8 @@
 		38EDC7EE08EADEC400414B3D /* English */ = {isa = PBXFileReference; lastKnownFileType = text.rtf; name = English; path = English.lproj/Credits.rtf; sourceTree = "<group>"; };
 		38EF4C3A0A4A910D00DA872C /* QuickfillSearchWindow.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = QuickfillSearchWindow.h; sourceTree = "<group>"; };
 		38EF4C3B0A4A910D00DA872C /* QuickfillSearchWindow.m */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.objc; path = QuickfillSearchWindow.m; sourceTree = "<group>"; };
+		38F1A7E90C4BC3CA001F2F4A /* BooksTextFieldDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BooksTextFieldDelegate.h; sourceTree = "<group>"; };
+		38F1A7EA0C4BC3CA001F2F4A /* BooksTextFieldDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BooksTextFieldDelegate.m; sourceTree = "<group>"; };
 		38F3318C09805B0400155EBA /* BookAuthorString.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BookAuthorString.h; sourceTree = "<group>"; };
 		38F3318D09805B0400155EBA /* BookAuthorString.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BookAuthorString.m; sourceTree = "<group>"; };
 		38F509BA09AAE0A50048C340 /* Booxter Importer.app */ = {isa = PBXFileReference; lastKnownFileType = wrapper.application; path = "Booxter Importer.app"; sourceTree = "<group>"; };
@@ -631,6 +636,8 @@
 			children = (
 				383E55F50C3DE4AD000F06BF /* BooksTokenViewDelegate.h */,
 				383E55F60C3DE4AD000F06BF /* BooksTokenViewDelegate.m */,
+				38F1A7E90C4BC3CA001F2F4A /* BooksTextFieldDelegate.h */,
+				38F1A7EA0C4BC3CA001F2F4A /* BooksTextFieldDelegate.m */,
 			);
 			name = Controls;
 			sourceTree = "<group>";
@@ -1035,6 +1042,7 @@
 				383E55F80C3DE4AD000F06BF /* BooksTokenViewDelegate.m in Sources */,
 				38C0D5030C3E152800DC777B /* BooksTableViewDelegate.m in Sources */,
 				38C0D62D0C3E1DF600DC777B /* FieldsTableViewDelegate.m in Sources */,
+				38F1A7EC0C4BC3CA001F2F4A /* BooksTextFieldDelegate.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -35,6 +35,7 @@
 #import "BooksToolbarDelegate.h"
 #import "BooksSpotlightInterface.h"
 #import "BooksTokenViewDelegate.h"
+#import "BooksTextFieldDelegate.h"
 #import "BooksTableViewDelegate.h"
 
 @interface BooksAppDelegate : NSObject 
@@ -43,6 +44,7 @@
     IBOutlet BooksSpotlightInterface * spotlightInterface;
     IBOutlet BooksTokenViewDelegate * tokenDelegate;
 	IBOutlet BooksTableViewDelegate * tableViewDelegate;
+	IBOutlet BooksTextFieldDelegate * comboBoxDelegate;
 
     IBOutlet NSWindow * mainWindow;
     IBOutlet NSWindow * infoWindow;
@@ -75,7 +77,6 @@
 	
 	NSModalSession session;
 	
-	IBOutlet NSComboBox * publisherCombo;
 	IBOutlet NSComboBox * userFieldCombo;
 	IBOutlet NSTextField * datePublished;
 
