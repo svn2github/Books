@@ -23,6 +23,11 @@
 	IBOutlet NSArrayController * bookArrayController;
 	
 	NSString * openFilename;
+
+	NSArray * fieldKeys;
+	NSArray * fieldTitles;
+	
+	IBOutlet NSMenu * booksColumnMenu;
 }
 
 - (void) save;
@@ -35,5 +40,6 @@
 - (NSTableView *) getBooksTable;
 
 - (void) setOpenFilename:(NSString *) filename;
+- (IBAction) toggleColumns: (id) sender;
 
 @end

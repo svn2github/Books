@@ -290,6 +290,11 @@
 	for (i = 0; i < [oldColumns count]; i++)
 		[booksTable removeTableColumn:[oldColumns objectAtIndex:i]];
 
+	NSArray * menuItems = [booksColumnMenu itemArray];
+	
+	for (i = 0; i < [menuItems count]; i++)
+		[[menuItems objectAtIndex:i] setState:NSOffState];
+
 	if ([newColumns count] == 0)
 	{
 		NSMutableDictionary * title = [NSMutableDictionary dictionary];
@@ -310,6 +315,8 @@
 
 		if ([enabled isEqualToString:@"1"])
 		{
+			[[booksColumnMenu itemWithTitle:title] setState:NSOnState];
+
 			NSTableColumn * column = [[NSTableColumn alloc] initWithIdentifier:key];
 		
 			[[column headerCell] setStringValue:title];
@@ -377,6 +384,7 @@
 		}
 	}		
 	
+	[booksTable sizeToFit];
 	[booksTable setDoubleAction:@selector(getInfoWindow:)];
 }
 
@@ -403,6 +411,76 @@
 - (void) setOpenFilename:(NSString *) filename
 {
 	openFilename = [filename retain];
+}
+
+- (IBAction) toggleColumns: (id) sender
+{
+	NSUserDefaults * prefs = [NSUserDefaults standardUserDefaults];
+	NSArray * prefArray = [prefs arrayForKey:@"Display Fields"];
+	
+	if (prefArray == nil)
+		prefArray = [NSArray array];
+		
+	NSMutableArray * columnArray = [NSMutableArray arrayWithArray:prefArray];
+	
+	NSString * title = [sender title];
+	int index = [fieldTitles indexOfObject:title];
+	NSString * key = [fieldKeys objectAtIndex:index];
+	
+	NSMenuItem * menuItem = [booksColumnMenu itemWithTitle:[sender title]];
+
+	if ([menuItem state] == NSOnState)
+	{
+		int i = 0;
+		for (i = 0; i < [columnArray count]; i++)
+		{
+			if ([[[columnArray objectAtIndex:i] valueForKey:@"Key"] isEqualTo:key])
+				[columnArray removeObjectAtIndex:i];
+		}
+	}
+	else 
+	{
+		NSMutableDictionary * dict = [NSMutableDictionary dictionary];
+		[dict setValue:key forKey:@"Key"];
+		[dict setValue:title forKey:@"Title"];
+		[dict setValue:[NSNumber numberWithInt:1] forKey:@"Enabled"];
+		
+		[columnArray addObject:dict];
+	}
+
+	[prefs setObject:columnArray forKey:@"Display Fields"];
+	[self updateBooksTable];
+}
+
+- (void) awakeFromNib
+{
+	fieldTitles = [[NSArray alloc] initWithObjects:NSLocalizedString (@"Title", nil), 
+							NSLocalizedString (@"Series", nil), NSLocalizedString (@"Genre", nil), 
+							NSLocalizedString (@"ISBN", nil), NSLocalizedString (@"Author(s)", nil), 
+							NSLocalizedString (@"Date Published", nil),	NSLocalizedString (@"Keywords", nil), 
+							NSLocalizedString (@"Publisher", nil), NSLocalizedString (@"Translator(s)", nil), 
+							NSLocalizedString (@"Illustrator(s)", nil), NSLocalizedString (@"Editor(s)", nil), 
+							NSLocalizedString (@"Place Published", nil), NSLocalizedString (@"Length", nil), 
+							NSLocalizedString (@"Edition", nil), NSLocalizedString (@"Format", nil), 
+							NSLocalizedString (@"Location", nil), NSLocalizedString (@"Rating", nil), 
+							NSLocalizedString (@"Condition", nil), NSLocalizedString (@"Source", nil), 
+							NSLocalizedString (@"Owner", nil), NSLocalizedString (@"Current Value", nil), 
+							NSLocalizedString (@"Rating", nil), NSLocalizedString (@"Borrower", nil), 
+							NSLocalizedString (@"Date Lent", nil), NSLocalizedString (@"Returned On", nil), 
+							NSLocalizedString (@"Date Acquired", nil), NSLocalizedString (@"Date Finished", nil), 
+							NSLocalizedString (@"Date Started", nil), nil];
+
+	fieldKeys = [[NSArray alloc] initWithObjects:@"title", @"series", @"genre", @"isbn", @"authors", @"publishDate", 
+			@"keywords", @"publisher", @"translators", @"illustrators", @"editors", @"publishPlace", 
+			@"length", @"edition", @"format", @"location", @"rating", @"condition", @"source", @"owner", @"currentValue", 
+			@"rating", @"borrower", @"dateLent", @"dateDue", @"dateAcquired", @"dateFinished", @"dateStarted", nil];
+
+	[[booksTable headerView] setMenu:booksColumnMenu];
+}
+
+- (void)textDidChange:(NSNotification *)aNotification
+{
+	[self updateBooksTable];
 }
 
 @end

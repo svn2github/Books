@@ -89,11 +89,13 @@
             SUPERCLASS = NSObject; 
         }, 
         {
+            ACTIONS = {toggleColumns = id; }; 
             CLASS = BooksTableViewDelegate; 
             LANGUAGE = ObjC; 
             OUTLETS = {
                 bookArrayController = NSArrayController; 
                 booksAppDelegate = NSObject; 
+                booksColumnMenu = NSMenu; 
                 booksTable = NSTableView; 
                 collectionArrayController = NSArrayController; 
                 listsTable = NSTableView; 

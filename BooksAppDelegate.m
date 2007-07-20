@@ -935,6 +935,7 @@ typedef struct _monochromePixel
 	[collectionArrayController setSortDescriptors:
 		[NSArray arrayWithObject:[[NSSortDescriptor alloc] initWithKey:@"name" ascending:YES]]];
 
+	[self save:sender];
 	[tableViewDelegate reloadListsTable];
 }
 
@@ -979,6 +980,8 @@ typedef struct _monochromePixel
 			}
 
 			[self refreshComboBoxes:nil];
+			
+			[self save:sender];
 		}
 	}
 	else
@@ -1011,6 +1014,8 @@ typedef struct _monochromePixel
 
 			if (choice == NSAlertAlternateReturn)
 				[bookArrayController remove:self];
+
+			[self save:sender];
 		}
 	}
 }
@@ -1063,6 +1068,8 @@ typedef struct _monochromePixel
 					[collectionArrayController remove:self];
 			}
 		}
+		
+		[self save:sender];
 	}
 	else
 		NSRunAlertPanel (NSLocalizedString (@"Can Not Remove List", nil),  NSLocalizedString (@"The remaining list can not be removed.", nil), NSLocalizedString (@"OK", nil), nil, nil);
