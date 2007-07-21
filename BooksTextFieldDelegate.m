@@ -6,7 +6,6 @@
 - (BooksTextFieldDelegate *) init
 {
 	self = [super init];
-	refresh = true;
 	
 	genreSet = [[NSMutableSet alloc] init];
 	authorSet = [[NSMutableSet alloc] init];
@@ -16,15 +15,12 @@
 	keywordSet = [[NSMutableSet alloc] init];
 	publisherSet = [[NSMutableSet alloc] init];
 
+	comboArrays = [[NSMutableDictionary alloc] init];
+
 	tokenList = [[NSArray alloc] initWithObjects:genreSet, authorSet, editorSet, illustratorSet, translatorSet, keywordSet, publisherSet, nil];
 	fieldList = [[NSArray alloc] initWithObjects:@"genre", @"authors", @"editors", @"illustrators", @"translators", @"keywords", @"publisher", nil];
 	
 	return self;
-}
-
-- (void) updateTokens
-{
-	refresh = true;
 }
 
 - (void) update
@@ -67,58 +63,81 @@
 	}
 
 	[fetch release];
+}
+
+- (void) updateTokens
+{
+	[comboArrays removeAllObjects];
+	[self update];
+}
+
+- (NSArray *) getArrayForBox:(NSComboBox *) box
+{
+	NSArray * items = [comboArrays objectForKey:[box description]];
 	
-	refresh = false;
+	if (items != nil)
+		return items;
+	else
+	{
+		if (box == genre)
+			items = [genreSet allObjects];
+		else if (box == authors)
+			items = [authorSet allObjects];
+		else if (box == illustrators)
+			items = [illustratorSet allObjects];
+		else if (box == editors)
+			items = [editorSet allObjects];
+		else if (box == translators)
+			items = [translatorSet allObjects];
+		else if (box == keywords)
+			items = [keywordSet allObjects];
+		else if (box == publisher)
+			items = [publisherSet allObjects];
+		
+		if (items != nil)
+		{
+			items = [items sortedArrayUsingSelector:@selector(caseInsensitiveCompare:)];
+	
+			[comboArrays setObject:items forKey:[box description]];
+		}
+	}
+
+	return items;
 }
 
 - (id) comboBox: (NSComboBox *) box objectValueForItemAtIndex:(int) index
 {
-	if (refresh)
-		[self update];
-	
-	NSArray * items = [NSArray array];
-	
-	if (box == genre)
-		items = [genreSet allObjects];
-	else if (box == authors)
-		items = [authorSet allObjects];
-	else if (box == illustrators)
-		items = [illustratorSet allObjects];
-	else if (box == editors)
-		items = [editorSet allObjects];
-	else if (box == translators)
-		items = [translatorSet allObjects];
-	else if (box == keywords)
-		items = [keywordSet allObjects];
-	else if (box == publisher)
-		items = [publisherSet allObjects];
-		  
-	items = [items sortedArrayUsingSelector:@selector(caseInsensitiveCompare:)];
+	NSArray * items = [self getArrayForBox:box];
 	
 	return [items objectAtIndex:index];
 }
 
+- (unsigned int) comboBox:(NSComboBox *)box indexOfItemWithStringValue:(NSString *) string
+{
+	NSArray * items = [self getArrayForBox:box];
+	
+	return [items indexOfObjectIdenticalTo:string];
+}
+
+- (NSString *) comboBox:(NSComboBox *) box completedString:(NSString *) string
+{
+	NSArray * items = [self getArrayForBox:box];
+	
+	int i = 0;
+	for (i = 0; i < [items count]; i++)
+	{
+		NSString * item = (NSString *) [items objectAtIndex:i];
+		
+		if ([item hasPrefix:string])
+			return item;
+	}
+
+	return @"";
+}
+
 - (int)numberOfItemsInComboBox:(NSComboBox *) box
 {
-	if (refresh)
-		[self update];
-
-	NSArray * items = [NSArray array];
-
-	if (box == genre)
-		items = [genreSet allObjects];
-	else if (box == authors)
-		items = [authorSet allObjects];
-	else if (box == illustrators)
-		items = [illustratorSet allObjects];
-	else if (box == editors)
-		items = [editorSet allObjects];
-	else if (box == translators)
-		items = [translatorSet allObjects];
-	else if (box == keywords)
-		items = [keywordSet allObjects];
-	else if (box == publisher)
-		items = [publisherSet allObjects];
+	NSArray * items = [self getArrayForBox:box];
 
 	return [items count];
 }

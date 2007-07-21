@@ -22,8 +22,8 @@
 
 	NSArray * tokenList;
 	NSArray * fieldList;
-	
-	BOOL refresh;
+
+	NSMutableDictionary * comboArrays;
 }
 
 - (void) updateTokens;
