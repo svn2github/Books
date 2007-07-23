@@ -186,8 +186,8 @@
 					PBXFileDataSource_Warnings_ColumnID,
 				);
 			};
-			PBXPerProjectTemplateStateSaveDate = 206722962;
-			PBXWorkspaceStateSaveDate = 206722962;
+			PBXPerProjectTemplateStateSaveDate = 206746003;
+			PBXWorkspaceStateSaveDate = 206746003;
 		};
 		perUserProjectItems = {
 			3800649A0C353D86005C432C /* PBXTextBookmark */ = 3800649A0C353D86005C432C /* PBXTextBookmark */;
@@ -207,8 +207,6 @@
 			380EA0420C524C5A00B36ED8 /* PBXTextBookmark */ = 380EA0420C524C5A00B36ED8 /* PBXTextBookmark */;
 			380EA08F0C52514100B36ED8 /* PBXBookmark */ = 380EA08F0C52514100B36ED8 /* PBXBookmark */;
 			380EA0930C52514100B36ED8 /* PBXBookmark */ = 380EA0930C52514100B36ED8 /* PBXBookmark */;
-			380EA0D40C5255ED00B36ED8 /* PBXTextBookmark */ = 380EA0D40C5255ED00B36ED8 /* PBXTextBookmark */;
-			380EA2C60C52643500B36ED8 /* PBXTextBookmark */ = 380EA2C60C52643500B36ED8 /* PBXTextBookmark */;
 			381417720C3F1F320077F28D /* PBXTextBookmark */ = 381417720C3F1F320077F28D /* PBXTextBookmark */;
 			381417730C3F1F320077F28D /* PBXTextBookmark */ = 381417730C3F1F320077F28D /* PBXTextBookmark */;
 			381417860C3F1F970077F28D /* PBXTextBookmark */ = 381417860C3F1F970077F28D /* PBXTextBookmark */;
@@ -414,6 +412,12 @@
 			388E1F6B0BF351D000E8A670 /* PBXTextBookmark */ = 388E1F6B0BF351D000E8A670 /* PBXTextBookmark */;
 			3894C9D80B5852D700E7A508 /* PBXBookmark */ = 3894C9D80B5852D700E7A508 /* PBXBookmark */;
 			3894C9DF0B5852D700E7A508 /* PBXBookmark */ = 3894C9DF0B5852D700E7A508 /* PBXBookmark */;
+			38977FDD0C52B7F200F42698 /* PBXTextBookmark */ = 38977FDD0C52B7F200F42698 /* PBXTextBookmark */;
+			38977FDE0C52B7F200F42698 /* PBXTextBookmark */ = 38977FDE0C52B7F200F42698 /* PBXTextBookmark */;
+			38977FE00C52B7F200F42698 /* PBXBookmark */ = 38977FE00C52B7F200F42698 /* PBXBookmark */;
+			38977FE10C52B7F200F42698 /* PBXTextBookmark */ = 38977FE10C52B7F200F42698 /* PBXTextBookmark */;
+			38977FE20C52B7F200F42698 /* PBXTextBookmark */ = 38977FE20C52B7F200F42698 /* PBXTextBookmark */;
+			38977FE40C52B7F200F42698 /* PBXTextBookmark */ = 38977FE40C52B7F200F42698 /* PBXTextBookmark */;
 			389CE4E50B8E2A6000E9E5EF /* PBXTextBookmark */ = 389CE4E50B8E2A6000E9E5EF /* PBXTextBookmark */;
 			389CE50A0B8E2AFC00E9E5EF /* PBXTextBookmark */ = 389CE50A0B8E2AFC00E9E5EF /* PBXTextBookmark */;
 			389CE50B0B8E2AFC00E9E5EF /* PBXTextBookmark */ = 389CE50B0B8E2AFC00E9E5EF /* PBXTextBookmark */;
@@ -848,26 +852,6 @@
 		name = "export-plugin.icns";
 		path = "/Users/cjkarr/Desktop/src/Books/Tab-Delimited Text Exporter.app/Contents/Resources/export-plugin.icns";
 		sourceTree = "<absolute>";
-	};
-	380EA0D40C5255ED00B36ED8 /* PBXTextBookmark */ = {
-		isa = PBXTextBookmark;
-		fRef = 3878AF28088FE45E00C72EB3 /* ImportPluginInterface.m */;
-		name = "ImportPluginInterface.m: 147";
-		rLen = 0;
-		rLoc = 4903;
-		rType = 0;
-		vrLen = 992;
-		vrLoc = 4482;
-	};
-	380EA2C60C52643500B36ED8 /* PBXTextBookmark */ = {
-		isa = PBXTextBookmark;
-		fRef = 3878AF28088FE45E00C72EB3 /* ImportPluginInterface.m */;
-		name = "ImportPluginInterface.m: 147";
-		rLen = 0;
-		rLoc = 4903;
-		rType = 0;
-		vrLen = 992;
-		vrLoc = 4482;
 	};
 	381311210907C1390081D7A7 /* Books */ = {
 		isa = PBXExecutable;
@@ -3844,6 +3828,89 @@
 	3894C9DF0B5852D700E7A508 /* PBXBookmark */ = {
 		isa = PBXBookmark;
 		fRef = 3894C9C40B58516000E7A508 /* camera-22.png */;
+	};
+	38977EB70C52B19500F42698 /* amazon.py */ = {
+		isa = PBXFileReference;
+		lastKnownFileType = text.script.python;
+		path = amazon.py;
+		sourceTree = "<group>";
+	};
+	38977FDD0C52B7F200F42698 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 3878AF28088FE45E00C72EB3 /* ImportPluginInterface.m */;
+		name = "ImportPluginInterface.m: 147";
+		rLen = 0;
+		rLoc = 4903;
+		rType = 0;
+		vrLen = 992;
+		vrLoc = 4482;
+	};
+	38977FDE0C52B7F200F42698 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 38977FDF0C52B7F200F42698 /* amazonScript.py */;
+		name = "(null): 1";
+		rLen = 0;
+		rLoc = 0;
+		rType = 0;
+		vrLen = 715;
+		vrLoc = 1601;
+	};
+	38977FDF0C52B7F200F42698 /* amazonScript.py */ = {
+		isa = PBXFileReference;
+		name = amazonScript.py;
+		path = "/Users/cjkarr/Desktop/src/Books/Amazon (DE).plugin/Contents/Resources/amazonScript.py";
+		sourceTree = "<absolute>";
+	};
+	38977FE00C52B7F200F42698 /* PBXBookmark */ = {
+		isa = PBXBookmark;
+		fRef = 38977EB70C52B19500F42698 /* amazon.py */;
+	};
+	38977FE10C52B7F200F42698 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 3878AF28088FE45E00C72EB3 /* ImportPluginInterface.m */;
+		name = "ImportPluginInterface.m: 147";
+		rLen = 0;
+		rLoc = 4903;
+		rType = 0;
+		vrLen = 992;
+		vrLoc = 4482;
+	};
+	38977FE20C52B7F200F42698 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 38977FE30C52B7F200F42698 /* amazonScript.py */;
+		name = "(null): 1";
+		rLen = 0;
+		rLoc = 0;
+		rType = 0;
+		vrLen = 715;
+		vrLoc = 1601;
+	};
+	38977FE30C52B7F200F42698 /* amazonScript.py */ = {
+		isa = PBXFileReference;
+		name = amazonScript.py;
+		path = "/Users/cjkarr/Desktop/src/Books/Amazon (DE).plugin/Contents/Resources/amazonScript.py";
+		sourceTree = "<absolute>";
+	};
+	38977FE40C52B7F200F42698 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 38977FE50C52B7F200F42698 /* amazon.py */;
+		name = xml;
+		rLen = 3;
+		rLoc = 7926;
+		rType = 0;
+		vrLen = 1078;
+		vrLoc = 7257;
+	};
+	38977FE50C52B7F200F42698 /* amazon.py */ = {
+		isa = PBXFileReference;
+		name = amazon.py;
+		path = "/Users/cjkarr/Desktop/src/Books/Amazon (DE).plugin/Contents/Resources/amazon.py";
+		sourceTree = "<absolute>";
+		uiCtxt = {
+			sepNavIntBoundsRect = "{{0, 0}, {1343, 5535}}";
+			sepNavSelRange = "{7926, 3}";
+			sepNavVisRect = "{{0, 3136}, {895, 494}}";
+		};
 	};
 	389CE4E50B8E2A6000E9E5EF /* PBXTextBookmark */ = {
 		isa = PBXTextBookmark;

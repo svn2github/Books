@@ -262,22 +262,28 @@
 								<string>29B97317FDCFA39411CA2CEA</string>
 								<string>38DF40420B8DF63700D55EA4</string>
 								<string>38EDC56F08EA1DB200414B3D</string>
-								<string>3892A5F10900D4D700FF72C8</string>
+								<string>38D84AC6095777A2002E39DB</string>
+								<string>384BD46B0959A3C70077D553</string>
+								<string>38977DB10C52B19300F42698</string>
+								<string>38977EB50C52B19500F42698</string>
 								<string>1C37FBAC04509CD000000102</string>
 								<string>1C37FABC05509CD000000102</string>
 							</array>
 							<key>PBXSmartGroupTreeModuleOutlineStateSelectionKey</key>
 							<array>
 								<array>
-									<integer>45</integer>
+									<integer>48</integer>
+									<integer>47</integer>
+									<integer>44</integer>
 									<integer>43</integer>
+									<integer>40</integer>
 									<integer>38</integer>
 									<integer>26</integer>
 									<integer>0</integer>
 								</array>
 							</array>
 							<key>PBXSmartGroupTreeModuleOutlineStateVisibleRectKey</key>
-							<string>{{0, 567}, {322, 589}}</string>
+							<string>{{0, 414}, {322, 589}}</string>
 						</dict>
 						<key>PBXTopSmartGroupGIDs</key>
 						<array/>
@@ -298,7 +304,7 @@
 							<real>300</real>
 						</array>
 						<key>RubberWindowFrame</key>
-						<string>-1280 291 1280 648 -1280 0 1280 1024 </string>
+						<string>-1283 291 1280 648 -1280 0 1280 1024 </string>
 					</dict>
 					<key>Module</key>
 					<string>PBXSmartGroupTreeModule</string>
@@ -316,7 +322,7 @@
 								<key>PBXProjectModuleGUID</key>
 								<string>1CE0B20306471E060097A5F4</string>
 								<key>PBXProjectModuleLabel</key>
-								<string>ImportPluginInterface.m</string>
+								<string>amazon.py</string>
 								<key>PBXSplitModuleInNavigatorKey</key>
 								<dict>
 									<key>Split0</key>
@@ -324,11 +330,11 @@
 										<key>PBXProjectModuleGUID</key>
 										<string>1CE0B20406471E060097A5F4</string>
 										<key>PBXProjectModuleLabel</key>
-										<string>ImportPluginInterface.m</string>
+										<string>amazon.py</string>
 										<key>_historyCapacity</key>
 										<integer>0</integer>
 										<key>bookmark</key>
-										<string>380EA2C60C52643500B36ED8</string>
+										<string>38977FE40C52B7F200F42698</string>
 										<key>history</key>
 										<array>
 											<string>3815D1510A8A97B00085540E</string>
@@ -527,7 +533,9 @@
 											<string>380E9FFB0C52422500B36ED8</string>
 											<string>380EA0420C524C5A00B36ED8</string>
 											<string>380EA08F0C52514100B36ED8</string>
-											<string>380EA0D40C5255ED00B36ED8</string>
+											<string>38977FDD0C52B7F200F42698</string>
+											<string>38977FDE0C52B7F200F42698</string>
+											<string>38977FE00C52B7F200F42698</string>
 										</array>
 										<key>prevStack</key>
 										<array>
@@ -727,6 +735,8 @@
 											<string>38F1A8480C4BEAD5001F2F4A</string>
 											<string>38F1A8490C4BEAD5001F2F4A</string>
 											<string>380EA0930C52514100B36ED8</string>
+											<string>38977FE10C52B7F200F42698</string>
+											<string>38977FE20C52B7F200F42698</string>
 										</array>
 									</dict>
 									<key>SplitCount</key>
@@ -740,7 +750,7 @@
 								<key>Frame</key>
 								<string>{{0, 0}, {936, 526}}</string>
 								<key>RubberWindowFrame</key>
-								<string>-1280 291 1280 648 -1280 0 1280 1024 </string>
+								<string>-1283 291 1280 648 -1280 0 1280 1024 </string>
 							</dict>
 							<key>Module</key>
 							<string>PBXNavigatorGroup</string>
@@ -760,7 +770,7 @@
 								<key>Frame</key>
 								<string>{{0, 531}, {936, 76}}</string>
 								<key>RubberWindowFrame</key>
-								<string>-1280 291 1280 648 -1280 0 1280 1024 </string>
+								<string>-1283 291 1280 648 -1280 0 1280 1024 </string>
 							</dict>
 							<key>Module</key>
 							<string>XCDetailModule</string>
@@ -784,9 +794,9 @@
 			</array>
 			<key>TableOfContents</key>
 			<array>
-				<string>380EA2C40C5257A000B36ED8</string>
+				<string>38977FE60C52B7F200F42698</string>
 				<string>1CE0B1FE06471DED0097A5F4</string>
-				<string>380EA2C50C5257A000B36ED8</string>
+				<string>38977FE70C52B7F200F42698</string>
 				<string>1CE0B20306471E060097A5F4</string>
 				<string>1CE0B20506471E060097A5F4</string>
 			</array>
@@ -923,7 +933,7 @@
 		<string>/Users/cjkarr/Desktop/src/Books/Books.xcodeproj</string>
 	</array>
 	<key>WindowString</key>
-	<string>-1280 291 1280 648 -1280 0 1280 1024 </string>
+	<string>-1283 291 1280 648 -1280 0 1280 1024 </string>
 	<key>WindowTools</key>
 	<array>
 		<dict>
