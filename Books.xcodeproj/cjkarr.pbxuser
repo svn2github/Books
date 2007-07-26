@@ -186,8 +186,8 @@
 					PBXFileDataSource_Warnings_ColumnID,
 				);
 			};
-			PBXPerProjectTemplateStateSaveDate = 206746003;
-			PBXWorkspaceStateSaveDate = 206746003;
+			PBXPerProjectTemplateStateSaveDate = 207143099;
+			PBXWorkspaceStateSaveDate = 207143099;
 		};
 		perUserProjectItems = {
 			3800649A0C353D86005C432C /* PBXTextBookmark */ = 3800649A0C353D86005C432C /* PBXTextBookmark */;
@@ -408,14 +408,13 @@
 			3884BD410BBB3C4100A29328 /* PBXBookmark */ = 3884BD410BBB3C4100A29328 /* PBXBookmark */;
 			3884BD430BBB3C4100A29328 /* PBXTextBookmark */ = 3884BD430BBB3C4100A29328 /* PBXTextBookmark */;
 			3884BD450BBB3C4100A29328 /* PBXBookmark */ = 3884BD450BBB3C4100A29328 /* PBXBookmark */;
+			388A9F1D0C58C7C4007F6BE3 /* PBXTextBookmark */ = 388A9F1D0C58C7C4007F6BE3 /* PBXTextBookmark */;
 			388E1F690BF351D000E8A670 /* PBXTextBookmark */ = 388E1F690BF351D000E8A670 /* PBXTextBookmark */;
 			388E1F6B0BF351D000E8A670 /* PBXTextBookmark */ = 388E1F6B0BF351D000E8A670 /* PBXTextBookmark */;
 			3894C9D80B5852D700E7A508 /* PBXBookmark */ = 3894C9D80B5852D700E7A508 /* PBXBookmark */;
 			3894C9DF0B5852D700E7A508 /* PBXBookmark */ = 3894C9DF0B5852D700E7A508 /* PBXBookmark */;
 			38977FDD0C52B7F200F42698 /* PBXTextBookmark */ = 38977FDD0C52B7F200F42698 /* PBXTextBookmark */;
 			38977FDE0C52B7F200F42698 /* PBXTextBookmark */ = 38977FDE0C52B7F200F42698 /* PBXTextBookmark */;
-			38977FE00C52B7F200F42698 /* PBXBookmark */ = 38977FE00C52B7F200F42698 /* PBXBookmark */;
-			38977FE10C52B7F200F42698 /* PBXTextBookmark */ = 38977FE10C52B7F200F42698 /* PBXTextBookmark */;
 			38977FE20C52B7F200F42698 /* PBXTextBookmark */ = 38977FE20C52B7F200F42698 /* PBXTextBookmark */;
 			38977FE40C52B7F200F42698 /* PBXTextBookmark */ = 38977FE40C52B7F200F42698 /* PBXTextBookmark */;
 			389CE4E50B8E2A6000E9E5EF /* PBXTextBookmark */ = 389CE4E50B8E2A6000E9E5EF /* PBXTextBookmark */;
@@ -3717,6 +3716,22 @@
 		path = "/Volumes/iDisk/Documents/Projects/Books Project/Version Controlled/books-macosx/Books/Amazon Importer.app/Contents/Resources/import-plugin.icns";
 		sourceTree = "<absolute>";
 	};
+	388A9F1D0C58C7C4007F6BE3 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 388A9F1E0C58C7C4007F6BE3 /* amazon.py */;
+		name = xml;
+		rLen = 3;
+		rLoc = 7926;
+		rType = 0;
+		vrLen = 1137;
+		vrLoc = 7198;
+	};
+	388A9F1E0C58C7C4007F6BE3 /* amazon.py */ = {
+		isa = PBXFileReference;
+		name = amazon.py;
+		path = "/Users/cjkarr/Desktop/src/Books/Amazon (DE).plugin/Contents/Resources/amazon.py";
+		sourceTree = "<absolute>";
+	};
 	388E122809F83E82000A3FF5 /* CheckOutManagedObject.h */ = {
 		uiCtxt = {
 			sepNavIntBoundsRect = "{{0, 0}, {937, 615}}";
@@ -3829,12 +3844,6 @@
 		isa = PBXBookmark;
 		fRef = 3894C9C40B58516000E7A508 /* camera-22.png */;
 	};
-	38977EB70C52B19500F42698 /* amazon.py */ = {
-		isa = PBXFileReference;
-		lastKnownFileType = text.script.python;
-		path = amazon.py;
-		sourceTree = "<group>";
-	};
 	38977FDD0C52B7F200F42698 /* PBXTextBookmark */ = {
 		isa = PBXTextBookmark;
 		fRef = 3878AF28088FE45E00C72EB3 /* ImportPluginInterface.m */;
@@ -3857,23 +3866,10 @@
 	};
 	38977FDF0C52B7F200F42698 /* amazonScript.py */ = {
 		isa = PBXFileReference;
+		lastKnownFileType = text.script.python;
 		name = amazonScript.py;
 		path = "/Users/cjkarr/Desktop/src/Books/Amazon (DE).plugin/Contents/Resources/amazonScript.py";
 		sourceTree = "<absolute>";
-	};
-	38977FE00C52B7F200F42698 /* PBXBookmark */ = {
-		isa = PBXBookmark;
-		fRef = 38977EB70C52B19500F42698 /* amazon.py */;
-	};
-	38977FE10C52B7F200F42698 /* PBXTextBookmark */ = {
-		isa = PBXTextBookmark;
-		fRef = 3878AF28088FE45E00C72EB3 /* ImportPluginInterface.m */;
-		name = "ImportPluginInterface.m: 147";
-		rLen = 0;
-		rLoc = 4903;
-		rType = 0;
-		vrLen = 992;
-		vrLoc = 4482;
 	};
 	38977FE20C52B7F200F42698 /* PBXTextBookmark */ = {
 		isa = PBXTextBookmark;
@@ -3887,6 +3883,7 @@
 	};
 	38977FE30C52B7F200F42698 /* amazonScript.py */ = {
 		isa = PBXFileReference;
+		lastKnownFileType = text.script.python;
 		name = amazonScript.py;
 		path = "/Users/cjkarr/Desktop/src/Books/Amazon (DE).plugin/Contents/Resources/amazonScript.py";
 		sourceTree = "<absolute>";
@@ -3903,13 +3900,14 @@
 	};
 	38977FE50C52B7F200F42698 /* amazon.py */ = {
 		isa = PBXFileReference;
+		lastKnownFileType = text.script.python;
 		name = amazon.py;
 		path = "/Users/cjkarr/Desktop/src/Books/Amazon (DE).plugin/Contents/Resources/amazon.py";
 		sourceTree = "<absolute>";
 		uiCtxt = {
 			sepNavIntBoundsRect = "{{0, 0}, {1343, 5535}}";
 			sepNavSelRange = "{7926, 3}";
-			sepNavVisRect = "{{0, 3136}, {895, 494}}";
+			sepNavVisRect = "{{0, 3128}, {895, 494}}";
 		};
 	};
 	389CE4E50B8E2A6000E9E5EF /* PBXTextBookmark */ = {
