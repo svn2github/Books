@@ -1408,7 +1408,7 @@ typedef struct _monochromePixel
 	
 	NSArray * books = [self getSelectedBooks];
 	
-	if (books != nil && [books count] == 1)
+	if (books != nil && [books count] == 1 && fullLocation != nil)
 	{
 		BookManagedObject * book = (BookManagedObject *) [books objectAtIndex:0];
 

@@ -101,7 +101,7 @@
 	IBOutlet PluginManager * pluginManager;
 
 	IBOutlet NSTextView * summary;
-	
+
 	NSString * openFilename;
 }
 
