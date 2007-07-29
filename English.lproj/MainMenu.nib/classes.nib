@@ -25,6 +25,7 @@
                 newSmartList = id; 
                 openFiles = id; 
                 preferences = id; 
+                print = id; 
                 quickfill = id; 
                 removeBook = id; 
                 removeList = id; 
@@ -160,6 +161,18 @@
             SUPERCLASS = NSObject; 
         }, 
         {CLASS = FirstResponder; LANGUAGE = ObjC; SUPERCLASS = NSObject; }, 
+        {CLASS = GalleryControlView; LANGUAGE = ObjC; SUPERCLASS = NSView; }, 
+        {
+            CLASS = GalleryView; 
+            LANGUAGE = ObjC; 
+            OUTLETS = {
+                bookList = NSArrayController; 
+                controlView = GalleryControlView; 
+                pages = NSSlider; 
+                text = NSTextField; 
+            }; 
+            SUPERCLASS = NSView; 
+        }, 
         {CLASS = HtmlPageBuilder; LANGUAGE = ObjC; SUPERCLASS = NSObject; }, 
         {
             ACTIONS = {importFromMenuItem = id; }; 

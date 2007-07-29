@@ -1656,4 +1656,23 @@ typedef struct _monochromePixel
 
 }
 
+- (IBAction) print:(id) sender
+{
+	if (exportPlugins == nil)
+		[self initExportPlugins];
+
+	NSBundle * exportPlugin = [exportPlugins objectForKey:@"PDF Exporter"];
+	
+	if (exportPlugin != nil)
+	{
+		ExportPluginInterface * export = [[ExportPluginInterface alloc] init];
+		[NSThread detachNewThreadSelector:NSSelectorFromString(@"exportToBundle:") toTarget:export withObject:exportPlugin];
+	}
+	else
+	{
+		NSRunAlertPanel (NSLocalizedString (@"Unable To Print", nil), NSLocalizedString (@"Please install the PDF Exporter from the Plugin Manager to enable printing.", nil), NSLocalizedString (@"OK", nil), nil, nil);
+		[pluginManager toggleVisible:sender];
+	}
+}
+
 @end

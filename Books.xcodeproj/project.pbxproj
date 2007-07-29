@@ -45,6 +45,16 @@
 		383E55110C3DDAFC000F06BF /* BooksSpotlightInterface.m in Sources */ = {isa = PBXBuildFile; fileRef = 383E550F0C3DDAFC000F06BF /* BooksSpotlightInterface.m */; };
 		383E55F70C3DE4AD000F06BF /* BooksTokenViewDelegate.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 383E55F50C3DE4AD000F06BF /* BooksTokenViewDelegate.h */; };
 		383E55F80C3DE4AD000F06BF /* BooksTokenViewDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 383E55F60C3DE4AD000F06BF /* BooksTokenViewDelegate.m */; };
+		384061420C5BC83C00E7D678 /* GalleryView.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 384061400C5BC83C00E7D678 /* GalleryView.h */; };
+		384061430C5BC83C00E7D678 /* GalleryView.m in Sources */ = {isa = PBXBuildFile; fileRef = 384061410C5BC83C00E7D678 /* GalleryView.m */; };
+		384061C30C5BD1E700E7D678 /* GalleryCoverView.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 384061C10C5BD1E700E7D678 /* GalleryCoverView.h */; };
+		384061C40C5BD1E700E7D678 /* GalleryCoverView.m in Sources */ = {isa = PBXBuildFile; fileRef = 384061C20C5BD1E700E7D678 /* GalleryCoverView.m */; };
+		3840649E0C5C04E400E7D678 /* GalleryControlView.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 3840649C0C5C04E400E7D678 /* GalleryControlView.h */; };
+		3840649F0C5C04E400E7D678 /* GalleryControlView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3840649D0C5C04E400E7D678 /* GalleryControlView.m */; };
+		384065250C5C13BC00E7D678 /* next.png in Resources */ = {isa = PBXBuildFile; fileRef = 384065230C5C13BC00E7D678 /* next.png */; };
+		384065260C5C13BC00E7D678 /* previous.png in Resources */ = {isa = PBXBuildFile; fileRef = 384065240C5C13BC00E7D678 /* previous.png */; };
+		3840653E0C5C173B00E7D678 /* previous-alt.png in Resources */ = {isa = PBXBuildFile; fileRef = 3840653C0C5C173B00E7D678 /* previous-alt.png */; };
+		3840653F0C5C173B00E7D678 /* next-alt.png in Resources */ = {isa = PBXBuildFile; fileRef = 3840653D0C5C173B00E7D678 /* next-alt.png */; };
 		384BD44E0959A3660077D553 /* Amazon (UK).plugin in Resources */ = {isa = PBXBuildFile; fileRef = 384BD4430959A3660077D553 /* Amazon (UK).plugin */; };
 		384BD4760959A3C70077D553 /* Amazon (DE).plugin in Resources */ = {isa = PBXBuildFile; fileRef = 384BD46B0959A3C70077D553 /* Amazon (DE).plugin */; };
 		384BD4A10959A3F90077D553 /* Amazon (JP).plugin in Resources */ = {isa = PBXBuildFile; fileRef = 384BD4960959A3F90077D553 /* Amazon (JP).plugin */; };
@@ -157,6 +167,9 @@
 				38C0D5020C3E152800DC777B /* BooksTableViewDelegate.h in CopyFiles */,
 				38C0D62C0C3E1DF600DC777B /* FieldsTableViewDelegate.h in CopyFiles */,
 				38F1A7EB0C4BC3CA001F2F4A /* BooksTextFieldDelegate.h in CopyFiles */,
+				384061420C5BC83C00E7D678 /* GalleryView.h in CopyFiles */,
+				384061C30C5BD1E700E7D678 /* GalleryCoverView.h in CopyFiles */,
+				3840649E0C5C04E400E7D678 /* GalleryControlView.h in CopyFiles */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -235,6 +248,16 @@
 		383E550F0C3DDAFC000F06BF /* BooksSpotlightInterface.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BooksSpotlightInterface.m; sourceTree = "<group>"; };
 		383E55F50C3DE4AD000F06BF /* BooksTokenViewDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BooksTokenViewDelegate.h; sourceTree = "<group>"; };
 		383E55F60C3DE4AD000F06BF /* BooksTokenViewDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BooksTokenViewDelegate.m; sourceTree = "<group>"; };
+		384061400C5BC83C00E7D678 /* GalleryView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GalleryView.h; sourceTree = "<group>"; };
+		384061410C5BC83C00E7D678 /* GalleryView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GalleryView.m; sourceTree = "<group>"; };
+		384061C10C5BD1E700E7D678 /* GalleryCoverView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GalleryCoverView.h; sourceTree = "<group>"; };
+		384061C20C5BD1E700E7D678 /* GalleryCoverView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GalleryCoverView.m; sourceTree = "<group>"; };
+		3840649C0C5C04E400E7D678 /* GalleryControlView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GalleryControlView.h; sourceTree = "<group>"; };
+		3840649D0C5C04E400E7D678 /* GalleryControlView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GalleryControlView.m; sourceTree = "<group>"; };
+		384065230C5C13BC00E7D678 /* next.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = next.png; sourceTree = "<group>"; };
+		384065240C5C13BC00E7D678 /* previous.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = previous.png; sourceTree = "<group>"; };
+		3840653C0C5C173B00E7D678 /* previous-alt.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "previous-alt.png"; sourceTree = "<group>"; };
+		3840653D0C5C173B00E7D678 /* next-alt.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "next-alt.png"; sourceTree = "<group>"; };
 		384BD4430959A3660077D553 /* Amazon (UK).plugin */ = {isa = PBXFileReference; lastKnownFileType = folder; path = "Amazon (UK).plugin"; sourceTree = "<group>"; };
 		384BD46B0959A3C70077D553 /* Amazon (DE).plugin */ = {isa = PBXFileReference; lastKnownFileType = folder; path = "Amazon (DE).plugin"; sourceTree = "<group>"; };
 		384BD4960959A3F90077D553 /* Amazon (JP).plugin */ = {isa = PBXFileReference; lastKnownFileType = folder; path = "Amazon (JP).plugin"; sourceTree = "<group>"; };
@@ -613,6 +636,7 @@
 		383E55070C3DDA89000F06BF /* Main Window */ = {
 			isa = PBXGroup;
 			children = (
+				384061B10C5BD15B00E7D678 /* Gallery View */,
 				38666EA208E516B300071C56 /* HtmlPageBuilder.h */,
 				38666EA308E516B300071C56 /* HtmlPageBuilder.m */,
 				38C0D5000C3E152800DC777B /* BooksTableViewDelegate.h */,
@@ -640,6 +664,19 @@
 				38F1A7EA0C4BC3CA001F2F4A /* BooksTextFieldDelegate.m */,
 			);
 			name = Controls;
+			sourceTree = "<group>";
+		};
+		384061B10C5BD15B00E7D678 /* Gallery View */ = {
+			isa = PBXGroup;
+			children = (
+				3840649C0C5C04E400E7D678 /* GalleryControlView.h */,
+				3840649D0C5C04E400E7D678 /* GalleryControlView.m */,
+				384061400C5BC83C00E7D678 /* GalleryView.h */,
+				384061410C5BC83C00E7D678 /* GalleryView.m */,
+				384061C10C5BD1E700E7D678 /* GalleryCoverView.h */,
+				384061C20C5BD1E700E7D678 /* GalleryCoverView.m */,
+			);
+			name = "Gallery View";
 			sourceTree = "<group>";
 		};
 		38470D330C3E2954003F4939 /* System Integration */ = {
@@ -699,6 +736,8 @@
 		38666DA508E5087200071C56 /* Icons */ = {
 			isa = PBXGroup;
 			children = (
+				3840653C0C5C173B00E7D678 /* previous-alt.png */,
+				3840653D0C5C173B00E7D678 /* next-alt.png */,
 				38AC633B0BEA7CF3004F8DB4 /* dupe.png */,
 				3894C9C40B58516000E7A508 /* camera-22.png */,
 				381930470B43469600646B67 /* camera.png */,
@@ -718,6 +757,8 @@
 				3855F6F708E57B7400C439F4 /* export.png */,
 				38666DB008E508A400071C56 /* preferences.png */,
 				38666DAC08E5088600071C56 /* new-list.png */,
+				384065230C5C13BC00E7D678 /* next.png */,
+				384065240C5C13BC00E7D678 /* previous.png */,
 			);
 			name = Icons;
 			sourceTree = "<group>";
@@ -993,6 +1034,10 @@
 				388E1F360BF3433900E8A670 /* SemperDisplay.plugin in Resources */,
 				388E1F7A0BF35B0000E8A670 /* Amazon ECS4 (JP).plugin in Resources */,
 				3826FA850C14535B00EB2E43 /* Books Help in Resources */,
+				384065250C5C13BC00E7D678 /* next.png in Resources */,
+				384065260C5C13BC00E7D678 /* previous.png in Resources */,
+				3840653E0C5C173B00E7D678 /* previous-alt.png in Resources */,
+				3840653F0C5C173B00E7D678 /* next-alt.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1043,6 +1088,9 @@
 				38C0D5030C3E152800DC777B /* BooksTableViewDelegate.m in Sources */,
 				38C0D62D0C3E1DF600DC777B /* FieldsTableViewDelegate.m in Sources */,
 				38F1A7EC0C4BC3CA001F2F4A /* BooksTextFieldDelegate.m in Sources */,
+				384061430C5BC83C00E7D678 /* GalleryView.m in Sources */,
+				384061C40C5BD1E700E7D678 /* GalleryCoverView.m in Sources */,
+				3840649F0C5C04E400E7D678 /* GalleryControlView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

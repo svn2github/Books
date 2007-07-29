@@ -195,4 +195,6 @@
 
 - (NSString *) getDateFormatString;
 
+- (IBAction) print:(id) sender;
+
 @end
