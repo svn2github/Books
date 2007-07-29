@@ -108,8 +108,6 @@
 - (void)mouseUp:(NSEvent *)theEvent
 {
 	[((GalleryView *) [self superview]) setSelectedBook:currentBook];
-
-	[self setNeedsDisplay:YES];
 }
 
 @end

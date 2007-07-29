@@ -9,11 +9,15 @@
 #import <Cocoa/Cocoa.h>
 #import "BooksToolbarDelegate.h"
 #import "BooksSpotlightInterface.h"
+#import "GalleryView.h"
 
 @interface BooksTableViewDelegate : NSObject 
 {
 	IBOutlet NSTableView * booksTable;
 	IBOutlet NSTableView * listsTable;
+
+	IBOutlet GalleryView * gallery;
+	IBOutlet NSScrollView * booksScroll;
 	
 	IBOutlet NSObject * booksAppDelegate;
 	IBOutlet BooksToolbarDelegate * toolbarDelegate;
@@ -21,6 +25,8 @@
 
 	IBOutlet NSArrayController * collectionArrayController;
 	IBOutlet NSArrayController * bookArrayController;
+
+	IBOutlet NSTabView * box;
 	
 	NSString * openFilename;
 

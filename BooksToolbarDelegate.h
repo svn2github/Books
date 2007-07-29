@@ -28,6 +28,8 @@
 {
 	IBOutlet NSView * searchField;
 	IBOutlet NSSearchField * searchTextField;
+	
+	IBOutlet NSView * viewsField;
 
 	NSToolbarItem * getInfo;
 	NSToolbarItem * getCover;

@@ -97,8 +97,11 @@
                 bookArrayController = NSArrayController; 
                 booksAppDelegate = NSObject; 
                 booksColumnMenu = NSMenu; 
+                booksScroll = NSScrollView; 
                 booksTable = NSTableView; 
+                box = NSTabView; 
                 collectionArrayController = NSArrayController; 
+                gallery = GalleryView; 
                 listsTable = NSTableView; 
                 spotlightInterface = BooksSpotlightInterface; 
                 toolbarDelegate = BooksToolbarDelegate; 
@@ -137,9 +140,10 @@
             CLASS = BooksToolbarDelegate; 
             LANGUAGE = ObjC; 
             OUTLETS = {
-                booksAppDelegate = BooksAppDelegate; 
+                booksAppDelegate = NSObject; 
                 searchField = NSView; 
                 searchTextField = NSSearchField; 
+                viewsField = NSView; 
             }; 
             SUPERCLASS = NSObject; 
         }, 
@@ -189,6 +193,7 @@
         {CLASS = MainWindowTableView; LANGUAGE = ObjC; SUPERCLASS = NSTableView; }, 
         {CLASS = NSDatePicker; LANGUAGE = ObjC; SUPERCLASS = NSControl; }, 
         {CLASS = NSLevelIndicator; LANGUAGE = ObjC; SUPERCLASS = NSControl; }, 
+        {CLASS = NSSegmentedControl; LANGUAGE = ObjC; SUPERCLASS = NSControl; }, 
         {
             CLASS = PeopleArrayController; 
             LANGUAGE = ObjC; 

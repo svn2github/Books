@@ -30,7 +30,7 @@
 - (NSArray *) toolbarAllowedItemIdentifiers: (NSToolbar *) toolbar
 {
 	return [NSArray arrayWithObjects:@"new-list", @"new-smartlist", @"edit-smartlist", @"new-book", @"remove-book", @"remove-list", @"preferences", 
-		@"get-info", @"get-cover", @"import", @"search", @"isight", @"duplicate", NSToolbarSeparatorItemIdentifier, 
+		@"get-info", @"get-cover", @"import", @"search", @"isight", @"duplicate", @"views", NSToolbarSeparatorItemIdentifier, 
 		NSToolbarSpaceItemIdentifier, NSToolbarFlexibleSpaceItemIdentifier, NSToolbarCustomizeToolbarItemIdentifier, nil];
 }
 
@@ -176,7 +176,17 @@
 		[item setLabel:NSLocalizedString (@"Search Selected List", nil)];
 		[item setPaletteLabel:NSLocalizedString (@"Search Selected List", nil)];
 	}
+	else if ([itemIdentifier isEqualToString:@"views"])
+	{
+		NSRect fRect = [viewsField frame];
+		[item setView:viewsField];
 
+		[item setMinSize:fRect.size];
+		[item setMaxSize:fRect.size];
+		
+		[item setLabel:NSLocalizedString (@"Book List View", nil)];
+		[item setPaletteLabel:NSLocalizedString (@"Book List View", nil)];
+	}
 	
 	return item;
 }

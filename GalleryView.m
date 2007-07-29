@@ -26,6 +26,10 @@
 	[bookList addObserver:self forKeyPath:@"arrangedObjects" options:NSKeyValueObservingOptionNew context:NULL];
 	[bookList addObserver:self forKeyPath:@"selectedObjects" options:NSKeyValueObservingOptionNew context:NULL];
 	[[NSUserDefaults standardUserDefaults] addObserver:self forKeyPath:@"Gallery Size" options:NSKeyValueObservingOptionNew context:NULL];
+
+	[[NSColor colorWithCalibratedRed:0.5 green:0.5 blue:0.5 alpha:1.0] setFill];
+	NSRectFill([self frame]);
+
 }
 
 - (void) observeValueForKeyPath: (NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change
@@ -50,7 +54,10 @@
 	
 	if (prefSize != nil)
 		size = [prefSize floatValue];
-
+	
+	if (size > rect.size.height)
+		size = rect.size.height - 20;
+	
 	NSArray * subs = [self subviews];
 
 	int rowCount = ((int) rect.size.width / (int) size);
@@ -94,8 +101,11 @@
 		
 	page = [pages intValue];
 	
-	[text setStringValue:[NSString stringWithFormat:@"Page %d of %d", (page + 1), (([[bookList arrangedObjects] count] / count) + 1), nil]];
-	
+	if (count > 0)
+		[text setStringValue:[NSString stringWithFormat:@"Page %d of %d", (page + 1), (([[bookList arrangedObjects] count] / count) + 1), nil]];
+	else
+		[text setStringValue:NSLocalizedString (@"Images are too large", nil)];
+
 	for (i = (page * count); i < ((page + 1) * count) && i < [selectedBooks count]; i++)
 	{
 		if (x + size > rect.size.width)
@@ -137,6 +147,5 @@
 {
 	return [bookList selectedObjects];
 }
-
 
 @end

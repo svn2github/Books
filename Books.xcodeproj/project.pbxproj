@@ -51,10 +51,7 @@
 		384061C40C5BD1E700E7D678 /* GalleryCoverView.m in Sources */ = {isa = PBXBuildFile; fileRef = 384061C20C5BD1E700E7D678 /* GalleryCoverView.m */; };
 		3840649E0C5C04E400E7D678 /* GalleryControlView.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 3840649C0C5C04E400E7D678 /* GalleryControlView.h */; };
 		3840649F0C5C04E400E7D678 /* GalleryControlView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3840649D0C5C04E400E7D678 /* GalleryControlView.m */; };
-		384065250C5C13BC00E7D678 /* next.png in Resources */ = {isa = PBXBuildFile; fileRef = 384065230C5C13BC00E7D678 /* next.png */; };
-		384065260C5C13BC00E7D678 /* previous.png in Resources */ = {isa = PBXBuildFile; fileRef = 384065240C5C13BC00E7D678 /* previous.png */; };
-		3840653E0C5C173B00E7D678 /* previous-alt.png in Resources */ = {isa = PBXBuildFile; fileRef = 3840653C0C5C173B00E7D678 /* previous-alt.png */; };
-		3840653F0C5C173B00E7D678 /* next-alt.png in Resources */ = {isa = PBXBuildFile; fileRef = 3840653D0C5C173B00E7D678 /* next-alt.png */; };
+		38406ABA0C5C848C00E7D678 /* gallery.png in Resources */ = {isa = PBXBuildFile; fileRef = 38406AB90C5C848C00E7D678 /* gallery.png */; };
 		384BD44E0959A3660077D553 /* Amazon (UK).plugin in Resources */ = {isa = PBXBuildFile; fileRef = 384BD4430959A3660077D553 /* Amazon (UK).plugin */; };
 		384BD4760959A3C70077D553 /* Amazon (DE).plugin in Resources */ = {isa = PBXBuildFile; fileRef = 384BD46B0959A3C70077D553 /* Amazon (DE).plugin */; };
 		384BD4A10959A3F90077D553 /* Amazon (JP).plugin in Resources */ = {isa = PBXBuildFile; fileRef = 384BD4960959A3F90077D553 /* Amazon (JP).plugin */; };
@@ -254,10 +251,7 @@
 		384061C20C5BD1E700E7D678 /* GalleryCoverView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GalleryCoverView.m; sourceTree = "<group>"; };
 		3840649C0C5C04E400E7D678 /* GalleryControlView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GalleryControlView.h; sourceTree = "<group>"; };
 		3840649D0C5C04E400E7D678 /* GalleryControlView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GalleryControlView.m; sourceTree = "<group>"; };
-		384065230C5C13BC00E7D678 /* next.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = next.png; sourceTree = "<group>"; };
-		384065240C5C13BC00E7D678 /* previous.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = previous.png; sourceTree = "<group>"; };
-		3840653C0C5C173B00E7D678 /* previous-alt.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "previous-alt.png"; sourceTree = "<group>"; };
-		3840653D0C5C173B00E7D678 /* next-alt.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "next-alt.png"; sourceTree = "<group>"; };
+		38406AB90C5C848C00E7D678 /* gallery.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = gallery.png; sourceTree = "<group>"; };
 		384BD4430959A3660077D553 /* Amazon (UK).plugin */ = {isa = PBXFileReference; lastKnownFileType = folder; path = "Amazon (UK).plugin"; sourceTree = "<group>"; };
 		384BD46B0959A3C70077D553 /* Amazon (DE).plugin */ = {isa = PBXFileReference; lastKnownFileType = folder; path = "Amazon (DE).plugin"; sourceTree = "<group>"; };
 		384BD4960959A3F90077D553 /* Amazon (JP).plugin */ = {isa = PBXFileReference; lastKnownFileType = folder; path = "Amazon (JP).plugin"; sourceTree = "<group>"; };
@@ -736,8 +730,7 @@
 		38666DA508E5087200071C56 /* Icons */ = {
 			isa = PBXGroup;
 			children = (
-				3840653C0C5C173B00E7D678 /* previous-alt.png */,
-				3840653D0C5C173B00E7D678 /* next-alt.png */,
+				38406AB90C5C848C00E7D678 /* gallery.png */,
 				38AC633B0BEA7CF3004F8DB4 /* dupe.png */,
 				3894C9C40B58516000E7A508 /* camera-22.png */,
 				381930470B43469600646B67 /* camera.png */,
@@ -757,8 +750,6 @@
 				3855F6F708E57B7400C439F4 /* export.png */,
 				38666DB008E508A400071C56 /* preferences.png */,
 				38666DAC08E5088600071C56 /* new-list.png */,
-				384065230C5C13BC00E7D678 /* next.png */,
-				384065240C5C13BC00E7D678 /* previous.png */,
 			);
 			name = Icons;
 			sourceTree = "<group>";
@@ -1034,10 +1025,7 @@
 				388E1F360BF3433900E8A670 /* SemperDisplay.plugin in Resources */,
 				388E1F7A0BF35B0000E8A670 /* Amazon ECS4 (JP).plugin in Resources */,
 				3826FA850C14535B00EB2E43 /* Books Help in Resources */,
-				384065250C5C13BC00E7D678 /* next.png in Resources */,
-				384065260C5C13BC00E7D678 /* previous.png in Resources */,
-				3840653E0C5C173B00E7D678 /* previous-alt.png in Resources */,
-				3840653F0C5C173B00E7D678 /* next-alt.png in Resources */,
+				38406ABA0C5C848C00E7D678 /* gallery.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

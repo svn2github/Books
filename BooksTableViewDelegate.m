@@ -452,6 +452,17 @@
 	[self updateBooksTable];
 }
 
+- (void) observeValueForKeyPath: (NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change
+	context:(void *)context
+{
+	[self willChangeValueForKey:@"label"];
+	if ([[NSUserDefaults standardUserDefaults] boolForKey:@"Show Gallery"])
+		[box selectTabViewItemAtIndex:1];
+	else
+		[box selectTabViewItemAtIndex:0];
+	[self didChangeValueForKey:@"label"];
+}
+		
 - (void) awakeFromNib
 {
 	fieldTitles = [[NSArray alloc] initWithObjects:NSLocalizedString (@"Title", nil), 
@@ -476,11 +487,36 @@
 			@"rating", @"borrower", @"dateLent", @"dateDue", @"dateAcquired", @"dateFinished", @"dateStarted", nil];
 
 	[[booksTable headerView] setMenu:booksColumnMenu];
+
+	[[NSUserDefaults standardUserDefaults] addObserver:self forKeyPath:@"Show Gallery" options:NSKeyValueObservingOptionNew context:NULL];
+
+	[self willChangeValueForKey:@"label"];
+	if ([[NSUserDefaults standardUserDefaults] boolForKey:@"Show Gallery"])
+		[box selectTabViewItemAtIndex:1];
+	else
+		[box selectTabViewItemAtIndex:0];
+	[self didChangeValueForKey:@"label"];
 }
 
 - (void)textDidChange:(NSNotification *)aNotification
 {
 	[self updateBooksTable];
+}
+
+- (NSString *) getLabel
+{
+	if ([[NSUserDefaults standardUserDefaults] boolForKey:@"Show Gallery"])
+		return NSLocalizedString (@"Gallery", nil);
+	else
+		return NSLocalizedString (@"List", nil);
+}
+
+- (void) setLabel:(NSString *) label
+{
+	if ([label isEqualToString:NSLocalizedString (@"Gallery", nil)])
+		[[NSUserDefaults standardUserDefaults] setBool:YES forKey:@"Show Gallery"];
+	else
+		[[NSUserDefaults standardUserDefaults] setBool:NO forKey:@"Show Gallery"];
 }
 
 @end
