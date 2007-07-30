@@ -114,6 +114,8 @@
 		38CBAC270959EADC00B418FB /* Library of Congress.plugin in Resources */ = {isa = PBXBuildFile; fileRef = 38CBABF10959EADC00B418FB /* Library of Congress.plugin */; };
 		38D0C90309057D8300672AA7 /* BookManagedObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 38D0C90209057D8300672AA7 /* BookManagedObject.m */; };
 		38DE5E640BA1D3E100B4FEC0 /* Quartz.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 38DE5E630BA1D3E100B4FEC0 /* Quartz.framework */; };
+		38DFBAA40C5E88DF00D44B0A /* GalleryIconView.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 38DFBAA20C5E88DF00D44B0A /* GalleryIconView.h */; };
+		38DFBAA50C5E88DF00D44B0A /* GalleryIconView.m in Sources */ = {isa = PBXBuildFile; fileRef = 38DFBAA30C5E88DF00D44B0A /* GalleryIconView.m */; };
 		38E0A87D0908958A00DAAA64 /* smartlist-small.png in Resources */ = {isa = PBXBuildFile; fileRef = 38E0A87C0908958A00DAAA64 /* smartlist-small.png */; };
 		38E94D22090A7639001C2A9E /* AppKitScripting.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 38E94D20090A7639001C2A9E /* AppKitScripting.framework */; };
 		38E94D23090A7639001C2A9E /* AppleScriptKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 38E94D21090A7639001C2A9E /* AppleScriptKit.framework */; };
@@ -167,6 +169,7 @@
 				384061420C5BC83C00E7D678 /* GalleryView.h in CopyFiles */,
 				384061C30C5BD1E700E7D678 /* GalleryCoverView.h in CopyFiles */,
 				3840649E0C5C04E400E7D678 /* GalleryControlView.h in CopyFiles */,
+				38DFBAA40C5E88DF00D44B0A /* GalleryIconView.h in CopyFiles */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -369,6 +372,8 @@
 		38DF41010B8DF98800D55EA4 /* Portuguese */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Portuguese; path = Portuguese.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		38DF41040B8DF98D00D55EA4 /* Portuguese */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Portuguese; path = Portuguese.lproj/MainMenu.strings; sourceTree = "<group>"; };
 		38DF41070B8DF99400D55EA4 /* Portuguese */ = {isa = PBXFileReference; lastKnownFileType = text.rtf; name = Portuguese; path = Portuguese.lproj/Credits.rtf; sourceTree = "<group>"; };
+		38DFBAA20C5E88DF00D44B0A /* GalleryIconView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GalleryIconView.h; sourceTree = "<group>"; };
+		38DFBAA30C5E88DF00D44B0A /* GalleryIconView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GalleryIconView.m; sourceTree = "<group>"; };
 		38E0A87C0908958A00DAAA64 /* smartlist-small.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "smartlist-small.png"; sourceTree = "<group>"; };
 		38E94D20090A7639001C2A9E /* AppKitScripting.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKitScripting.framework; path = /System/Library/Frameworks/AppKitScripting.framework; sourceTree = "<absolute>"; };
 		38E94D21090A7639001C2A9E /* AppleScriptKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppleScriptKit.framework; path = /System/Library/Frameworks/AppleScriptKit.framework; sourceTree = "<absolute>"; };
@@ -669,6 +674,8 @@
 				384061410C5BC83C00E7D678 /* GalleryView.m */,
 				384061C10C5BD1E700E7D678 /* GalleryCoverView.h */,
 				384061C20C5BD1E700E7D678 /* GalleryCoverView.m */,
+				38DFBAA20C5E88DF00D44B0A /* GalleryIconView.h */,
+				38DFBAA30C5E88DF00D44B0A /* GalleryIconView.m */,
 			);
 			name = "Gallery View";
 			sourceTree = "<group>";
@@ -1079,6 +1086,7 @@
 				384061430C5BC83C00E7D678 /* GalleryView.m in Sources */,
 				384061C40C5BD1E700E7D678 /* GalleryCoverView.m in Sources */,
 				3840649F0C5C04E400E7D678 /* GalleryControlView.m in Sources */,
+				38DFBAA50C5E88DF00D44B0A /* GalleryIconView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

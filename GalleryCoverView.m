@@ -36,7 +36,6 @@
 	float radius = 10.0;
 	radius = MIN(radius, 0.5f * MIN(NSWidth(rect), NSHeight(rect)));
 	
-	// [[NSColor colorWithCalibratedRed:0.1 green:0.1 blue:0.1 alpha:0.8] setFill];
 	[[NSColor alternateSelectedControlColor] setFill];
 
 	NSBezierPath* path = [NSBezierPath bezierPath];

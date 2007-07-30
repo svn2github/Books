@@ -1,34 +1,32 @@
 //
-//  GalleryControlView.m
+//  GalleryIconView.m
 //  Books
 //
-//  Created by Chris Karr on 7/28/07.
+//  Created by Chris Karr on 7/30/07.
 //  Copyright 2007 __MyCompanyName__. All rights reserved.
 //
 
-#import "GalleryControlView.h"
+#import "GalleryIconView.h"
 #import "GalleryView.h"
 
-@implementation GalleryControlView
+@implementation GalleryIconView
 
-- (id)initWithFrame:(NSRect)frame 
-{
-	self = [super initWithFrame:frame];
-	if (self) 
-	{
+- (id)initWithFrame:(NSRect)frame {
+    self = [super initWithFrame:frame];
+    if (self) {
 		tag = -1;
 	}
-	return self;
+    return self;
 }
 
-- (void) drawRect: (NSRect)rect 
+- (void)drawRect:(NSRect)rect 
 {
 	if (tag == -1)
 	{
 		NSRect r = NSMakeRect(0, 0, [self frame].size.width, [self frame].size.height);
-		tag = [self addTrackingRect:r owner:self userData:nil assumeInside:YES]; 
+		tag = [self addTrackingRect:r owner:self userData:nil assumeInside:NO]; 
 	}
-
+	
 	float radius = 6.0;
 	radius = MIN(radius, 0.5f * MIN(NSWidth(rect), NSHeight(rect)));
 	
@@ -46,28 +44,15 @@
 	[path fill];
 }
 
-- (void) mouseExited:(NSEvent *)theEvent
-{
-	timer = [[NSTimer scheduledTimerWithTimeInterval:1.0 target:self selector:NSSelectorFromString(@"hideControl:") 
-		userInfo:nil repeats:NO] retain];
-}
-
 - (void) mouseEntered:(NSEvent *)theEvent
 {
-	[timer invalidate];
-	[timer release];
-}
-
-- (void) hideControl:(NSTimer*) theTimer
-{
-	NSNotification * notification = [NSNotification notificationWithName:GALLERY_HIDE_CONTROL object:nil];
+	NSNotification * notification = [NSNotification notificationWithName:GALLERY_SHOW_CONTROL object:nil];
 	[[NSNotificationCenter defaultCenter] postNotification:notification];
 }
 
-- (void)viewDidEndLiveResize
+- (void) viewDidEndLiveResize
 {
 	[self removeTrackingRect:tag];
 	tag = -1;
 }
-
 @end

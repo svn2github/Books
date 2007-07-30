@@ -1,18 +1,17 @@
 //
-//  GalleryControlView.h
+//  GalleryIconView.h
 //  Books
 //
-//  Created by Chris Karr on 7/28/07.
+//  Created by Chris Karr on 7/30/07.
 //  Copyright 2007 __MyCompanyName__. All rights reserved.
 //
 
 #import <Cocoa/Cocoa.h>
 
-@interface GalleryControlView : NSView 
+
+@interface GalleryIconView : NSView 
 {
 	NSTrackingRectTag tag;
-	
-	NSTimer * timer;
 }
 
 @end

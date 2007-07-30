@@ -166,12 +166,14 @@
         }, 
         {CLASS = FirstResponder; LANGUAGE = ObjC; SUPERCLASS = NSObject; }, 
         {CLASS = GalleryControlView; LANGUAGE = ObjC; SUPERCLASS = NSView; }, 
+        {CLASS = GalleryIconView; LANGUAGE = ObjC; SUPERCLASS = NSView; }, 
         {
             CLASS = GalleryView; 
             LANGUAGE = ObjC; 
             OUTLETS = {
                 bookList = NSArrayController; 
                 controlView = GalleryControlView; 
+                icon = GalleryIconView; 
                 pages = NSSlider; 
                 text = NSTextField; 
             }; 
