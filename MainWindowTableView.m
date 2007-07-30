@@ -25,6 +25,8 @@
 
 #import "MainWindowTableView.h"
 #import "BooksAppDelegate.h"
+#import "ListManagedObject.h"
+#import "SmartListManagedObject.h"
 
 @implementation MainWindowTableView
 
@@ -56,9 +58,22 @@
 			[self selectRow:row byExtendingSelection: NO];
 
 		NSMenu * menu = [[NSMenu alloc] init];
-		[menu addItemWithTitle:NSLocalizedString (@"Rename List", nil) action:NSSelectorFromString(@"renameList:") keyEquivalent:@""];
-		[menu addItemWithTitle:NSLocalizedString (@"Delete List", nil) action:NSSelectorFromString(@"deleteList:") keyEquivalent:@""];
 
+		if ([self numberOfSelectedRows] > 0 && row != -1)
+		{
+			ListManagedObject * obj = [[[self dataSource] arrangedObjects] objectAtIndex:row];
+			if ([obj isKindOfClass:[SmartListManagedObject class]])
+				[menu addItemWithTitle:NSLocalizedString (@"Edit Smart List", nil) action:NSSelectorFromString(@"editSmartList:") keyEquivalent:@""];
+
+			[menu addItemWithTitle:NSLocalizedString (@"Rename List", nil) action:NSSelectorFromString(@"renameList:") keyEquivalent:@""];
+			[menu addItemWithTitle:NSLocalizedString (@"Delete List", nil) action:NSSelectorFromString(@"deleteList:") keyEquivalent:@""];
+
+			[menu addItem:[NSMenuItem separatorItem]];
+		}
+
+		[menu addItemWithTitle:NSLocalizedString (@"New List", nil) action:NSSelectorFromString(@"newList:") keyEquivalent:@""];
+		[menu addItemWithTitle:NSLocalizedString (@"New Smart List", nil) action:NSSelectorFromString(@"newSmartList:") keyEquivalent:@""];
+		
 		return menu;
 	}
 	else if (self == [[self delegate] getBooksTable])
@@ -66,11 +81,21 @@
 		int row = [self rowAtPoint:[self convertPoint:[theEvent locationInWindow] fromView:nil]];
 
 		if (row != -1) 
-			[self selectRow:row byExtendingSelection: NO];
+		{
+			if (![self isRowSelected:row])
+				[self selectRow:row byExtendingSelection: NO];
+		}
 
 		NSMenu * menu = [[NSMenu alloc] init];
-		[menu addItemWithTitle:NSLocalizedString (@"Delete Book", nil) action:NSSelectorFromString(@"deleteBook:") keyEquivalent:@""];
+		
+		if ([self numberOfSelectedRows] > 0)
+		{
+			[menu addItemWithTitle:NSLocalizedString (@"Duplicate", nil) action:NSSelectorFromString(@"duplicateRecords:") keyEquivalent:@""];
+			[menu addItemWithTitle:NSLocalizedString (@"Delete", nil) action:NSSelectorFromString(@"deleteBook:") keyEquivalent:@""];
+			[menu addItem:[NSMenuItem separatorItem]];
+		}
 
+		[menu addItemWithTitle:NSLocalizedString (@"New Book", nil) action:NSSelectorFromString(@"newBook:") keyEquivalent:@""];
 		return menu;
 	}
 
@@ -98,6 +123,31 @@
 {
 	if (self == [[self delegate] getBooksTable])
 		[((BooksAppDelegate *) [NSApp delegate]) removeBook:(id) sender];
+}
+
+- (IBAction) editSmartList: (id) sender
+{
+	[((BooksAppDelegate *) [NSApp delegate]) editSmartList:(id) sender];
+}
+
+- (IBAction) duplicateRecords: (id) sender
+{
+	[((BooksAppDelegate *) [NSApp delegate]) duplicateRecords:(id) sender];
+}
+
+- (IBAction) newBook: (id) sender
+{
+	[((BooksAppDelegate *) [NSApp delegate]) newBook:(id) sender];
+}
+
+- (IBAction) newList: (id) sender
+{
+	[((BooksAppDelegate *) [NSApp delegate]) newList:(id) sender];
+}
+
+- (IBAction) newSmartList: (id) sender
+{
+	[((BooksAppDelegate *) [NSApp delegate]) newSmartList:(id) sender];
 }
 
 @end

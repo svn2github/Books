@@ -190,7 +190,12 @@
             LANGUAGE = ObjC; 
             SUPERCLASS = NSArrayController; 
         }, 
-        {CLASS = MainWindowTableView; LANGUAGE = ObjC; SUPERCLASS = NSTableView; }, 
+        {
+            CLASS = MainWindowTableView; 
+            LANGUAGE = ObjC; 
+            OUTLETS = {bookList = NSArrayController; listList = NSArrayController; }; 
+            SUPERCLASS = NSTableView; 
+        }, 
         {CLASS = NSDatePicker; LANGUAGE = ObjC; SUPERCLASS = NSControl; }, 
         {CLASS = NSLevelIndicator; LANGUAGE = ObjC; SUPERCLASS = NSControl; }, 
         {CLASS = NSSegmentedControl; LANGUAGE = ObjC; SUPERCLASS = NSControl; }, 
