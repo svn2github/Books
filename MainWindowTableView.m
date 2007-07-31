@@ -34,11 +34,12 @@
 {
 	unichar arrow = [[event characters] characterAtIndex:0];
 	
-	if (arrow == NSLeftArrowFunctionKey)
+	/* if (arrow == NSLeftArrowFunctionKey)
 		[((BooksAppDelegate *) [NSApp delegate]) selectListsTable:self];
 	else if (arrow == NSRightArrowFunctionKey)
-		[((BooksAppDelegate *) [NSApp delegate]) selectBooksTable:self];
-	else if (arrow == 13 || arrow == 3)
+		[((BooksAppDelegate *) [NSApp delegate]) selectBooksTable:self]; */
+	// else if (arrow == 13 || arrow == 3)
+	if (arrow == 13 || arrow == 3)
 		[((BooksAppDelegate *) [NSApp delegate]) getInfoWindow:self];
 	// else if (arrow == ' ')
 	//	[((BooksAppDelegate *) [[NSApplication sharedApplication] delegate]) pageContent:self];
@@ -86,16 +87,25 @@
 				[self selectRow:row byExtendingSelection: NO];
 		}
 
+		ListManagedObject * obj = [[[[[self delegate] getListsTable] dataSource] selectedObjects] objectAtIndex:0];
+
 		NSMenu * menu = [[NSMenu alloc] init];
-		
-		if ([self numberOfSelectedRows] > 0)
+
+		if ([obj isKindOfClass:[SmartListManagedObject class]])
+			[menu addItemWithTitle:NSLocalizedString (@"No operations available", nil) action:nil keyEquivalent:@""];
+		else
 		{
-			[menu addItemWithTitle:NSLocalizedString (@"Duplicate", nil) action:NSSelectorFromString(@"duplicateRecords:") keyEquivalent:@""];
-			[menu addItemWithTitle:NSLocalizedString (@"Delete", nil) action:NSSelectorFromString(@"deleteBook:") keyEquivalent:@""];
-			[menu addItem:[NSMenuItem separatorItem]];
+		
+			if ([self numberOfSelectedRows] > 0)
+			{
+				[menu addItemWithTitle:NSLocalizedString (@"Duplicate", nil) action:NSSelectorFromString(@"duplicateRecords:") keyEquivalent:@""];
+				[menu addItemWithTitle:NSLocalizedString (@"Delete", nil) action:NSSelectorFromString(@"deleteBook:") keyEquivalent:@""];
+				[menu addItem:[NSMenuItem separatorItem]];
+			}
+
+			[menu addItemWithTitle:NSLocalizedString (@"New Book", nil) action:NSSelectorFromString(@"newBook:") keyEquivalent:@""];
 		}
 
-		[menu addItemWithTitle:NSLocalizedString (@"New Book", nil) action:NSSelectorFromString(@"newBook:") keyEquivalent:@""];
 		return menu;
 	}
 

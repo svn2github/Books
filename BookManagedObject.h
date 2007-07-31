@@ -26,6 +26,8 @@
 #import <Cocoa/Cocoa.h>
 #import "ListManagedObject.h"
 
+#define BOOK_DID_UPDATE @"Book Managed Object - Updated"
+
 @interface BookManagedObject : NSManagedObject 
 {
 	NSData * imageData;

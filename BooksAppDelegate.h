@@ -38,6 +38,8 @@
 #import "BooksTextFieldDelegate.h"
 #import "BooksTableViewDelegate.h"
 
+#define BOOKS_SHOW_INFO @"Books - Show Info Window"
+
 @interface BooksAppDelegate : NSObject 
 {
     IBOutlet BooksToolbarDelegate * toolbarDelegate;
@@ -161,7 +163,7 @@
 
 - (void) endProgressWindow;
 - (void) startProgressWindow: (NSString *) message;
-- (void) refreshComboBoxes: (NSArray *) books;
+- (void) refreshComboBoxes;
 
 - (BOOL)application:(NSApplication *)sender delegateHandlesKey:(NSString *)key;
 

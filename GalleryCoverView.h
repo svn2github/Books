@@ -19,8 +19,12 @@
 	
 	NSTrackingRectTag tag;
 	BOOL hover;
+	
+	NSTimer * timer;
+	BOOL click;
 }
 
 - (void) setBook:(BookManagedObject *) book;
+- (BookManagedObject *) getBook;
 
 @end

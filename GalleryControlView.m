@@ -48,7 +48,7 @@
 
 - (void) mouseExited:(NSEvent *)theEvent
 {
-	timer = [[NSTimer scheduledTimerWithTimeInterval:1.0 target:self selector:NSSelectorFromString(@"hideControl:") 
+	timer = [[NSTimer scheduledTimerWithTimeInterval:0.5 target:self selector:NSSelectorFromString(@"hideControl:") 
 		userInfo:nil repeats:NO] retain];
 }
 

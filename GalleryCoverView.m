@@ -8,6 +8,7 @@
 
 #import "GalleryCoverView.h"
 #import "GalleryView.h"
+#import "BooksAppDelegate.h"
 
 @implementation GalleryCoverView
 
@@ -18,6 +19,7 @@
 		margin = 10;
 
 		image = nil;
+		currentBook = nil;
 			
 		imageView = [[NSImageView alloc] init];
 		[imageView setImageScaling:NSScaleProportionally];
@@ -27,6 +29,9 @@
 
 		tag = -1;
 		hover = false;
+		
+		timer = nil;
+		click = false;
     }
     return self;
 }
@@ -52,32 +57,7 @@
 
 - (void)drawRect:(NSRect)rect
 {
-	if ([[((GalleryView *) [self superview]) selectedBooks] containsObject:currentBook])
-		[self drawHoverBackground:rect];
-		
-	[imageView setFrame:NSMakeRect (margin, margin, (rect.size.width - margin - margin), 
-		(rect.size.height - margin - margin))];
-}
-
-- (void) setBook:(BookManagedObject *) book
-{
-	if (book != nil && currentBook != book)
-	{
-		[self setToolTip:[book valueForKey:@"title"]];
-	
-		if (image != nil && image != [NSImage imageNamed:@"Books"])
-			[image release];
-		
-		NSData * data = [book getCoverImage];
-		if (data != nil)
-			image = [[NSImage alloc] initWithData:data];
-		else
-			image = [NSImage imageNamed:@"Books"];
-			
-		[imageView setImage:image]; 
-		
-	}
-	else if (book == nil)
+	if (currentBook == nil)
 	{
 		[self setToolTip:nil];
 		
@@ -87,9 +67,58 @@
 		image = nil;
 	}
 
-	currentBook = book;
+	if ([[((GalleryView *) [self superview]) selectedBooks] containsObject:currentBook])
+		[self drawHoverBackground:rect];
+		
+	[imageView setFrame:NSMakeRect (margin, margin, (rect.size.width - margin - margin), 
+		(rect.size.height - margin - margin))];
+}
+
+- (void) updateView
+{
+	NSData * data = [currentBook getCoverImage];
+	if (data != nil)
+	{
+		if (image != nil && image != [NSImage imageNamed:@"Books"])
+			[image release];
+
+		image = [[NSImage alloc] initWithData:data];
+	}
+	else
+		image = [NSImage imageNamed:@"Books"];
+
+	[imageView setImage:image]; 
+
+	[self setToolTip:[currentBook valueForKey:@"title"]];
 
 	[self setNeedsDisplay:YES];
+}
+
+- (void) observeValueForKeyPath: (NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change
+	context:(void *)context
+{
+	[self updateView];
+}
+
+- (BookManagedObject *) getBook
+{
+	return currentBook;
+}
+
+- (void) setBook:(BookManagedObject *) book
+{
+	if (currentBook != nil)
+	{
+		[currentBook removeObserver:self forKeyPath:@"coverImage"];
+		[currentBook removeObserver:self forKeyPath:@"title"];
+	}
+
+	currentBook = book;
+
+	[currentBook addObserver:self forKeyPath:@"coverImage" options:NSKeyValueObservingOptionNew context:NULL];
+	[currentBook addObserver:self forKeyPath:@"title" options:NSKeyValueObservingOptionNew context:NULL];
+
+	[self updateView];
 }
 
 - (NSView *)hitTest:(NSPoint)aPoint
@@ -104,9 +133,35 @@
 	return [super hitTest:aPoint];
 }
 
+- (void) resetClick:(NSTimer*) theTimer
+{
+	click = false;
+
+	[timer invalidate];
+	[timer release];
+}
+
 - (void)mouseUp:(NSEvent *)theEvent
 {
 	[((GalleryView *) [self superview]) setSelectedBook:currentBook];
+
+	if (click)
+	{
+		NSNotification * notification = [NSNotification notificationWithName:BOOKS_SHOW_INFO object:nil];
+		[[NSNotificationCenter defaultCenter] postNotification:notification];
+
+		[self resetClick:timer];
+		click = false;
+	}
+	else
+	{
+		timer = [[NSTimer scheduledTimerWithTimeInterval:(GetDblTime() / 60.0) target:self selector:NSSelectorFromString(@"resetClick:") 
+		userInfo:nil repeats:NO] retain];
+		
+		click = true;
+	}
+	
+	[super mouseUp:theEvent];
 }
 
 @end

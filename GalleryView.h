@@ -28,9 +28,15 @@
 	int page;
 	int count;
 
+	int rowCount;
+	int colCount;
+	
 	NSArray * selectedBooks;
 	
 	BOOL controlVisible;
+
+    BOOL shouldDrawFocusRing;
+    NSResponder * lastResp;
 }
 
 - (void) setSelectedBook:(BookManagedObject *) b;

@@ -107,7 +107,6 @@
 	[((BooksAppDelegate *) booksAppDelegate) orderCoverWindowOut];
 	[toolbarDelegate setGetCoverLabel:NSLocalizedString (@"Show Cover", nil)];
 
-	[((BooksAppDelegate *) booksAppDelegate) refreshComboBoxes:nil];
 	[((BooksAppDelegate *) booksAppDelegate) updateMainPane];
 }
 

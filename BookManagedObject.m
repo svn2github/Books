@@ -39,8 +39,9 @@
 - (void) didChangeValueForKey: (NSString *) key
 {
 	[super didChangeValueForKey:key];
-	
-	[[NSApp delegate] updateMainPane];
+
+	NSNotification * notification = [NSNotification notificationWithName:BOOK_DID_UPDATE object:nil];
+	[[NSNotificationCenter defaultCenter] postNotification:notification];
 }
 
 - (void) setIsbn: (NSString *) isbn
@@ -817,9 +818,11 @@
 	{
 		NSMutableDictionary * file = [allObjects objectAtIndex:i];
 
-		NSImage * icon = [[NSWorkspace sharedWorkspace] iconForFile:[file valueForKey:@"Location"]];
+		NSImage * icon = nil;
 		
-		if (![[NSFileManager defaultManager] fileExistsAtPath:[file valueForKey:@"Location"]])
+		if ([[NSFileManager defaultManager] fileExistsAtPath:[file valueForKey:@"Location"]])
+			icon = [[NSWorkspace sharedWorkspace] iconForFile:[file valueForKey:@"Location"]];
+		else
 			icon = [[NSWorkspace sharedWorkspace] iconForFile:[filePath stringByAppendingPathComponent:[file valueForKey:@"Location"]]];
 			
 		[file setValue:icon forKey:@"Icon"];

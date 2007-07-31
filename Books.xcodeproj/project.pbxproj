@@ -80,6 +80,7 @@
 		387469AE096D69E00016A59A /* Library of Congress Importer.app in Resources */ = {isa = PBXBuildFile; fileRef = 38746938096D69E00016A59A /* Library of Congress Importer.app */; };
 		387469AF096D69E00016A59A /* Directory Importer.app in Resources */ = {isa = PBXBuildFile; fileRef = 38746976096D69E00016A59A /* Directory Importer.app */; };
 		387469B1096D69E00016A59A /* Amazon Importer.app in Resources */ = {isa = PBXBuildFile; fileRef = 3874699B096D69E00016A59A /* Amazon Importer.app */; };
+		38769B4B0C5EBB1500853EDB /* control-arrow.png in Resources */ = {isa = PBXBuildFile; fileRef = 38769B4A0C5EBB1500853EDB /* control-arrow.png */; };
 		3878AF29088FE45E00C72EB3 /* ImportPluginInterface.m in Sources */ = {isa = PBXBuildFile; fileRef = 3878AF28088FE45E00C72EB3 /* ImportPluginInterface.m */; };
 		387A013C0A75CC9300447E87 /* Sparkle.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 387A013B0A75CC9300447E87 /* Sparkle.framework */; };
 		387A01520A75CD2300447E87 /* Sparkle.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 387A013B0A75CC9300447E87 /* Sparkle.framework */; };
@@ -297,6 +298,7 @@
 		38746938096D69E00016A59A /* Library of Congress Importer.app */ = {isa = PBXFileReference; lastKnownFileType = wrapper.application; path = "Library of Congress Importer.app"; sourceTree = "<group>"; };
 		38746976096D69E00016A59A /* Directory Importer.app */ = {isa = PBXFileReference; lastKnownFileType = wrapper.application; path = "Directory Importer.app"; sourceTree = "<group>"; };
 		3874699B096D69E00016A59A /* Amazon Importer.app */ = {isa = PBXFileReference; lastKnownFileType = wrapper.application; path = "Amazon Importer.app"; sourceTree = "<group>"; };
+		38769B4A0C5EBB1500853EDB /* control-arrow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "control-arrow.png"; sourceTree = "<group>"; };
 		3878AF27088FE45E00C72EB3 /* ImportPluginInterface.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImportPluginInterface.h; sourceTree = "<group>"; };
 		3878AF28088FE45E00C72EB3 /* ImportPluginInterface.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ImportPluginInterface.m; sourceTree = "<group>"; };
 		387A013B0A75CC9300447E87 /* Sparkle.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Sparkle.framework; sourceTree = "<group>"; };
@@ -737,6 +739,7 @@
 		38666DA508E5087200071C56 /* Icons */ = {
 			isa = PBXGroup;
 			children = (
+				38769B4A0C5EBB1500853EDB /* control-arrow.png */,
 				38406AB90C5C848C00E7D678 /* gallery.png */,
 				38AC633B0BEA7CF3004F8DB4 /* dupe.png */,
 				3894C9C40B58516000E7A508 /* camera-22.png */,
@@ -1033,6 +1036,7 @@
 				388E1F7A0BF35B0000E8A670 /* Amazon ECS4 (JP).plugin in Resources */,
 				3826FA850C14535B00EB2E43 /* Books Help in Resources */,
 				38406ABA0C5C848C00E7D678 /* gallery.png in Resources */,
+				38769B4B0C5EBB1500853EDB /* control-arrow.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

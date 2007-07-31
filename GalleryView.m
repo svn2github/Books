@@ -8,8 +8,69 @@
 
 #import "GalleryView.h"
 #import "GalleryCoverView.h"
+#import "BooksAppDelegate.h"
 
 @implementation GalleryView
+
+- (void) keyDown: (NSEvent *) event
+{
+	unichar arrow = [[event characters] characterAtIndex:0];
+	
+	if (arrow == 13 || arrow == 3)
+	{
+		NSNotification * notification = [NSNotification notificationWithName:BOOKS_SHOW_INFO object:nil];
+		[[NSNotificationCenter defaultCenter] postNotification:notification];
+	}
+	else if (arrow == NSRightArrowFunctionKey || arrow == NSLeftArrowFunctionKey || arrow == NSUpArrowFunctionKey ||
+			 arrow == NSDownArrowFunctionKey || arrow == NSHomeFunctionKey || arrow == NSEndFunctionKey || 
+			 arrow == NSPageUpFunctionKey || arrow == NSPageDownFunctionKey || arrow == ' ')
+	{
+		if ([[bookList selectedObjects] count] == 0)
+			[bookList selectNext:self];
+		else
+		{
+			NSIndexSet * selects = [bookList selectionIndexes];
+		
+			int position = [selects firstIndex];
+		
+			if (arrow == NSRightArrowFunctionKey)
+				position++;
+			else if (arrow == NSLeftArrowFunctionKey)
+				position--;
+			else if (arrow == NSUpArrowFunctionKey)
+				position -= rowCount;
+			else if (arrow == NSDownArrowFunctionKey)
+				position += rowCount;
+			else if (arrow == NSHomeFunctionKey)
+				position = 0;
+			else if (arrow == NSEndFunctionKey)
+				position = [[bookList arrangedObjects] count] - 1;
+			else if (arrow == NSPageUpFunctionKey)
+				position -= (rowCount * colCount);
+			else if (arrow == NSPageDownFunctionKey || arrow == ' ')
+				position += (rowCount * colCount);
+
+			if (position < 0)
+				position = 0;
+			if (position > [[bookList arrangedObjects] count] - 1)
+				position = [[bookList arrangedObjects] count] - 1;
+			
+			int pos_page = 0;
+			if (position != 0)
+				pos_page = position / (rowCount * colCount);
+			
+			if ([pages intValue] != pos_page)
+			{
+				[pages setIntValue:pos_page];
+				[self setNeedsDisplay:YES];
+			}
+				
+			[bookList setSelectionIndex:position];
+		}
+	}
+	else
+		[super keyDown:event];
+}
 
 - (id)initWithFrame:(NSRect)frame {
     self = [super initWithFrame:frame];
@@ -18,7 +79,12 @@
 		page = 0;
 		count = 0;
 		
+		rowCount = 0;
+		colCount = 0;
+		
 		controlVisible = false;
+		shouldDrawFocusRing = false;
+		lastResp = nil;
     }
     return self;
 }
@@ -68,8 +134,8 @@
 	
 	NSArray * subs = [self subviews];
 
-	int rowCount = ((int) rect.size.width / (int) size);
-	int colCount = ((int) rect.size.height / (int) size);
+	rowCount = ((int) rect.size.width / (int) size);
+	colCount = ((int) rect.size.height / (int) size);
 
 	count = rowCount * colCount;
 
@@ -120,6 +186,9 @@
 
 	for (i = (page * count); i < ((page + 1) * count) && i < [selectedBooks count]; i++)
 	{
+		GalleryCoverView * gcv = [subs objectAtIndex:i];
+		BookManagedObject * book = [selectedBooks objectAtIndex:i];
+		
 		if (x + size > rect.size.width)
 		{
 			x = xSpacing;
@@ -129,9 +198,12 @@
 		if (y < 0)
 			break;
 
-		[[subs objectAtIndex:i] setFrame:NSMakeRect(x, y, size, size)];
-		[[subs objectAtIndex:i] setBook:[selectedBooks objectAtIndex:i]];
-		[[subs objectAtIndex:i] setHidden:NO];
+		[gcv setFrame:NSMakeRect(x, y, size, size)];
+		
+		if ([gcv getBook] != book)
+			[gcv setBook:book];
+			
+		[gcv setHidden:NO];
 	
 		x = x + size + xSpacing;
 	}
@@ -160,6 +232,13 @@
 		[icon setFrameOrigin:NSMakePoint (([self frame].size.width - [icon frame].size.width - 10), 10)];
 	}
 
+	if (shouldDrawFocusRing) 
+    {
+        NSSetFocusRingStyle (NSFocusRingOnly);
+        NSRectFill([self bounds]);
+		
+		shouldDrawFocusRing = NO;
+    }
 }
 
 - (void) setSelectedBook:(BookManagedObject *) b
@@ -184,6 +263,41 @@
 	controlVisible = true;
 	
 	[self setNeedsDisplay:YES];
+}
+
+- (void)mouseUp:(NSEvent *)theEvent
+{
+	[[self window] makeFirstResponder:self];
+	[super mouseUp:theEvent];
+}
+
+- (BOOL)acceptsFirstResponder 
+{
+    return YES;
+}
+
+- (BOOL) needsDisplay;
+{
+    NSResponder* resp = nil;
+
+    if ([[self window] isKeyWindow]) 
+    {
+        resp = [[self window] firstResponder];
+
+        if (resp == lastResp) 
+            return [super needsDisplay];
+    } 
+    else if (lastResp == nil)  
+    {
+        return [super needsDisplay];
+    }
+	
+    shouldDrawFocusRing = (resp != nil && resp == self); 
+    lastResp = resp;
+
+    [self setKeyboardFocusRingNeedsDisplayInRect:[self bounds]];
+
+    return YES;
 }
 
 @end

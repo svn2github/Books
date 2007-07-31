@@ -294,6 +294,11 @@ typedef struct _monochromePixel
 	return infoWindow;
 }
 
+- (void) getInfoWindow
+{
+	[self getInfoWindow:self];
+}
+
 - (IBAction) getInfoWindow: (id) sender
 {
 	if ([infoWindow isVisible])
@@ -479,6 +484,12 @@ typedef struct _monochromePixel
 	[summary setFieldEditor:NO];
 	[self updateMainPane];
 
+	[[NSNotificationCenter defaultCenter] addObserver:self selector:NSSelectorFromString(@"refreshComboBoxes") 
+		name:BOOK_DID_UPDATE object:nil];
+	[[NSNotificationCenter defaultCenter] addObserver:self selector:NSSelectorFromString(@"getInfoWindow") 
+		name:BOOKS_SHOW_INFO object:nil];
+
+
 	[NotificationInterface start];
 	
 	[mainWindow setTitle:NSLocalizedString (@"Books - Loading...", nil)];
@@ -528,13 +539,13 @@ typedef struct _monochromePixel
 }
 
 
-- (void) refreshComboBoxes: (NSArray *) books
+- (void) refreshComboBoxes
 {
 	NSFetchRequest * fetch = [[NSFetchRequest alloc] init];
 	[fetch setEntity:[NSEntityDescription entityForName:@"Book" inManagedObjectContext:[self managedObjectContext]]];
 
 	NSError * error = nil;
-	books = [[self managedObjectContext] executeFetchRequest:fetch error:&error];
+	NSArray * books = [[self managedObjectContext] executeFetchRequest:fetch error:&error];
 		
 	NSMutableSet * userFieldNames = [NSMutableSet set];
 
@@ -979,8 +990,6 @@ typedef struct _monochromePixel
 				[self getInfoWindow:nil];
 			}
 
-			[self refreshComboBoxes:nil];
-			
 			[self save:sender];
 		}
 	}
@@ -1582,8 +1591,6 @@ typedef struct _monochromePixel
 			}
 			
 			[tableViewDelegate reloadBooksTable];
-			
-			[self refreshComboBoxes:nil];
 		}
 	}
 }
