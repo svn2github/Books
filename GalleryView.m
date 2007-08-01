@@ -16,14 +16,16 @@
 {
 	unichar arrow = [[event characters] characterAtIndex:0];
 	
+	if (arrow == ' ')
+		arrow = NSDownArrowFunctionKey;
+		
 	if (arrow == 13 || arrow == 3)
 	{
 		NSNotification * notification = [NSNotification notificationWithName:BOOKS_SHOW_INFO object:nil];
 		[[NSNotificationCenter defaultCenter] postNotification:notification];
 	}
 	else if (arrow == NSRightArrowFunctionKey || arrow == NSLeftArrowFunctionKey || arrow == NSUpArrowFunctionKey ||
-			 arrow == NSDownArrowFunctionKey || arrow == NSHomeFunctionKey || arrow == NSEndFunctionKey || 
-			 arrow == NSPageUpFunctionKey || arrow == NSPageDownFunctionKey || arrow == ' ')
+			 arrow == NSDownArrowFunctionKey || arrow == NSHomeFunctionKey || arrow == NSEndFunctionKey)
 	{
 		if ([[bookList selectedObjects] count] == 0)
 			[bookList selectNext:self];
@@ -45,10 +47,6 @@
 				position = 0;
 			else if (arrow == NSEndFunctionKey)
 				position = [[bookList arrangedObjects] count] - 1;
-			else if (arrow == NSPageUpFunctionKey)
-				position -= (rowCount * colCount);
-			else if (arrow == NSPageDownFunctionKey || arrow == ' ')
-				position += (rowCount * colCount);
 
 			if (position < 0)
 				position = 0;
@@ -58,14 +56,20 @@
 			int pos_page = 0;
 			if (position != 0)
 				pos_page = position / (rowCount * colCount);
-			
-			if ([pages intValue] != pos_page)
-			{
-				[pages setIntValue:pos_page];
-				[self setNeedsDisplay:YES];
-			}
 				
 			[bookList setSelectionIndex:position];
+			
+			NSClipView * clip = (NSClipView *) [self superview];
+			NSScrollView * scroll = (NSScrollView *) [clip superview];
+	
+			NSRect clipRect = [clip documentVisibleRect];
+	
+			NSView * view = [[self subviews] objectAtIndex:position];
+			NSRect frame = [view frame];
+	
+			float y = (frame.origin.y + (frame.size.height / 2)) - (clipRect.size.height / 2);
+
+			[[scroll documentView] scrollPoint:NSMakePoint (0, y)];
 		}
 	}
 	else
@@ -76,15 +80,7 @@
     self = [super initWithFrame:frame];
     if (self) 
 	{
-		page = 0;
-		count = 0;
-		
-		rowCount = 0;
-		colCount = 0;
-		
-		controlVisible = false;
-		shouldDrawFocusRing = false;
-		lastResp = nil;
+
     }
     return self;
 }
@@ -97,27 +93,21 @@
 
 	[[NSColor colorWithCalibratedRed:0.5 green:0.5 blue:0.5 alpha:1.0] setFill];
 	NSRectFill([self frame]);
-
-	[[NSNotificationCenter defaultCenter] addObserver:self selector:NSSelectorFromString(@"hideControl") 
-		name:GALLERY_HIDE_CONTROL object:nil];
-	[[NSNotificationCenter defaultCenter] addObserver:self selector:NSSelectorFromString(@"showControl") 
-		name:GALLERY_SHOW_CONTROL object:nil];
 }
 
 - (void) observeValueForKeyPath: (NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change
 	context:(void *)context
 {
     if ([keyPath isEqual:@"arrangedObjects"] || [keyPath isEqual:@"Gallery Size"])
-	{
-		[pages setIntValue:0];
 		selectedBooks = [bookList arrangedObjects];
-	}
 
 	[self setNeedsDisplay:YES];
 }
 
-- (void) drawBoxesInRect:(NSRect) rect
+- (void)drawRect:(NSRect)rect 
 {
+	NSRect oldRect = rect;
+	
 	rect = [self frame];
 	
 	NSNumber * prefSize = [[NSUserDefaults standardUserDefaults] valueForKey:@"Gallery Size"];
@@ -127,31 +117,20 @@
 	float size = 128;
 	
 	if (prefSize != nil)
-		size = [prefSize floatValue];
-	
-	if (size > rect.size.height - 20)
-		size = rect.size.height - 20;
+	 	size = [prefSize floatValue];
+		
+	if (size > [[[self superview] superview] frame].size.height)
+		size = [[[self superview] superview] frame].size.height * 0.95;
 	
 	NSArray * subs = [self subviews];
 
 	rowCount = ((int) rect.size.width / (int) size);
-	colCount = ((int) rect.size.height / (int) size);
-
-	count = rowCount * colCount;
-
-	[pages setMinValue:0.0];
-
-	if (count > 0)
-	{
-		[pages setMaxValue:(double) (listSize / count)];
-		[pages setNumberOfTickMarks:(listSize / count) + 1];
-	}
-	else
-	{
-		[pages setMaxValue:0.0];
-		[pages setNumberOfTickMarks:1];
-	}
 	
+	colCount = (listSize / rowCount);
+	
+	if (listSize % rowCount != 0)
+		colCount += 1;
+
 	if (listSize < rowCount)
 	{
 		rowCount = listSize;
@@ -159,32 +138,38 @@
 	}
 	
 	float xSpacing = (rect.size.width - (rowCount * size)) / (float) (rowCount + 1);
-	float ySpacing = (rect.size.height - (colCount * size)) / (float) (colCount + 1);
+	float ySpacing = xSpacing; 
+	
+	if (colCount == 1)
+		ySpacing = (oldRect.size.height - size) / 2;
 	
 	float x = xSpacing;
-	float y = rect.size.height - size - ySpacing;
 
+	float y = ((size + ySpacing) * colCount); 
+	
 	int i = 0;
 
-	if ([subs count] < [selectedBooks count])
+	NSSize newSize = NSMakeSize (rect.size.width, y + ySpacing);
+	
+	y = y - size;
+	
+	[self setFrameSize:newSize];
+	
+	if ([subs count] < listSize)
 	{
-		for (i = [subs count]; i < [selectedBooks count]; i++)
+		for (i = [subs count]; i < listSize; i++)
 		{
 			GalleryCoverView * gcv = [[GalleryCoverView alloc] init];
-			[gcv setFrame:NSMakeRect(x, y - size, size, size)];
 			[self addSubview:gcv];
 		}
 	}
+
+	subs = [self subviews];
 	
 	for (i = 0; i < [subs count]; i++)
-		[[subs objectAtIndex:i] setHidden:YES];
-		
-	page = [pages intValue];
-	
-	if (count > 0)
-		[text setStringValue:[NSString stringWithFormat:NSLocalizedString (@"Page %d of %d", nil), (page + 1), (([[bookList arrangedObjects] count] / count) + 1), nil]];
+	 	[[subs objectAtIndex:i] setHidden:YES];
 
-	for (i = (page * count); i < ((page + 1) * count) && i < [selectedBooks count]; i++)
+	for (i = 0; i < listSize; i++)
 	{
 		GalleryCoverView * gcv = [subs objectAtIndex:i];
 		BookManagedObject * book = [selectedBooks objectAtIndex:i];
@@ -194,9 +179,6 @@
 			x = xSpacing;
 			y = y - size - ySpacing;
 		}
-
-		if (y < 0)
-			break;
 
 		[gcv setFrame:NSMakeRect(x, y, size, size)];
 		
@@ -209,36 +191,19 @@
 	}
 }
 
-- (void)drawRect:(NSRect)rect 
+- (void) setFrameSize:(NSSize) size
 {
-	[icon removeFromSuperview];
-	[controlView removeFromSuperview];
-		
-	[[NSColor colorWithCalibratedRed:0.921875 green:0.921875 blue:0.921875 alpha:1.0] setFill];
-//	[[[NSColor controlAlternatingRowBackgroundColors] objectAtIndex:1] setFill];
-
-	NSRectFill(rect);
-
-	[self drawBoxesInRect:rect];
-
-	if (controlVisible)
+	[super setFrameSize:size];
+	
+	if ([[bookList selectedObjects] count] == 0)
 	{
-		[self addSubview:controlView];
-		[controlView setFrameOrigin:NSMakePoint (([self frame].size.width - [controlView frame].size.width - 10), 10)];
-	}
-	else
-	{
-		[self addSubview:icon];
-		[icon setFrameOrigin:NSMakePoint (([self frame].size.width - [icon frame].size.width - 10), 10)];
-	}
-
-	if (shouldDrawFocusRing) 
-    {
-        NSSetFocusRingStyle (NSFocusRingOnly);
-        NSRectFill([self bounds]);
+		NSClipView * clip = (NSClipView *) [self superview];
+		NSScrollView * scroll = (NSScrollView *) [clip superview];
+	
+		[[scroll documentView] scrollPoint:NSMakePoint (0, size.height)];
 		
-		shouldDrawFocusRing = NO;
-    }
+		[self setNeedsDisplay:YES];
+	}
 }
 
 - (void) setSelectedBook:(BookManagedObject *) b
@@ -251,19 +216,6 @@
 	return [bookList selectedObjects];
 }
 
-- (void) hideControl
-{
-	controlVisible = false;
-	
-	[self setNeedsDisplay:YES];
-}
-
-- (void) showControl
-{
-	controlVisible = true;
-	
-	[self setNeedsDisplay:YES];
-}
 
 - (void)mouseUp:(NSEvent *)theEvent
 {
@@ -273,30 +225,6 @@
 
 - (BOOL)acceptsFirstResponder 
 {
-    return YES;
-}
-
-- (BOOL) needsDisplay;
-{
-    NSResponder* resp = nil;
-
-    if ([[self window] isKeyWindow]) 
-    {
-        resp = [[self window] firstResponder];
-
-        if (resp == lastResp) 
-            return [super needsDisplay];
-    } 
-    else if (lastResp == nil)  
-    {
-        return [super needsDisplay];
-    }
-	
-    shouldDrawFocusRing = (resp != nil && resp == self); 
-    lastResp = resp;
-
-    [self setKeyboardFocusRingNeedsDisplayInRect:[self bounds]];
-
     return YES;
 }
 

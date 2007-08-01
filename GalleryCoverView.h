@@ -17,11 +17,10 @@
 	BookManagedObject * currentBook;
 	float margin;
 	
-	NSTrackingRectTag tag;
-	BOOL hover;
-	
 	NSTimer * timer;
 	BOOL click;
+	
+	BOOL inited;
 }
 
 - (void) setBook:(BookManagedObject *) book;

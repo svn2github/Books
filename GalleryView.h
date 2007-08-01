@@ -7,36 +7,16 @@
 //
 
 #import <Cocoa/Cocoa.h>
-#import "GalleryControlView.h"
-#import "GalleryIconView.h"
 #import "BookManagedObject.h"
-
-#define GALLERY_HIDE_CONTROL @"Books Gallery Hide Control"
-#define GALLERY_SHOW_CONTROL @"Books Gallery Show Control"
 
 @interface GalleryView : NSView 
 {
 	IBOutlet NSArrayController * bookList;
 
-	IBOutlet GalleryControlView * controlView;
-	IBOutlet GalleryIconView * icon;
-	
-	IBOutlet NSSlider * pages;
-
-	IBOutlet NSTextField * text;
-	
-	int page;
-	int count;
-
 	int rowCount;
 	int colCount;
 	
 	NSArray * selectedBooks;
-	
-	BOOL controlVisible;
-
-    BOOL shouldDrawFocusRing;
-    NSResponder * lastResp;
 }
 
 - (void) setSelectedBook:(BookManagedObject *) b;

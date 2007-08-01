@@ -484,11 +484,12 @@ typedef struct _monochromePixel
 	[summary setFieldEditor:NO];
 	[self updateMainPane];
 
-	[[NSNotificationCenter defaultCenter] addObserver:self selector:NSSelectorFromString(@"refreshComboBoxes") 
+	[[NSNotificationCenter defaultCenter] addObserver:self selector:NSSelectorFromString(@"startUpdateTimer") 
 		name:BOOK_DID_UPDATE object:nil];
 	[[NSNotificationCenter defaultCenter] addObserver:self selector:NSSelectorFromString(@"getInfoWindow") 
 		name:BOOKS_SHOW_INFO object:nil];
 
+	timer = nil;
 
 	[NotificationInterface start];
 	
@@ -539,7 +540,21 @@ typedef struct _monochromePixel
 }
 
 
-- (void) refreshComboBoxes
+- (void) startUpdateTimer
+{
+	if (timer != nil)
+	{
+		[timer invalidate];
+		[timer release];
+		timer = nil;
+	}
+
+	timer = [[NSTimer scheduledTimerWithTimeInterval:1.0 target:self selector:NSSelectorFromString(@"refreshComboBoxes:") 
+				userInfo:nil repeats:NO] retain];
+}
+
+
+- (void) refreshComboBoxes:(NSTimer *) theTimer
 {
 	NSFetchRequest * fetch = [[NSFetchRequest alloc] init];
 	[fetch setEntity:[NSEntityDescription entityForName:@"Book" inManagedObjectContext:[self managedObjectContext]]];

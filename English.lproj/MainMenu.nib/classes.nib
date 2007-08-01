@@ -165,8 +165,7 @@
             SUPERCLASS = NSObject; 
         }, 
         {CLASS = FirstResponder; LANGUAGE = ObjC; SUPERCLASS = NSObject; }, 
-        {CLASS = GalleryControlView; LANGUAGE = ObjC; SUPERCLASS = NSView; }, 
-        {CLASS = GalleryIconView; LANGUAGE = ObjC; SUPERCLASS = NSView; }, 
+        {CLASS = GalleryScrollView; LANGUAGE = ObjC; SUPERCLASS = NSScrollView; }, 
         {
             CLASS = GalleryView; 
             LANGUAGE = ObjC; 

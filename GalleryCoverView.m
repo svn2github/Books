@@ -12,8 +12,10 @@
 
 @implementation GalleryCoverView
 
-- (id)initWithFrame:(NSRect)frame {
+- (id)initWithFrame:(NSRect)frame 
+{
     self = [super initWithFrame:frame];
+
     if (self) 
 	{
 		margin = 10;
@@ -27,23 +29,23 @@
 		[self addSubview:imageView];
 		[imageView setHidden:NO];
 
-		tag = -1;
-		hover = false;
-		
 		timer = nil;
 		click = false;
+		inited = false;
     }
     return self;
 }
 
-- (void) drawHoverBackground:(NSRect)rect
+- (void) drawSelectedBackground:(NSRect)rect
 {
+	rect = NSMakeRect (0, 0, rect.size.width, rect.size.height); 
+
 	float radius = 10.0;
 	radius = MIN(radius, 0.5f * MIN(NSWidth(rect), NSHeight(rect)));
 	
 	[[NSColor alternateSelectedControlColor] setFill];
 
-	NSBezierPath* path = [NSBezierPath bezierPath];
+	NSBezierPath * path = [NSBezierPath bezierPath];
 	
 	rect = NSInsetRect(rect, radius, radius);
 	[path appendBezierPathWithArcWithCenter:NSMakePoint(NSMinX(rect), NSMinY(rect)) radius:radius startAngle:180.0 endAngle:270.0];
@@ -55,8 +57,11 @@
 	[path fill];
 }
 
-- (void)drawRect:(NSRect)rect
+- (void) updateView
 {
+	if (inited)
+		return;
+
 	if (currentBook == nil)
 	{
 		[self setToolTip:nil];
@@ -66,37 +71,45 @@
 
 		image = nil;
 	}
+	else
+	{
+		NSData * data = [currentBook getCoverImage];
+		if (data != nil)
+		{
+			if (image != nil && image != [NSImage imageNamed:@"Books"])
+				[image release];
 
-	if ([[((GalleryView *) [self superview]) selectedBooks] containsObject:currentBook])
-		[self drawHoverBackground:rect];
-		
-	[imageView setFrame:NSMakeRect (margin, margin, (rect.size.width - margin - margin), 
-		(rect.size.height - margin - margin))];
+			image = [[NSImage alloc] initWithData:data];
+		}
+		else
+			image = [NSImage imageNamed:@"Books"];
+
+		[self setToolTip:[currentBook valueForKey:@"title"]];
+	}
+	
+	[imageView setImage:image]; 
+	
+	inited = true;
+	[self setNeedsDisplay:YES];
 }
 
-- (void) updateView
+- (void)drawRect:(NSRect)rect
 {
-	NSData * data = [currentBook getCoverImage];
-	if (data != nil)
-	{
-		if (image != nil && image != [NSImage imageNamed:@"Books"])
-			[image release];
+	rect = [self frame];
 
-		image = [[NSImage alloc] initWithData:data];
-	}
-	else
-		image = [NSImage imageNamed:@"Books"];
+	[self updateView];
+	
+	[imageView setFrame:NSMakeRect (margin, margin, (rect.size.width - margin - margin), 
+		(rect.size.height - margin - margin))];
 
-	[imageView setImage:image]; 
-
-	[self setToolTip:[currentBook valueForKey:@"title"]];
-
-	[self setNeedsDisplay:YES];
+	if ([[((GalleryView *) [self superview]) selectedBooks] containsObject:currentBook])
+		[self drawSelectedBackground:rect];
 }
 
 - (void) observeValueForKeyPath: (NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change
 	context:(void *)context
 {
+	inited = false;
 	[self updateView];
 }
 
@@ -118,7 +131,7 @@
 	[currentBook addObserver:self forKeyPath:@"coverImage" options:NSKeyValueObservingOptionNew context:NULL];
 	[currentBook addObserver:self forKeyPath:@"title" options:NSKeyValueObservingOptionNew context:NULL];
 
-	[self updateView];
+	inited = false;
 }
 
 - (NSView *)hitTest:(NSPoint)aPoint
@@ -155,8 +168,8 @@
 	}
 	else
 	{
-		timer = [[NSTimer scheduledTimerWithTimeInterval:(GetDblTime() / 60.0) target:self selector:NSSelectorFromString(@"resetClick:") 
-		userInfo:nil repeats:NO] retain];
+		timer = [[NSTimer scheduledTimerWithTimeInterval:(GetDblTime() / 60.0) target:self 
+					selector:NSSelectorFromString(@"resetClick:") userInfo:nil repeats:NO] retain];
 		
 		click = true;
 	}

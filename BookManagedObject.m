@@ -33,13 +33,19 @@
 
 - (BookManagedObject *) init
 {
-	return self;
+    self = [super init];
+    if (self) 
+	{
+
+    }
+    return self;
 }
+
 
 - (void) didChangeValueForKey: (NSString *) key
 {
 	[super didChangeValueForKey:key];
-
+	
 	NSNotification * notification = [NSNotification notificationWithName:BOOK_DID_UPDATE object:nil];
 	[[NSNotificationCenter defaultCenter] postNotification:notification];
 }
