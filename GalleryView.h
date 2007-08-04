@@ -15,8 +15,6 @@
 
 	int rowCount;
 	int colCount;
-	
-	NSArray * selectedBooks;
 }
 
 - (void) setSelectedBook:(BookManagedObject *) b;

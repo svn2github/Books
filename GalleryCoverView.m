@@ -20,15 +20,14 @@
 	{
 		margin = 10;
 
-		image = nil;
-		currentBook = nil;
-			
 		imageView = [[NSImageView alloc] init];
 		[imageView setImageScaling:NSScaleProportionally];
 		[imageView setImageFrameStyle:NSImageFrameNone];
 		[self addSubview:imageView];
 		[imageView setHidden:NO];
 
+		image = nil;
+		
 		timer = nil;
 		click = false;
 		inited = false;
@@ -36,11 +35,52 @@
     return self;
 }
 
-- (void) drawSelectedBackground:(NSRect)rect
+- (NSRect) getBorder:(float) borderWidth
 {
-	rect = NSMakeRect (0, 0, rect.size.width, rect.size.height); 
+	NSImage * img = [imageView image];
+	NSSize imageSize = [img size];
+	NSSize viewSize = [imageView frame].size;
+	
+	NSSize borderSize = imageSize;
+	
+	if (imageSize.width > viewSize.width || imageSize.height > viewSize.height)
+	{
+		float ratio = imageSize.height / imageSize.width;
+		
+		if (ratio < 1)
+		{
+			ratio = viewSize.width / imageSize.width;
+			borderSize.width = viewSize.width;
+			borderSize.height = imageSize.height * ratio;
+		}
+		else
+		{
+			ratio = viewSize.height / imageSize.height;
+			borderSize.width = imageSize.width * ratio;
+			borderSize.height = viewSize.height;
+		}
+	}
 
-	float radius = 10.0;
+	
+	viewSize = [self frame].size;
+
+	borderSize.width += borderWidth;
+	borderSize.height += borderWidth;
+	
+	float x = (viewSize.width - borderSize.width) / 2;
+	float y = (viewSize.height - borderSize.height) / 2;
+
+	NSRect rect = NSMakeRect (x, y, borderSize.width, borderSize.height); 
+
+	return rect;
+}
+
+- (void) drawSelectedBackground
+{
+	NSRect rect = [self getBorder:margin];
+	
+	float radius = 5.0;
+
 	radius = MIN(radius, 0.5f * MIN(NSWidth(rect), NSHeight(rect)));
 	
 	[[NSColor alternateSelectedControlColor] setFill];
@@ -57,60 +97,37 @@
 	[path fill];
 }
 
-- (void) updateView
+- (void) drawBorder
 {
-	if (inited)
-		return;
-
-	if (currentBook == nil)
-	{
-		[self setToolTip:nil];
-		
-		if (image != nil && image != [NSImage imageNamed:@"Books"])
-			[image release];
-
-		image = nil;
-	}
-	else
-	{
-		NSData * data = [currentBook getCoverImage];
-		if (data != nil)
-		{
-			if (image != nil && image != [NSImage imageNamed:@"Books"])
-				[image release];
-
-			image = [[NSImage alloc] initWithData:data];
-		}
-		else
-			image = [NSImage imageNamed:@"Books"];
-
-		[self setToolTip:[currentBook valueForKey:@"title"]];
-	}
+	NSRect rect = [self getBorder:4];
 	
-	[imageView setImage:image]; 
+	float radius = 2;
+
+	radius = MIN(radius, 0.5f * MIN(NSWidth(rect), NSHeight(rect)));
 	
-	inited = true;
-	[self setNeedsDisplay:YES];
+	[[NSColor grayColor] setFill];
+
+	NSBezierPath * path = [NSBezierPath bezierPath];
+	
+	rect = NSInsetRect(rect, radius, radius);
+	[path appendBezierPathWithArcWithCenter:NSMakePoint(NSMinX(rect), NSMinY(rect)) radius:radius startAngle:180.0 endAngle:270.0];
+	[path appendBezierPathWithArcWithCenter:NSMakePoint(NSMaxX(rect), NSMinY(rect)) radius:radius startAngle:270.0 endAngle:360.0];
+	[path appendBezierPathWithArcWithCenter:NSMakePoint(NSMaxX(rect), NSMaxY(rect)) radius:radius startAngle:  0.0 endAngle: 90.0];
+	[path appendBezierPathWithArcWithCenter:NSMakePoint(NSMinX(rect), NSMaxY(rect)) radius:radius startAngle: 90.0 endAngle:180.0];
+	[path closePath];
+	
+	[path fill];
 }
 
 - (void)drawRect:(NSRect)rect
 {
 	rect = [self frame];
 
-	[self updateView];
-	
 	[imageView setFrame:NSMakeRect (margin, margin, (rect.size.width - margin - margin), 
 		(rect.size.height - margin - margin))];
 
 	if ([[((GalleryView *) [self superview]) selectedBooks] containsObject:currentBook])
-		[self drawSelectedBackground:rect];
-}
-
-- (void) observeValueForKeyPath: (NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change
-	context:(void *)context
-{
-	inited = false;
-	[self updateView];
+		[self drawSelectedBackground];
 }
 
 - (BookManagedObject *) getBook
@@ -118,23 +135,60 @@
 	return currentBook;
 }
 
-- (void) setBook:(BookManagedObject *) book
+- (void) updateImage
 {
+	if (image != nil && image != [NSImage imageNamed:@"Books"])
+		[image release];
+
+	image = nil;
+			
 	if (currentBook != nil)
 	{
-		[currentBook removeObserver:self forKeyPath:@"coverImage"];
-		[currentBook removeObserver:self forKeyPath:@"title"];
+		NSData * data = [currentBook valueForKey:@"coverImage"];
+		
+		if (data != nil)
+		{
+			image = [[NSImage alloc] initWithData:data];
+		}
+		else
+			image = [NSImage imageNamed:@"Books"];
 	}
 
-	currentBook = book;
-
-	[currentBook addObserver:self forKeyPath:@"coverImage" options:NSKeyValueObservingOptionNew context:NULL];
-	[currentBook addObserver:self forKeyPath:@"title" options:NSKeyValueObservingOptionNew context:NULL];
-
-	inited = false;
+	[imageView setImage:image];
 }
 
-- (NSView *)hitTest:(NSPoint)aPoint
+- (void) setBook:(BookManagedObject *) book
+{
+	if (currentBook == book)
+		return;
+
+	[imageView unbind:@"toolTip"];
+
+	currentBook = book;
+	
+	if (book != nil)
+	{
+		[book addObserver:self forKeyPath:@"coverImage" options:NSKeyValueObservingOptionNew context:NULL];
+		[book addObserver:self forKeyPath:@"title" options:NSKeyValueObservingOptionNew context:NULL];
+	}
+
+	[self updateImage];
+}
+
+- (void) observeValueForKeyPath: (NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change
+	context:(void *)context
+{
+    if ([keyPath isEqual:@"coverImage"])
+	{
+		if (currentBook != nil)
+			[self updateImage];
+	}
+	else if ([keyPath isEqual:@"title"])
+		[imageView setToolTip:[currentBook valueForKey:@"title"]];
+}
+
+
+- (NSView *) hitTest:(NSPoint)aPoint
 {
 	NSPoint p = [[self superview] convertPoint:aPoint toView:self];
 	

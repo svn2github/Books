@@ -495,6 +495,11 @@ typedef struct _monochromePixel
 	
 	[mainWindow setTitle:NSLocalizedString (@"Books - Loading...", nil)];
 	// [[[NSApplication sharedApplication] delegate] startProgressWindow:NSLocalizedString (@"Loading data from disk...", nil)];
+
+	// if (IS_TEST)
+	//	NSRunAlertPanel (NSLocalizedString (@"Books Development Version", nil),  
+	//		NSLocalizedString (@"This is a development build of Books. Please send any problems you encounter to books@aetherial.net.", nil), 
+	//		NSLocalizedString (@"OK", nil), nil, nil);
 }
 
 - (void) startProgressWindow: (NSString *) message

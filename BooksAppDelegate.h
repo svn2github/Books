@@ -40,6 +40,8 @@
 
 #define BOOKS_SHOW_INFO @"Books - Show Info Window"
 
+#define IS_TEST YES
+
 @interface BooksAppDelegate : NSObject 
 {
     IBOutlet BooksToolbarDelegate * toolbarDelegate;

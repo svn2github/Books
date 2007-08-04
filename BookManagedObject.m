@@ -285,10 +285,11 @@
 	NSString * imagePath = [NSString stringWithFormat:@"%@%@%@.book-image", NSHomeDirectory (),
 								@"/Library/Application Support/Books/Images/", objId];
 
-	if (imageData == nil)
-		imageData = [[NSData dataWithContentsOfFile:imagePath] retain];
-	
-	return imageData;
+	// if (imageData == nil)
+	//	imageData = [[NSData dataWithContentsOfFile:imagePath] retain];
+	// return imageData;
+
+	return [NSData dataWithContentsOfFile:imagePath];
 }
 
 - (void) setCoverImage: (NSData *) data
@@ -308,10 +309,9 @@
 	else
 		[[NSFileManager defaultManager] removeFileAtPath:imagePath handler:nil];
 
-	if (imageData != nil)
-	 	[imageData release];
-		
-	imageData = nil;
+	// if (imageData != nil)
+	//	[imageData release];
+	// imageData = nil;
 
     [self didChangeValueForKey:@"coverImage"];
 }
