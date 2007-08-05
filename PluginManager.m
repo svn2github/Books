@@ -175,7 +175,8 @@
 
 - (void) installFromUrl:(NSString *) url
 {
-	[((BooksAppDelegate *) [NSApp delegate]) startProgressWindow:NSLocalizedString (@"Downloading and installing plugin...", nil)];
+	NSNotification * msg = [NSNotification notificationWithName:BOOKS_START_PROGRESS_WINDOW object:NSLocalizedString (@"Downloading and installing plugin...", nil)];
+	[[NSNotificationCenter defaultCenter] postNotification:msg];
 
 	NSBundle * bundle = [NSBundle mainBundle];
 	
@@ -185,7 +186,8 @@
 	
 	[task waitUntilExit];
 	
-	[((BooksAppDelegate *) [NSApp delegate]) endProgressWindow];
+	msg = [NSNotification notificationWithName:BOOKS_END_PROGRESS_WINDOW object:nil];
+	[[NSNotificationCenter defaultCenter] postNotification:msg];
 
 	NSRunAlertPanel (NSLocalizedString (@"Plugin Installed", nil), NSLocalizedString (@"The new plugin has been installed. Please restart Books to use the new plugin.", nil), NSLocalizedString (@"OK", nil), nil, nil);
 }	

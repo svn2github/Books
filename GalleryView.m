@@ -12,6 +12,16 @@
 
 @implementation GalleryView
 
+- (void) updateGallerySize
+{
+	NSNumber * prefSize = [[NSUserDefaults standardUserDefaults] valueForKey:@"Gallery Size"];
+
+	gallerySize = 128;
+	
+	if (prefSize != nil)
+		gallerySize = [prefSize floatValue];
+}
+
 - (void) keyDown: (NSEvent *) event
 {
 	unichar arrow = [[event characters] characterAtIndex:0];
@@ -31,11 +41,9 @@
 			[bookList selectNext:self];
 		else
 		{
-			int maxIndex = [[bookList arrangedObjects] count] - 1;
+			int maxIndex = [arrangedBooks count] - 1;
 			
-			NSIndexSet * selects = [bookList selectionIndexes];
-		
-			int position = [selects firstIndex];
+			int position = [bookList selectionIndex];
 		
 			if (arrow == NSRightArrowFunctionKey)
 				position++;
@@ -61,7 +69,7 @@
 			if (position > maxIndex)
 				position = maxIndex;
 				
-			[bookList setSelectionIndex:position];
+			[self setSelectedView:[[self subviews] objectAtIndex:position]];
 		}
 	}
 	else
@@ -72,7 +80,8 @@
     self = [super initWithFrame:frame];
     if (self) 
 	{
-
+		arrangedBooks = [[NSArray alloc] init];
+		gallerySize = 128;
     }
     return self;
 }
@@ -83,36 +92,72 @@
 	[bookList addObserver:self forKeyPath:@"selectedObjects" options:NSKeyValueObservingOptionNew context:NULL];
 	[[NSUserDefaults standardUserDefaults] addObserver:self forKeyPath:@"Gallery Size" options:NSKeyValueObservingOptionNew context:NULL];
 	
+	[self updateGallerySize];
 	[self setNeedsDisplay:YES];
 }
 
 - (void) observeValueForKeyPath: (NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change
 	context:(void *)context
 {
+	NSArray * subs = [self subviews];
+
     if ([keyPath isEqual:@"arrangedObjects"])
 	{
-		[bookList setSelectionIndexes:[NSIndexSet indexSet]];
-
-		NSArray * subs = [self subviews];
-	
-		int i = 0;
-		for (i = 0; i < [subs count]; i++)
+		if (!([arrangedBooks isEqualToArray:[bookList arrangedObjects]]))
 		{
-			[[subs objectAtIndex:i] setHidden:YES];
-			[[subs objectAtIndex:i] setBook:nil];
-		}
+			NSLog (@"");
+			
+			[bookList setSelectionIndexes:[NSIndexSet indexSet]];
+	
+			int i = 0;
+			for (i = 0; i < [subs count]; i++)
+			{
+				GalleryCoverView * sub = [subs objectAtIndex:i];
+				[sub setHidden:YES];
+				[sub setBook:nil];
+			}
+		
+			if (arrangedBooks != nil)
+				[arrangedBooks release];
+				
+			arrangedBooks = [[[bookList arrangedObjects] copy] retain];
 
+			int listSize = [arrangedBooks count];
+			
+			subs = [self subviews];
+			
+			if ([subs count] < listSize)
+			{
+				for (i = [subs count]; i < listSize; i++)
+				{
+					GalleryCoverView * gcv = [[GalleryCoverView alloc] init];
+					[self addSubview:gcv];
+				}
+			}
+			
+			subs = [self subviews];
+	
+			for (i = 0; i < [subs count]; i++)
+			{
+				GalleryCoverView * gcv = [subs objectAtIndex:i];
+				[gcv setHidden:YES];
+				[gcv setBook:nil];
+			}
+			
+			if (listSize > 0)
+				[self setSelectedView:[[self subviews] objectAtIndex:0]];
+		}
 	}
 	else if ([keyPath isEqual:@"selectedObjects"])
 	{
 		int select = [bookList selectionIndex];
 		
-		if (select != NSNotFound)
+		if (select != NSNotFound && [subs count] > 0)
 		{
 			NSClipView * clip = (NSClipView *) [self superview];
 			NSScrollView * scroll = (NSScrollView *) [clip superview];
 
-			NSView * view = [[self subviews] objectAtIndex:select];
+			NSView * view = [subs objectAtIndex:select];
 
 			NSRect frame = [view frame];
 			NSRect clipRect = [clip documentVisibleRect];
@@ -137,6 +182,10 @@
 			}
 		}
 	}
+	else if ([keyPath isEqual:@"Gallery Size"])
+	{
+		[self updateGallerySize];
+	}
 
 	[self setNeedsDisplay:YES];
 }
@@ -147,33 +196,26 @@
 	
 	rect = [self frame];
 	
-	NSNumber * prefSize = [[NSUserDefaults standardUserDefaults] valueForKey:@"Gallery Size"];
-
-	int listSize = [[bookList arrangedObjects] count];
+	int listSize = [arrangedBooks count];
 	
-	float size = 128;
-	
-	if (prefSize != nil)
-	 	size = [prefSize floatValue];
-		
-	if (size > [[[self superview] superview] frame].size.height)
-		size = [[[self superview] superview] frame].size.height * 0.95;
+	if (gallerySize > [[[self superview] superview] frame].size.height)
+		gallerySize = [[[self superview] superview] frame].size.height * 0.95;
 	
 	NSArray * subs = [self subviews];
 
-	rowCount = ((int) rect.size.width / (int) size);
+	rowCount = ((int) rect.size.width / (int) gallerySize);
 	
 	colCount = (listSize / rowCount);
 	
 	if (listSize % rowCount != 0)
 		colCount += 1;
 
-	float xSpacing = (rect.size.width - (rowCount * size)) / (float) (rowCount + 1);
+	float xSpacing = (rect.size.width - (rowCount * gallerySize)) / (float) (rowCount + 1);
 	float ySpacing = xSpacing; 
 	
 	float x = xSpacing;
 
-	float y = ((size + ySpacing) * colCount); 
+	float y = ((gallerySize + ySpacing) * colCount); 
 
 	if (y + ySpacing < [[self superview] frame].size.height)
 		y = [[self superview] frame].size.height - ySpacing;
@@ -190,69 +232,66 @@
 		return;
 	}
 	
+	y = y - gallerySize;
+
 	int i = 0;
-
-	if ([subs count] < listSize)
-	{
-		for (i = [subs count]; i < listSize; i++)
-		{
-			GalleryCoverView * gcv = [[GalleryCoverView alloc] init];
-			[self addSubview:gcv];
-		}
-	}
-
-	y = y - size;
-
-	subs = [self subviews];
-	
 	for (i = 0; i < [subs count]; i++)
-	 	[[subs objectAtIndex:i] setHidden:YES];
-
-	for (i = 0; i < listSize; i++)
 	{
 		GalleryCoverView * gcv = [subs objectAtIndex:i];
-		BookManagedObject * book = [[bookList arrangedObjects] objectAtIndex:i];
 		
-		if (x + size > rect.size.width)
+		if (x + gallerySize > rect.size.width)
 		{
 			x = xSpacing;
-			y = y - size - ySpacing;
+			y = y - gallerySize - ySpacing;
 		}
 
-		NSRect gcvFrame = NSMakeRect(x, y, size, size);
-
+		NSRect gcvFrame = NSMakeRect(x, y, gallerySize, gallerySize);
 		[gcv setFrame:gcvFrame];
 
-		// if (abs (NSMidY (gcvFrame) - NSMidY (clipRect)) < clipRect.size.height)
-		if (NSIntersectsRect (gcvFrame, clipRect))
+		if (gcv == selectedView && !NSIntersectsRect (gcvFrame, clipRect))
+			[self observeValueForKeyPath:@"selectedObjects" ofObject:bookList change:nil context:nil];
+		
+		if (abs (NSMidY (gcvFrame) - NSMidY (clipRect)) < clipRect.size.height * 1.5 && i < [arrangedBooks count])
 		{
+			BookManagedObject * book = [arrangedBooks objectAtIndex:i];
+			
 			[gcv setBook:book];
 			[gcv setHidden:NO];
 		}
-		else
+		else if (abs (NSMidY (gcvFrame) - NSMidY (clipRect)) > clipRect.size.height * 2.5)
 		{
-			if (abs (NSMidY (gcvFrame) - NSMidY (clipRect)) > clipRect.size.height * 1.5)
-				[gcv setBook:nil];
+			[gcv setBook:nil];
 			[gcv setHidden:YES];
 		}
+		else
+			[gcv setHidden:YES];
+			
+		if (selectedView == nil)
+			[self setSelectedView:gcv];
 	
-		x = x + size + xSpacing;
+		x = x + gallerySize + xSpacing;
 	}
+}
+
+- (void) setSelectedView:(NSView *) v
+{
+	int i = [[self subviews] indexOfObject:v];
 	
-	if (listSize > 0 && [bookList selectionIndex] == NSNotFound)
+	if (i != NSNotFound && i < [[bookList arrangedObjects] count])
+	{
+		[bookList setSelectionIndex:i];
+		selectedView = v;
+	}
+	else
 	{
 		[bookList setSelectionIndex:0];
+		selectedView = nil;
 	}
 }
 
-- (void) setSelectedBook:(BookManagedObject *) b
+- (NSView *) getSelectedView
 {
-	[bookList setSelectedObjects:[NSArray arrayWithObject:b]];
-}
-
-- (NSArray *) selectedBooks
-{
-	return [bookList selectedObjects];
+	return selectedView;
 }
 
 - (void)mouseUp:(NSEvent *)theEvent

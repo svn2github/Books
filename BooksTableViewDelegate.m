@@ -17,7 +17,10 @@
 	NSTableView * table = [notification object];
 
 	if (table == booksTable)
-		[((BooksAppDelegate *) booksAppDelegate) updateMainPane];
+	{
+		NSNotification * notification = [NSNotification notificationWithName:BOOKS_UPDATE_DETAILS object:nil];
+		[[NSNotificationCenter defaultCenter] postNotification:notification];
+	}
 	else if (table == listsTable)
 	{
 		if (openFilename != nil)
@@ -103,11 +106,12 @@
 		else
 			[toolbarDelegate setGetCoverAction:nil];
 	}
-	
-	[((BooksAppDelegate *) booksAppDelegate) orderCoverWindowOut];
-	[toolbarDelegate setGetCoverLabel:NSLocalizedString (@"Show Cover", nil)];
 
-	[((BooksAppDelegate *) booksAppDelegate) updateMainPane];
+	NSNotification * msg = [NSNotification notificationWithName:BOOKS_HIDE_COVER object:nil];
+	[[NSNotificationCenter defaultCenter] postNotification:msg];
+
+	msg = [NSNotification notificationWithName:BOOKS_UPDATE_DETAILS object:nil];
+	[[NSNotificationCenter defaultCenter] postNotification:msg];
 }
 
 - (void) tableView: (NSTableView *) tableView didClickTableColumn: (NSTableColumn *) tableColumn
@@ -502,20 +506,30 @@
 	[self updateBooksTable];
 }
 
-- (NSString *) getLabel
+- (int) getLabel
 {
 	if ([[NSUserDefaults standardUserDefaults] boolForKey:@"Show Gallery"])
-		return NSLocalizedString (@"Gallery", nil);
+		return 1;
 	else
-		return NSLocalizedString (@"List", nil);
+		return 0;
 }
 
-- (void) setLabel:(NSString *) label
+- (void) setLabel:(int) label
 {
-	if ([label isEqualToString:NSLocalizedString (@"Gallery", nil)])
+	if (label == 1)
 		[[NSUserDefaults standardUserDefaults] setBool:YES forKey:@"Show Gallery"];
 	else
 		[[NSUserDefaults standardUserDefaults] setBool:NO forKey:@"Show Gallery"];
+}
+
+- (NSImage *) getListIcon
+{
+	return [NSImage imageNamed:@"list-small"];
+}
+
+- (NSData *) getGalleryIcon
+{
+	return [NSImage imageNamed:@"gallery"];
 }
 
 @end

@@ -333,12 +333,15 @@ typedef struct _monochromePixel
 		
 			if (coverData != nil)
 			{
-/*				NSImage * cover = [[NSImage alloc] initWithData:coverData];
+				NSImage * cover = [[NSImage alloc] initWithData:coverData];
+
+				NSSize size = [cover size];
+				[coverWindow setContentSize:size];
+				[coverWindow setContentAspectRatio:size];
+				[coverWindow setContentMaxSize:NSMakeSize(size.width * 2, size.height * 2)];
 				
-				[detailedCoverView setValue:cover forInputKey:@"Image"];
+				[cover release];
 				
-				// [coverWindow makeKeyAndOrderFront:sender];
-*/
 				[coverWindow orderFront:sender];
 				[toolbarDelegate setGetCoverLabel:NSLocalizedString (@"Hide Cover", nil)];
 			}
@@ -488,6 +491,16 @@ typedef struct _monochromePixel
 		name:BOOK_DID_UPDATE object:nil];
 	[[NSNotificationCenter defaultCenter] addObserver:self selector:NSSelectorFromString(@"getInfoWindow") 
 		name:BOOKS_SHOW_INFO object:nil];
+	[[NSNotificationCenter defaultCenter] addObserver:self selector:NSSelectorFromString(@"updateMainPane") 
+		name:BOOKS_UPDATE_DETAILS object:nil];
+	[[NSNotificationCenter defaultCenter] addObserver:self selector:NSSelectorFromString(@"stopQuickfill") 
+		name:BOOKS_STOP_QUICKFILL object:nil];
+	[[NSNotificationCenter defaultCenter] addObserver:self selector:NSSelectorFromString(@"startProgress:") 
+		name:BOOKS_START_PROGRESS_WINDOW object:nil];
+	[[NSNotificationCenter defaultCenter] addObserver:self selector:NSSelectorFromString(@"endProgressWindow") 
+		name:BOOKS_END_PROGRESS_WINDOW object:nil];
+	[[NSNotificationCenter defaultCenter] addObserver:self selector:NSSelectorFromString(@"orderCoverWindowOut") 
+		name:BOOKS_HIDE_COVER object:nil];
 
 	timer = nil;
 
@@ -500,6 +513,11 @@ typedef struct _monochromePixel
 	//	NSRunAlertPanel (NSLocalizedString (@"Books Development Version", nil),  
 	//		NSLocalizedString (@"This is a development build of Books. Please send any problems you encounter to books@aetherial.net.", nil), 
 	//		NSLocalizedString (@"OK", nil), nil, nil);
+}
+
+- (void) startProgress: (NSNotification *) msg
+{
+	[self startProgressWindow:[msg object]];
 }
 
 - (void) startProgressWindow: (NSString *) message
@@ -537,6 +555,25 @@ typedef struct _monochromePixel
 		BookManagedObject * object = [selectedObjects objectAtIndex:0];
 		
 		htmlString = [pageBuilder buildPageForObject:object];
+
+		NSData * data = [object valueForKey:@"coverImage"];
+
+		if (data != nil)
+		{
+			NSSize boxSize = [imageBox frame].size;
+			
+			NSImage * image = [[NSImage alloc] initWithData:data];
+			
+			NSSize size = [image size];
+			
+			float scale = boxSize.width / size.width;
+			boxSize.height = size.height * scale;
+
+			[imageBox setFrameSize:boxSize];
+			[[imageBox superview] setNeedsDisplay:YES];
+			
+			[image release];
+		}
 	}
 	else if ([selectedObjects count] > 1)
 		htmlString = [pageBuilder buildPageForArray:selectedObjects];
@@ -1643,6 +1680,8 @@ typedef struct _monochromePixel
 
 - (void) orderCoverWindowOut
 {
+	[toolbarDelegate setGetCoverLabel:NSLocalizedString (@"Show Cover", nil)];
+
 	[coverWindow orderOut:self];
 }
 

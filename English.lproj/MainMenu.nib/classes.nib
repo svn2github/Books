@@ -141,6 +141,7 @@
             LANGUAGE = ObjC; 
             OUTLETS = {
                 booksAppDelegate = NSObject; 
+                gallerySizeField = NSView; 
                 searchField = NSView; 
                 searchTextField = NSSearchField; 
                 viewsField = NSView; 

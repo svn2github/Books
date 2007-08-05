@@ -32,8 +32,9 @@
 - (void) didChangeValueForKey: (NSString *) key
 {
 	[super didChangeValueForKey:key];
-	
-	[((BooksAppDelegate *) [NSApp delegate]) updateMainPane];
+
+	NSNotification * msg = [NSNotification notificationWithName:BOOKS_UPDATE_DETAILS object:nil];
+	[[NSNotificationCenter defaultCenter] postNotification:msg];
 }
 
 - (NSData *) getImage

@@ -26,12 +26,13 @@
 		[self addSubview:imageView];
 		[imageView setHidden:NO];
 
-		image = nil;
+//		image = nil;
+		
+		currentBook = nil;
 		
 		timer = nil;
 		click = false;
-		inited = false;
-    }
+  }
     return self;
 }
 
@@ -97,28 +98,6 @@
 	[path fill];
 }
 
-- (void) drawBorder
-{
-	NSRect rect = [self getBorder:4];
-	
-	float radius = 2;
-
-	radius = MIN(radius, 0.5f * MIN(NSWidth(rect), NSHeight(rect)));
-	
-	[[NSColor grayColor] setFill];
-
-	NSBezierPath * path = [NSBezierPath bezierPath];
-	
-	rect = NSInsetRect(rect, radius, radius);
-	[path appendBezierPathWithArcWithCenter:NSMakePoint(NSMinX(rect), NSMinY(rect)) radius:radius startAngle:180.0 endAngle:270.0];
-	[path appendBezierPathWithArcWithCenter:NSMakePoint(NSMaxX(rect), NSMinY(rect)) radius:radius startAngle:270.0 endAngle:360.0];
-	[path appendBezierPathWithArcWithCenter:NSMakePoint(NSMaxX(rect), NSMaxY(rect)) radius:radius startAngle:  0.0 endAngle: 90.0];
-	[path appendBezierPathWithArcWithCenter:NSMakePoint(NSMinX(rect), NSMaxY(rect)) radius:radius startAngle: 90.0 endAngle:180.0];
-	[path closePath];
-	
-	[path fill];
-}
-
 - (void)drawRect:(NSRect)rect
 {
 	rect = [self frame];
@@ -126,7 +105,9 @@
 	[imageView setFrame:NSMakeRect (margin, margin, (rect.size.width - margin - margin), 
 		(rect.size.height - margin - margin))];
 
-	if ([[((GalleryView *) [self superview]) selectedBooks] containsObject:currentBook])
+	GalleryView * gv = (GalleryView *) [self superview];
+	
+	if ([gv getSelectedView] == self)
 		[self drawSelectedBackground];
 }
 
@@ -137,24 +118,21 @@
 
 - (void) updateImage
 {
-	if (image != nil && image != [NSImage imageNamed:@"Books"])
-		[image release];
-
-	image = nil;
-			
 	if (currentBook != nil)
 	{
 		NSData * data = [currentBook valueForKey:@"coverImage"];
 		
 		if (data != nil)
 		{
-			image = [[NSImage alloc] initWithData:data];
+			NSImage * image = [[NSImage alloc] initWithData:data];
+			[imageView setImage:image];
+			[image release];
 		}
 		else
-			image = [NSImage imageNamed:@"Books"];
+			[imageView setImage:[NSImage imageNamed:@"Books"]];
 	}
 
-	[imageView setImage:image];
+	[self setNeedsDisplay:YES];
 }
 
 - (void) setBook:(BookManagedObject *) book
@@ -162,17 +140,19 @@
 	if (currentBook == book)
 		return;
 
-	[imageView unbind:@"toolTip"];
-
+	[currentBook removeObserver:self forKeyPath:@"coverImage"];
+	[currentBook removeObserver:self forKeyPath:@"title"];
+	
 	currentBook = book;
 	
-	if (book != nil)
+	if (currentBook != nil)
 	{
-		[book addObserver:self forKeyPath:@"coverImage" options:NSKeyValueObservingOptionNew context:NULL];
-		[book addObserver:self forKeyPath:@"title" options:NSKeyValueObservingOptionNew context:NULL];
+		[currentBook addObserver:self forKeyPath:@"coverImage" options:NSKeyValueObservingOptionNew context:NULL];
+		[currentBook addObserver:self forKeyPath:@"title" options:NSKeyValueObservingOptionNew context:NULL];
 	}
 
 	[self updateImage];
+	[self setNeedsDisplay:YES];
 }
 
 - (void) observeValueForKeyPath: (NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change
@@ -194,10 +174,15 @@
 	
 	NSSize myFrame = [self frame].size;
 	
-	if (p.x >= 0 && myFrame.width >= p.x && p.y >= 0 && myFrame.height >= p.y && ![self isHidden])
+	if (p.x >= 0 && myFrame.width >= p.x && p.y >= 0 && myFrame.height >= p.y)
 		return self;
 	
 	return [super hitTest:aPoint];
+}
+
+- (BOOL)acceptsFirstMouse:(NSEvent *)theEvent
+{
+	return YES;
 }
 
 - (void) resetClick:(NSTimer*) theTimer
@@ -210,7 +195,9 @@
 
 - (void)mouseUp:(NSEvent *)theEvent
 {
-	[((GalleryView *) [self superview]) setSelectedBook:currentBook];
+	GalleryView * gv = (GalleryView *) [self superview];
+	
+	[gv setSelectedView:self];
 
 	if (click)
 	{
@@ -222,6 +209,9 @@
 	}
 	else
 	{
+		NSNotification * notification = [NSNotification notificationWithName:BOOKS_UPDATE_DETAILS object:nil];
+		[[NSNotificationCenter defaultCenter] postNotification:notification];
+
 		timer = [[NSTimer scheduledTimerWithTimeInterval:(GetDblTime() / 60.0) target:self 
 					selector:NSSelectorFromString(@"resetClick:") userInfo:nil repeats:NO] retain];
 		

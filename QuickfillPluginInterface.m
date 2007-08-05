@@ -243,7 +243,8 @@
 		[NotificationInterface sendMessage:desc withTitle:NSLocalizedString (@"Lookup Complete", nil)];
 	}
 
-	[((BooksAppDelegate *) [NSApp delegate]) stopQuickfill];
+	NSNotification * msg = [NSNotification notificationWithName:BOOKS_STOP_QUICKFILL object:nil];
+	[[NSNotificationCenter defaultCenter] postNotification:msg];
 
 	[quickfillWindow showResults];
 }

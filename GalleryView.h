@@ -15,9 +15,14 @@
 
 	int rowCount;
 	int colCount;
+	
+	float gallerySize;
+	NSView * selectedView;
+	
+	NSArray * arrangedBooks;
 }
 
-- (void) setSelectedBook:(BookManagedObject *) b;
-- (NSArray *) selectedBooks;
+- (void) setSelectedView:(NSView *) v;
+- (NSView *) getSelectedView;
 
 @end

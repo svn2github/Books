@@ -48,7 +48,8 @@
 
 - (IBAction) updateSpotlightIndex:(id) sender
 {
-	[((BooksAppDelegate *) booksAppDelegate) startProgressWindow:NSLocalizedString (@"Updating Spotlight index...", nil)];
+	NSNotification * msg = [NSNotification notificationWithName:BOOKS_START_PROGRESS_WINDOW object:NSLocalizedString (@"Updating Spotlight index...", nil)];
+	[[NSNotificationCenter defaultCenter] postNotification:msg];
 
 	NSArray * lists = [collectionArrayController arrangedObjects];
 	
@@ -65,13 +66,13 @@
 			for (j = 0; j < [books count]; j++)
 			{
 				BookManagedObject * book = [books objectAtIndex:j];
-				
 				[book writeSpotlightFile];
 			}
 		}
 	}
 
-	[((BooksAppDelegate *) booksAppDelegate) endProgressWindow];
+	msg = [NSNotification notificationWithName:BOOKS_END_PROGRESS_WINDOW object:nil];
+	[[NSNotificationCenter defaultCenter] postNotification:msg];
 }
 
 - (IBAction) clearSpotlightIndex:(id) sender

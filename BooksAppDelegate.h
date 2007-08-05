@@ -39,6 +39,11 @@
 #import "BooksTableViewDelegate.h"
 
 #define BOOKS_SHOW_INFO @"Books - Show Info Window"
+#define BOOKS_UPDATE_DETAILS @"Books - Update Details"
+#define BOOKS_STOP_QUICKFILL @"Books - Stop Quickfill"
+#define BOOKS_START_PROGRESS_WINDOW @"Books - Start Progress Window"
+#define BOOKS_END_PROGRESS_WINDOW @"Books - End Progress Window"
+#define BOOKS_HIDE_COVER @"Books - Hide Cover"
 
 #define IS_TEST YES
 

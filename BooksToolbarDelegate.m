@@ -30,14 +30,14 @@
 - (NSArray *) toolbarAllowedItemIdentifiers: (NSToolbar *) toolbar
 {
 	return [NSArray arrayWithObjects:@"new-list", @"new-smartlist", @"edit-smartlist", @"new-book", @"remove-book", @"remove-list", @"preferences", 
-		@"get-info", @"get-cover", @"import", @"search", @"isight", @"duplicate", @"views", NSToolbarSeparatorItemIdentifier, 
+		@"get-info", @"get-cover", @"import", @"search", @"isight", @"duplicate", @"views", @"gallery-size", NSToolbarSeparatorItemIdentifier, 
 		NSToolbarSpaceItemIdentifier, NSToolbarFlexibleSpaceItemIdentifier, NSToolbarCustomizeToolbarItemIdentifier, nil];
 }
 
 - (NSArray *) toolbarDefaultItemIdentifiers: (NSToolbar *) toolbar
 {
-	return [NSArray arrayWithObjects:@"new-list", @"new-smartlist", @"edit-smartlist", @"new-book", @"remove-book", @"remove-list", 
-	@"get-info",  NSToolbarFlexibleSpaceItemIdentifier, @"search", nil];
+	return [NSArray arrayWithObjects:@"views", @"new-book", @"new-list", @"new-smartlist", @"edit-smartlist",  
+	NSToolbarFlexibleSpaceItemIdentifier, @"search", nil];
 }
 
 - (NSToolbarItem *) toolbar: (NSToolbar *) toolbar itemForItemIdentifier: (NSString *) itemIdentifier willBeInsertedIntoToolbar: (BOOL) flag
@@ -184,8 +184,20 @@
 		[item setMinSize:fRect.size];
 		[item setMaxSize:fRect.size];
 		
-		[item setLabel:NSLocalizedString (@"Book List View", nil)];
-		[item setPaletteLabel:NSLocalizedString (@"Book List View", nil)];
+		[item setLabel:NSLocalizedString (@"List View", nil)];
+		[item setPaletteLabel:NSLocalizedString (@"List View", nil)];
+	}
+
+	else if ([itemIdentifier isEqualToString:@"gallery-size"])
+	{
+		NSRect fRect = [gallerySizeField frame];
+		[item setView:gallerySizeField];
+
+		[item setMinSize:fRect.size];
+		[item setMaxSize:fRect.size];
+		
+		[item setLabel:NSLocalizedString (@"Gallery Image Size", nil)];
+		[item setPaletteLabel:NSLocalizedString (@"Gallery Image Size", nil)];
 	}
 	
 	return item;

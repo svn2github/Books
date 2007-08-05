@@ -12,19 +12,14 @@
 @interface GalleryCoverView : NSView 
 {
 	NSImageView * imageView;
-	
 	BookManagedObject * currentBook;
 	float margin;
-
-	NSImage * image;
-	
+	// NSImage * image;
 	NSTimer * timer;
 	BOOL click;
-	
-	BOOL inited;
 }
 
 - (void) setBook:(BookManagedObject *) book;
-- (BookManagedObject *) getBook;
+// - (BookManagedObject *) getBook;
 
 @end

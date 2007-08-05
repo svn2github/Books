@@ -30,6 +30,7 @@
 	IBOutlet NSSearchField * searchTextField;
 	
 	IBOutlet NSView * viewsField;
+	IBOutlet NSView * gallerySizeField;
 
 	NSToolbarItem * getInfo;
 	NSToolbarItem * getCover;
