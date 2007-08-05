@@ -159,6 +159,9 @@
 
 			NSView * view = [subs objectAtIndex:select];
 
+			if (![self isSelectedView:view])
+				[self setSelectedView:view];
+				
 			NSRect frame = [view frame];
 			NSRect clipRect = [clip documentVisibleRect];
 
@@ -248,7 +251,7 @@
 		NSRect gcvFrame = NSMakeRect(x, y, gallerySize, gallerySize);
 		[gcv setFrame:gcvFrame];
 
-		if (gcv == selectedView && !NSIntersectsRect (gcvFrame, clipRect))
+		if ([self isSelectedView:gcv] && !NSIntersectsRect (gcvFrame, clipRect))
 			[self observeValueForKeyPath:@"selectedObjects" ofObject:bookList change:nil context:nil];
 		
 		if (abs (NSMidY (gcvFrame) - NSMidY (clipRect)) < clipRect.size.height * 1.5 && i < [arrangedBooks count])
@@ -266,7 +269,7 @@
 		else
 			[gcv setHidden:YES];
 			
-		if (selectedView == nil)
+		if ([[bookList selectionIndexes] count] == 0)
 			[self setSelectedView:gcv];
 	
 		x = x + gallerySize + xSpacing;
@@ -275,23 +278,21 @@
 
 - (void) setSelectedView:(NSView *) v
 {
-	int i = [[self subviews] indexOfObject:v];
+	int index = [[self subviews] indexOfObject:v];
+
+	// NSMutableIndexSet * selects = [NSMutableIndexSet indexSet];
+	// [selects addIndexes:[bookList selectionIndexes]];
+
+	// [selects addIndex:index];
 	
-	if (i != NSNotFound && i < [[bookList arrangedObjects] count])
-	{
-		[bookList setSelectionIndex:i];
-		selectedView = v;
-	}
-	else
-	{
-		[bookList setSelectionIndex:0];
-		selectedView = nil;
-	}
+	[bookList setSelectionIndex:index];
 }
 
-- (NSView *) getSelectedView
+- (BOOL) isSelectedView:(NSView *) v;
 {
-	return selectedView;
+	unsigned int index = [[self subviews] indexOfObject:v];
+	
+	return ([[bookList selectionIndexes] containsIndex:index]);
 }
 
 - (void)mouseUp:(NSEvent *)theEvent

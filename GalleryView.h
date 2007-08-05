@@ -17,12 +17,11 @@
 	int colCount;
 	
 	float gallerySize;
-	NSView * selectedView;
 	
 	NSArray * arrangedBooks;
 }
 
 - (void) setSelectedView:(NSView *) v;
-- (NSView *) getSelectedView;
+- (BOOL) isSelectedView: (NSView *) v;
 
 @end

@@ -107,7 +107,7 @@
 
 	GalleryView * gv = (GalleryView *) [self superview];
 	
-	if ([gv getSelectedView] == self)
+	if ([gv isSelectedView:self])
 		[self drawSelectedBackground];
 }
 
