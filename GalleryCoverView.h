@@ -14,12 +14,11 @@
 	NSImageView * imageView;
 	BookManagedObject * currentBook;
 	float margin;
-	// NSImage * image;
+	NSData * cachedData;
 	NSTimer * timer;
 	BOOL click;
 }
 
 - (void) setBook:(BookManagedObject *) book;
-// - (BookManagedObject *) getBook;
 
 @end

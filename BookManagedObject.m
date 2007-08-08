@@ -278,6 +278,17 @@
 
 }
 
+/* - (NSString *) getHasCoverImage
+{
+	NSString * imagePath = [NSString stringWithFormat:@"%@%@%@.book-image", NSHomeDirectory (),
+							@"/Library/Application Support/Books/Images/", [self valueForKey:@"id"]];
+							
+	if ([[NSFileManager defaultManager] fileExistsAtPath:imagePath])
+		return @"YES";
+	else
+		return @"NO";
+} */
+
 - (NSData *) getCoverImage
 {
 	NSString * objId = [self valueForKey:@"id"];

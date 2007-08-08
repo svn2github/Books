@@ -96,6 +96,12 @@
 		3892BCBB08F708F600F90204 /* edit-smartlist.png in Resources */ = {isa = PBXBuildFile; fileRef = 3892BCBA08F708F600F90204 /* edit-smartlist.png */; };
 		3894C9C50B58516000E7A508 /* camera-22.png in Resources */ = {isa = PBXBuildFile; fileRef = 3894C9C40B58516000E7A508 /* camera-22.png */; };
 		3898563609A93A1400F44932 /* iPod Exporter.app in Resources */ = {isa = PBXBuildFile; fileRef = 3898563509A93A1400F44932 /* iPod Exporter.app */; };
+		389F31C30C69063300BE0FCA /* BooksLibraryCompactor.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 389F31C10C69063300BE0FCA /* BooksLibraryCompactor.h */; };
+		389F31C40C69063300BE0FCA /* BooksLibraryCompactor.m in Sources */ = {isa = PBXBuildFile; fileRef = 389F31C20C69063300BE0FCA /* BooksLibraryCompactor.m */; };
+		389F33CF0C6997AE00BE0FCA /* GalleryViewControls.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 389F33CD0C6997AE00BE0FCA /* GalleryViewControls.h */; };
+		389F33D00C6997AE00BE0FCA /* GalleryViewControls.m in Sources */ = {isa = PBXBuildFile; fileRef = 389F33CE0C6997AE00BE0FCA /* GalleryViewControls.m */; };
+		389F33D70C6997F300BE0FCA /* ViewControls.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 389F33D50C6997F300BE0FCA /* ViewControls.h */; };
+		389F33D80C6997F300BE0FCA /* ViewControls.m in Sources */ = {isa = PBXBuildFile; fileRef = 389F33D60C6997F300BE0FCA /* ViewControls.m */; };
 		38A33A42090845C300016FF0 /* list-small.png in Resources */ = {isa = PBXBuildFile; fileRef = 38A33A40090845C300016FF0 /* list-small.png */; };
 		38A33A48090845FA00016FF0 /* ListManagedObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 38A33A47090845FA00016FF0 /* ListManagedObject.m */; };
 		38A54BEA09003CA2005018C3 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 38A54BE909003CA2005018C3 /* QuartzCore.framework */; };
@@ -168,6 +174,9 @@
 				384061420C5BC83C00E7D678 /* GalleryView.h in CopyFiles */,
 				384061C30C5BD1E700E7D678 /* GalleryCoverView.h in CopyFiles */,
 				386594430C6053F50067A9B6 /* GalleryScrollView.h in CopyFiles */,
+				389F31C30C69063300BE0FCA /* BooksLibraryCompactor.h in CopyFiles */,
+				389F33CF0C6997AE00BE0FCA /* GalleryViewControls.h in CopyFiles */,
+				389F33D70C6997F300BE0FCA /* ViewControls.h in CopyFiles */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -320,6 +329,12 @@
 		3894BAAC0BC44FCD00D0FC2E /* Italian */ = {isa = PBXFileReference; lastKnownFileType = text.rtf; name = Italian; path = Italian.lproj/Credits.rtf; sourceTree = "<group>"; };
 		3894C9C40B58516000E7A508 /* camera-22.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "camera-22.png"; sourceTree = "<group>"; };
 		3898563509A93A1400F44932 /* iPod Exporter.app */ = {isa = PBXFileReference; lastKnownFileType = wrapper.application; path = "iPod Exporter.app"; sourceTree = "<group>"; };
+		389F31C10C69063300BE0FCA /* BooksLibraryCompactor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BooksLibraryCompactor.h; sourceTree = "<group>"; };
+		389F31C20C69063300BE0FCA /* BooksLibraryCompactor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BooksLibraryCompactor.m; sourceTree = "<group>"; };
+		389F33CD0C6997AE00BE0FCA /* GalleryViewControls.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GalleryViewControls.h; sourceTree = "<group>"; };
+		389F33CE0C6997AE00BE0FCA /* GalleryViewControls.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GalleryViewControls.m; sourceTree = "<group>"; };
+		389F33D50C6997F300BE0FCA /* ViewControls.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ViewControls.h; sourceTree = "<group>"; };
+		389F33D60C6997F300BE0FCA /* ViewControls.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ViewControls.m; sourceTree = "<group>"; };
 		38A33A40090845C300016FF0 /* list-small.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "list-small.png"; sourceTree = "<group>"; };
 		38A33A46090845FA00016FF0 /* ListManagedObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ListManagedObject.h; sourceTree = "<group>"; };
 		38A33A47090845FA00016FF0 /* ListManagedObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ListManagedObject.m; sourceTree = "<group>"; };
@@ -639,6 +654,8 @@
 				38C0D5010C3E152800DC777B /* BooksTableViewDelegate.m */,
 				3892A6A909013AF700FF72C8 /* MainWindowTableView.h */,
 				3892A6AA09013AF700FF72C8 /* MainWindowTableView.m */,
+				389F33D50C6997F300BE0FCA /* ViewControls.h */,
+				389F33D60C6997F300BE0FCA /* ViewControls.m */,
 			);
 			name = "Main Window";
 			sourceTree = "<group>";
@@ -671,6 +688,8 @@
 				384061C20C5BD1E700E7D678 /* GalleryCoverView.m */,
 				386594410C6053F50067A9B6 /* GalleryScrollView.h */,
 				386594420C6053F50067A9B6 /* GalleryScrollView.m */,
+				389F33CD0C6997AE00BE0FCA /* GalleryViewControls.h */,
+				389F33CE0C6997AE00BE0FCA /* GalleryViewControls.m */,
 			);
 			name = "Gallery View";
 			sourceTree = "<group>";
@@ -681,6 +700,8 @@
 				384FDCDB090B3D1900EB0E2A /* AppleScript */,
 				383E550E0C3DDAFC000F06BF /* BooksSpotlightInterface.h */,
 				383E550F0C3DDAFC000F06BF /* BooksSpotlightInterface.m */,
+				389F31C10C69063300BE0FCA /* BooksLibraryCompactor.h */,
+				389F31C20C69063300BE0FCA /* BooksLibraryCompactor.m */,
 			);
 			name = "System Integration";
 			sourceTree = "<group>";
@@ -1083,6 +1104,9 @@
 				384061430C5BC83C00E7D678 /* GalleryView.m in Sources */,
 				384061C40C5BD1E700E7D678 /* GalleryCoverView.m in Sources */,
 				386594440C6053F50067A9B6 /* GalleryScrollView.m in Sources */,
+				389F31C40C69063300BE0FCA /* BooksLibraryCompactor.m in Sources */,
+				389F33D00C6997AE00BE0FCA /* GalleryViewControls.m in Sources */,
+				389F33D80C6997F300BE0FCA /* ViewControls.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -33,6 +33,7 @@
 #import "MyBarcodeScanner.h"
 #import "CoverWindowDelegate.h"
 #import "NotificationInterface.h"
+#import "BooksLibraryCompactor.h"
 
 typedef struct _monochromePixel
 { 
@@ -501,6 +502,8 @@ typedef struct _monochromePixel
 		name:BOOKS_END_PROGRESS_WINDOW object:nil];
 	[[NSNotificationCenter defaultCenter] addObserver:self selector:NSSelectorFromString(@"orderCoverWindowOut") 
 		name:BOOKS_HIDE_COVER object:nil];
+	[[NSNotificationCenter defaultCenter] addObserver:self selector:NSSelectorFromString(@"setControlsView:") 
+		name:BOOKS_SET_CONTROL_VIEW object:nil];
 
 	timer = nil;
 
@@ -513,6 +516,44 @@ typedef struct _monochromePixel
 	//	NSRunAlertPanel (NSLocalizedString (@"Books Development Version", nil),  
 	//		NSLocalizedString (@"This is a development build of Books. Please send any problems you encounter to books@aetherial.net.", nil), 
 	//		NSLocalizedString (@"OK", nil), nil, nil);
+
+	[bookArrayController addObserver:self forKeyPath:@"arrangedObjects" options:NSKeyValueObservingOptionNew context:NULL];
+}
+
+
+- (void) observeValueForKeyPath: (NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change
+	context:(void *)context
+{
+	if ([keyPath isEqual:@"selectedObjects"])
+		[self updateMainPane];
+	else if ([keyPath isEqual:@"arrangedObjects"])
+	{
+		[bookArrayController removeObserver:self forKeyPath:@"selectedObjects"];
+		[bookArrayController addObserver:self forKeyPath:@"selectedObjects" options:NSKeyValueObservingOptionNew context:NULL];
+	}
+}
+
+- (void) setControlsView: (NSNotification *) msg
+{
+	ViewControls * controls = [msg object];
+
+	if (controls == nil)
+		controls = defaultViewControls;
+	
+	NSView * view = [controls view];
+	NSRect viewRect = [view frame];
+	
+	NSRect oldRect = [[controlsPanel contentView] frame];
+	NSRect newRect = [controlsPanel frameRectForContentRect:viewRect];
+	newRect.origin = [controlsPanel frame].origin;
+
+	if ([controlsPanel contentView] != nil)
+		newRect.origin.y -= viewRect.size.height - oldRect.size.height;
+	
+	[controlsPanel setContentView:view];
+	[controlsPanel setFrame:newRect display:YES animate:YES];
+
+	// [controlsPanel setTitle:[controls title]];
 }
 
 - (void) startProgress: (NSNotification *) msg
@@ -650,6 +691,15 @@ typedef struct _monochromePixel
 	else
 		[preferencesWindow makeKeyAndOrderFront:sender];
 }
+
+- (IBAction)showViewControls:(id)sender
+{
+	if ([controlsPanel isVisible])
+		[controlsPanel orderOut:sender];
+	else
+		[controlsPanel makeKeyAndOrderFront:sender];
+}
+
 
 - (NSArray *) getQuickfillPlugins
 {
@@ -956,18 +1006,19 @@ typedef struct _monochromePixel
 	SmartListManagedObject * sc = [[SmartListManagedObject alloc] initWithEntity:desc insertIntoManagedObjectContext:context];
 	[sc setValue:NSLocalizedString (@"New Smart List", nil) forKey:@"name"];
 	
-	[context lock];
+	/* [context lock];
 	[context insertObject:sc];
-	[context unlock];
+	[context unlock]; */
+	
+	[collectionArrayController addObject:sc];
 
-	[tableViewDelegate reloadListsTable];
+	// [tableViewDelegate reloadListsTable];
 
-	NSPredicate * newPredicate = [NSPredicate predicateWithFormat:@"title CONTAINS[c] \"Book\""];
+	/* NSPredicate * newPredicate = [NSPredicate predicateWithFormat:@"title CONTAINS[c] \"Book\""];
 	NSString * name = @"New Smart List";
 
 	NSArray * lists = [collectionArrayController arrangedObjects];
 	
-	int i = 0;
 	for (i = 0; i < [lists count]; i++)
 	{
 		NSString * listName = [[lists objectAtIndex:i] valueForKey:@"name"];
@@ -979,7 +1030,10 @@ typedef struct _monochromePixel
 			if ([newPredicate isEqual:[list getPredicate]]  && [name isEqual:listName])
 				[collectionArrayController setSelectedObjects:[NSArray arrayWithObject:list]];
 		}
-	}
+	} */
+
+	// [collectionArrayController setSelectedObjects:[NSArray arrayWithObject:sc]];
+
 	
 	[self editSmartList:sender];
 }
@@ -990,21 +1044,25 @@ typedef struct _monochromePixel
 	NSManagedObjectModel * model = [self managedObjectModel];
 
 	NSEntityDescription * desc = [[model entitiesByName] objectForKey:@"List"];
-
-	[context lock];
 	ListManagedObject * object = [[ListManagedObject alloc] initWithEntity:desc insertIntoManagedObjectContext:context];
-
 	[object setValue:NSLocalizedString (@"New List", nil) forKey:@"name"];
+
+	/*[context lock];
 			
 	[context insertObject:object];
 
 	[context unlock];
-
+	*/
+	
+	[collectionArrayController addObject:object];
+	
 	[collectionArrayController setSortDescriptors:
 		[NSArray arrayWithObject:[[NSSortDescriptor alloc] initWithKey:@"name" ascending:YES]]];
+	
+	// [collectionArrayController setSelectedObjects:[NSArray arrayWithObject:object]];
 
 	[self save:sender];
-	[tableViewDelegate reloadListsTable];
+	// [tableViewDelegate reloadListsTable];
 }
 
 - (IBAction) newBook:(id) sender
@@ -1739,6 +1797,15 @@ typedef struct _monochromePixel
 		NSRunAlertPanel (NSLocalizedString (@"Unable To Print", nil), NSLocalizedString (@"Please install the PDF Exporter from the Plugin Manager to enable printing.", nil), NSLocalizedString (@"OK", nil), nil, nil);
 		[pluginManager toggleVisible:sender];
 	}
+}
+
+- (IBAction) compact:(id) sender
+{
+	BooksLibraryCompactor * compactor = [[BooksLibraryCompactor alloc] init];
+	
+	[compactor compact];
+	
+	[compactor release];
 }
 
 @end

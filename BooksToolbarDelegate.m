@@ -29,8 +29,8 @@
 
 - (NSArray *) toolbarAllowedItemIdentifiers: (NSToolbar *) toolbar
 {
-	return [NSArray arrayWithObjects:@"new-list", @"new-smartlist", @"edit-smartlist", @"new-book", @"remove-book", @"remove-list", @"preferences", 
-		@"get-info", @"get-cover", @"import", @"search", @"isight", @"duplicate", @"views", @"gallery-size", NSToolbarSeparatorItemIdentifier, 
+	return [NSArray arrayWithObjects:@"new-list", @"new-smartlist", @"edit-smartlist", @"new-book", @"remove-book", @"remove-list", @"view-inspector", 
+		@"get-info", @"get-cover", @"import", @"search", @"isight", @"duplicate", @"views", NSToolbarSeparatorItemIdentifier, 
 		NSToolbarSpaceItemIdentifier, NSToolbarFlexibleSpaceItemIdentifier, NSToolbarCustomizeToolbarItemIdentifier, nil];
 }
 
@@ -107,14 +107,14 @@
 
 		newBook = item;
 	}
-	else if ([itemIdentifier isEqualToString:@"preferences"])
+	else if ([itemIdentifier isEqualToString:@"view-inspector"])
 	{
 		[item setTarget:booksAppDelegate];
-		[item setAction:NSSelectorFromString(@"preferences:")];
+		[item setAction:NSSelectorFromString(@"showViewControls:")];
 
 		[item setImage:[NSImage imageNamed:@"preferences"]];
-		[item setLabel:NSLocalizedString (@"Preferences", nil)];
-		[item setPaletteLabel:NSLocalizedString (@"Preferences", nil)];
+		[item setLabel:NSLocalizedString (@"View Inspector", nil)];
+		[item setPaletteLabel:NSLocalizedString (@"View Inspector", nil)];
 	}
 	else if ([itemIdentifier isEqualToString:@"get-info"])
 	{
@@ -184,20 +184,8 @@
 		[item setMinSize:fRect.size];
 		[item setMaxSize:fRect.size];
 		
-		[item setLabel:NSLocalizedString (@"List View", nil)];
-		[item setPaletteLabel:NSLocalizedString (@"List View", nil)];
-	}
-
-	else if ([itemIdentifier isEqualToString:@"gallery-size"])
-	{
-		NSRect fRect = [gallerySizeField frame];
-		[item setView:gallerySizeField];
-
-		[item setMinSize:fRect.size];
-		[item setMaxSize:fRect.size];
-		
-		[item setLabel:NSLocalizedString (@"Gallery Image Size", nil)];
-		[item setPaletteLabel:NSLocalizedString (@"Gallery Image Size", nil)];
+		[item setLabel:NSLocalizedString (@"View", nil)];
+		[item setPaletteLabel:NSLocalizedString (@"View", nil)];
 	}
 	
 	return item;

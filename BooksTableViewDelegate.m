@@ -18,8 +18,7 @@
 
 	if (table == booksTable)
 	{
-		NSNotification * notification = [NSNotification notificationWithName:BOOKS_UPDATE_DETAILS object:nil];
-		[[NSNotificationCenter defaultCenter] postNotification:notification];
+
 	}
 	else if (table == listsTable)
 	{
@@ -108,9 +107,6 @@
 	}
 
 	NSNotification * msg = [NSNotification notificationWithName:BOOKS_HIDE_COVER object:nil];
-	[[NSNotificationCenter defaultCenter] postNotification:msg];
-
-	msg = [NSNotification notificationWithName:BOOKS_UPDATE_DETAILS object:nil];
 	[[NSNotificationCenter defaultCenter] postNotification:msg];
 }
 
@@ -369,21 +365,24 @@
 		{
 			NSString * field = [fields objectAtIndex:i];
 
-			NSTableColumn * column = [[NSTableColumn alloc] initWithIdentifier:field];
+			if (![field isEqual:@""])
+			{
+				NSTableColumn * column = [[NSTableColumn alloc] initWithIdentifier:field];
 		
-			[[column headerCell] setStringValue:field];
-			[[column dataCell] setFont:[NSFont systemFontOfSize:11]];
+				[[column headerCell] setStringValue:field];
+				[[column dataCell] setFont:[NSFont systemFontOfSize:11]];
 			
-			[column bind:@"value" toObject:bookArrayController 
-				withKeyPath:[@"arrangedObjects." stringByAppendingString:field] options: nil];
+				[column bind:@"value" toObject:bookArrayController 
+					withKeyPath:[@"arrangedObjects." stringByAppendingString:field] options: nil];
 			
-			NSSortDescriptor * sortDescriptor = [[NSSortDescriptor alloc] initWithKey:field ascending:YES];
+				NSSortDescriptor * sortDescriptor = [[NSSortDescriptor alloc] initWithKey:field ascending:YES];
 				
-			[column setSortDescriptorPrototype:sortDescriptor];
+				[column setSortDescriptorPrototype:sortDescriptor];
 
-			[column setEditable:NO];
+				[column setEditable:NO];
 			
-			[booksTable addTableColumn:column];
+				[booksTable addTableColumn:column];
+			}
 		}
 	}		
 	
@@ -458,12 +457,20 @@
 - (void) observeValueForKeyPath: (NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change
 	context:(void *)context
 {
-	[self willChangeValueForKey:@"label"];
-	if ([[NSUserDefaults standardUserDefaults] boolForKey:@"Show Gallery"])
-		[box selectTabViewItemAtIndex:1];
-	else
-		[box selectTabViewItemAtIndex:0];
-	[self didChangeValueForKey:@"label"];
+
+    if ([keyPath isEqual:@"Show Gallery"])
+	{
+		[self willChangeValueForKey:@"label"];
+
+		if ([[NSUserDefaults standardUserDefaults] boolForKey:@"Show Gallery"])
+			[box selectTabViewItemAtIndex:1];
+		else
+			[box selectTabViewItemAtIndex:0];
+
+		[self didChangeValueForKey:@"label"];
+	}
+	else if ([keyPath isEqual:@"Custom List User Fields"])
+		[self updateBooksTable];
 }
 		
 - (void) awakeFromNib
@@ -499,12 +506,11 @@
 	else
 		[box selectTabViewItemAtIndex:0];
 	[self didChangeValueForKey:@"label"];
+
+	[[NSUserDefaults standardUserDefaults] addObserver:self forKeyPath:@"Custom List User Fields" options:NSKeyValueObservingOptionNew context:NULL];
 }
 
-- (void)textDidChange:(NSNotification *)aNotification
-{
-	[self updateBooksTable];
-}
+
 
 - (int) getLabel
 {

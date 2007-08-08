@@ -18,16 +18,15 @@
 
     if (self) 
 	{
-		margin = 10;
+		margin = 6;
 
 		imageView = [[NSImageView alloc] init];
-		[imageView setImageScaling:NSScaleProportionally];
-		[imageView setImageFrameStyle:NSImageFrameNone];
+		[imageView setImageScaling:NSScaleToFit];
+		[imageView setImageFrameStyle:NSImageFramePhoto];
 		[self addSubview:imageView];
 		[imageView setHidden:NO];
 
-//		image = nil;
-		
+		cachedData = nil;
 		currentBook = nil;
 		
 		timer = nil;
@@ -38,32 +37,9 @@
 
 - (NSRect) getBorder:(float) borderWidth
 {
-	NSImage * img = [imageView image];
-	NSSize imageSize = [img size];
-	NSSize viewSize = [imageView frame].size;
+	NSSize borderSize = [imageView frame].size;
 	
-	NSSize borderSize = imageSize;
-	
-	if (imageSize.width > viewSize.width || imageSize.height > viewSize.height)
-	{
-		float ratio = imageSize.height / imageSize.width;
-		
-		if (ratio < 1)
-		{
-			ratio = viewSize.width / imageSize.width;
-			borderSize.width = viewSize.width;
-			borderSize.height = imageSize.height * ratio;
-		}
-		else
-		{
-			ratio = viewSize.height / imageSize.height;
-			borderSize.width = imageSize.width * ratio;
-			borderSize.height = viewSize.height;
-		}
-	}
-
-	
-	viewSize = [self frame].size;
+	NSSize viewSize = [self frame].size;
 
 	borderSize.width += borderWidth;
 	borderSize.height += borderWidth;
@@ -76,17 +52,58 @@
 	return rect;
 }
 
+- (void) setImageViewFrame
+{
+	NSSize frameSize = [self frame].size;
+	
+	NSImage * img = [imageView image];
+	NSSize imageSize = [img size];
+	NSSize viewSize = [self frame].size;
+	
+	viewSize.width -= margin * 2;
+	viewSize.height -= margin * 2;
+	
+	if (imageSize.width > viewSize.width || imageSize.height > viewSize.height)
+	{
+		float ratio = imageSize.height / imageSize.width;
+		
+		if (ratio < 1)
+		{
+			ratio = viewSize.width / imageSize.width;
+			viewSize.width = viewSize.width;
+			viewSize.height = imageSize.height * ratio;
+		}
+		else
+		{
+			ratio = viewSize.height / imageSize.height;
+			viewSize.width = imageSize.width * ratio;
+			viewSize.height = viewSize.height;
+		}
+	}
+	else
+	{
+		viewSize = imageSize;
+	}
+	
+	viewSize.width = (float) ((int) viewSize.width) + 2;
+	viewSize.height = (float) ((int) viewSize.height) + 2;
+
+	float x = (frameSize.width - viewSize.width) / 2;
+	float y = (frameSize.height - viewSize.height) / 2;
+	
+	[imageView setFrame:NSMakeRect (x, y, viewSize.width, viewSize.height)];
+}
+
 - (void) drawSelectedBackground
 {
 	NSRect rect = [self getBorder:margin];
 	
-	float radius = 5.0;
+	float radius = 0.0;
 
-	radius = MIN(radius, 0.5f * MIN(NSWidth(rect), NSHeight(rect)));
-	
-	[[NSColor alternateSelectedControlColor] setFill];
+	[[NSColor alternateSelectedControlColor] setStroke];
 
 	NSBezierPath * path = [NSBezierPath bezierPath];
+	[path setLineWidth:(margin / 2) - 1];
 	
 	rect = NSInsetRect(rect, radius, radius);
 	[path appendBezierPathWithArcWithCenter:NSMakePoint(NSMinX(rect), NSMinY(rect)) radius:radius startAngle:180.0 endAngle:270.0];
@@ -95,15 +112,17 @@
 	[path appendBezierPathWithArcWithCenter:NSMakePoint(NSMinX(rect), NSMaxY(rect)) radius:radius startAngle: 90.0 endAngle:180.0];
 	[path closePath];
 	
-	[path fill];
+	[path stroke];
 }
 
 - (void)drawRect:(NSRect)rect
 {
 	rect = [self frame];
 
-	[imageView setFrame:NSMakeRect (margin, margin, (rect.size.width - margin - margin), 
-		(rect.size.height - margin - margin))];
+	// [imageView setFrame:NSMakeRect (margin, margin, (rect.size.width - margin - margin), 
+	//  	(rect.size.height - margin - margin))];
+
+	[self setImageViewFrame];
 
 	GalleryView * gv = (GalleryView *) [self superview];
 	
@@ -122,15 +141,26 @@
 	{
 		NSData * data = [currentBook valueForKey:@"coverImage"];
 		
-		if (data != nil)
+		if ((cachedData == nil || ![cachedData isEqualToData:data]) && data != nil)
 		{
 			NSImage * image = [[NSImage alloc] initWithData:data];
 			[imageView setImage:image];
+			[imageView setImageFrameStyle:NSImageFramePhoto];
 			[image release];
+			
+			if (cachedData != nil)
+				[cachedData release];
+				
+			cachedData = [[NSData alloc] initWithData:data];
 		}
 		else
+		{
 			[imageView setImage:[NSImage imageNamed:@"Books"]];
+			[imageView setImageFrameStyle:NSImageFrameNone];
+		}
 	}
+	else
+		[imageView setImage:nil];
 
 	[self setNeedsDisplay:YES];
 }
@@ -140,10 +170,15 @@
 	if (currentBook == book)
 		return;
 
+	if (cachedData != nil)
+		[cachedData release];
+
+	cachedData = nil;
+
 	[currentBook removeObserver:self forKeyPath:@"coverImage"];
 	[currentBook removeObserver:self forKeyPath:@"title"];
 	
-	currentBook = book;
+	currentBook = [book retain];
 	
 	if (currentBook != nil)
 	{
@@ -209,9 +244,6 @@
 	}
 	else
 	{
-		NSNotification * notification = [NSNotification notificationWithName:BOOKS_UPDATE_DETAILS object:nil];
-		[[NSNotificationCenter defaultCenter] postNotification:notification];
-
 		timer = [[NSTimer scheduledTimerWithTimeInterval:(GetDblTime() / 60.0) target:self 
 					selector:NSSelectorFromString(@"resetClick:") userInfo:nil repeats:NO] retain];
 		

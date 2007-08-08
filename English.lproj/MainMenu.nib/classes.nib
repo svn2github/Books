@@ -12,6 +12,7 @@
                 browseFile = id; 
                 cancelQuickfill = id; 
                 cancelSmartList = id; 
+                compact = id; 
                 donate = id; 
                 duplicateRecords = id; 
                 editSmartList = id; 
@@ -44,8 +45,10 @@
                 bookArrayController = NSArrayController; 
                 collectionArrayController = NSArrayController; 
                 comboBoxDelegate = BooksTextFieldDelegate; 
+                controlsPanel = NSPanel; 
                 coverWindow = NSWindow; 
                 datePublished = NSTextField; 
+                defaultViewControls = ViewControls; 
                 detailsPane = WebView; 
                 fileArrayController = NSArrayController; 
                 fileDescription = NSTextField; 
@@ -141,7 +144,6 @@
             LANGUAGE = ObjC; 
             OUTLETS = {
                 booksAppDelegate = NSObject; 
-                gallerySizeField = NSView; 
                 searchField = NSView; 
                 searchTextField = NSSearchField; 
                 viewsField = NSView; 
@@ -170,15 +172,10 @@
         {
             CLASS = GalleryView; 
             LANGUAGE = ObjC; 
-            OUTLETS = {
-                bookList = NSArrayController; 
-                controlView = GalleryControlView; 
-                icon = GalleryIconView; 
-                pages = NSSlider; 
-                text = NSTextField; 
-            }; 
+            OUTLETS = {bookList = NSArrayController; controls = GalleryViewControls; }; 
             SUPERCLASS = NSView; 
         }, 
+        {CLASS = GalleryViewControls; LANGUAGE = ObjC; SUPERCLASS = ViewControls; }, 
         {CLASS = HtmlPageBuilder; LANGUAGE = ObjC; SUPERCLASS = NSObject; }, 
         {
             ACTIONS = {importFromMenuItem = id; }; 
@@ -247,6 +244,12 @@
             CLASS = SmartListWindowDelegate; 
             LANGUAGE = ObjC; 
             OUTLETS = {joiner = id; rulesBox = id; }; 
+            SUPERCLASS = NSObject; 
+        }, 
+        {
+            CLASS = ViewControls; 
+            LANGUAGE = ObjC; 
+            OUTLETS = {view = NSView; }; 
             SUPERCLASS = NSObject; 
         }
     ); 

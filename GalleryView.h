@@ -8,10 +8,12 @@
 
 #import <Cocoa/Cocoa.h>
 #import "BookManagedObject.h"
+#import "GalleryViewControls.h"
 
 @interface GalleryView : NSView 
 {
 	IBOutlet NSArrayController * bookList;
+	IBOutlet GalleryViewControls * controls;
 
 	int rowCount;
 	int colCount;

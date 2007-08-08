@@ -44,6 +44,7 @@
 #define BOOKS_START_PROGRESS_WINDOW @"Books - Start Progress Window"
 #define BOOKS_END_PROGRESS_WINDOW @"Books - End Progress Window"
 #define BOOKS_HIDE_COVER @"Books - Hide Cover"
+#define BOOKS_SET_CONTROL_VIEW @"Books - Set Control View"
 
 #define IS_TEST YES
 
@@ -114,6 +115,9 @@
 	NSString * openFilename;
 	
 	NSTimer * timer;
+
+	IBOutlet NSPanel * controlsPanel;
+	IBOutlet ViewControls * defaultViewControls;
 }
 
 - (IBAction)preferences:(id)sender;
@@ -207,5 +211,6 @@
 - (NSString *) getDateFormatString;
 
 - (IBAction) print:(id) sender;
+- (IBAction) compact:(id) sender;
 
 @end

@@ -60,4 +60,6 @@
 - (NSString *) getCoverPath;
 - (void) setCoverPath:(NSString *) path;
 
+- (NSString *) getId;
+
 @end
