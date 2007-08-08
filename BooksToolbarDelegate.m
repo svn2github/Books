@@ -112,7 +112,7 @@
 		[item setTarget:booksAppDelegate];
 		[item setAction:NSSelectorFromString(@"showViewControls:")];
 
-		[item setImage:[NSImage imageNamed:@"preferences"]];
+		[item setImage:[NSImage imageNamed:@"controls"]];
 		[item setLabel:NSLocalizedString (@"View Inspector", nil)];
 		[item setPaletteLabel:NSLocalizedString (@"View Inspector", nil)];
 	}

@@ -69,7 +69,7 @@
 			if (position > maxIndex)
 				position = maxIndex;
 				
-			[self setSelectedView:[[self subviews] objectAtIndex:position]];
+			[bookList setSelectionIndex:position];
 		}
 	}
 	else
@@ -92,17 +92,6 @@
 	[bookList addObserver:self forKeyPath:@"selectedObjects" options:NSKeyValueObservingOptionNew context:NULL];
 	[[NSUserDefaults standardUserDefaults] addObserver:self forKeyPath:@"Gallery Size" options:NSKeyValueObservingOptionNew context:NULL];
 	[[NSUserDefaults standardUserDefaults] addObserver:self forKeyPath:@"Show Gallery" options:NSKeyValueObservingOptionNew context:NULL];
-
-	if ([[NSUserDefaults standardUserDefaults] boolForKey:@"Show Gallery"])
-	{
-		[[NSUserDefaults standardUserDefaults] setBool:NO forKey:@"Show Gallery"];
-		[[NSUserDefaults standardUserDefaults] setBool:YES forKey:@"Show Gallery"];
-	}
-	else
-	{
-		[[NSUserDefaults standardUserDefaults] setBool:YES forKey:@"Show Gallery"];
-		[[NSUserDefaults standardUserDefaults] setBool:NO forKey:@"Show Gallery"];
-	}
 	
 	[self updateGallerySize];
 	[self setNeedsDisplay:YES];
@@ -138,8 +127,6 @@
 				}
 			}
 			
-			subs = [self subviews];
-	
 			if (listSize > 0 && [[bookList selectedObjects] count] == 0)
 				[self setSelectedView:[[self subviews] objectAtIndex:0]];
 		}
@@ -229,9 +216,7 @@
 	if (y + ySpacing < [[self superview] frame].size.height)
 		y = [[self superview] frame].size.height - ySpacing;
 
-	NSSize newSize = NSMakeSize (rect.size.width, y + ySpacing);
-
-	[self setFrameSize:newSize];
+	[self setFrameSize:NSMakeSize (rect.size.width, y + ySpacing)];
 	
 	y = y - gallerySize;
 
@@ -263,9 +248,6 @@
 				[gcv setBook:nil];
 				[gcv setHidden:YES];
 			}
-		
-			if (selectedView == nil)
-				[self setSelectedView:gcv];
 	
 			x = x + gallerySize + xSpacing;
 		}
@@ -283,20 +265,14 @@
 	int i = [[self subviews] indexOfObject:v];
 	
 	if (i != NSNotFound && i < [[bookList arrangedObjects] count])
-	{
 		[bookList setSelectionIndex:i];
-		selectedView = v;
-	}
 	else if (![self isHidden])
-	{
 		[bookList setSelectionIndex:0];
-		selectedView = nil;
-	}
 }
 
-- (NSView *) getSelectedView
+- (BOOL) isSelected:(BookManagedObject *) book
 {
-	return selectedView;
+	return [[bookList selectedObjects] containsObject:book];
 }
 
 - (void)mouseUp:(NSEvent *)theEvent

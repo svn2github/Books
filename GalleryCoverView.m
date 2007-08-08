@@ -119,20 +119,12 @@
 {
 	rect = [self frame];
 
-	// [imageView setFrame:NSMakeRect (margin, margin, (rect.size.width - margin - margin), 
-	//  	(rect.size.height - margin - margin))];
-
 	[self setImageViewFrame];
 
 	GalleryView * gv = (GalleryView *) [self superview];
 	
-	if ([gv isSelectedView:self])
+	if ([gv isSelected:currentBook])
 		[self drawSelectedBackground];
-}
-
-- (BookManagedObject *) getBook
-{
-	return currentBook;
 }
 
 - (void) updateImage

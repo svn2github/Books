@@ -23,7 +23,7 @@
 	NSArray * arrangedBooks;
 }
 
+- (BOOL) isSelected:(BookManagedObject *) book;
 - (void) setSelectedView:(NSView *) v;
-- (BOOL) isSelectedView: (NSView *) v;
 
 @end

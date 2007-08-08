@@ -508,6 +508,17 @@ typedef struct _monochromePixel
 	timer = nil;
 
 	[NotificationInterface start];
+
+	if ([[NSUserDefaults standardUserDefaults] boolForKey:@"Show Gallery"])
+	{
+		[[NSUserDefaults standardUserDefaults] setBool:NO forKey:@"Show Gallery"];
+		[[NSUserDefaults standardUserDefaults] setBool:YES forKey:@"Show Gallery"];
+	}
+	else
+	{
+		[[NSUserDefaults standardUserDefaults] setBool:YES forKey:@"Show Gallery"];
+		[[NSUserDefaults standardUserDefaults] setBool:NO forKey:@"Show Gallery"];
+	}
 	
 	[mainWindow setTitle:NSLocalizedString (@"Books - Loading...", nil)];
 	// [[[NSApplication sharedApplication] delegate] startProgressWindow:NSLocalizedString (@"Loading data from disk...", nil)];

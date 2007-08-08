@@ -105,6 +105,7 @@
 		38A33A42090845C300016FF0 /* list-small.png in Resources */ = {isa = PBXBuildFile; fileRef = 38A33A40090845C300016FF0 /* list-small.png */; };
 		38A33A48090845FA00016FF0 /* ListManagedObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 38A33A47090845FA00016FF0 /* ListManagedObject.m */; };
 		38A54BEA09003CA2005018C3 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 38A54BE909003CA2005018C3 /* QuartzCore.framework */; };
+		38A904910C6A237F0025266C /* controls.png in Resources */ = {isa = PBXBuildFile; fileRef = 38A904900C6A237F0025266C /* controls.png */; };
 		38AC633C0BEA7CF3004F8DB4 /* dupe.png in Resources */ = {isa = PBXBuildFile; fileRef = 38AC633B0BEA7CF3004F8DB4 /* dupe.png */; };
 		38B16DAB0BA1FECE00216A44 /* CoverWindowDelegate.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 38B16DA90BA1FECE00216A44 /* CoverWindowDelegate.h */; };
 		38B16DAC0BA1FECE00216A44 /* CoverWindowDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 38B16DAA0BA1FECE00216A44 /* CoverWindowDelegate.m */; };
@@ -339,6 +340,7 @@
 		38A33A46090845FA00016FF0 /* ListManagedObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ListManagedObject.h; sourceTree = "<group>"; };
 		38A33A47090845FA00016FF0 /* ListManagedObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ListManagedObject.m; sourceTree = "<group>"; };
 		38A54BE909003CA2005018C3 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = /System/Library/Frameworks/QuartzCore.framework; sourceTree = "<absolute>"; };
+		38A904900C6A237F0025266C /* controls.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = controls.png; sourceTree = "<group>"; };
 		38AC633B0BEA7CF3004F8DB4 /* dupe.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = dupe.png; sourceTree = "<group>"; };
 		38B16DA90BA1FECE00216A44 /* CoverWindowDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CoverWindowDelegate.h; sourceTree = "<group>"; };
 		38B16DAA0BA1FECE00216A44 /* CoverWindowDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CoverWindowDelegate.m; sourceTree = "<group>"; };
@@ -753,6 +755,7 @@
 		38666DA508E5087200071C56 /* Icons */ = {
 			isa = PBXGroup;
 			children = (
+				38A904900C6A237F0025266C /* controls.png */,
 				38F4DAF70C64BF5500C3805D /* gallery.png */,
 				38769B4A0C5EBB1500853EDB /* control-arrow.png */,
 				38AC633B0BEA7CF3004F8DB4 /* dupe.png */,
@@ -1051,6 +1054,7 @@
 				3826FA850C14535B00EB2E43 /* Books Help in Resources */,
 				38769B4B0C5EBB1500853EDB /* control-arrow.png in Resources */,
 				38F4DAF80C64BF5500C3805D /* gallery.png in Resources */,
+				38A904910C6A237F0025266C /* controls.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
