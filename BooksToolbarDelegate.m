@@ -36,7 +36,7 @@
 
 - (NSArray *) toolbarDefaultItemIdentifiers: (NSToolbar *) toolbar
 {
-	return [NSArray arrayWithObjects:@"views", @"new-book", @"new-list", @"new-smartlist", @"edit-smartlist",  
+	return [NSArray arrayWithObjects:@"views", @"new-book", @"new-list", @"new-smartlist", @"view-inspector",  
 	NSToolbarFlexibleSpaceItemIdentifier, @"search", nil];
 }
 

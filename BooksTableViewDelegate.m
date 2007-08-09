@@ -249,6 +249,45 @@
 
 }	
 
+- (void) updateSizes
+{
+	if ([[NSUserDefaults standardUserDefaults] boolForKey:@"Use Small Table Fonts"])
+	{
+		[listsTable setRowHeight:14];
+		[booksTable setRowHeight:14];
+	}
+	else
+	{
+		[listsTable setRowHeight:17];
+		[booksTable setRowHeight:17];
+	}
+
+	NSArray * columns = [listsTable tableColumns];
+
+	int i = 0;
+	for (i = 0; i < [columns count]; i++)
+	{
+		NSTableColumn * column = [columns objectAtIndex:i];
+		
+		if ([[NSUserDefaults standardUserDefaults] boolForKey:@"Use Small Table Fonts"])
+			[[column dataCell] setFont:[NSFont systemFontOfSize:11]];
+		else
+			[[column dataCell] setFont:[NSFont systemFontOfSize:12]];
+	}
+
+	columns = [booksTable tableColumns];
+
+	for (i = 0; i < [columns count]; i++)
+	{
+		NSTableColumn * column = [columns objectAtIndex:i];
+		
+		if ([[NSUserDefaults standardUserDefaults] boolForKey:@"Use Small Table Fonts"])
+			[[column dataCell] setFont:[NSFont systemFontOfSize:11]];
+		else
+			[[column dataCell] setFont:[NSFont systemFontOfSize:12]];
+	}
+}
+
 - (void) updateBooksTable
 {
 	NSUserDefaults * prefs = [NSUserDefaults standardUserDefaults];
@@ -272,7 +311,7 @@
 		[[column headerCell] setStringValue:@"Lists"];
 		[column bind:@"value" toObject:collectionArrayController withKeyPath:@"arrangedObjects.name" options: nil];
 		[column setResizingMask:NSTableColumnAutoresizingMask];
-		[[column dataCell] setFont:[NSFont systemFontOfSize:11]];
+		
 		[listsTable addTableColumn:column];
 		[column setWidth:([listsTable frame].size.width - 16)];
 		[collectionArrayController setSortDescriptors:
@@ -319,7 +358,11 @@
 			NSTableColumn * column = [[NSTableColumn alloc] initWithIdentifier:key];
 		
 			[[column headerCell] setStringValue:title];
-			[[column dataCell] setFont:[NSFont systemFontOfSize:11]];
+
+			if ([[NSUserDefaults standardUserDefaults] boolForKey:@"Use Small Table Fonts"])
+				[[column dataCell] setFont:[NSFont systemFontOfSize:11]];
+			else
+				[[column dataCell] setFont:[NSFont systemFontOfSize:12]];
 			
 			[column bind:@"value" toObject:bookArrayController withKeyPath:[@"arrangedObjects." stringByAppendingString:key] 
 				options: nil];
@@ -471,6 +514,8 @@
 	}
 	else if ([keyPath isEqual:@"Custom List User Fields"])
 		[self updateBooksTable];
+	else if ([keyPath isEqual:@"Use Small Table Fonts"])
+		[self updateSizes];
 }
 		
 - (void) awakeFromNib
@@ -499,13 +544,25 @@
 	[[booksTable headerView] setMenu:booksColumnMenu];
 
 	[[NSUserDefaults standardUserDefaults] addObserver:self forKeyPath:@"Show Gallery" options:NSKeyValueObservingOptionNew context:NULL];
-
 	[self willChangeValueForKey:@"label"];
 	if ([[NSUserDefaults standardUserDefaults] boolForKey:@"Show Gallery"])
 		[box selectTabViewItemAtIndex:1];
 	else
 		[box selectTabViewItemAtIndex:0];
 	[self didChangeValueForKey:@"label"];
+
+	[[NSUserDefaults standardUserDefaults] addObserver:self forKeyPath:@"Use Small Table Fonts" options:NSKeyValueObservingOptionNew context:NULL];
+
+	if ([[NSUserDefaults standardUserDefaults] boolForKey:@"Use Small Table Fonts"])
+	{
+		[[NSUserDefaults standardUserDefaults] setBool:NO forKey:@"Use Small Table Fonts"];
+		[[NSUserDefaults standardUserDefaults] setBool:YES forKey:@"Use Small Table Fonts"];
+	}
+	else
+	{
+		[[NSUserDefaults standardUserDefaults] setBool:YES forKey:@"Use Small Table Fonts"];
+		[[NSUserDefaults standardUserDefaults] setBool:NO forKey:@"Use Small Table Fonts"];
+	}
 
 	[[NSUserDefaults standardUserDefaults] addObserver:self forKeyPath:@"Custom List User Fields" options:NSKeyValueObservingOptionNew context:NULL];
 }

@@ -508,6 +508,17 @@ typedef struct _monochromePixel
 	timer = nil;
 
 	[NotificationInterface start];
+	
+	[mainWindow setTitle:NSLocalizedString (@"Books - Loading...", nil)];
+
+	/* if (IS_TEST)
+	{
+		NSRunAlertPanel (NSLocalizedString (@"Books Development Version", nil),  
+			NSLocalizedString (@"This is a development build of Books. Please send any problems you encounter to books@aetherial.net.", nil), 
+			NSLocalizedString (@"OK", nil), nil, nil);
+	} */
+	
+	[bookArrayController addObserver:self forKeyPath:@"arrangedObjects" options:NSKeyValueObservingOptionNew context:NULL];
 
 	if ([[NSUserDefaults standardUserDefaults] boolForKey:@"Show Gallery"])
 	{
@@ -519,16 +530,6 @@ typedef struct _monochromePixel
 		[[NSUserDefaults standardUserDefaults] setBool:YES forKey:@"Show Gallery"];
 		[[NSUserDefaults standardUserDefaults] setBool:NO forKey:@"Show Gallery"];
 	}
-	
-	[mainWindow setTitle:NSLocalizedString (@"Books - Loading...", nil)];
-	// [[[NSApplication sharedApplication] delegate] startProgressWindow:NSLocalizedString (@"Loading data from disk...", nil)];
-
-	// if (IS_TEST)
-	//	NSRunAlertPanel (NSLocalizedString (@"Books Development Version", nil),  
-	//		NSLocalizedString (@"This is a development build of Books. Please send any problems you encounter to books@aetherial.net.", nil), 
-	//		NSLocalizedString (@"OK", nil), nil, nil);
-
-	[bookArrayController addObserver:self forKeyPath:@"arrangedObjects" options:NSKeyValueObservingOptionNew context:NULL];
 }
 
 
@@ -607,7 +608,7 @@ typedef struct _monochromePixel
 		BookManagedObject * object = [selectedObjects objectAtIndex:0];
 		
 		htmlString = [pageBuilder buildPageForObject:object];
-
+		
 		NSData * data = [object valueForKey:@"coverImage"];
 
 		if (data != nil)
