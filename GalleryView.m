@@ -26,6 +26,8 @@
 {
 	unichar arrow = [[event characters] characterAtIndex:0];
 	
+	NSLog (@"0x%x", arrow);
+	
 	if (arrow == ' ')
 		arrow = NSDownArrowFunctionKey;
 		
@@ -33,6 +35,10 @@
 	{
 		NSNotification * notification = [NSNotification notificationWithName:BOOKS_SHOW_INFO object:nil];
 		[[NSNotificationCenter defaultCenter] postNotification:notification];
+	}
+	else if (arrow == NSBackspaceCharacter || arrow == NSDeleteCharacter)
+	{
+		[[NSApp delegate] removeBook:nil];
 	}
 	else if (arrow == NSRightArrowFunctionKey || arrow == NSLeftArrowFunctionKey || arrow == NSUpArrowFunctionKey ||
 			 arrow == NSDownArrowFunctionKey || arrow == NSHomeFunctionKey || arrow == NSEndFunctionKey)
@@ -284,6 +290,11 @@
 - (BOOL)acceptsFirstResponder 
 {
     return YES;
+}
+
+- (NSArrayController *) listController
+{
+	return listList;
 }
 
 @end

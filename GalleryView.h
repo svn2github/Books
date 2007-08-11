@@ -13,6 +13,7 @@
 @interface GalleryView : NSView 
 {
 	IBOutlet NSArrayController * bookList;
+	IBOutlet NSArrayController * listList;
 	IBOutlet GalleryViewControls * controls;
 
 	int rowCount;
@@ -25,5 +26,5 @@
 
 - (BOOL) isSelected:(BookManagedObject *) book;
 - (void) setSelectedView:(NSView *) v;
-
+- (NSArrayController *) listController;
 @end

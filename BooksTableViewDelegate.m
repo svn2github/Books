@@ -31,17 +31,8 @@
 
 		NSUserDefaults * prefs = [NSUserDefaults standardUserDefaults];
 
-/*		if ([prefs boolForKey:@"Separate Lists"])
-		{
-			[collectionArrayController setSortDescriptors:
-				[NSArray arrayWithObject:[[NSSortDescriptor alloc] initWithKey:@"sortName" ascending:YES]]];
-		}
-		else
-		{ 
-*/
-			[collectionArrayController setSortDescriptors:
+		[collectionArrayController setSortDescriptors:
 				[NSArray arrayWithObject:[[NSSortDescriptor alloc] initWithKey:@"name" ascending:YES]]];
-//		}
 
 		NSArray * selectedObjects = [collectionArrayController selectedObjects];
 
@@ -53,18 +44,28 @@
 	
 			if (sorts != nil)
 			{
-				NSDictionary * desc = [sorts objectForKey:[[[list objectID] URIRepresentation] absoluteString]];
+				NSArray * descs = [sorts objectForKey:[[[list objectID] URIRepresentation] absoluteString]];
 
-				if (desc != nil)
+				if (descs != nil)
 				{
-					BOOL ascend = NO;
+					NSMutableArray * sortDescs = [NSMutableArray array];
+					
+					int i = 0;
+					for (i = 0; i < [descs count]; i++)
+					{
+						NSDictionary * sort = [descs objectAtIndex:i];
+						
+						BOOL ascend = NO;
 				
-					if ([[desc valueForKey:@"ascend"] isEqual:@"YES"])
-						ascend = YES;
+						if ([[sort valueForKey:@"ascend"] isEqual:@"YES"])
+							ascend = YES;
 
-					NSSortDescriptor * sort = [[NSSortDescriptor alloc] initWithKey:[desc valueForKey:@"key"] ascending:ascend];
+						NSSortDescriptor * sortDesc = [[NSSortDescriptor alloc] initWithKey:[sort valueForKey:@"key"] ascending:ascend];
+						
+						[sortDescs addObject:sortDesc];
+					}
 
-					[booksTable setSortDescriptors:[NSArray arrayWithObject:sort]];
+					[booksTable setSortDescriptors:sortDescs];
 				}
 			}
 			
@@ -129,21 +130,29 @@
 	
 	if (currentList != nil)
 	{
-		NSSortDescriptor * sort = [descs objectAtIndex:0];
+		NSMutableArray * savedSorts = [NSMutableArray array];
 		
-		NSMutableDictionary * desc = [NSMutableDictionary dictionary];
+		int i = 0;
+		for (i = 0; i < [descs count]; i++)
+		{
+			NSSortDescriptor * sort = [descs objectAtIndex:1];
 		
-		if ([sort ascending])
-			[desc setValue:@"YES" forKey:@"ascend"];
-		else
-			[desc setValue:@"NO" forKey:@"ascend"];
+			NSMutableDictionary * desc = [NSMutableDictionary dictionary];
+		
+			if ([sort ascending])
+				[desc setValue:@"YES" forKey:@"ascend"];
+			else
+				[desc setValue:@"NO" forKey:@"ascend"];
 
-		[desc setValue:[sort key] forKey:@"key"];
+			[desc setValue:[sort key] forKey:@"key"];
 
-		[newSorts setObject:desc forKey:[[[currentList objectID] URIRepresentation] absoluteString]];
-	}
+			[newSorts setObject:desc forKey:[[[currentList objectID] URIRepresentation] absoluteString]];
+			
+			[savedSorts addObject:newSorts];
+		}
 	
-	[prefs setValue:newSorts forKey:@"Table Sorting"];
+		[prefs setValue:savedSorts forKey:@"Table Sorting"];
+	}
 }
 
 - (void) save
@@ -202,7 +211,6 @@
 	}
 
 	[defaults setObject:savedSortDescriptors forKey:@"Books Table Sorting"];
-
 }
 
 - (void) restore
@@ -246,47 +254,7 @@
 	[booksTable setSortDescriptors:sortDescriptors];
 
 	[listsTable registerForDraggedTypes:[NSArray arrayWithObject:@"Books Book Type"]];
-
 }	
-
-- (void) updateSizes
-{
-	if ([[NSUserDefaults standardUserDefaults] boolForKey:@"Use Small Table Fonts"])
-	{
-		[listsTable setRowHeight:14];
-		[booksTable setRowHeight:14];
-	}
-	else
-	{
-		[listsTable setRowHeight:17];
-		[booksTable setRowHeight:17];
-	}
-
-	NSArray * columns = [listsTable tableColumns];
-
-	int i = 0;
-	for (i = 0; i < [columns count]; i++)
-	{
-		NSTableColumn * column = [columns objectAtIndex:i];
-		
-		if ([[NSUserDefaults standardUserDefaults] boolForKey:@"Use Small Table Fonts"])
-			[[column dataCell] setFont:[NSFont systemFontOfSize:11]];
-		else
-			[[column dataCell] setFont:[NSFont systemFontOfSize:12]];
-	}
-
-	columns = [booksTable tableColumns];
-
-	for (i = 0; i < [columns count]; i++)
-	{
-		NSTableColumn * column = [columns objectAtIndex:i];
-		
-		if ([[NSUserDefaults standardUserDefaults] boolForKey:@"Use Small Table Fonts"])
-			[[column dataCell] setFont:[NSFont systemFontOfSize:11]];
-		else
-			[[column dataCell] setFont:[NSFont systemFontOfSize:12]];
-	}
-}
 
 - (void) updateBooksTable
 {
@@ -359,11 +327,6 @@
 		
 			[[column headerCell] setStringValue:title];
 
-			if ([[NSUserDefaults standardUserDefaults] boolForKey:@"Use Small Table Fonts"])
-				[[column dataCell] setFont:[NSFont systemFontOfSize:11]];
-			else
-				[[column dataCell] setFont:[NSFont systemFontOfSize:12]];
-			
 			[column bind:@"value" toObject:bookArrayController withKeyPath:[@"arrangedObjects." stringByAppendingString:key] 
 				options: nil];
 
@@ -396,7 +359,6 @@
 			[booksTable addTableColumn:column];
 		}
 	}
-
 	
 	NSString * customString = [prefs objectForKey:@"Custom List User Fields"];
 
@@ -413,7 +375,6 @@
 				NSTableColumn * column = [[NSTableColumn alloc] initWithIdentifier:field];
 		
 				[[column headerCell] setStringValue:field];
-				[[column dataCell] setFont:[NSFont systemFontOfSize:11]];
 			
 				[column bind:@"value" toObject:bookArrayController 
 					withKeyPath:[@"arrangedObjects." stringByAppendingString:field] options: nil];
@@ -514,8 +475,26 @@
 	}
 	else if ([keyPath isEqual:@"Custom List User Fields"])
 		[self updateBooksTable];
-	else if ([keyPath isEqual:@"Use Small Table Fonts"])
-		[self updateSizes];
+}
+
+- (int) getLabel
+{
+	if ([[NSUserDefaults standardUserDefaults] boolForKey:@"Show Gallery"])
+		return 1;
+	else
+		return 0;
+}
+
+- (void) setLabel:(int) label
+{
+	[self willChangeValueForKey:@"label"];
+
+	if (label == 1)
+		[[NSUserDefaults standardUserDefaults] setBool:YES forKey:@"Show Gallery"];
+	else
+		[[NSUserDefaults standardUserDefaults] setBool:NO forKey:@"Show Gallery"];
+
+	[self didChangeValueForKey:@"label"];
 }
 		
 - (void) awakeFromNib
@@ -544,45 +523,13 @@
 	[[booksTable headerView] setMenu:booksColumnMenu];
 
 	[[NSUserDefaults standardUserDefaults] addObserver:self forKeyPath:@"Show Gallery" options:NSKeyValueObservingOptionNew context:NULL];
-	[self willChangeValueForKey:@"label"];
+
 	if ([[NSUserDefaults standardUserDefaults] boolForKey:@"Show Gallery"])
-		[box selectTabViewItemAtIndex:1];
+		[self setLabel:1];
 	else
-		[box selectTabViewItemAtIndex:0];
-	[self didChangeValueForKey:@"label"];
-
-	[[NSUserDefaults standardUserDefaults] addObserver:self forKeyPath:@"Use Small Table Fonts" options:NSKeyValueObservingOptionNew context:NULL];
-
-	if ([[NSUserDefaults standardUserDefaults] boolForKey:@"Use Small Table Fonts"])
-	{
-		[[NSUserDefaults standardUserDefaults] setBool:NO forKey:@"Use Small Table Fonts"];
-		[[NSUserDefaults standardUserDefaults] setBool:YES forKey:@"Use Small Table Fonts"];
-	}
-	else
-	{
-		[[NSUserDefaults standardUserDefaults] setBool:YES forKey:@"Use Small Table Fonts"];
-		[[NSUserDefaults standardUserDefaults] setBool:NO forKey:@"Use Small Table Fonts"];
-	}
+		[self setLabel:0];
 
 	[[NSUserDefaults standardUserDefaults] addObserver:self forKeyPath:@"Custom List User Fields" options:NSKeyValueObservingOptionNew context:NULL];
-}
-
-
-
-- (int) getLabel
-{
-	if ([[NSUserDefaults standardUserDefaults] boolForKey:@"Show Gallery"])
-		return 1;
-	else
-		return 0;
-}
-
-- (void) setLabel:(int) label
-{
-	if (label == 1)
-		[[NSUserDefaults standardUserDefaults] setBool:YES forKey:@"Show Gallery"];
-	else
-		[[NSUserDefaults standardUserDefaults] setBool:NO forKey:@"Show Gallery"];
 }
 
 - (NSImage *) getListIcon

@@ -64,7 +64,7 @@
 	[context lock];
 	NSMutableSet * items = [list mutableSetValueForKey:@"items"];
 	
-	NSArray * array = [[info draggingPasteboard] propertyListForType:@"Books Book Type"];
+	NSArray * array = [NSUnarchiver unarchiveObjectWithData:[[info draggingPasteboard] dataForType:@"Books Book Type"]];
 	
 	int i = 0;
 	for (i = 0; i < [array count]; i++)
@@ -75,8 +75,7 @@
 
 		if (objectId != nil)
 		{
-			BookManagedObject * object = (BookManagedObject *) [context objectWithID:objectId];
-
+			NSObject * object = [context objectWithID:objectId];
 			[items addObject:object];
 		}
 	}

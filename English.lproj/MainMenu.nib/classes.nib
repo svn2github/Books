@@ -55,6 +55,7 @@
                 fileIcon = NSImageView; 
                 fileLocation = NSTextField; 
                 fileTitle = NSTextField; 
+                galleryViewControls = ViewControls; 
                 imageBox = NSBox; 
                 imageView = NSImageView; 
                 infoWindow = NSWindow; 
@@ -172,7 +173,11 @@
         {
             CLASS = GalleryView; 
             LANGUAGE = ObjC; 
-            OUTLETS = {bookList = NSArrayController; controls = GalleryViewControls; }; 
+            OUTLETS = {
+                bookList = NSArrayController; 
+                controls = GalleryViewControls; 
+                listList = NSArrayController; 
+            }; 
             SUPERCLASS = NSView; 
         }, 
         {CLASS = GalleryViewControls; LANGUAGE = ObjC; SUPERCLASS = ViewControls; }, 

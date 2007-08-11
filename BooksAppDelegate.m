@@ -22,7 +22,6 @@
    SOFTWARE.
 */
 
-
 #import "BooksAppDelegate.h"
 #import "ImportPluginInterface.h"
 #import "ExportPluginInterface.h"
@@ -360,6 +359,27 @@ typedef struct _monochromePixel
 	[NSThread detachNewThreadSelector:NSSelectorFromString(@"ExportToBundle") toTarget:export withObject:exportPlugin];
 }
 
+- (void) setControlsView: (NSNotification *) msg
+{
+	ViewControls * controls = [msg object];
+
+	if (controls == nil)
+		controls = defaultViewControls;
+	
+	NSView * view = [controls view];
+	NSRect viewRect = [view frame];
+	
+	NSRect oldRect = [[controlsPanel contentView] frame];
+	NSRect newRect = [controlsPanel frameRectForContentRect:viewRect];
+	newRect.origin = [controlsPanel frame].origin;
+
+	if ([controlsPanel contentView] != nil)
+		newRect.origin.y -= viewRect.size.height - oldRect.size.height;
+	
+	[controlsPanel setContentView:view];
+	[controlsPanel setFrame:newRect display:YES animate:YES];
+}
+
 - (void) awakeFromNib
 {
 	NSUserDefaults * defaults = [NSUserDefaults standardUserDefaults];
@@ -486,7 +506,6 @@ typedef struct _monochromePixel
 	[mainWindow makeKeyAndOrderFront:self];
 	
 	[summary setFieldEditor:NO];
-	[self updateMainPane];
 
 	[[NSNotificationCenter defaultCenter] addObserver:self selector:NSSelectorFromString(@"startUpdateTimer") 
 		name:BOOK_DID_UPDATE object:nil];
@@ -511,25 +530,20 @@ typedef struct _monochromePixel
 	
 	[mainWindow setTitle:NSLocalizedString (@"Books - Loading...", nil)];
 
-	/* if (IS_TEST)
-	{
-		NSRunAlertPanel (NSLocalizedString (@"Books Development Version", nil),  
-			NSLocalizedString (@"This is a development build of Books. Please send any problems you encounter to books@aetherial.net.", nil), 
-			NSLocalizedString (@"OK", nil), nil, nil);
-	} */
-	
 	[bookArrayController addObserver:self forKeyPath:@"arrangedObjects" options:NSKeyValueObservingOptionNew context:NULL];
 
 	if ([[NSUserDefaults standardUserDefaults] boolForKey:@"Show Gallery"])
 	{
-		[[NSUserDefaults standardUserDefaults] setBool:NO forKey:@"Show Gallery"];
-		[[NSUserDefaults standardUserDefaults] setBool:YES forKey:@"Show Gallery"];
+		NSNotification * notification = [NSNotification notificationWithName:BOOKS_SET_CONTROL_VIEW object:galleryViewControls];
+		[[NSNotificationCenter defaultCenter] postNotification:notification];
 	}
 	else
 	{
-		[[NSUserDefaults standardUserDefaults] setBool:YES forKey:@"Show Gallery"];
-		[[NSUserDefaults standardUserDefaults] setBool:NO forKey:@"Show Gallery"];
+		NSNotification * notification = [NSNotification notificationWithName:BOOKS_SET_CONTROL_VIEW object:nil];
+		[[NSNotificationCenter defaultCenter] postNotification:notification];
 	}
+
+	[self updateMainPane];
 }
 
 
@@ -543,29 +557,6 @@ typedef struct _monochromePixel
 		[bookArrayController removeObserver:self forKeyPath:@"selectedObjects"];
 		[bookArrayController addObserver:self forKeyPath:@"selectedObjects" options:NSKeyValueObservingOptionNew context:NULL];
 	}
-}
-
-- (void) setControlsView: (NSNotification *) msg
-{
-	ViewControls * controls = [msg object];
-
-	if (controls == nil)
-		controls = defaultViewControls;
-	
-	NSView * view = [controls view];
-	NSRect viewRect = [view frame];
-	
-	NSRect oldRect = [[controlsPanel contentView] frame];
-	NSRect newRect = [controlsPanel frameRectForContentRect:viewRect];
-	newRect.origin = [controlsPanel frame].origin;
-
-	if ([controlsPanel contentView] != nil)
-		newRect.origin.y -= viewRect.size.height - oldRect.size.height;
-	
-	[controlsPanel setContentView:view];
-	[controlsPanel setFrame:newRect display:YES animate:YES];
-
-	// [controlsPanel setTitle:[controls title]];
 }
 
 - (void) startProgress: (NSNotification *) msg
@@ -1018,34 +1009,7 @@ typedef struct _monochromePixel
 	SmartListManagedObject * sc = [[SmartListManagedObject alloc] initWithEntity:desc insertIntoManagedObjectContext:context];
 	[sc setValue:NSLocalizedString (@"New Smart List", nil) forKey:@"name"];
 	
-	/* [context lock];
-	[context insertObject:sc];
-	[context unlock]; */
-	
 	[collectionArrayController addObject:sc];
-
-	// [tableViewDelegate reloadListsTable];
-
-	/* NSPredicate * newPredicate = [NSPredicate predicateWithFormat:@"title CONTAINS[c] \"Book\""];
-	NSString * name = @"New Smart List";
-
-	NSArray * lists = [collectionArrayController arrangedObjects];
-	
-	for (i = 0; i < [lists count]; i++)
-	{
-		NSString * listName = [[lists objectAtIndex:i] valueForKey:@"name"];
-		
-		if ([[lists objectAtIndex:i] isMemberOfClass:[SmartListManagedObject class]])
-		{
-			SmartListManagedObject * list = [lists objectAtIndex:i];
-			
-			if ([newPredicate isEqual:[list getPredicate]]  && [name isEqual:listName])
-				[collectionArrayController setSelectedObjects:[NSArray arrayWithObject:list]];
-		}
-	} */
-
-	// [collectionArrayController setSelectedObjects:[NSArray arrayWithObject:sc]];
-
 	
 	[self editSmartList:sender];
 }
@@ -1059,22 +1023,12 @@ typedef struct _monochromePixel
 	ListManagedObject * object = [[ListManagedObject alloc] initWithEntity:desc insertIntoManagedObjectContext:context];
 	[object setValue:NSLocalizedString (@"New List", nil) forKey:@"name"];
 
-	/*[context lock];
-			
-	[context insertObject:object];
-
-	[context unlock];
-	*/
-	
 	[collectionArrayController addObject:object];
 	
 	[collectionArrayController setSortDescriptors:
 		[NSArray arrayWithObject:[[NSSortDescriptor alloc] initWithKey:@"name" ascending:YES]]];
 	
-	// [collectionArrayController setSelectedObjects:[NSArray arrayWithObject:object]];
-
 	[self save:sender];
-	// [tableViewDelegate reloadListsTable];
 }
 
 - (IBAction) newBook:(id) sender

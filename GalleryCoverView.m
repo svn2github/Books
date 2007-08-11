@@ -9,6 +9,7 @@
 #import "GalleryCoverView.h"
 #import "GalleryView.h"
 #import "BooksAppDelegate.h"
+#import "SmartListManagedObject.h"
 
 @implementation GalleryCoverView
 
@@ -243,6 +244,31 @@
 	}
 	
 	[super mouseUp:theEvent];
+}
+
+
+- (NSMenu *) menuForEvent:(NSEvent *)theEvent
+{
+	GalleryView * gv = (GalleryView *) [self superview];
+	
+	[gv setSelectedView:self];
+
+	ListManagedObject * obj = [[[((GalleryView *) [self superview] ) listController] selectedObjects] objectAtIndex:0];
+
+	NSMenu * menu = [[NSMenu alloc] init];
+
+	if ([obj isKindOfClass:[SmartListManagedObject class]])
+		[menu addItemWithTitle:NSLocalizedString (@"No operations available", nil) action:nil keyEquivalent:@""];
+	else
+	{
+		[menu addItemWithTitle:NSLocalizedString (@"Duplicate", nil) action:NSSelectorFromString(@"duplicateRecords:") keyEquivalent:@""];
+		[menu addItemWithTitle:NSLocalizedString (@"Delete", nil) action:NSSelectorFromString(@"removeBook:") keyEquivalent:@""];
+		[menu addItem:[NSMenuItem separatorItem]];
+
+		[menu addItemWithTitle:NSLocalizedString (@"New Book", nil) action:NSSelectorFromString(@"newBook:") keyEquivalent:@""];
+	}
+
+	return menu;
 }
 
 @end

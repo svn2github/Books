@@ -25,21 +25,47 @@
 
 #import "BookListArrayController.h"
 #import "SmartListManagedObject.h""
+#import "BookManagedObject.h"
 
 @implementation BookListArrayController
+
+- (int) numberOfRowsInTableView: (NSTableView *) aTableView
+{
+	return [[self arrangedObjects] count];
+}
+
+- (id)tableView:(NSTableView *)aTableView objectValueForTableColumn:(NSTableColumn *)aTableColumn row:(int)rowIndex
+{
+	BookManagedObject * book = [[self arrangedObjects] objectAtIndex:rowIndex];
+	
+	return [book valueForKey:[aTableColumn identifier]];
+}
 
 - (BOOL)tableView:(NSTableView *)tv writeRowsWithIndexes:(NSIndexSet *)rows toPasteboard:(NSPasteboard*)pboard
 {
 	if ([[listController selectedObjects] count] != 1)
 		return NO;
 
-	selectedRows = [rows retain];
+	// selectedRows = [rows retain];
+	
+	NSArray * objects = [[self arrangedObjects] objectsAtIndexes:rows];
 	
 	NSString * type = @"Books Book Type";
-    NSArray * typesArray = [NSArray arrayWithObjects:type, nil];
+    NSArray * types = [NSArray arrayWithObjects:type, nil];
 	
-	[pboard declareTypes:typesArray owner:self];
+	[pboard declareTypes:types owner:self];
 
+	NSMutableArray * urls = [NSMutableArray array];    
+	
+	int i = 0;
+	for (i = 0; i < [objects count]; i++)
+	{
+		NSURL * url = [[[[self arrangedObjects] objectAtIndex:i] objectID] URIRepresentation];
+		[urls addObject:[url description]];
+	}
+
+	[pboard setData:[NSArchiver archivedDataWithRootObject:urls] forType:type];
+	
     return YES;
 }
 
@@ -48,7 +74,7 @@
 	[super addObjects:objects];
 }
 
-- (void) pasteboard:(NSPasteboard *) pboard provideDataForType:(NSString *) type
+/* - (void) pasteboard:(NSPasteboard *) pboard provideDataForType:(NSString *) type
 {
 	if ([type isEqualTo:@"Books Book Type"])
 	{
@@ -67,7 +93,7 @@
 
 		[pboard setPropertyList:rowCopies forType:type];
 	}
-}
+} */
 
 - (NSDragOperation)tableView:(NSTableView *)tableView validateDrop:(id <NSDraggingInfo>)info proposedRow:(int)row proposedDropOperation:(NSTableViewDropOperation)operation
 {

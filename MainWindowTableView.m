@@ -34,17 +34,76 @@
 {
 	unichar arrow = [[event characters] characterAtIndex:0];
 	
-	/* if (arrow == NSLeftArrowFunctionKey)
-		[((BooksAppDelegate *) [NSApp delegate]) selectListsTable:self];
-	else if (arrow == NSRightArrowFunctionKey)
-		[((BooksAppDelegate *) [NSApp delegate]) selectBooksTable:self]; */
-	// else if (arrow == 13 || arrow == 3)
-	if (arrow == 13 || arrow == 3)
-		[((BooksAppDelegate *) [NSApp delegate]) getInfoWindow:self];
-	// else if (arrow == ' ')
-	//	[((BooksAppDelegate *) [[NSApplication sharedApplication] delegate]) pageContent:self];
+	if (self == [[self delegate] getListsTable])
+	{
+		if (arrow == NSBackspaceCharacter || arrow == NSDeleteCharacter)
+		{
+			[[NSApp delegate] removeList:nil];
+		}
+	}
+	else if (self == [[self delegate] getBooksTable])
+	{
+		if (arrow == 13 || arrow == 3)
+		{
+			NSNotification * notification = [NSNotification notificationWithName:BOOKS_SHOW_INFO object:nil];
+			[[NSNotificationCenter defaultCenter] postNotification:notification];
+		}
+		else if (arrow == NSBackspaceCharacter || arrow == NSDeleteCharacter)
+		{
+			[[NSApp delegate] removeBook:nil];
+		}
+	}
 	else
 		[super keyDown:event];
+}
+
+- (void) updateRowSize
+{
+	BOOL smallFonts = [[NSUserDefaults standardUserDefaults] boolForKey:@"Use Small Table Fonts"];
+
+	if (smallFonts)
+		[self setRowHeight:14];
+	else
+		[self setRowHeight:17];
+
+	NSArray * columns = [self tableColumns];
+
+	int i = 0;
+	for (i = 0; i < [columns count]; i++)
+	{
+		NSTableColumn * column = [columns objectAtIndex:i];
+		
+		if (smallFonts)
+			[[column dataCell] setFont:[NSFont systemFontOfSize:11]];
+		else
+			[[column dataCell] setFont:[NSFont systemFontOfSize:12]];
+	}
+}
+
+- (void) addTableColumn:(NSTableColumn *) aColumn
+{
+	[super addTableColumn:aColumn];
+	[self updateRowSize];
+}
+
+- (void) awakeFromNib
+{
+	[[NSUserDefaults standardUserDefaults] addObserver:self forKeyPath:@"Use Small Table Fonts" options:NSKeyValueObservingOptionNew context:NULL];
+
+	if ([[NSUserDefaults standardUserDefaults] valueForKey:@"Use Small Table Fonts"] == nil)
+	{
+		NSLog (@"setting small table font");
+		
+		[[NSUserDefaults standardUserDefaults] setBool:YES forKey:@"Use Small Table Fonts"];
+	}
+	
+	[self updateRowSize];
+}
+
+- (void) observeValueForKeyPath: (NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context
+{
+    if ([keyPath isEqual:@"Use Small Table Fonts"])
+		[self updateRowSize];
 }
 
 - (NSMenu *) menuForEvent:(NSEvent *)theEvent

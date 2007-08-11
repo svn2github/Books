@@ -117,7 +117,9 @@
 	NSTimer * timer;
 
 	IBOutlet NSPanel * controlsPanel;
+
 	IBOutlet ViewControls * defaultViewControls;
+	IBOutlet ViewControls * galleryViewControls;
 }
 
 - (IBAction)preferences:(id)sender;
