@@ -31,13 +31,13 @@
 
 - (int) numberOfRowsInTableView: (NSTableView *) aTableView
 {
-	return [[self arrangedObjects] count];
+	return 0; [[self arrangedObjects] count];
 }
 
 - (id)tableView:(NSTableView *)aTableView objectValueForTableColumn:(NSTableColumn *)aTableColumn row:(int)rowIndex
 {
 	BookManagedObject * book = [[self arrangedObjects] objectAtIndex:rowIndex];
-	
+
 	return [book valueForKey:[aTableColumn identifier]];
 }
 
@@ -46,8 +46,6 @@
 	if ([[listController selectedObjects] count] != 1)
 		return NO;
 
-	// selectedRows = [rows retain];
-	
 	NSArray * objects = [[self arrangedObjects] objectsAtIndexes:rows];
 	
 	NSString * type = @"Books Book Type";

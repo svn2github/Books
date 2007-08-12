@@ -26,8 +26,6 @@
 {
 	unichar arrow = [[event characters] characterAtIndex:0];
 	
-	NSLog (@"0x%x", arrow);
-	
 	if (arrow == ' ')
 		arrow = NSDownArrowFunctionKey;
 		
@@ -57,7 +55,7 @@
 				position--;
 			else if (arrow == NSUpArrowFunctionKey)
 			{
-				if (position - rowCount > 0)
+				if (position - rowCount >= 0)
 					position -= rowCount;
 			}
 			else if (arrow == NSDownArrowFunctionKey)

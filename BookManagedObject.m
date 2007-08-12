@@ -625,7 +625,7 @@
 - (NSObject *) valueForKey:(NSString *) key
 {
 	NSObject * value = nil;
-	
+
 	NS_DURING
 		value = [super valueForKey:key];
 	NS_HANDLER
@@ -701,8 +701,12 @@
 		NSManagedObject * fieldPair = [userFieldArray objectAtIndex:j];
 				
 		NSString * name = [[fieldPair valueForKey:@"key"] description];
+
+		NSMutableString * cleanName = [NSMutableString stringWithString:name];
+		[cleanName replaceOccurrencesOfString:@"." withString:@"" options:NSCaseInsensitiveSearch 
+			range:NSMakeRange (0, [cleanName length])];
 		
-		if ([name isEqualToString:key])
+		if ([cleanName isEqualToString:key])
 		{
 			NSObject * value = [fieldPair valueForKey:@"value"];
 

@@ -40,6 +40,8 @@
 		{
 			[[NSApp delegate] removeList:nil];
 		}
+		else
+			[super keyDown:event];
 	}
 	else if (self == [[self delegate] getBooksTable])
 	{
@@ -52,9 +54,9 @@
 		{
 			[[NSApp delegate] removeBook:nil];
 		}
+		else
+			[super keyDown:event];
 	}
-	else
-		[super keyDown:event];
 }
 
 - (void) updateRowSize

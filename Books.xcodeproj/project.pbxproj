@@ -1329,6 +1329,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				BUILD_VARIANTS = normal;
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
 				GENERATE_PROFILING_CODE = NO;
 				MACOSX_DEPLOYMENT_TARGET = 10.4;
 				SDKROOT = /Developer/SDKs/MacOSX10.4u.sdk;
@@ -1345,6 +1346,7 @@
 				);
 				COPY_PHASE_STRIP = NO;
 				GCC_DEBUGGING_SYMBOLS = default;
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
 				GCC_OPTIMIZATION_LEVEL = 0;
 				MACOSX_DEPLOYMENT_TARGET = 10.4;
 				SDKROOT = /Developer/SDKs/MacOSX10.4u.sdk;
@@ -1356,6 +1358,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				BUILD_VARIANTS = normal;
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
 				GENERATE_PROFILING_CODE = YES;
 				MACOSX_DEPLOYMENT_TARGET = 10.4;
 				SDKROOT = /Developer/SDKs/MacOSX10.4u.sdk;

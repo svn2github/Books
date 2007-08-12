@@ -135,7 +135,7 @@
 		int i = 0;
 		for (i = 0; i < [descs count]; i++)
 		{
-			NSSortDescriptor * sort = [descs objectAtIndex:1];
+			NSSortDescriptor * sort = [descs objectAtIndex:i];
 		
 			NSMutableDictionary * desc = [NSMutableDictionary dictionary];
 		
@@ -369,17 +369,23 @@
 		for (i = 0; i < [fields count]; i++)
 		{
 			NSString * field = [fields objectAtIndex:i];
-
 			if (![field isEqual:@""])
 			{
-				NSTableColumn * column = [[NSTableColumn alloc] initWithIdentifier:field];
+				NSMutableString * fieldKey = [NSMutableString stringWithString:field];
+				
+				[fieldKey replaceOccurrencesOfString:@"." withString:@"" options:NSCaseInsensitiveSearch 
+					range:NSMakeRange (0, [fieldKey length])];
+
+				// NSLog (@"fieldKey = %@", fieldKey);
+				
+				NSTableColumn * column = [[NSTableColumn alloc] initWithIdentifier:fieldKey];
 		
 				[[column headerCell] setStringValue:field];
 			
 				[column bind:@"value" toObject:bookArrayController 
-					withKeyPath:[@"arrangedObjects." stringByAppendingString:field] options: nil];
+					withKeyPath:[@"arrangedObjects." stringByAppendingString:fieldKey] options: nil];
 			
-				NSSortDescriptor * sortDescriptor = [[NSSortDescriptor alloc] initWithKey:field ascending:YES];
+				NSSortDescriptor * sortDescriptor = [[NSSortDescriptor alloc] initWithKey:fieldKey ascending:YES];
 				
 				[column setSortDescriptorPrototype:sortDescriptor];
 
@@ -389,7 +395,7 @@
 			}
 		}
 	}		
-	
+
 	[booksTable sizeToFit];
 	[booksTable setDoubleAction:@selector(getInfoWindow:)];
 }
