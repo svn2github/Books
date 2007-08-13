@@ -530,12 +530,33 @@
 
 	[[NSUserDefaults standardUserDefaults] addObserver:self forKeyPath:@"Show Gallery" options:NSKeyValueObservingOptionNew context:NULL];
 
+	NSLog (@"set");
+	
+	[listsTable setNextKeyView:booksTable];
+	
 	if ([[NSUserDefaults standardUserDefaults] boolForKey:@"Show Gallery"])
+	{
+		[listsTable setNextKeyView:gallery];
 		[self setLabel:1];
+	}
 	else
+	{
 		[self setLabel:0];
-
+	}
+	
 	[[NSUserDefaults standardUserDefaults] addObserver:self forKeyPath:@"Custom List User Fields" options:NSKeyValueObservingOptionNew context:NULL];
+
+	[[NSNotificationCenter defaultCenter] addObserver:self selector:NSSelectorFromString(@"setControlsView:") name:BOOKS_SET_CONTROL_VIEW object:nil];
+}
+
+- (void) setControlsView: (NSNotification *) msg
+{
+	ViewControls * controls = [msg object];
+
+	if (controls == nil)
+		[listsTable setNextKeyView:booksTable];
+	else
+		[listsTable setNextKeyView:gallery];
 }
 
 - (NSImage *) getListIcon

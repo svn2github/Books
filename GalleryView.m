@@ -39,7 +39,8 @@
 		[[NSApp delegate] removeBook:nil];
 	}
 	else if (arrow == NSRightArrowFunctionKey || arrow == NSLeftArrowFunctionKey || arrow == NSUpArrowFunctionKey ||
-			 arrow == NSDownArrowFunctionKey || arrow == NSHomeFunctionKey || arrow == NSEndFunctionKey)
+			 arrow == NSDownArrowFunctionKey || arrow == NSHomeFunctionKey || arrow == NSEndFunctionKey ||
+			 arrow == NSPageUpFunctionKey || arrow == NSPageDownFunctionKey)
 	{
 		if ([[bookList selectedObjects] count] == 0)
 			[bookList selectNext:self];
@@ -67,7 +68,16 @@
 				position = 0;
 			else if (arrow == NSEndFunctionKey)
 				position = maxIndex;
+			else if (arrow == NSPageUpFunctionKey || arrow == NSPageDownFunctionKey)
+			{
+				NSRect clipRect = [self visibleRect];
 
+				if (arrow == NSPageUpFunctionKey)
+					position -= rowCount * ((int) (clipRect.size.height / gallerySize));
+				else
+					position += rowCount * ((int) (clipRect.size.height / gallerySize));
+			}
+			
 			if (position < 0)
 				position = 0;
 			if (position > maxIndex)
