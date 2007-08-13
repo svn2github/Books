@@ -36,6 +36,8 @@
 		383651A609F5CED400BD9A77 /* PeopleArrayController.m in Sources */ = {isa = PBXBuildFile; fileRef = 383651A409F5CED400BD9A77 /* PeopleArrayController.m */; };
 		383A7F53098B094F00C96423 /* ListNameString.m in Sources */ = {isa = PBXBuildFile; fileRef = 383A7F51098B094F00C96423 /* ListNameString.m */; };
 		383A7F62098B0A7700C96423 /* SmartListNameString.m in Sources */ = {isa = PBXBuildFile; fileRef = 383A7F60098B0A7700C96423 /* SmartListNameString.m */; };
+		383B567F0C7000B90090FCFF /* GalleryTextView.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 383B567D0C7000B90090FCFF /* GalleryTextView.h */; };
+		383B56800C7000B90090FCFF /* GalleryTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = 383B567E0C7000B90090FCFF /* GalleryTextView.m */; };
 		383DBEA30A6ABD0100685384 /* MainMenu.strings in Resources */ = {isa = PBXBuildFile; fileRef = 383DBEA20A6ABD0100685384 /* MainMenu.strings */; };
 		383DBEC90A6ABEA300685384 /* Credits.rtf in Resources */ = {isa = PBXBuildFile; fileRef = 383DBEC80A6ABEA300685384 /* Credits.rtf */; };
 		383DBED70A6AF83D00685384 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 383DBED60A6AF83D00685384 /* Localizable.strings */; };
@@ -178,6 +180,7 @@
 				389F31C30C69063300BE0FCA /* BooksLibraryCompactor.h in CopyFiles */,
 				389F33CF0C6997AE00BE0FCA /* GalleryViewControls.h in CopyFiles */,
 				389F33D70C6997F300BE0FCA /* ViewControls.h in CopyFiles */,
+				383B567F0C7000B90090FCFF /* GalleryTextView.h in CopyFiles */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -244,6 +247,8 @@
 		383A7F51098B094F00C96423 /* ListNameString.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ListNameString.m; sourceTree = "<group>"; };
 		383A7F5F098B0A7700C96423 /* SmartListNameString.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SmartListNameString.h; sourceTree = "<group>"; };
 		383A7F60098B0A7700C96423 /* SmartListNameString.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SmartListNameString.m; sourceTree = "<group>"; };
+		383B567D0C7000B90090FCFF /* GalleryTextView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GalleryTextView.h; sourceTree = "<group>"; };
+		383B567E0C7000B90090FCFF /* GalleryTextView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GalleryTextView.m; sourceTree = "<group>"; };
 		383DBE9E0A6ABCFA00685384 /* English */ = {isa = PBXFileReference; fileEncoding = 10; lastKnownFileType = text.plist.strings; name = English; path = English.lproj/MainMenu.strings; sourceTree = "<group>"; };
 		383DBEBB0A6ABD7400685384 /* German */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = German; path = German.lproj/MainMenu.strings; sourceTree = "<group>"; };
 		383DBEC40A6ABE2000685384 /* German */ = {isa = PBXFileReference; lastKnownFileType = wrapper.nib; name = German; path = German.lproj/MainMenu.nib; sourceTree = "<group>"; };
@@ -692,6 +697,8 @@
 				386594420C6053F50067A9B6 /* GalleryScrollView.m */,
 				389F33CD0C6997AE00BE0FCA /* GalleryViewControls.h */,
 				389F33CE0C6997AE00BE0FCA /* GalleryViewControls.m */,
+				383B567D0C7000B90090FCFF /* GalleryTextView.h */,
+				383B567E0C7000B90090FCFF /* GalleryTextView.m */,
 			);
 			name = "Gallery View";
 			sourceTree = "<group>";
@@ -1111,6 +1118,7 @@
 				389F31C40C69063300BE0FCA /* BooksLibraryCompactor.m in Sources */,
 				389F33D00C6997AE00BE0FCA /* GalleryViewControls.m in Sources */,
 				389F33D80C6997F300BE0FCA /* ViewControls.m in Sources */,
+				383B56800C7000B90090FCFF /* GalleryTextView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

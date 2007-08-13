@@ -10,6 +10,7 @@
 #import "GalleryView.h"
 #import "BooksAppDelegate.h"
 #import "SmartListManagedObject.h"
+#import "GalleryTextView.h"
 
 @implementation GalleryCoverView
 
@@ -24,9 +25,17 @@
 		imageView = [[NSImageView alloc] init];
 		[imageView setImageScaling:NSScaleToFit];
 		[imageView setImageFrameStyle:NSImageFramePhoto];
-		[self addSubview:imageView];
+ 		[self addSubview:imageView];
 		[imageView setHidden:NO];
 
+		titleView = [[GalleryTextView alloc] init];
+
+		[titleView setDrawsBackground:NO];
+		[titleView setEditable:NO];
+		[titleView setHidden:YES];
+			
+		[self addSubview:titleView positioned:NSWindowAbove relativeTo:imageView];
+		
 		cachedData = nil;
 		currentBook = nil;
 		
@@ -91,8 +100,20 @@
 
 	float x = (frameSize.width - viewSize.width) / 2;
 	float y = (frameSize.height - viewSize.height) / 2;
-	
+
 	[imageView setFrame:NSMakeRect (x, y, viewSize.width, viewSize.height)];
+
+	if (![titleView isHidden])
+	{
+		NSRect frame = [titleView frame];
+		frame.origin.x = x;
+		frame.origin.y = y;
+		frame.size.width = viewSize.width;
+
+		[titleView setFrame:frame];
+		[titleView setAlignment:NSCenterTextAlignment];
+		[titleView setNeedsDisplay:YES];
+	}
 }
 
 - (void) drawSelectedBackground
@@ -145,17 +166,25 @@
 				[cachedData release];
 				
 			cachedData = [[NSData alloc] initWithData:data];
+
+			[titleView setHidden:YES];
 		}
 		else
 		{
 			[imageView setImage:[NSImage imageNamed:@"Books"]];
 			[imageView setImageFrameStyle:NSImageFrameNone];
+			
+			[titleView setString:[currentBook valueForKey:@"title"]];
+			[titleView setHidden:NO];
 		}
 	}
 	else
+	{
 		[imageView setImage:nil];
-
-	[self setNeedsDisplay:YES];
+		[titleView setHidden:YES];
+	}
+	
+	[self setImageViewFrame];
 }
 
 - (void) setBook:(BookManagedObject *) book
@@ -192,7 +221,13 @@
 			[self updateImage];
 	}
 	else if ([keyPath isEqual:@"title"])
+	{
 		[imageView setToolTip:[currentBook valueForKey:@"title"]];
+		[titleView setString:[currentBook valueForKey:@"title"]];
+		
+		[self setNeedsDisplay:YES];
+		[titleView setNeedsDisplay:YES];
+	}
 }
 
 

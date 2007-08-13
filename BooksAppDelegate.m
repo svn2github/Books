@@ -1407,7 +1407,10 @@ typedef struct _monochromePixel
 
 	NSBundle * quickfillPlugin = (NSBundle *) [quickfillPlugins objectForKey:pluginKey];
 	
-	NSArray * books = [bookArrayController arrangedObjects];
+	NSArray * books = [bookArrayController selectedObjects];
+	
+	if ([books count] == 0)
+		books = [bookArrayController arrangedObjects];
 
 	[progressIndicator setUsesThreadedAnimation:YES];
 	[progressIndicator startAnimation:self];

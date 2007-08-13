@@ -13,6 +13,8 @@
 {
 	NSImageView * imageView;
 	BookManagedObject * currentBook;
+	
+	NSTextView * titleView;
 	float margin;
 	NSData * cachedData;
 	NSTimer * timer;

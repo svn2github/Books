@@ -31,7 +31,7 @@
 
 - (int) numberOfRowsInTableView: (NSTableView *) aTableView
 {
-	return 0; [[self arrangedObjects] count];
+	return [[self arrangedObjects] count];
 }
 
 - (id)tableView:(NSTableView *)aTableView objectValueForTableColumn:(NSTableColumn *)aTableColumn row:(int)rowIndex
@@ -58,7 +58,9 @@
 	int i = 0;
 	for (i = 0; i < [objects count]; i++)
 	{
-		NSURL * url = [[[[self arrangedObjects] objectAtIndex:i] objectID] URIRepresentation];
+		BookManagedObject * book = [objects objectAtIndex:i];
+		
+		NSURL * url = [[book objectID] URIRepresentation];
 		[urls addObject:[url description]];
 	}
 

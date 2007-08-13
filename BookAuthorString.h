@@ -28,7 +28,7 @@
 
 @interface BookAuthorString : BookTitleString 
 {
-	NSString * sortAuthors;
+
 }
 
 -(NSString *) getSortString;

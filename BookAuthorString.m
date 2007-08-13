@@ -29,15 +29,9 @@
 
 - (NSComparisonResult) compare: (BookAuthorString *) string
 {
-	if (sortAuthors == nil)
-	{
-		sortAuthors = [[NSUserDefaults standardUserDefaults] stringForKey:@"Sort People Names"];
+	BOOL sortAuthors = [[NSUserDefaults standardUserDefaults] boolForKey:@"Sort People Names"];
 
-		if (sortAuthors == nil)
-			sortAuthors = @"No";
-	}
-
-	if (![sortAuthors isEqual:@"Yes"])
+	if (!sortAuthors)
 		return [self caseInsensitiveCompare:string];
 	else
 		return [[self getSortString] caseInsensitiveCompare:[string getSortString]];
