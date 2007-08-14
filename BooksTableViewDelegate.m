@@ -376,8 +376,6 @@
 				[fieldKey replaceOccurrencesOfString:@"." withString:@"" options:NSCaseInsensitiveSearch 
 					range:NSMakeRange (0, [fieldKey length])];
 
-				// NSLog (@"fieldKey = %@", fieldKey);
-				
 				NSTableColumn * column = [[NSTableColumn alloc] initWithIdentifier:fieldKey];
 		
 				[[column headerCell] setStringValue:field];
@@ -530,8 +528,6 @@
 
 	[[NSUserDefaults standardUserDefaults] addObserver:self forKeyPath:@"Show Gallery" options:NSKeyValueObservingOptionNew context:NULL];
 
-	NSLog (@"set");
-	
 	[listsTable setNextKeyView:booksTable];
 	
 	if ([[NSUserDefaults standardUserDefaults] boolForKey:@"Show Gallery"])

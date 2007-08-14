@@ -301,7 +301,7 @@ typedef struct _monochromePixel
 
 - (IBAction) getInfoWindow: (id) sender
 {
-	if ([infoWindow isVisible])
+	if ([infoWindow isKeyWindow])
 	{
 		[infoWindow orderOut:sender];
 		[toolbarDelegate setGetInfoLabel:NSLocalizedString (@"Get Info", nil)];
@@ -954,7 +954,6 @@ typedef struct _monochromePixel
 		}
 	}
 }
-
 
 - (NSArray *) getDisplayStyles
 {

@@ -93,11 +93,7 @@
 	[[NSUserDefaults standardUserDefaults] addObserver:self forKeyPath:@"Use Small Table Fonts" options:NSKeyValueObservingOptionNew context:NULL];
 
 	if ([[NSUserDefaults standardUserDefaults] valueForKey:@"Use Small Table Fonts"] == nil)
-	{
-		NSLog (@"setting small table font");
-		
 		[[NSUserDefaults standardUserDefaults] setBool:YES forKey:@"Use Small Table Fonts"];
-	}
 	
 	[self updateRowSize];
 }

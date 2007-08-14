@@ -177,6 +177,19 @@
 			[titleView setString:[currentBook valueForKey:@"title"]];
 			[titleView setHidden:NO];
 		}
+		
+		NSMutableString * string = [NSMutableString stringWithString:[currentBook valueForKey:@"title"]];
+		NSString * authors = [currentBook valueForKey:@"authors"];
+		
+		if (authors != nil && ![authors isEqual:@""])
+		{
+			[string appendString:@"\n("];
+			[string appendString:authors];
+			[string appendString:@")"];
+		}
+		
+		[imageView setToolTip:string];
+
 	}
 	else
 	{
@@ -222,7 +235,15 @@
 	}
 	else if ([keyPath isEqual:@"title"])
 	{
-		[imageView setToolTip:[currentBook valueForKey:@"title"]];
+		NSMutableString * string = [NSMutableString stringWithString:[currentBook valueForKey:@"title"]];
+		
+		if ([currentBook valueForKey:@"authors"] != nil)
+		{
+			[string appendString:@"\n"];
+			[string appendString:[currentBook valueForKey:@"authors"]];
+		}
+		
+		[imageView setToolTip:string];
 		[titleView setString:[currentBook valueForKey:@"title"]];
 		
 		[self setNeedsDisplay:YES];
