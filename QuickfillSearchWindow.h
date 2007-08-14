@@ -40,7 +40,7 @@
 
 - (IBAction) doSave: (id) sender;
 - (IBAction) doSearch: (id) sender;
-- (IBAction)doCancel:(id)sender;
+- (IBAction) doCancel:(id)sender;
 
 - (NSArrayController *) getArrayController;
 

@@ -817,10 +817,20 @@ typedef struct _monochromePixel
 {
 	if (quickfill != nil)
 		[quickfill killTask];
+
+	if ([infoWindow isVisible])
+	{
+		[NSApp endSheet:quickfillWindow];
+
+		[quickfillWindow orderOut:self];
+		[quickfillProgress stopAnimation:self];
+	}
 }
 
 - (void) stopQuickfill
 {
+	[quickfill killTask];
+	
 	[quickfill release];
 	quickfill = nil;
 	

@@ -32,6 +32,7 @@
 	
 	BookManagedObject * book;
 	BOOL replace;
+	BOOL cancelled;
 	
 	NSString * executablePath;
 	NSString * lastSource;

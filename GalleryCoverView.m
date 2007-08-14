@@ -154,13 +154,17 @@
 	if (currentBook != nil)
 	{
 		NSData * data = [currentBook valueForKey:@"coverImage"];
+
+		NSImage * image = [[NSImage alloc] initWithData:data];
 		
-		if ((cachedData == nil || ![cachedData isEqualToData:data]) && data != nil)
+		NSSize size = [image size];
+		
+		BOOL bigEnough = size.width > 64 && size.height > 64;
+		
+		if ((cachedData == nil || ![cachedData isEqualToData:data]) && data != nil && bigEnough)
 		{
-			NSImage * image = [[NSImage alloc] initWithData:data];
 			[imageView setImage:image];
 			[imageView setImageFrameStyle:NSImageFramePhoto];
-			[image release];
 			
 			if (cachedData != nil)
 				[cachedData release];
@@ -177,6 +181,8 @@
 			[titleView setString:[currentBook valueForKey:@"title"]];
 			[titleView setHidden:NO];
 		}
+
+		[image release];
 		
 		NSMutableString * string = [NSMutableString stringWithString:[currentBook valueForKey:@"title"]];
 		NSString * authors = [currentBook valueForKey:@"authors"];
@@ -279,43 +285,48 @@
 
 - (void) mouseDragged:(NSEvent *)theEvent
 {
-	NSPasteboard * pboard = [NSPasteboard generalPasteboard];
-	
-	NSString * type = @"Books Book Type";
-    NSArray * types = [NSArray arrayWithObjects:type, nil];
-	
-	[pboard declareTypes:types owner:self];
-
-	NSMutableArray * urls = [NSMutableArray array];    
-	
-	NSURL * url = [[currentBook objectID] URIRepresentation];
-	[urls addObject:[url description]];
-
-	[pboard setData:[NSArchiver archivedDataWithRootObject:urls] forType:type];
-
-	NSImage * dragImage = [[NSImage alloc] initWithData:[[imageView image] TIFFRepresentation]];
-
-	NSSize size = [dragImage size];
-	
-	float ratio = size.width / size.height;
-	
-	if (ratio > 1)
+	if (currentBook != nil)
 	{
-		size.height = 96 / ratio;
-		size.width = 96;
-	}
-	else
-	{
-		size.width = 96 * ratio;
-		size.height = 96;
-	}
+		NSPasteboard * pboard = [NSPasteboard generalPasteboard];
+	
+		NSString * type = @"Books Book Type";
+		NSArray * types = [NSArray arrayWithObjects:type, nil];
+	
+		[pboard declareTypes:types owner:self];
+
+		NSMutableArray * urls = [NSMutableArray array];    
+	
+		NSURL * url = [[currentBook objectID] URIRepresentation];
+		[urls addObject:[url description]];
+
+		[pboard setData:[NSArchiver archivedDataWithRootObject:urls] forType:type];
+
+		NSImage * dragImage = [[NSImage alloc] initWithData:[[imageView image] TIFFRepresentation]];
+
+		NSSize size = [dragImage size];
+	
+		float ratio = size.width / size.height;
+	
+		if (ratio > 1)
+		{
+			size.height = 96 / ratio;
+			size.width = 96;
+		}
+		else
+		{
+			size.width = 96 * ratio;
+			size.height = 96;
+		}
 		
-	[dragImage setScalesWhenResized:YES];
-	[dragImage setSize:size];
+		[dragImage setScalesWhenResized:YES];
+		[dragImage setSize:size];
 
-	[self dragImage:dragImage at:NSMakePoint(size.width / 2, size.height / 2) offset:NSMakeSize(0.0, 0.0) event:theEvent 
-		pasteboard:pboard source:self slideBack:YES];
+		[self dragImage:dragImage at:NSMakePoint(size.width / 2, size.height / 2) offset:NSMakeSize(0.0, 0.0) event:theEvent 
+			pasteboard:pboard source:self slideBack:YES];
 
+		[dragImage release];
+	}
+	
 	[super mouseDragged:theEvent];
 }
 

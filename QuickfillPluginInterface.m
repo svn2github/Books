@@ -153,6 +153,7 @@
 		[quickfillWindow setPluginName:[bundle objectForInfoDictionaryKey:@"BooksPluginName"]];
 	}
 	
+	cancelled = NO;
 	importTask = [[NSTask alloc] init];
 
 	NSPipe * stdoutPipe = [NSPipe pipe];
@@ -184,6 +185,9 @@
 
 - (void) finishImport: (NSNotification *) notification
 {
+	if (cancelled)
+		return;
+		
 	[[NSNotificationCenter defaultCenter] removeObserver:self];
 	
 	NSDictionary * userInfo = [notification userInfo];
@@ -253,6 +257,8 @@
 {
 	if (importTask != nil)
 		[importTask terminate];
+
+	cancelled = YES;
 }
 
 - (void) setDataForBook: (BookManagedObject *) bookObject fromXml:(NSXMLDocument *) xml
