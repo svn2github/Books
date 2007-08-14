@@ -342,7 +342,8 @@ typedef struct _monochromePixel
 				
 				[cover release];
 				
-				[coverWindow orderFront:sender];
+				[coverWindow center];
+				[coverWindow makeKeyAndOrderFront:sender];
 				[toolbarDelegate setGetCoverLabel:NSLocalizedString (@"Hide Cover", nil)];
 			}
 		}
@@ -692,7 +693,10 @@ typedef struct _monochromePixel
 	if ([preferencesWindow isVisible])
 		[preferencesWindow orderOut:sender];
 	else
+	{
+		[preferencesWindow center];
 		[preferencesWindow makeKeyAndOrderFront:sender];
+	}
 }
 
 - (IBAction)showViewControls:(id)sender
@@ -700,7 +704,10 @@ typedef struct _monochromePixel
 	if ([controlsPanel isVisible])
 		[controlsPanel orderOut:sender];
 	else
+	{
+		[controlsPanel center];
 		[controlsPanel makeKeyAndOrderFront:sender];
+	}
 }
 
 

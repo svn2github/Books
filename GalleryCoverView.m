@@ -171,7 +171,7 @@
 		}
 		else
 		{
-			[imageView setImage:[NSImage imageNamed:@"Books"]];
+			[imageView setImage:[NSImage imageNamed:@"no-cover"]];
 			[imageView setImageFrameStyle:NSImageFrameNone];
 			
 			[titleView setString:[currentBook valueForKey:@"title"]];
@@ -275,6 +275,48 @@
 
 	[timer invalidate];
 	[timer release];
+}
+
+- (void) mouseDragged:(NSEvent *)theEvent
+{
+	NSPasteboard * pboard = [NSPasteboard generalPasteboard];
+	
+	NSString * type = @"Books Book Type";
+    NSArray * types = [NSArray arrayWithObjects:type, nil];
+	
+	[pboard declareTypes:types owner:self];
+
+	NSMutableArray * urls = [NSMutableArray array];    
+	
+	NSURL * url = [[currentBook objectID] URIRepresentation];
+	[urls addObject:[url description]];
+
+	[pboard setData:[NSArchiver archivedDataWithRootObject:urls] forType:type];
+
+	NSImage * dragImage = [[NSImage alloc] initWithData:[[imageView image] TIFFRepresentation]];
+
+	NSSize size = [dragImage size];
+	
+	float ratio = size.width / size.height;
+	
+	if (ratio > 1)
+	{
+		size.height = 96 / ratio;
+		size.width = 96;
+	}
+	else
+	{
+		size.width = 96 * ratio;
+		size.height = 96;
+	}
+		
+	[dragImage setScalesWhenResized:YES];
+	[dragImage setSize:size];
+
+	[self dragImage:dragImage at:NSMakePoint(size.width / 2, size.height / 2) offset:NSMakeSize(0.0, 0.0) event:theEvent 
+		pasteboard:pboard source:self slideBack:YES];
+
+	[super mouseDragged:theEvent];
 }
 
 - (void)mouseUp:(NSEvent *)theEvent

@@ -220,7 +220,10 @@
 - (IBAction) toggleVisible: (id) sender
 {
 	if (![pluginManagerWindow isVisible])
+	{
+		[pluginManagerWindow center];
 		[pluginManagerWindow makeKeyAndOrderFront:sender];
+	}
 }
 
 - (IBAction) fetchOnlineList: (id) sender
