@@ -214,10 +214,7 @@
 	NSString * editors = [self primitiveValueForKey:@"editors"];
     [self didAccessValueForKey:@"editors"];
 
-//	if (![[NSUserDefaults standardUserDefaults] boolForKey:@"Snappy"])
-		return [BookAuthorString stringWithString:editors];
-//	else
-//		return editors;
+	return [BookAuthorString stringWithString:editors];
 }
 
 - (NSString *) getListName

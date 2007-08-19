@@ -28,20 +28,23 @@
 	int i = 0;
 	for (i = 0; i < [tokenList count]; i++)
 		[((NSMutableSet *) [tokenList objectAtIndex:i]) removeAllObjects];
-		
-	[genreSet addObject:NSLocalizedString (@"Biography", nil)];
-	[genreSet addObject:NSLocalizedString (@"Fantasy", nil)];
-	[genreSet addObject:NSLocalizedString (@"Fairy Tales", nil)];
-	[genreSet addObject:NSLocalizedString (@"Historical Fiction", nil)];
-	[genreSet addObject:NSLocalizedString (@"Myths & Legends", nil)];
-	[genreSet addObject:NSLocalizedString (@"Poetry", nil)];
-	[genreSet addObject:NSLocalizedString (@"Science Fiction", nil)];
-	[genreSet addObject:NSLocalizedString (@"Folk Tales", nil)];
-	[genreSet addObject:NSLocalizedString (@"Mystery", nil)];
-	[genreSet addObject:NSLocalizedString (@"Non-Fiction", nil)];
-	[genreSet addObject:NSLocalizedString (@"Realistic Fiction", nil)];
-	[genreSet addObject:NSLocalizedString (@"Short Stories", nil)];
 
+	if (![[NSUserDefaults standardUserDefaults] boolForKey:@"Suppress Default Genres"])
+	{
+		[genreSet addObject:NSLocalizedString (@"Biography", nil)];
+		[genreSet addObject:NSLocalizedString (@"Fantasy", nil)];
+		[genreSet addObject:NSLocalizedString (@"Fairy Tales", nil)];
+		[genreSet addObject:NSLocalizedString (@"Historical Fiction", nil)];
+		[genreSet addObject:NSLocalizedString (@"Myths & Legends", nil)];
+		[genreSet addObject:NSLocalizedString (@"Poetry", nil)];
+		[genreSet addObject:NSLocalizedString (@"Science Fiction", nil)];
+		[genreSet addObject:NSLocalizedString (@"Folk Tales", nil)];
+		[genreSet addObject:NSLocalizedString (@"Mystery", nil)];
+		[genreSet addObject:NSLocalizedString (@"Non-Fiction", nil)];
+		[genreSet addObject:NSLocalizedString (@"Realistic Fiction", nil)];
+		[genreSet addObject:NSLocalizedString (@"Short Stories", nil)];
+	}
+	
 	NSFetchRequest * fetch = [[NSFetchRequest alloc] init];
 	[fetch setEntity:[NSEntityDescription entityForName:@"Book" inManagedObjectContext:[((BooksAppDelegate *) [NSApp delegate]) managedObjectContext]]];
 
