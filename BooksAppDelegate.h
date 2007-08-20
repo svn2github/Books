@@ -45,6 +45,7 @@
 #define BOOKS_END_PROGRESS_WINDOW @"Books - End Progress Window"
 #define BOOKS_HIDE_COVER @"Books - Hide Cover"
 #define BOOKS_SET_CONTROL_VIEW @"Books - Set Control View"
+#define BOOKS_OPEN_BOOK @"Books - Open Book"
 
 #define IS_TEST YES
 
@@ -112,8 +113,6 @@
 
 	IBOutlet NSTextView * summary;
 
-	NSString * openFilename;
-	
 	NSTimer * timer;
 
 	IBOutlet NSPanel * controlsPanel;

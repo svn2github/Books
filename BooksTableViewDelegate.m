@@ -22,15 +22,60 @@
 	}
 	else if (table == listsTable)
 	{
+		NSUserDefaults * prefs = [NSUserDefaults standardUserDefaults];
+
 		if (openFilename != nil)
 		{
 			[spotlightInterface openFile:openFilename];
 			[openFilename release];
 			openFilename = nil;
+			
+			[prefs setValue:nil forKey:@"Last Open Books"];
+			[prefs setValue:nil forKey:@"Last Open List"];
 		}
+		else
+		{
+			NSString * lastOpenList = [prefs valueForKey:@"Last Open List"];
+			
+			if (lastOpenList != nil)
+			{
+				NSArray * lists = [collectionArrayController arrangedObjects];
 
-		NSUserDefaults * prefs = [NSUserDefaults standardUserDefaults];
+				int i = 0;
+				for (i = 0; i < [lists count]; i++)
+				{
+					if ([lastOpenList isEqual:[[[[lists objectAtIndex:i] objectID] URIRepresentation] description]])
+						[collectionArrayController setSelectionIndexes:[NSIndexSet indexSetWithIndex:i]];
+				}
+			
+				NSArray * lastOpenBooks = [prefs valueForKey:@"Last Open Books"];
+				
+				if (lastOpenBooks != nil)
+				{
+					NSMutableArray * lastBooks = [NSMutableArray array];
+				
+					NSArray * books = [bookArrayController arrangedObjects];
+					
+					for (i = 0 ; i < [books count]; i++)
+					{
+						int j = 0;
+						
+						for (j = 0; j < [lastOpenBooks count]; j++)
+						{
+							if ([[lastOpenBooks objectAtIndex:j] isEqual:[[[[books objectAtIndex:i] objectID] URIRepresentation] description]])
+								[lastBooks addObject:[books objectAtIndex:i]];
+						}
+					}
+					
+					[bookArrayController setSelectedObjects:lastBooks];
 
+					[prefs setValue:nil forKey:@"Last Open Books"];
+				}
+				
+				[prefs setValue:nil forKey:@"Last Open List"];
+			}
+		}
+		
 		[collectionArrayController setSortDescriptors:
 				[NSArray arrayWithObject:[[NSSortDescriptor alloc] initWithKey:@"name" ascending:YES]]];
 
@@ -542,7 +587,14 @@
 	
 	[[NSUserDefaults standardUserDefaults] addObserver:self forKeyPath:@"Custom List User Fields" options:NSKeyValueObservingOptionNew context:NULL];
 
-	[[NSNotificationCenter defaultCenter] addObserver:self selector:NSSelectorFromString(@"setControlsView:") name:BOOKS_SET_CONTROL_VIEW object:nil];
+	[[NSNotificationCenter defaultCenter] addObserver:self selector:NSSelectorFromString(@"setControlsView:") 
+		name:BOOKS_SET_CONTROL_VIEW object:nil];
+
+	[[NSNotificationCenter defaultCenter] addObserver:self selector:NSSelectorFromString(@"editListName:") 
+		name:BOOKS_EDIT_LIST_NAME object:nil];
+
+	[[NSNotificationCenter defaultCenter] addObserver:self selector:NSSelectorFromString(@"openBook:") 
+		name:BOOKS_OPEN_BOOK object:nil];
 }
 
 - (void) setControlsView: (NSNotification *) msg
@@ -564,5 +616,18 @@
 {
 	return [NSImage imageNamed:@"gallery"];
 }
+
+- (void) openBook: (NSNotification *) msg
+{
+	openFilename = [[msg object] retain];
+}
+
+- (void) editListName: (NSNotification *) msg
+{
+	NSIndexSet * indexes = [collectionArrayController selectionIndexes];
+
+	[listsTable editColumn:1 row:[indexes firstIndex] withEvent:nil select:YES];
+}
+
 
 @end

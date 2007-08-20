@@ -280,6 +280,28 @@ typedef struct _monochromePixel
 		if ([manager fileExistsAtPath:@"tmp/books-quickfill.xml" isDirectory:&isDir])
 			[manager removeFileAtPath:@"tmp/books-quickfill.xml" handler:nil];
 	}
+	
+	ListManagedObject * list = [[collectionArrayController selectedObjects] objectAtIndex:0];
+	
+	NSArray * books = [bookArrayController selectedObjects];
+	
+	NSLog (@"selected list - %@, %@", [list valueForKey:@"name"], [[[list objectID] URIRepresentation] description]);
+	
+	[defaults setObject:[[[list objectID] URIRepresentation] description] forKey:@"Last Open List"];
+
+	NSMutableArray * openBooks = [NSMutableArray array];
+
+	int i = 0;
+	for (i = 0; i < [books count]; i++)
+	{
+		BookManagedObject * book = [books objectAtIndex:i];
+		
+		NSLog (@"  selected book - %@, %@", [book valueForKey:@"title"], [[[book objectID] URIRepresentation] description]);
+
+		[openBooks addObject:[[[book objectID] URIRepresentation] description]];
+	}
+
+	[defaults setObject:openBooks forKey:@"Last Open Books"];
 
     return reply;
 }
@@ -1028,6 +1050,9 @@ typedef struct _monochromePixel
 	[collectionArrayController addObject:sc];
 	
 	[self editSmartList:sender];
+
+	NSNotification * notification = [NSNotification notificationWithName:BOOKS_EDIT_LIST_NAME object:nil];
+	[[NSNotificationCenter defaultCenter] postNotification:notification];
 }
 
 - (IBAction) newList:(id) sender
@@ -1045,6 +1070,9 @@ typedef struct _monochromePixel
 		[NSArray arrayWithObject:[[NSSortDescriptor alloc] initWithKey:@"name" ascending:YES]]];
 	
 	[self save:sender];
+
+	NSNotification * notification = [NSNotification notificationWithName:BOOKS_EDIT_LIST_NAME object:nil];
+	[[NSNotificationCenter defaultCenter] postNotification:notification];
 }
 
 - (IBAction) newBook:(id) sender
@@ -1114,10 +1142,23 @@ typedef struct _monochromePixel
 		}
 		else
 		{
-			int choice = NSRunAlertPanel (NSLocalizedString (@"Delete Selected Books?", nil), 
+			NSArray * selects = [bookArrayController selectedObjects];
+			
+			int choice = -1;
+			
+			if ([selects count] == 1)
+			{
+				choice = NSRunAlertPanel (NSLocalizedString (@"Delete Selected Book?", nil), 
+							NSLocalizedString (@"Are you sure you want to delete the selected book?", nil), NSLocalizedString (@"No", nil), 
+							NSLocalizedString (@"Yes", nil), nil);
+			}
+			else
+			{
+				choice = NSRunAlertPanel (NSLocalizedString (@"Delete Selected Books?", nil), 
 							NSLocalizedString (@"Are you sure you want to delete the selected books?", nil), NSLocalizedString (@"No", nil), 
 							NSLocalizedString (@"Yes", nil), nil);
-
+			}
+			
 			if (choice == NSAlertAlternateReturn)
 				[bookArrayController remove:self];
 
@@ -1390,8 +1431,12 @@ typedef struct _monochromePixel
 
 - (BOOL)application:(NSApplication *)theApplication openFile:(NSString *)filename
 {
-	openFilename = [filename retain];
-	return [spotlightInterface openFile:(NSString *) filename];
+	NSNotification * notification = [NSNotification notificationWithName:BOOKS_OPEN_BOOK object:filename];
+	[[NSNotificationCenter defaultCenter] postNotification:notification];
+
+	[spotlightInterface openFile:filename];
+	
+	return YES;
 }
 
 

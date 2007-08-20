@@ -11,6 +11,8 @@
 #import "BooksSpotlightInterface.h"
 #import "GalleryView.h"
 
+#define BOOKS_EDIT_LIST_NAME @"Books - Edit List Name"
+
 @interface BooksTableViewDelegate : NSObject 
 {
 	IBOutlet NSTableView * booksTable;
