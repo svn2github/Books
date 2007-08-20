@@ -12,7 +12,7 @@
                 browseFile = id; 
                 cancelQuickfill = id; 
                 cancelSmartList = id; 
-                clearSpotlightIndex = id; 
+                compact = id; 
                 donate = id; 
                 duplicateRecords = id; 
                 editSmartList = id; 
@@ -26,63 +26,128 @@
                 newSmartList = id; 
                 openFiles = id; 
                 preferences = id; 
+                print = id; 
                 quickfill = id; 
+                removeBook = id; 
+                removeList = id; 
                 save = id; 
                 saveAction = id; 
                 saveSmartList = id; 
                 selectBooksTable = id; 
                 selectListsTable = id; 
                 trashFiles = id; 
-                updateBooksTable = id; 
-                updateSpotlightIndex = id; 
                 uploadFile = id; 
                 viewOnline = id; 
             }; 
             CLASS = BooksAppDelegate; 
             LANGUAGE = ObjC; 
             OUTLETS = {
-                authorsCombo = NSComboBox; 
                 bookArrayController = NSArrayController; 
-                booksTable = NSTableView; 
                 collectionArrayController = NSArrayController; 
+                comboBoxDelegate = BooksTextFieldDelegate; 
+                controlsPanel = NSPanel; 
                 coverWindow = NSWindow; 
                 datePublished = NSTextField; 
+                defaultViewControls = ViewControls; 
                 detailsPane = WebView; 
-                editorsCombo = NSComboBox; 
-                enabledColumn = NSTableColumn; 
                 fileArrayController = NSArrayController; 
                 fileDescription = NSTextField; 
                 fileIcon = NSImageView; 
                 fileLocation = NSTextField; 
                 fileTitle = NSTextField; 
-                genreCombo = NSComboBox; 
-                iSightView = QCView; 
-                iSightWindow = NSWindow; 
-                illustratorsCombo = NSComboBox; 
+                galleryViewControls = ViewControls; 
                 imageBox = NSBox; 
                 imageView = NSImageView; 
                 infoWindow = NSWindow; 
                 leftView = NSSplitView; 
-                listsTable = NSTableView; 
                 mainWindow = NSWindow; 
                 pluginManager = PluginManager; 
-                prefFieldsTable = NSTableView; 
                 preferencesWindow = NSWindow; 
                 progressIndicator = NSProgressIndicator; 
                 progressText = NSTextField; 
                 progressView = NSWindow; 
-                publisherCombo = NSComboBox; 
                 quickfillProgress = NSProgressIndicator; 
                 quickfillResultsWindow = QuickfillSearchWindow; 
                 quickfillWindow = NSWindow; 
                 rightView = NSSplitView; 
-                searchField = NSView; 
-                searchTextField = NSSearchField; 
                 selectedBook = NSObjectController; 
                 smartListEditorWindow = NSWindow; 
                 splitView = NSSplitView; 
-                translatorsCombo = NSComboBox; 
+                spotlightInterface = BooksSpotlightInterface; 
+                summary = NSTextView; 
+                tableViewDelegate = BooksTableViewDelegate; 
+                tokenDelegate = BooksTokenViewDelegate; 
+                toolbarDelegate = BooksToolbarDelegate; 
                 userFieldCombo = NSComboBox; 
+            }; 
+            SUPERCLASS = NSObject; 
+        }, 
+        {
+            ACTIONS = {clearSpotlightIndex = id; updateSpotlightIndex = id; }; 
+            CLASS = BooksSpotlightInterface; 
+            LANGUAGE = ObjC; 
+            OUTLETS = {
+                bookArrayController = NSArrayController; 
+                booksAppDelegate = BooksAppDelegate; 
+                collectionArrayController = NSArrayController; 
+            }; 
+            SUPERCLASS = NSObject; 
+        }, 
+        {
+            ACTIONS = {toggleColumns = id; }; 
+            CLASS = BooksTableViewDelegate; 
+            LANGUAGE = ObjC; 
+            OUTLETS = {
+                bookArrayController = NSArrayController; 
+                booksAppDelegate = NSObject; 
+                booksColumnMenu = NSMenu; 
+                booksScroll = NSScrollView; 
+                booksTable = NSTableView; 
+                box = NSTabView; 
+                collectionArrayController = NSArrayController; 
+                gallery = GalleryView; 
+                listsTable = NSTableView; 
+                spotlightInterface = BooksSpotlightInterface; 
+                toolbarDelegate = BooksToolbarDelegate; 
+            }; 
+            SUPERCLASS = NSObject; 
+        }, 
+        {
+            CLASS = BooksTextFieldDelegate; 
+            LANGUAGE = ObjC; 
+            OUTLETS = {
+                authors = id; 
+                editors = id; 
+                genre = id; 
+                illustrators = id; 
+                keywords = id; 
+                publisher = id; 
+                translators = id; 
+            }; 
+            SUPERCLASS = NSObject; 
+        }, 
+        {
+            CLASS = BooksTokenViewDelegate; 
+            LANGUAGE = ObjC; 
+            OUTLETS = {
+                authorTokens = NSTokenField; 
+                booksAppDelegate = NSObject; 
+                editorTokens = NSTokenField; 
+                genreTokens = NSTokenField; 
+                illustratorTokens = NSTokenField; 
+                keywordTokens = NSTokenField; 
+                translatorTokens = NSTokenField; 
+            }; 
+            SUPERCLASS = NSObject; 
+        }, 
+        {
+            CLASS = BooksToolbarDelegate; 
+            LANGUAGE = ObjC; 
+            OUTLETS = {
+                booksAppDelegate = NSObject; 
+                searchField = NSView; 
+                searchTextField = NSSearchField; 
+                viewsField = NSView; 
             }; 
             SUPERCLASS = NSObject; 
         }, 
@@ -93,8 +158,29 @@
             SUPERCLASS = NSObject; 
         }, 
         {CLASS = ExportPluginInterface; LANGUAGE = ObjC; SUPERCLASS = NSObject; }, 
-        {CLASS = FieldsDataSource; LANGUAGE = ObjC; SUPERCLASS = NSObject; }, 
+        {
+            CLASS = FieldsTableViewDelegate; 
+            LANGUAGE = ObjC; 
+            OUTLETS = {
+                bookFieldsTable = NSTableView; 
+                listFieldsTable = NSTableView; 
+                tableViewDelegate = BooksTableViewDelegate; 
+            }; 
+            SUPERCLASS = NSObject; 
+        }, 
         {CLASS = FirstResponder; LANGUAGE = ObjC; SUPERCLASS = NSObject; }, 
+        {CLASS = GalleryScrollView; LANGUAGE = ObjC; SUPERCLASS = NSScrollView; }, 
+        {
+            CLASS = GalleryView; 
+            LANGUAGE = ObjC; 
+            OUTLETS = {
+                bookList = NSArrayController; 
+                controls = GalleryViewControls; 
+                listList = NSArrayController; 
+            }; 
+            SUPERCLASS = NSView; 
+        }, 
+        {CLASS = GalleryViewControls; LANGUAGE = ObjC; SUPERCLASS = ViewControls; }, 
         {CLASS = HtmlPageBuilder; LANGUAGE = ObjC; SUPERCLASS = NSObject; }, 
         {
             ACTIONS = {importFromMenuItem = id; }; 
@@ -108,13 +194,18 @@
             LANGUAGE = ObjC; 
             SUPERCLASS = NSArrayController; 
         }, 
-        {CLASS = MainWindowTableView; LANGUAGE = ObjC; SUPERCLASS = NSTableView; }, 
+        {
+            CLASS = MainWindowTableView; 
+            LANGUAGE = ObjC; 
+            OUTLETS = {bookList = NSArrayController; listList = NSArrayController; }; 
+            SUPERCLASS = NSTableView; 
+        }, 
         {CLASS = NSDatePicker; LANGUAGE = ObjC; SUPERCLASS = NSControl; }, 
         {CLASS = NSLevelIndicator; LANGUAGE = ObjC; SUPERCLASS = NSControl; }, 
+        {CLASS = NSSegmentedControl; LANGUAGE = ObjC; SUPERCLASS = NSControl; }, 
         {
             CLASS = PeopleArrayController; 
             LANGUAGE = ObjC; 
-            OUTLETS = {lendingRecords = NSArrayController; mugshot = NSImageView; }; 
             SUPERCLASS = NSArrayController; 
         }, 
         {
@@ -139,8 +230,6 @@
                 list = NSTableView; 
                 panel = NSPanel; 
                 quickfillResults = id; 
-                statusSpinner = id; 
-                statusText = id; 
             }; 
             SUPERCLASS = NSObject; 
         }, 
@@ -160,6 +249,12 @@
             CLASS = SmartListWindowDelegate; 
             LANGUAGE = ObjC; 
             OUTLETS = {joiner = id; rulesBox = id; }; 
+            SUPERCLASS = NSObject; 
+        }, 
+        {
+            CLASS = ViewControls; 
+            LANGUAGE = ObjC; 
+            OUTLETS = {view = NSView; }; 
             SUPERCLASS = NSObject; 
         }
     ); 
