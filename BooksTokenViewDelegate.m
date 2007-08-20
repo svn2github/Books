@@ -111,8 +111,17 @@
 {
 	if (!inited)
 		[self setup];
-	
-	if ([genres count] < 1)
+
+	NSArray * fields = [NSArray arrayWithObjects:@"genreArray", @"authorArray", @"editorArray", 
+							@"illustratorArray", @"translatorArray", @"keywordArray", nil];
+							
+	NSArray * tokenArrays = [NSArray arrayWithObjects:genres, authors, editors, illustrators, translators, keywords, nil];
+
+	int i = 0;
+	for (i = 0; i < [tokenArrays count]; i++)
+		[[tokenArrays objectAtIndex:i] removeAllObjects];
+		
+	if (![[NSUserDefaults standardUserDefaults] boolForKey:@"Suppress Default Genres"])
 	{
 		[genres addObject:NSLocalizedString (@"Biography", nil)];
 		[genres addObject:NSLocalizedString (@"Fantasy", nil)];
@@ -134,11 +143,6 @@
 	NSError * error = nil;
 	NSArray * books = [[((BooksAppDelegate *) booksAppDelegate) managedObjectContext] executeFetchRequest:fetch error:&error];
 
-	NSArray * fields = [NSArray arrayWithObjects:@"genreArray", @"authorArray", @"editorArray", 
-							@"illustratorArray", @"translatorArray", @"keywordArray", nil];
-	NSArray * tokenArrays = [NSArray arrayWithObjects:genres, authors, editors, illustrators, translators, keywords, nil];
-	
-	int i = 0;
 	for (i = 0; i < [books count]; i++)
 	{
 		BookManagedObject * book = (BookManagedObject *) [books objectAtIndex:i];

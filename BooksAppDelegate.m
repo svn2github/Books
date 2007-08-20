@@ -285,21 +285,13 @@ typedef struct _monochromePixel
 	
 	NSArray * books = [bookArrayController selectedObjects];
 	
-	NSLog (@"selected list - %@, %@", [list valueForKey:@"name"], [[[list objectID] URIRepresentation] description]);
-	
 	[defaults setObject:[[[list objectID] URIRepresentation] description] forKey:@"Last Open List"];
 
 	NSMutableArray * openBooks = [NSMutableArray array];
 
 	int i = 0;
 	for (i = 0; i < [books count]; i++)
-	{
-		BookManagedObject * book = [books objectAtIndex:i];
-		
-		NSLog (@"  selected book - %@, %@", [book valueForKey:@"title"], [[[book objectID] URIRepresentation] description]);
-
-		[openBooks addObject:[[[book objectID] URIRepresentation] description]];
-	}
+		[openBooks addObject:[[[[books objectAtIndex:i] objectID] URIRepresentation] description]];
 
 	[defaults setObject:openBooks forKey:@"Last Open Books"];
 
