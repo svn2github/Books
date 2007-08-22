@@ -165,6 +165,8 @@ typedef struct _monochromePixel
 
     if (![[self managedObjectContext] save:&error]) 
 	{
+		NSLog (@"error %@", error);
+		
         [[NSApplication sharedApplication] presentError:error];
     }
 }
@@ -629,7 +631,7 @@ typedef struct _monochromePixel
 			boxSize.height = size.height * scale;
 
 			[imageBox setFrameSize:boxSize];
-			[[imageBox superview] setNeedsDisplay:YES];
+			[[imageBox superview] display];
 			
 			[image release];
 		}
@@ -1019,12 +1021,7 @@ typedef struct _monochromePixel
 
 - (IBAction) save: (id)sender
 {
-    NSError *error = nil;
-
-    if (![[self managedObjectContext] save:&error]) 
-	{
-        [[NSApplication sharedApplication] presentError:error];
-    }
+	[self saveAction:sender];
 }
 
 - (IBAction)newSmartList:(id)sender

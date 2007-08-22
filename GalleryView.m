@@ -96,6 +96,7 @@
 	{
 		arrangedBooks = [[NSArray alloc] init];
 		gallerySize = 128;
+		inited = NO;
     }
     return self;
 }
@@ -177,6 +178,10 @@
 				else 
 					[[scroll documentView] scrollPoint:NSMakePoint (0, frame.origin.y + frame.size.height - clipRect.size.height)];
 			}
+
+			int i = 0;
+			for (i = 0; i < [subs count]; i++)
+				[[subs objectAtIndex:i] setNeedsDisplay:YES];
 		}
 	}
 	else if ([keyPath isEqual:@"Gallery Size"])
@@ -197,7 +202,7 @@
 		}
 	}
 
-	[self setNeedsDisplay:YES];
+	[self display];
 }
 
 - (void)drawRect:(NSRect)rect 
@@ -271,6 +276,15 @@
 			[gcv setBook:nil];
 			[gcv setHidden:YES];
 		}
+	}
+	
+	if (!inited && [subs count] > 0)
+	{
+		inited = YES;
+		
+		NSArray * array = [bookList selectedObjects];
+		[bookList setSelectedObjects:nil];
+		[bookList setSelectedObjects:array];
 	}
 }
 

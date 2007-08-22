@@ -41,8 +41,12 @@
 		
 		timer = nil;
 		click = false;
-  }
-    return self;
+		
+		prefs = [NSUserDefaults standardUserDefaults];
+		[prefs addObserver:self forKeyPath:@"Gallery Show Title" options:NSKeyValueObservingOptionNew context:NULL];
+	}
+  
+	return self;
 }
 
 - (NSRect) getBorder:(float) borderWidth
@@ -103,6 +107,8 @@
 
 	[imageView setFrame:NSMakeRect (x, y, viewSize.width, viewSize.height)];
 
+	[titleView setMaxSize:viewSize];
+	
 	if (![titleView isHidden])
 	{
 		NSRect frame = [titleView frame];
@@ -153,6 +159,9 @@
 {
 	if (currentBook != nil)
 	{
+		[titleView setString:[currentBook valueForKey:@"title"]];
+		[titleView setHidden:![prefs boolForKey:@"Gallery Show Title"]];
+
 		NSData * data = [currentBook valueForKey:@"coverImage"];
 
 		NSImage * image = [[NSImage alloc] initWithData:data];
@@ -170,15 +179,13 @@
 				[cachedData release];
 				
 			cachedData = [[NSData alloc] initWithData:data];
-
-			[titleView setHidden:YES];
+			
 		}
 		else
 		{
 			[imageView setImage:[NSImage imageNamed:@"no-cover"]];
 			[imageView setImageFrameStyle:NSImageFrameNone];
 			
-			[titleView setString:[currentBook valueForKey:@"title"]];
 			[titleView setHidden:NO];
 		}
 
@@ -195,7 +202,6 @@
 		}
 		
 		[imageView setToolTip:string];
-
 	}
 	else
 	{
@@ -238,6 +244,14 @@
 	{
 		if (currentBook != nil)
 			[self updateImage];
+	}
+	else if ([keyPath isEqual:@"Gallery Show Title"])
+	{
+		if (![[imageView image] isEqual:[NSImage imageNamed:@"no-cover"]])
+		{
+			[titleView setHidden:![prefs boolForKey:@"Gallery Show Title"]];
+			[titleView setNeedsDisplay:YES];
+		}
 	}
 	else if ([keyPath isEqual:@"title"])
 	{

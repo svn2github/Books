@@ -15,9 +15,9 @@
 		<key>5451</key>
 		<string>567 488 145 63 0 0 1280 778 </string>
 		<key>5575</key>
-		<string>530 459 268 111 0 0 1280 778 </string>
+		<string>591 547 258 125 0 0 1440 878 </string>
 		<key>5599</key>
-		<string>470 419 340 202 0 0 1280 778 </string>
+		<string>549 508 340 202 0 0 1440 878 </string>
 	</dict>
 	<key>IBFramework Version</key>
 	<string>446.1</string>
@@ -30,6 +30,10 @@
 	</array>
 	<key>IBOldestOS</key>
 	<integer>4</integer>
+	<key>IBOpenObjects</key>
+	<array>
+		<integer>5575</integer>
+	</array>
 	<key>IBSystem Version</key>
 	<string>8R2218</string>
 	<key>IBUsesTextArchiving</key>

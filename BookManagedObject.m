@@ -219,11 +219,7 @@
 
 - (NSString *) getListName
 {
-	ListManagedObject * list = [self valueForKey:@"list"];
-
-	NSString * listName = [list valueForKey:@"name"];
-	
-	return listName;
+	return [[self valueForKey:@"list"] valueForKey:@"name"];
 }
 
 - (void) setListName: (NSString *) listName

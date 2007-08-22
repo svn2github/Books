@@ -19,6 +19,8 @@
 	NSData * cachedData;
 	NSTimer * timer;
 	BOOL click;
+	
+	NSUserDefaults * prefs;
 }
 
 - (void) setBook:(BookManagedObject *) book;

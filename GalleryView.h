@@ -22,6 +22,8 @@
 	float gallerySize;
 	
 	NSArray * arrangedBooks;
+	
+	BOOL inited;
 }
 
 - (BOOL) isSelected:(BookManagedObject *) book;
