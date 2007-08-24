@@ -91,6 +91,16 @@
 	IBOutlet NSComboBox * userFieldCombo;
 	IBOutlet NSTextField * datePublished;
 
+	IBOutlet NSTextField * dateAcquired;
+	IBOutlet NSTextField * dateStarted;
+	IBOutlet NSTextField * dateFinished;
+	IBOutlet NSTextField * dateLent;
+	IBOutlet NSTextField * dateReturned;
+	
+	IBOutlet NSTableColumn * finishedColumn;
+	IBOutlet NSTableColumn * lentColumn;
+	IBOutlet NSTableColumn * returnedColumn;
+
 	IBOutlet NSBox * imageBox;
 	IBOutlet NSImageView * imageView;
 

@@ -418,7 +418,15 @@ typedef struct _monochromePixel
 
 	NSDateFormatter * formatter = [[NSDateFormatter alloc] initWithDateFormat:dateFormat allowNaturalLanguage:YES];
 	[[datePublished cell] setFormatter:formatter];
-
+	[[dateAcquired cell] setFormatter:formatter];
+	[[dateStarted cell] setFormatter:formatter];
+	[[dateFinished cell] setFormatter:formatter];
+	[[dateLent cell] setFormatter:formatter];
+	[[dateReturned cell] setFormatter:formatter];
+	
+	[[finishedColumn dataCell] setFormatter:formatter];
+	[[lentColumn dataCell] setFormatter:formatter];
+	[[returnedColumn dataCell] setFormatter:formatter];
 
 	/* Resize Main Scroller */
 	
@@ -1772,6 +1780,11 @@ typedef struct _monochromePixel
 
 	[tableViewDelegate updateBooksTable];
 	[[datePublished cell] setFormatter:[[NSDateFormatter alloc] initWithDateFormat:format allowNaturalLanguage:YES]];
+	[[dateAcquired cell] setFormatter:[[NSDateFormatter alloc] initWithDateFormat:format allowNaturalLanguage:YES]];
+	[[dateStarted cell] setFormatter:[[NSDateFormatter alloc] initWithDateFormat:format allowNaturalLanguage:YES]];
+	[[dateFinished cell] setFormatter:[[NSDateFormatter alloc] initWithDateFormat:format allowNaturalLanguage:YES]];
+	[[dateLent cell] setFormatter:[[NSDateFormatter alloc] initWithDateFormat:format allowNaturalLanguage:YES]];
+	[[dateReturned cell] setFormatter:[[NSDateFormatter alloc] initWithDateFormat:format allowNaturalLanguage:YES]];
 }
 
 - (NSString *) getDateFormatString

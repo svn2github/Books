@@ -188,7 +188,7 @@
 			
 			[titleView setHidden:NO];
 		}
-
+		
 		[image release];
 		
 		NSMutableString * string = [NSMutableString stringWithString:[currentBook valueForKey:@"title"]];

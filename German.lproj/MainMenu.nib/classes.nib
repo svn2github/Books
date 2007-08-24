@@ -47,7 +47,12 @@
                 comboBoxDelegate = BooksTextFieldDelegate; 
                 controlsPanel = NSPanel; 
                 coverWindow = NSWindow; 
+                dateAcquired = NSTextField; 
+                dateFinished = NSTextField; 
+                dateLent = NSTextField; 
                 datePublished = NSTextField; 
+                dateReturned = NSTextField; 
+                dateStarted = NSTextField; 
                 defaultViewControls = ViewControls; 
                 detailsPane = WebView; 
                 fileArrayController = NSArrayController; 
@@ -55,11 +60,13 @@
                 fileIcon = NSImageView; 
                 fileLocation = NSTextField; 
                 fileTitle = NSTextField; 
+                finishedColumn = NSTableColumn; 
                 galleryViewControls = ViewControls; 
                 imageBox = NSBox; 
                 imageView = NSImageView; 
                 infoWindow = NSWindow; 
                 leftView = NSSplitView; 
+                lentColumn = NSTableColumn; 
                 mainWindow = NSWindow; 
                 pluginManager = PluginManager; 
                 preferencesWindow = NSWindow; 
@@ -69,6 +76,7 @@
                 quickfillProgress = NSProgressIndicator; 
                 quickfillResultsWindow = QuickfillSearchWindow; 
                 quickfillWindow = NSWindow; 
+                returnedColumn = NSTableColumn; 
                 rightView = NSSplitView; 
                 selectedBook = NSObjectController; 
                 smartListEditorWindow = NSWindow; 
