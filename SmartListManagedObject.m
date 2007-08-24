@@ -49,7 +49,7 @@
 	[self setPredicate:rules];
 }
 
-- (void )setPredicate:(NSPredicate *) newPredicate
+- (void) setPredicate:(NSPredicate *) newPredicate
 {
 	NSString * p = [newPredicate predicateFormat];
 
@@ -71,7 +71,7 @@
 {
 	if (predicate == nil)
 		predicate = [self getPredicate];
-		
+
 	NSFetchRequest * fetch = [[NSFetchRequest alloc] init];
 	[fetch setEntity:[NSEntityDescription entityForName:@"Book" inManagedObjectContext:[self managedObjectContext]]];
 	[fetch setPredicate:predicate];

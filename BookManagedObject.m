@@ -158,6 +158,10 @@
 	[self willChangeValueForKey:@"list"];	
 	[self setPrimitiveValue:newList forKey:@"list"];
 	[self didChangeValueForKey:@"list"];
+
+	[self willChangeValueForKey:@"listName"];	
+	[self setPrimitiveValue:[newList valueForKey:@"name"] forKey:@"listName"];
+	[self didChangeValueForKey:@"listName"];
 }
 
 - (NSString *) getTitle
@@ -219,7 +223,12 @@
 
 - (NSString *) getListName
 {
-	return [[self valueForKey:@"list"] valueForKey:@"name"];
+	ListManagedObject * list = [self valueForKey:@"list"];
+	
+	if (list != nil)
+		return [[self valueForKey:@"list"] valueForKey:@"name"];
+	else
+		return @"";
 }
 
 - (void) setListName: (NSString *) listName

@@ -234,6 +234,13 @@
 		3822F4F90C34A48000475D9F /* Growl.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Growl.framework; sourceTree = "<group>"; };
 		382611A909BB5BA7006B3CD7 /* ISBNdb.plugin */ = {isa = PBXFileReference; lastKnownFileType = folder; path = ISBNdb.plugin; sourceTree = "<group>"; };
 		3826F9430C1451EA00EB2E43 /* English */ = {isa = PBXFileReference; lastKnownFileType = folder; name = English; path = "English.lproj/Books Help"; sourceTree = "<group>"; };
+		382F89950C7F151A00B1096B /* Estonian */ = {isa = PBXFileReference; lastKnownFileType = wrapper.nib; name = Estonian; path = Estonian.lproj/MainMenu.nib; sourceTree = "<group>"; };
+		382F89980C7F152C00B1096B /* Estonian */ = {isa = PBXFileReference; lastKnownFileType = text.html; name = Estonian; path = Estonian.lproj/empty.html; sourceTree = "<group>"; };
+		382F89990C7F153900B1096B /* Estonian */ = {isa = PBXFileReference; lastKnownFileType = text.html; name = Estonian; path = Estonian.lproj/multiple.html; sourceTree = "<group>"; };
+		382F899A0C7F154400B1096B /* Estonian */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Estonian; path = Estonian.lproj/Localizable.strings; sourceTree = "<group>"; };
+		382F899B0C7F154F00B1096B /* Estonian */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Estonian; path = Estonian.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		382F899C0C7F155900B1096B /* Estonian */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Estonian; path = Estonian.lproj/MainMenu.strings; sourceTree = "<group>"; };
+		382F899D0C7F156700B1096B /* Estonian */ = {isa = PBXFileReference; lastKnownFileType = text.rtf; name = Estonian; path = Estonian.lproj/Credits.rtf; sourceTree = "<group>"; };
 		3832912B0A03EF1C00C98833 /* Books Metadata Importer.mdimporter */ = {isa = PBXFileReference; lastKnownFileType = folder; path = "Books Metadata Importer.mdimporter"; sourceTree = "<group>"; };
 		38358E7F0958ED3900E823F3 /* Amazon (US).plugin */ = {isa = PBXFileReference; lastKnownFileType = folder; path = "Amazon (US).plugin"; sourceTree = "<group>"; };
 		38364417097DC15D00E73AF4 /* BookTitleString.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BookTitleString.h; sourceTree = "<group>"; };
@@ -1100,6 +1107,7 @@
 				383DBED00A6AF7D800685384 /* German */,
 				3815D10A0A8A96220085540E /* French */,
 				38CEA64B0C79177700371285 /* Danish */,
+				382F899B0C7F154F00B1096B /* Estonian */,
 			);
 			name = InfoPlist.strings;
 			sourceTree = "<group>";
@@ -1111,6 +1119,7 @@
 				383DBEC40A6ABE2000685384 /* German */,
 				3815D12F0A8A96550085540E /* French */,
 				38DF403F0B8DF62000D55EA4 /* Danish */,
+				382F89950C7F151A00B1096B /* Estonian */,
 			);
 			name = MainMenu.nib;
 			sourceTree = "<group>";
@@ -1130,6 +1139,7 @@
 				383DBEBB0A6ABD7400685384 /* German */,
 				3815D10D0A8A962A0085540E /* French */,
 				38DF3FFC0B8DF5B300D55EA4 /* Danish */,
+				382F899C0C7F155900B1096B /* Estonian */,
 			);
 			name = MainMenu.strings;
 			sourceTree = "<group>";
@@ -1141,6 +1151,7 @@
 				383DBECB0A6ABEBB00685384 /* German */,
 				3815D1100A8A96370085540E /* French */,
 				38DF3FFF0B8DF5BE00D55EA4 /* Danish */,
+				382F899D0C7F156700B1096B /* Estonian */,
 			);
 			name = Credits.rtf;
 			sourceTree = "<group>";
@@ -1152,6 +1163,7 @@
 				384DF8740A723FB6000F9842 /* German */,
 				3815D1070A8A96190085540E /* French */,
 				38DF3FF20B8DF59300D55EA4 /* Danish */,
+				382F899A0C7F154400B1096B /* Estonian */,
 			);
 			name = Localizable.strings;
 			sourceTree = "<group>";
@@ -1163,6 +1175,7 @@
 				38FDFC750A7198C6009481C3 /* German */,
 				3815D1320A8A966B0085540E /* French */,
 				38DF402B0B8DF5D700D55EA4 /* Danish */,
+				382F89980C7F152C00B1096B /* Estonian */,
 			);
 			name = empty.html;
 			sourceTree = "<group>";
@@ -1174,6 +1187,7 @@
 				38FDFCA70A719B0B009481C3 /* German */,
 				3815D1350A8A96730085540E /* French */,
 				38DF402E0B8DF5DE00D55EA4 /* Danish */,
+				382F89990C7F153900B1096B /* Estonian */,
 			);
 			name = multiple.html;
 			sourceTree = "<group>";

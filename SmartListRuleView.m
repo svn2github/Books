@@ -116,7 +116,8 @@
 	else if ([operationValue isEqualToString:NSLocalizedString (@"ends with", nil)])
 		type = NSEndsWithPredicateOperatorType;
 
-	if (!([fieldName isEqualToString:@"publishDate"] || [fieldName isEqualToString:@"dateDue"] || [fieldName isEqualToString:@"dateLent"]))
+	if (!([fieldName isEqualToString:@"publishDate"] || [fieldName isEqualToString:@"dateDue"] || 
+		[fieldName isEqualToString:@"dateLent"]))
 	{
 		NSExpression * right = [NSExpression expressionForConstantValue:fieldValue];
 		NSExpression * left = [NSExpression expressionForKeyPath:fieldName];
@@ -209,7 +210,6 @@
 		NSComparisonPredicate * compPredicate = [[(NSCompoundPredicate *) predicate subpredicates] objectAtIndex:0];
 
 		[self setPredicate:compPredicate];
-
 		
 		if ([compoundPredicate compoundPredicateType] == NSNotPredicateType)
 			[operation selectItemWithTitle:NSLocalizedString (@"does not contain", nil)];

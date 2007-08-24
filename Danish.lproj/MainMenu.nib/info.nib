@@ -15,7 +15,7 @@
 		<key>5451</key>
 		<string>567 637 145 63 0 0 1280 1002 </string>
 		<key>5575</key>
-		<string>593 539 243 126 0 0 1440 878 </string>
+		<string>518 457 243 126 0 0 1280 778 </string>
 		<key>5599</key>
 		<string>550 509 340 202 0 0 1440 878 </string>
 	</dict>
@@ -32,7 +32,7 @@
 	<integer>4</integer>
 	<key>IBOpenObjects</key>
 	<array>
-		<integer>5575</integer>
+		<integer>384</integer>
 	</array>
 	<key>IBSystem Version</key>
 	<string>8R2218</string>
