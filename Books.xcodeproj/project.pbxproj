@@ -313,6 +313,20 @@
 		3878AF27088FE45E00C72EB3 /* ImportPluginInterface.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImportPluginInterface.h; sourceTree = "<group>"; };
 		3878AF28088FE45E00C72EB3 /* ImportPluginInterface.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ImportPluginInterface.m; sourceTree = "<group>"; };
 		387A013B0A75CC9300447E87 /* Sparkle.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Sparkle.framework; sourceTree = "<group>"; };
+		387BC4960C8C4556000121AD /* Spanish */ = {isa = PBXFileReference; lastKnownFileType = wrapper.nib; name = Spanish; path = Spanish.lproj/MainMenu.nib; sourceTree = "<group>"; };
+		387BC4970C8C455A000121AD /* Italian */ = {isa = PBXFileReference; lastKnownFileType = wrapper.nib; name = Italian; path = Italian.lproj/MainMenu.nib; sourceTree = "<group>"; };
+		387BC49A0C8C4566000121AD /* Spanish */ = {isa = PBXFileReference; lastKnownFileType = text.html; name = Spanish; path = Spanish.lproj/empty.html; sourceTree = "<group>"; };
+		387BC49B0C8C456C000121AD /* Italian */ = {isa = PBXFileReference; lastKnownFileType = text.html; name = Italian; path = Italian.lproj/empty.html; sourceTree = "<group>"; };
+		387BC49E0C8C4574000121AD /* Spanish */ = {isa = PBXFileReference; lastKnownFileType = text.html; name = Spanish; path = Spanish.lproj/multiple.html; sourceTree = "<group>"; };
+		387BC49F0C8C4577000121AD /* Italian */ = {isa = PBXFileReference; lastKnownFileType = text.html; name = Italian; path = Italian.lproj/multiple.html; sourceTree = "<group>"; };
+		387BC4A20C8C4581000121AD /* Spanish */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Spanish; path = Spanish.lproj/Localizable.strings; sourceTree = "<group>"; };
+		387BC4A30C8C4584000121AD /* Italian */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Italian; path = Italian.lproj/Localizable.strings; sourceTree = "<group>"; };
+		387BC4A60C8C458D000121AD /* Spanish */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Spanish; path = Spanish.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		387BC4A70C8C4590000121AD /* Italian */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Italian; path = Italian.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		387BC4AA0C8C4598000121AD /* Spanish */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Spanish; path = Spanish.lproj/MainMenu.strings; sourceTree = "<group>"; };
+		387BC4AB0C8C459B000121AD /* Italian */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Italian; path = Italian.lproj/MainMenu.strings; sourceTree = "<group>"; };
+		387BC4AE0C8C45A1000121AD /* Spanish */ = {isa = PBXFileReference; lastKnownFileType = text.rtf; name = Spanish; path = Spanish.lproj/Credits.rtf; sourceTree = "<group>"; };
+		387BC4AF0C8C45A5000121AD /* Italian */ = {isa = PBXFileReference; lastKnownFileType = text.rtf; name = Italian; path = Italian.lproj/Credits.rtf; sourceTree = "<group>"; };
 		3886622E09BB79B7001EB1EB /* UIEE Importer.app */ = {isa = PBXFileReference; lastKnownFileType = wrapper.application; path = "UIEE Importer.app"; sourceTree = "<group>"; };
 		3886623D09BB79DB001EB1EB /* OPAC SBN.plugin */ = {isa = PBXFileReference; lastKnownFileType = folder; path = "OPAC SBN.plugin"; sourceTree = "<group>"; };
 		388AD1CE09F95BEE00BDEDD3 /* Books 2.0 Importer.app */ = {isa = PBXFileReference; lastKnownFileType = wrapper.application; path = "Books 2.0 Importer.app"; sourceTree = "<group>"; };
@@ -1108,6 +1122,8 @@
 				3815D10A0A8A96220085540E /* French */,
 				38CEA64B0C79177700371285 /* Danish */,
 				382F899B0C7F154F00B1096B /* Estonian */,
+				387BC4A60C8C458D000121AD /* Spanish */,
+				387BC4A70C8C4590000121AD /* Italian */,
 			);
 			name = InfoPlist.strings;
 			sourceTree = "<group>";
@@ -1120,6 +1136,8 @@
 				3815D12F0A8A96550085540E /* French */,
 				38DF403F0B8DF62000D55EA4 /* Danish */,
 				382F89950C7F151A00B1096B /* Estonian */,
+				387BC4960C8C4556000121AD /* Spanish */,
+				387BC4970C8C455A000121AD /* Italian */,
 			);
 			name = MainMenu.nib;
 			sourceTree = "<group>";
@@ -1140,6 +1158,8 @@
 				3815D10D0A8A962A0085540E /* French */,
 				38DF3FFC0B8DF5B300D55EA4 /* Danish */,
 				382F899C0C7F155900B1096B /* Estonian */,
+				387BC4AA0C8C4598000121AD /* Spanish */,
+				387BC4AB0C8C459B000121AD /* Italian */,
 			);
 			name = MainMenu.strings;
 			sourceTree = "<group>";
@@ -1152,6 +1172,8 @@
 				3815D1100A8A96370085540E /* French */,
 				38DF3FFF0B8DF5BE00D55EA4 /* Danish */,
 				382F899D0C7F156700B1096B /* Estonian */,
+				387BC4AE0C8C45A1000121AD /* Spanish */,
+				387BC4AF0C8C45A5000121AD /* Italian */,
 			);
 			name = Credits.rtf;
 			sourceTree = "<group>";
@@ -1164,6 +1186,8 @@
 				3815D1070A8A96190085540E /* French */,
 				38DF3FF20B8DF59300D55EA4 /* Danish */,
 				382F899A0C7F154400B1096B /* Estonian */,
+				387BC4A20C8C4581000121AD /* Spanish */,
+				387BC4A30C8C4584000121AD /* Italian */,
 			);
 			name = Localizable.strings;
 			sourceTree = "<group>";
@@ -1176,6 +1200,8 @@
 				3815D1320A8A966B0085540E /* French */,
 				38DF402B0B8DF5D700D55EA4 /* Danish */,
 				382F89980C7F152C00B1096B /* Estonian */,
+				387BC49A0C8C4566000121AD /* Spanish */,
+				387BC49B0C8C456C000121AD /* Italian */,
 			);
 			name = empty.html;
 			sourceTree = "<group>";
@@ -1188,6 +1214,8 @@
 				3815D1350A8A96730085540E /* French */,
 				38DF402E0B8DF5DE00D55EA4 /* Danish */,
 				382F89990C7F153900B1096B /* Estonian */,
+				387BC49E0C8C4574000121AD /* Spanish */,
+				387BC49F0C8C4577000121AD /* Italian */,
 			);
 			name = multiple.html;
 			sourceTree = "<group>";
