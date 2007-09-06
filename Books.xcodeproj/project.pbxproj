@@ -358,6 +358,13 @@
 		38B16DA90BA1FECE00216A44 /* CoverWindowDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CoverWindowDelegate.h; sourceTree = "<group>"; };
 		38B16DAA0BA1FECE00216A44 /* CoverWindowDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CoverWindowDelegate.m; sourceTree = "<group>"; };
 		38B62EB10987D2D200A4A8AD /* Delicious Library Importer.app */ = {isa = PBXFileReference; lastKnownFileType = wrapper.application; path = "Delicious Library Importer.app"; sourceTree = "<group>"; };
+		38B7FD710C902C8700D4B393 /* Dutch */ = {isa = PBXFileReference; lastKnownFileType = wrapper.nib; name = Dutch; path = Dutch.lproj/MainMenu.nib; sourceTree = "<group>"; };
+		38B7FD740C902C9000D4B393 /* Dutch */ = {isa = PBXFileReference; lastKnownFileType = text.html; name = Dutch; path = Dutch.lproj/empty.html; sourceTree = "<group>"; };
+		38B7FD770C902C9900D4B393 /* Dutch */ = {isa = PBXFileReference; lastKnownFileType = text.html; name = Dutch; path = Dutch.lproj/multiple.html; sourceTree = "<group>"; };
+		38B7FD7A0C902CA300D4B393 /* Dutch */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Dutch; path = Dutch.lproj/Localizable.strings; sourceTree = "<group>"; };
+		38B7FD7D0C902CAC00D4B393 /* Dutch */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Dutch; path = Dutch.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		38B7FD800C902CB500D4B393 /* Dutch */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Dutch; path = Dutch.lproj/MainMenu.strings; sourceTree = "<group>"; };
+		38B7FD830C902CBE00D4B393 /* Dutch */ = {isa = PBXFileReference; lastKnownFileType = text.rtf; name = Dutch; path = Dutch.lproj/Credits.rtf; sourceTree = "<group>"; };
 		38BD42820BA069FA00F245D8 /* tiger.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = tiger.png; sourceTree = "<group>"; };
 		38BD42C00BA06CC800F245D8 /* corner.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = corner.png; sourceTree = "<group>"; };
 		38C0D5000C3E152800DC777B /* BooksTableViewDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BooksTableViewDelegate.h; sourceTree = "<group>"; };
@@ -969,6 +976,7 @@
 				Portuguese,
 				Estonian,
 				Italian,
+				Dutch,
 			);
 			mainGroup = 29B97314FDCFA39411CA2CEA /* Books */;
 			projectDirPath = "";
@@ -1124,6 +1132,7 @@
 				382F899B0C7F154F00B1096B /* Estonian */,
 				387BC4A60C8C458D000121AD /* Spanish */,
 				387BC4A70C8C4590000121AD /* Italian */,
+				38B7FD7D0C902CAC00D4B393 /* Dutch */,
 			);
 			name = InfoPlist.strings;
 			sourceTree = "<group>";
@@ -1138,6 +1147,7 @@
 				382F89950C7F151A00B1096B /* Estonian */,
 				387BC4960C8C4556000121AD /* Spanish */,
 				387BC4970C8C455A000121AD /* Italian */,
+				38B7FD710C902C8700D4B393 /* Dutch */,
 			);
 			name = MainMenu.nib;
 			sourceTree = "<group>";
@@ -1160,6 +1170,7 @@
 				382F899C0C7F155900B1096B /* Estonian */,
 				387BC4AA0C8C4598000121AD /* Spanish */,
 				387BC4AB0C8C459B000121AD /* Italian */,
+				38B7FD800C902CB500D4B393 /* Dutch */,
 			);
 			name = MainMenu.strings;
 			sourceTree = "<group>";
@@ -1174,6 +1185,7 @@
 				382F899D0C7F156700B1096B /* Estonian */,
 				387BC4AE0C8C45A1000121AD /* Spanish */,
 				387BC4AF0C8C45A5000121AD /* Italian */,
+				38B7FD830C902CBE00D4B393 /* Dutch */,
 			);
 			name = Credits.rtf;
 			sourceTree = "<group>";
@@ -1188,6 +1200,7 @@
 				382F899A0C7F154400B1096B /* Estonian */,
 				387BC4A20C8C4581000121AD /* Spanish */,
 				387BC4A30C8C4584000121AD /* Italian */,
+				38B7FD7A0C902CA300D4B393 /* Dutch */,
 			);
 			name = Localizable.strings;
 			sourceTree = "<group>";
@@ -1202,6 +1215,7 @@
 				382F89980C7F152C00B1096B /* Estonian */,
 				387BC49A0C8C4566000121AD /* Spanish */,
 				387BC49B0C8C456C000121AD /* Italian */,
+				38B7FD740C902C9000D4B393 /* Dutch */,
 			);
 			name = empty.html;
 			sourceTree = "<group>";
@@ -1216,6 +1230,7 @@
 				382F89990C7F153900B1096B /* Estonian */,
 				387BC49E0C8C4574000121AD /* Spanish */,
 				387BC49F0C8C4577000121AD /* Italian */,
+				38B7FD770C902C9900D4B393 /* Dutch */,
 			);
 			name = multiple.html;
 			sourceTree = "<group>";
