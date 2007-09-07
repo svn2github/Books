@@ -1105,6 +1105,9 @@ typedef struct _monochromePixel
 			[context insertObject:object];
 
 			[bookArrayController addObject:object];
+			
+			[object addNewCopy];
+			
 			[context unlock];
 
 			[tableViewDelegate reloadBooksTable];

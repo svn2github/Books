@@ -61,5 +61,6 @@
 - (void) setCoverPath:(NSString *) path;
 
 - (NSString *) getId;
+- (void) addNewCopy;
 
 @end

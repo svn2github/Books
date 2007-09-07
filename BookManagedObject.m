@@ -28,6 +28,8 @@
 #import "BooksAppDelegate.h"
 #import "BookTitleString.h"
 #import "BookAuthorString.h"
+#import "CopyManagedObject.h"
+#import <AddressBook/AddressBook.h>
 
 @implementation BookManagedObject
 
@@ -39,6 +41,37 @@
 
     }
     return self;
+}
+
+
+- (void) addNewCopy
+{
+	NSMutableSet * copiesSet = [self mutableSetValueForKey:@"copies"];
+	
+	if ([copiesSet count] == 0)
+	{
+		NSEntityDescription * copyDesc = [[[[NSApp delegate] managedObjectModel] entitiesByName] objectForKey:@"Copy"];
+					
+		CopyManagedObject * object = [[CopyManagedObject alloc] initWithEntity:copyDesc insertIntoManagedObjectContext:[[NSApp delegate] managedObjectContext]];
+
+		[object setValue:NSLocalizedString (@"Unknown Condition", nil) forKey:@"condition"];
+		[object setValue:NSLocalizedString (@"Bookshelf", nil) forKey:@"location"];
+
+		NSString * owner = NSLocalizedString (@"Unknown Owner", nil);
+	
+		ABPerson * me = [[ABAddressBook sharedAddressBook] me];
+
+		if (me != nil)
+			owner = [NSString stringWithFormat:@"%@ %@", [me valueForProperty:kABFirstNameProperty], [me valueForProperty:kABLastNameProperty], nil];
+
+		[object setValue:owner forKey:@"owner"];
+		[object setValue:NSLocalizedString (@"Unknown Value", nil) forKey:@"presentValue"];
+		[object setValue:NSLocalizedString (@"Unknown Source", nil) forKey:@"source"];
+		[object setValue:[NSDate date] forKey:@"dateAcquired"];
+		[object setValue:@"" forKey:@"inscription"];
+
+		[copiesSet addObject:object];
+	}
 }
 
 
