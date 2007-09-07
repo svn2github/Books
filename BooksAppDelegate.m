@@ -439,7 +439,7 @@ typedef struct _monochromePixel
 
         count = MIN ([viewRects count], [views count]);
 
-        for(i = 0; i < count; i++)
+        for (i = 0; i < count; i++)
         {
 			NSRect frame = NSRectFromString ([viewRects objectAtIndex:i]);
 
@@ -653,6 +653,8 @@ typedef struct _monochromePixel
 
 - (void) startUpdateTimer
 {
+	[self updateMainPane];
+	
 	if (timer != nil)
 	{
 		[timer invalidate];
