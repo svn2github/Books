@@ -260,10 +260,15 @@
 								<string>29B97314FDCFA39411CA2CEA</string>
 								<string>29B97317FDCFA39411CA2CEA</string>
 								<string>38DF40420B8DF63700D55EA4</string>
+								<string>29B97318FDCFA39411CA2CEA</string>
 							</array>
 							<key>PBXSmartGroupTreeModuleOutlineStateSelectionKey</key>
 							<array>
 								<array>
+									<integer>16</integer>
+									<integer>7</integer>
+									<integer>5</integer>
+									<integer>3</integer>
 									<integer>0</integer>
 								</array>
 							</array>
@@ -317,7 +322,7 @@
 										<key>_historyCapacity</key>
 										<integer>0</integer>
 										<key>bookmark</key>
-										<string>383B84370C9415C5009B428C</string>
+										<string>382E4CB10C9416E80019A8B3</string>
 										<key>history</key>
 										<array>
 											<string>3815D1510A8A97B00085540E</string>
@@ -523,7 +528,7 @@
 											<string>383B84180C9415A2009B428C</string>
 											<string>383B84190C9415A2009B428C</string>
 											<string>383B841A0C9415A2009B428C</string>
-											<string>383B841B0C9415A2009B428C</string>
+											<string>383B84370C9415C5009B428C</string>
 										</array>
 										<key>prevStack</key>
 										<array>
@@ -723,29 +728,11 @@
 											<string>38AB00B30C917F4B00BA3091</string>
 											<string>38F6B6B40C91A7CA00EDB72D</string>
 											<string>38F6B6BE0C91A80200EDB72D</string>
-											<string>383B83E00C941304009B428C</string>
-											<string>383B841C0C9415A2009B428C</string>
-											<string>383B841D0C9415A2009B428C</string>
-											<string>383B841E0C9415A2009B428C</string>
 											<string>383B841F0C9415A2009B428C</string>
 											<string>383B84200C9415A2009B428C</string>
 											<string>383B84210C9415A2009B428C</string>
-											<string>383B84220C9415A2009B428C</string>
-											<string>383B84230C9415A2009B428C</string>
-											<string>383B84240C9415A2009B428C</string>
-											<string>383B84250C9415A2009B428C</string>
-											<string>383B84260C9415A2009B428C</string>
-											<string>383B84270C9415A2009B428C</string>
 											<string>383B84280C9415A2009B428C</string>
 											<string>383B84290C9415A2009B428C</string>
-											<string>383B842A0C9415A2009B428C</string>
-											<string>383B842B0C9415A2009B428C</string>
-											<string>383B842C0C9415A2009B428C</string>
-											<string>383B842D0C9415A2009B428C</string>
-											<string>383B842E0C9415A2009B428C</string>
-											<string>383B842F0C9415A2009B428C</string>
-											<string>383B84300C9415A2009B428C</string>
-											<string>383B84310C9415A2009B428C</string>
 										</array>
 									</dict>
 									<key>SplitCount</key>
@@ -803,9 +790,9 @@
 			</array>
 			<key>TableOfContents</key>
 			<array>
-				<string>383B83E20C941304009B428C</string>
+				<string>382E4CB20C9416E80019A8B3</string>
 				<string>1CE0B1FE06471DED0097A5F4</string>
-				<string>383B83E30C941304009B428C</string>
+				<string>382E4CB30C9416E80019A8B3</string>
 				<string>1CE0B20306471E060097A5F4</string>
 				<string>1CE0B20506471E060097A5F4</string>
 			</array>
@@ -939,8 +926,6 @@
 	<integer>5</integer>
 	<key>WindowOrderList</key>
 	<array>
-		<string>384FEAE0090BD7D500EB0E2A</string>
-		<string>1C0AD2B3069F1EA900FABCE6</string>
 		<string>/Users/cjkarr/Desktop/Projects/Books/Books.xcodeproj</string>
 	</array>
 	<key>WindowString</key>
