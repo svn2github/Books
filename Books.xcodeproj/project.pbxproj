@@ -15,6 +15,7 @@
 		381930510B43470C00646B67 /* QuickTime.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 381930500B43470C00646B67 /* QuickTime.framework */; };
 		381930790B43474300646B67 /* Carbon.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 381930780B43474300646B67 /* Carbon.framework */; };
 		3819D2C70BDA3CE7003283B3 /* Books_DataModel.xcdatamodel in Sources */ = {isa = PBXBuildFile; fileRef = 770B37EC0679A11B001EADE2 /* Books_DataModel.xcdatamodel */; };
+		381C719B0C970DC800A800E7 /* iPhoto Exporter.app in Resources */ = {isa = PBXBuildFile; fileRef = 381C719A0C970DC800A800E7 /* iPhoto Exporter.app */; };
 		3820367D0B4989F80022E60E /* MyiSightWindow.m in Sources */ = {isa = PBXBuildFile; fileRef = 382036770B4989F80022E60E /* MyiSightWindow.m */; };
 		3820367E0B4989F80022E60E /* MyiSightWindow.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 382036780B4989F80022E60E /* MyiSightWindow.h */; };
 		3820367F0B4989F80022E60E /* MyGraphView.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 382036790B4989F80022E60E /* MyGraphView.h */; };
@@ -223,6 +224,7 @@
 		381930470B43469600646B67 /* camera.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = camera.png; sourceTree = "<group>"; };
 		381930500B43470C00646B67 /* QuickTime.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuickTime.framework; path = /System/Library/Frameworks/QuickTime.framework; sourceTree = "<absolute>"; };
 		381930780B43474300646B67 /* Carbon.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Carbon.framework; path = /System/Library/Frameworks/Carbon.framework; sourceTree = "<absolute>"; };
+		381C719A0C970DC800A800E7 /* iPhoto Exporter.app */ = {isa = PBXFileReference; lastKnownFileType = wrapper.application; path = "iPhoto Exporter.app"; sourceTree = "<group>"; };
 		382036770B4989F80022E60E /* MyiSightWindow.m */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.objc; path = MyiSightWindow.m; sourceTree = "<group>"; };
 		382036780B4989F80022E60E /* MyiSightWindow.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = MyiSightWindow.h; sourceTree = "<group>"; };
 		382036790B4989F80022E60E /* MyGraphView.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = MyGraphView.h; sourceTree = "<group>"; };
@@ -430,7 +432,7 @@
 		77C8280B06725ACE000B614F /* BooksAppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BooksAppDelegate.h; sourceTree = "<group>"; };
 		77C8280C06725ACE000B614F /* BooksAppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BooksAppDelegate.m; sourceTree = "<group>"; };
 		8D1107310486CEB800E47090 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
-		8D1107320486CEB800E47090 /* Books.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Books.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		8D1107320486CEB800E47090 /* Books.app */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.application; path = Books.app; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -755,6 +757,7 @@
 			children = (
 				38FEB2CF0BB9860800E6682C /* Books Folder Exporter.app */,
 				38FEB2CB0BB985F500E6682C /* Tab-Delimited Text Exporter.app */,
+				381C719A0C970DC800A800E7 /* iPhoto Exporter.app */,
 				3898563509A93A1400F44932 /* iPod Exporter.app */,
 			);
 			name = "Export Plugins";
@@ -1066,6 +1069,7 @@
 				38F4DAF80C64BF5500C3805D /* gallery.png in Resources */,
 				38A904910C6A237F0025266C /* controls.png in Resources */,
 				389E7F100C7927B700E59C8D /* no-cover.png in Resources */,
+				381C719B0C970DC800A800E7 /* iPhoto Exporter.app in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
