@@ -87,7 +87,6 @@
 		387A013C0A75CC9300447E87 /* Sparkle.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 387A013B0A75CC9300447E87 /* Sparkle.framework */; };
 		387A01520A75CD2300447E87 /* Sparkle.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 387A013B0A75CC9300447E87 /* Sparkle.framework */; };
 		3886622F09BB79B7001EB1EB /* UIEE Importer.app in Resources */ = {isa = PBXBuildFile; fileRef = 3886622E09BB79B7001EB1EB /* UIEE Importer.app */; };
-		3886627309BB79DB001EB1EB /* OPAC SBN.plugin in Resources */ = {isa = PBXBuildFile; fileRef = 3886623D09BB79DB001EB1EB /* OPAC SBN.plugin */; };
 		388AD1CF09F95BEE00BDEDD3 /* Books 2.0 Importer.app in Resources */ = {isa = PBXBuildFile; fileRef = 388AD1CE09F95BEE00BDEDD3 /* Books 2.0 Importer.app */; };
 		388E122B09F83E82000A3FF5 /* CheckOutManagedObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 388E122909F83E82000A3FF5 /* CheckOutManagedObject.m */; };
 		388E1F160BF3425600E8A670 /* BooksDisplay.plugin in Resources */ = {isa = PBXBuildFile; fileRef = 388E1F020BF3425600E8A670 /* BooksDisplay.plugin */; };
@@ -337,7 +336,6 @@
 		387BC4AE0C8C45A1000121AD /* Spanish */ = {isa = PBXFileReference; lastKnownFileType = text.rtf; name = Spanish; path = Spanish.lproj/Credits.rtf; sourceTree = "<group>"; };
 		387BC4AF0C8C45A5000121AD /* Italian */ = {isa = PBXFileReference; lastKnownFileType = text.rtf; name = Italian; path = Italian.lproj/Credits.rtf; sourceTree = "<group>"; };
 		3886622E09BB79B7001EB1EB /* UIEE Importer.app */ = {isa = PBXFileReference; lastKnownFileType = wrapper.application; path = "UIEE Importer.app"; sourceTree = "<group>"; };
-		3886623D09BB79DB001EB1EB /* OPAC SBN.plugin */ = {isa = PBXFileReference; lastKnownFileType = folder; path = "OPAC SBN.plugin"; sourceTree = "<group>"; };
 		388AD1CE09F95BEE00BDEDD3 /* Books 2.0 Importer.app */ = {isa = PBXFileReference; lastKnownFileType = wrapper.application; path = "Books 2.0 Importer.app"; sourceTree = "<group>"; };
 		388E122809F83E82000A3FF5 /* CheckOutManagedObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CheckOutManagedObject.h; sourceTree = "<group>"; };
 		388E122909F83E82000A3FF5 /* CheckOutManagedObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CheckOutManagedObject.m; sourceTree = "<group>"; };
@@ -906,7 +904,6 @@
 				38358E7F0958ED3900E823F3 /* Amazon (US).plugin */,
 				382611A909BB5BA7006B3CD7 /* ISBNdb.plugin */,
 				38CBABF10959EADC00B418FB /* Library of Congress.plugin */,
-				3886623D09BB79DB001EB1EB /* OPAC SBN.plugin */,
 			);
 			name = "Quickfill Plugins";
 			sourceTree = "<group>";
@@ -1046,7 +1043,6 @@
 				38F509BB09AAE0A50048C340 /* Booxter Importer.app in Resources */,
 				382611B209BB5BA7006B3CD7 /* ISBNdb.plugin in Resources */,
 				3886622F09BB79B7001EB1EB /* UIEE Importer.app in Resources */,
-				3886627309BB79DB001EB1EB /* OPAC SBN.plugin in Resources */,
 				38F95C7F09E5557000082453 /* Tab-Delimited Text Importer.app in Resources */,
 				388AD1CF09F95BEE00BDEDD3 /* Books 2.0 Importer.app in Resources */,
 				3832913A0A03EF1C00C98833 /* Books Metadata Importer.mdimporter in Resources */,
