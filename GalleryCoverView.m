@@ -191,7 +191,12 @@
 		
 		[image release];
 		
-		NSMutableString * string = [NSMutableString stringWithString:[currentBook valueForKey:@"title"]];
+		NSString * title = [currentBook valueForKey:@"title"];
+		
+		if (title == nil)
+			title = @"";
+			
+		NSMutableString * string = [NSMutableString stringWithString:title];
 		NSString * authors = [currentBook valueForKey:@"authors"];
 		
 		if (authors != nil && ![authors isEqual:@""])
@@ -255,7 +260,12 @@
 	}
 	else if ([keyPath isEqual:@"title"])
 	{
-		NSMutableString * string = [NSMutableString stringWithString:[currentBook valueForKey:@"title"]];
+		NSString * title = [currentBook valueForKey:@"title"];
+		
+		if (title == nil)
+			title = @"";
+
+		NSMutableString * string = [NSMutableString stringWithString:title];
 		
 		if ([currentBook valueForKey:@"authors"] != nil)
 		{

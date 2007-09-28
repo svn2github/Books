@@ -1621,12 +1621,15 @@ typedef struct _monochromePixel
 		
 		if (isbn != nil)
 		{
-			NSMutableString * urlString = [NSMutableString stringWithString:siteUrl];
+			if (siteUrl != nil)
+			{
+				NSMutableString * urlString = [NSMutableString stringWithString:siteUrl];
 			
-			[urlString replaceOccurrencesOfString:@"*isbn*" withString:isbn options:NSCaseInsensitiveSearch 
-				range:NSMakeRange (0, [urlString length])];
+				[urlString replaceOccurrencesOfString:@"*isbn*" withString:isbn options:NSCaseInsensitiveSearch 
+					range:NSMakeRange (0, [urlString length])];
 				
-			[[NSWorkspace sharedWorkspace] openURL:[NSURL URLWithString:urlString]];
+				[[NSWorkspace sharedWorkspace] openURL:[NSURL URLWithString:urlString]];
+			}
 		}
 	}
 }

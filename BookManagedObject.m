@@ -87,7 +87,7 @@
 {
     [self willChangeValueForKey:@"isbn"];
 
-	if ([isbn length] > 10)
+	if (isbn != nil && [isbn length] > 10)
 	{
 		NSMutableString * isbnTemp = [NSMutableString stringWithString:isbn];
 
@@ -203,10 +203,10 @@
 	NSString * title = [self primitiveValueForKey:@"title"];
     [self didAccessValueForKey:@"title"];
 
-//	if (![[NSUserDefaults standardUserDefaults] boolForKey:@"Snappy"])
+	if (title != nil)
 		return [BookTitleString stringWithString:title];
-//	else
-//		return title;
+	else
+		return nil;
 }
 
 - (NSString *) getAuthors
@@ -215,10 +215,10 @@
 	NSString * authorString = [self primitiveValueForKey:@"authors"];
 	[self didAccessValueForKey:@"authors"];
 
-//	if (![[NSUserDefaults standardUserDefaults] boolForKey:@"Snappy"])
-		 return [BookAuthorString stringWithString:authorString];
-//	else
-//		return authorString;
+	if (authorString != nil)
+		return [BookAuthorString stringWithString:authorString];
+	else
+		return nil;
 }
 
 - (NSString *) getIllustrators
@@ -227,10 +227,10 @@
 	NSString * illustrators = [self primitiveValueForKey:@"illustrators"];
     [self didAccessValueForKey:@"illustrators"];
 
-//	if (![[NSUserDefaults standardUserDefaults] boolForKey:@"Snappy"])
+	if (illustrators != nil)
 		return [BookAuthorString stringWithString:illustrators];
-//	else
-//		return illustrators;
+	else 
+		return nil;
 }
 
 - (NSString *) getTranslators
@@ -238,11 +238,10 @@
     [self willAccessValueForKey:@"translators"];
 	NSString * translators = [self primitiveValueForKey:@"translators"];
     [self didAccessValueForKey:@"translators"];
-	
-//	if (![[NSUserDefaults standardUserDefaults] boolForKey:@"Snappy"])
+
+	if (translators != nil)
 		return [BookAuthorString stringWithString:translators];
-//	else
-//		return translators;
+	return nil;
 }
 
 - (NSString *) getEditors
@@ -251,7 +250,10 @@
 	NSString * editors = [self primitiveValueForKey:@"editors"];
     [self didAccessValueForKey:@"editors"];
 
-	return [BookAuthorString stringWithString:editors];
+	if (editors != nil)
+		return [BookAuthorString stringWithString:editors];
+	else
+		return nil;
 }
 
 - (NSString *) getListName
@@ -737,6 +739,9 @@
 				
 		NSString * name = [[fieldPair valueForKey:@"key"] description];
 
+		if (name == nil)
+			name = @"";
+
 		NSMutableString * cleanName = [NSMutableString stringWithString:name];
 		[cleanName replaceOccurrencesOfString:@"." withString:@"" options:NSCaseInsensitiveSearch 
 			range:NSMakeRange (0, [cleanName length])];
@@ -1025,6 +1030,9 @@
 	
 	if (([key isEqual:@"CoverImageURL"] || [key isEqual:@"coverImage"]) && ! ([valueString isEqualToString:@""]))
 	{
+		if (valueString == nil)
+			valueString = @"";
+			
 		NSMutableString * mutableString = [NSMutableString stringWithString:valueString];
 
 		if ([[valueString substringToIndex:1] isEqualToString:@"/"])
@@ -1047,6 +1055,9 @@
 	}
 	else if ([key isEqual:@"title"])
 	{
+		if (valueString == nil)
+			valueString = @"";
+			
 		value = [NSMutableString stringWithString:valueString];
 		[(NSMutableString *) value replaceOccurrencesOfString:@"\n" withString:@"" options:NSCaseInsensitiveSearch 
 			range:NSMakeRange(0, [(NSMutableString *) value length])];

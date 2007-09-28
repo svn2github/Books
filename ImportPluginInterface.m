@@ -312,6 +312,9 @@
 	
 	if (([key isEqual:@"CoverImageURL"] || [key isEqual:@"coverImage"]) && ![valueString isEqualToString:@""]) 
 	{
+		if (valueString == nil)
+			valueString = @"";
+			
 		NSMutableString * mutableString = [NSMutableString stringWithString:valueString];
 		
 		if ([[valueString substringToIndex:1] isEqualToString:@"/"])
@@ -334,6 +337,9 @@
 	}
 	else if ([key isEqual:@"title"])
 	{
+		if (valueString == nil)
+			valueString = @"";
+
 		value = [NSMutableString stringWithString:valueString];
 		[(NSMutableString *) value replaceOccurrencesOfString:@"\n" withString:@"" options:NSCaseInsensitiveSearch 
 			range:NSMakeRange(0, [(NSMutableString *) value length])];

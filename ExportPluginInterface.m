@@ -303,7 +303,7 @@
 		
 		[xml setCharacterEncoding:@"UTF-8"];
 		
-		NSData * xmlData = [xml XMLData];
+		NSData * xmlData = [xml XMLDataWithOptions:NSXMLDocumentTidyXML];
 
 		NSString * exportPath = [NSString stringWithFormat:@"%@/books-export.xml", path, nil];
 

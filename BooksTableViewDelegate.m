@@ -414,7 +414,7 @@
 		for (i = 0; i < [fields count]; i++)
 		{
 			NSString * field = [fields objectAtIndex:i];
-			if (![field isEqual:@""])
+			if (field != nil && ![field isEqual:@""])
 			{
 				NSMutableString * fieldKey = [NSMutableString stringWithString:field];
 				
