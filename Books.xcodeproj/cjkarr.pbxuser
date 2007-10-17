@@ -185,8 +185,8 @@
 					PBXFileDataSource_Warnings_ColumnID,
 				);
 			};
-			PBXPerProjectTemplateStateSaveDate = 213150992;
-			PBXWorkspaceStateSaveDate = 213150992;
+			PBXPerProjectTemplateStateSaveDate = 214279285;
+			PBXWorkspaceStateSaveDate = 214279285;
 		};
 		perUserProjectItems = {
 			3800649E0C353D86005C432C /* PBXTextBookmark */ = 3800649E0C353D86005C432C /* PBXTextBookmark */;
@@ -487,6 +487,7 @@
 			38B255FB0A97E3E6000DAFC5 /* PBXTextBookmark */ = 38B255FB0A97E3E6000DAFC5 /* PBXTextBookmark */;
 			38B256000A97E3E6000DAFC5 /* PBXTextBookmark */ = 38B256000A97E3E6000DAFC5 /* PBXTextBookmark */;
 			38B256030A97E3E6000DAFC5 /* PBXTextBookmark */ = 38B256030A97E3E6000DAFC5 /* PBXTextBookmark */;
+			38B6670F0CC5A6E400A1545B /* PBXTextBookmark */ = 38B6670F0CC5A6E400A1545B /* PBXTextBookmark */;
 			38B692650C0F6889003CB029 /* PBXTextBookmark */ = 38B692650C0F6889003CB029 /* PBXTextBookmark */;
 			38B692670C0F6889003CB029 /* PBXTextBookmark */ = 38B692670C0F6889003CB029 /* PBXTextBookmark */;
 			38B7FD860C902D0100D4B393 /* PBXTextBookmark */ = 38B7FD860C902D0100D4B393 /* PBXTextBookmark */;
@@ -503,8 +504,6 @@
 			38BD42A90BA06A6B00F245D8 /* PBXBookmark */ = 38BD42A90BA06A6B00F245D8 /* PBXBookmark */;
 			38BD42D70BA0DB7200F245D8 /* PBXBookmark */ = 38BD42D70BA0DB7200F245D8 /* PBXBookmark */;
 			38BE1CA20CB46D8300D3499A /* PBXTextBookmark */ = 38BE1CA20CB46D8300D3499A /* PBXTextBookmark */;
-			38BE1CA30CB46D8300D3499A /* PBXTextBookmark */ = 38BE1CA30CB46D8300D3499A /* PBXTextBookmark */;
-			38BE1CA40CB46D8300D3499A /* PBXTextBookmark */ = 38BE1CA40CB46D8300D3499A /* PBXTextBookmark */;
 			38BE1CA50CB46D8300D3499A /* PBXTextBookmark */ = 38BE1CA50CB46D8300D3499A /* PBXTextBookmark */;
 			38C0D5C50C3E1C2B00DC777B /* PBXTextBookmark */ = 38C0D5C50C3E1C2B00DC777B /* PBXTextBookmark */;
 			38C0D6890C3E211500DC777B /* PBXTextBookmark */ = 38C0D6890C3E211500DC777B /* PBXTextBookmark */;
@@ -4643,6 +4642,16 @@
 		path = "/Volumes/iDisk/Documents/Projects/Books Project/Version Controlled/books-macosx/Books/BibTeX Importer.app/Contents/Info.plist";
 		sourceTree = "<absolute>";
 	};
+	38B6670F0CC5A6E400A1545B /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 38C0D5010C3E152800DC777B /* BooksTableViewDelegate.m */;
+		name = bind;
+		rLen = 4;
+		rLoc = 8994;
+		rType = 0;
+		vrLen = 1476;
+		vrLoc = 8401;
+	};
 	38B692650C0F6889003CB029 /* PBXTextBookmark */ = {
 		isa = PBXTextBookmark;
 		fRef = 38D88D910BF37E11001AF26A /* Info.plist */;
@@ -4827,23 +4836,6 @@
 		vrLen = 1194;
 		vrLoc = 11830;
 	};
-	38BE1CA30CB46D8300D3499A /* PBXTextBookmark */ = {
-		isa = PBXTextBookmark;
-		fRef = 38C0D5010C3E152800DC777B /* BooksTableViewDelegate.m */;
-		rLen = 4;
-		rLoc = 8994;
-		rType = 0;
-	};
-	38BE1CA40CB46D8300D3499A /* PBXTextBookmark */ = {
-		isa = PBXTextBookmark;
-		fRef = 3878AF28088FE45E00C72EB3 /* ImportPluginInterface.m */;
-		name = "ImportPluginInterface.m: 355";
-		rLen = 0;
-		rLoc = 12222;
-		rType = 0;
-		vrLen = 1194;
-		vrLoc = 11830;
-	};
 	38BE1CA50CB46D8300D3499A /* PBXTextBookmark */ = {
 		isa = PBXTextBookmark;
 		fRef = 38C0D5010C3E152800DC777B /* BooksTableViewDelegate.m */;
@@ -4863,9 +4855,9 @@
 	};
 	38C0D5010C3E152800DC777B /* BooksTableViewDelegate.m */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {1023, 8876}}";
-			sepNavSelRange = "{8984, 109}";
-			sepNavVisRect = "{{0, 4252}, {1023, 359}}";
+			sepNavIntBoundsRect = "{{0, 0}, {1063, 9510}}";
+			sepNavSelRange = "{8994, 4}";
+			sepNavVisRect = "{{0, 4464}, {953, 570}}";
 			sepNavWindowFrame = "{{15, 75}, {1176, 703}}";
 		};
 	};
