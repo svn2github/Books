@@ -128,7 +128,6 @@
 		38E94D22090A7639001C2A9E /* AppKitScripting.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 38E94D20090A7639001C2A9E /* AppKitScripting.framework */; };
 		38E94D23090A7639001C2A9E /* AppleScriptKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 38E94D21090A7639001C2A9E /* AppleScriptKit.framework */; };
 		38E95074090AA9F1001C2A9E /* Books.sdef in Resources */ = {isa = PBXBuildFile; fileRef = 38E95073090AA9F1001C2A9E /* Books.sdef */; };
-		38EA9B8409899DC30081A4D0 /* BibTeX Importer.app in Resources */ = {isa = PBXBuildFile; fileRef = 38EA9B8309899DC30081A4D0 /* BibTeX Importer.app */; };
 		38EB4D080A1034B9002C6213 /* plugin-installer.sh in Resources */ = {isa = PBXBuildFile; fileRef = 38EB4D070A1034B9002C6213 /* plugin-installer.sh */; };
 		38EDC5D208EA23A300414B3D /* DefaultDisplay.plugin in Resources */ = {isa = PBXBuildFile; fileRef = 38EDC5C808EA23A300414B3D /* DefaultDisplay.plugin */; };
 		38EDC5F408EA279900414B3D /* ClassicDisplay.plugin in Resources */ = {isa = PBXBuildFile; fileRef = 38EDC5EA08EA279900414B3D /* ClassicDisplay.plugin */; };
@@ -397,7 +396,6 @@
 		38E94D20090A7639001C2A9E /* AppKitScripting.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKitScripting.framework; path = /System/Library/Frameworks/AppKitScripting.framework; sourceTree = "<absolute>"; };
 		38E94D21090A7639001C2A9E /* AppleScriptKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppleScriptKit.framework; path = /System/Library/Frameworks/AppleScriptKit.framework; sourceTree = "<absolute>"; };
 		38E95073090AA9F1001C2A9E /* Books.sdef */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = text.sdef; path = Books.sdef; sourceTree = "<group>"; };
-		38EA9B8309899DC30081A4D0 /* BibTeX Importer.app */ = {isa = PBXFileReference; lastKnownFileType = wrapper.application; path = "BibTeX Importer.app"; sourceTree = "<group>"; };
 		38EB4D070A1034B9002C6213 /* plugin-installer.sh */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = text.script.sh; path = "plugin-installer.sh"; sourceTree = "<group>"; };
 		38EDC5C808EA23A300414B3D /* DefaultDisplay.plugin */ = {isa = PBXFileReference; lastKnownFileType = folder; path = DefaultDisplay.plugin; sourceTree = "<group>"; };
 		38EDC5EA08EA279900414B3D /* ClassicDisplay.plugin */ = {isa = PBXFileReference; lastKnownFileType = folder; path = ClassicDisplay.plugin; sourceTree = "<group>"; };
@@ -797,7 +795,6 @@
 				388AD1CE09F95BEE00BDEDD3 /* Books 2.0 Importer.app */,
 				38F95C7E09E5557000082453 /* Tab-Delimited Text Importer.app */,
 				3886622E09BB79B7001EB1EB /* UIEE Importer.app */,
-				38EA9B8309899DC30081A4D0 /* BibTeX Importer.app */,
 				38F509BA09AAE0A50048C340 /* Booxter Importer.app */,
 				38B62EB10987D2D200A4A8AD /* Delicious Library Importer.app */,
 				38746938096D69E00016A59A /* Library of Congress Importer.app */,
@@ -1038,7 +1035,6 @@
 				387469AF096D69E00016A59A /* Directory Importer.app in Resources */,
 				387469B1096D69E00016A59A /* Amazon Importer.app in Resources */,
 				38B62EB20987D2D200A4A8AD /* Delicious Library Importer.app in Resources */,
-				38EA9B8409899DC30081A4D0 /* BibTeX Importer.app in Resources */,
 				3898563609A93A1400F44932 /* iPod Exporter.app in Resources */,
 				38F509BB09AAE0A50048C340 /* Booxter Importer.app in Resources */,
 				382611B209BB5BA7006B3CD7 /* ISBNdb.plugin in Resources */,
