@@ -385,6 +385,7 @@
 		38CEA64B0C79177700371285 /* Danish */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Danish; path = Danish.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		38D0C90109057D8300672AA7 /* BookManagedObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BookManagedObject.h; sourceTree = "<group>"; };
 		38D0C90209057D8300672AA7 /* BookManagedObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BookManagedObject.m; sourceTree = "<group>"; };
+		38DD021E0CDFE07600C4272C /* BooksDefines.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BooksDefines.h; sourceTree = "<group>"; };
 		38DE5E630BA1D3E100B4FEC0 /* Quartz.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Quartz.framework; path = /System/Library/Frameworks/Quartz.framework; sourceTree = "<absolute>"; };
 		38DF3FF20B8DF59300D55EA4 /* Danish */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Danish; path = Danish.lproj/Localizable.strings; sourceTree = "<group>"; };
 		38DF3FFC0B8DF5B300D55EA4 /* Danish */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Danish; path = Danish.lproj/MainMenu.strings; sourceTree = "<group>"; };
@@ -456,6 +457,7 @@
 		080E96DDFE201D6D7F000001 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				38DD021E0CDFE07600C4272C /* BooksDefines.h */,
 				38C0D6D50C3E240900DC777B /* Data Model */,
 				3825FE4B08FA9BC1007572AA /* Plugin Interfaces */,
 				38470D330C3E2954003F4939 /* System Integration */,
@@ -968,6 +970,7 @@
 		29B97313FDCFA39411CA2CEA /* Project object */ = {
 			isa = PBXProject;
 			buildConfigurationList = 38328ED708859AFD00091C9B /* Build configuration list for PBXProject "Books" */;
+			compatibilityVersion = "Xcode 2.4";
 			hasScannedForEncodings = 1;
 			knownRegions = (
 				English,
@@ -984,6 +987,7 @@
 			);
 			mainGroup = 29B97314FDCFA39411CA2CEA /* Books */;
 			projectDirPath = "";
+			projectRoot = "";
 			targets = (
 				8D1107260486CEB800E47090 /* Books */,
 			);

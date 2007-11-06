@@ -220,6 +220,7 @@
 - (void) orderCoverWindowOut;
 
 - (NSString *) getDateFormatString;
+- (NSString *) getDateLentFormatString;
 
 - (IBAction) print:(id) sender;
 - (IBAction) compact:(id) sender;

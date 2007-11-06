@@ -22,6 +22,7 @@
    SOFTWARE.
 */
 
+#import "BooksDefines.h"
 #import "BooksAppDelegate.h"
 #import "ImportPluginInterface.h"
 #import "ExportPluginInterface.h"
@@ -413,9 +414,7 @@ typedef struct _monochromePixel
 	[tableViewDelegate restore];
 
 	NSString * dateFormat = [self getDateFormatString];
-
 	[NSDateFormatter setDefaultFormatterBehavior:NSDateFormatterBehavior10_4];
-
 	NSDateFormatter * formatter = [[NSDateFormatter alloc] initWithDateFormat:dateFormat allowNaturalLanguage:YES];
 	[[datePublished cell] setFormatter:formatter];
 	[[dateAcquired cell] setFormatter:formatter];
@@ -423,10 +422,19 @@ typedef struct _monochromePixel
 	[[dateFinished cell] setFormatter:formatter];
 	[[dateLent cell] setFormatter:formatter];
 	[[dateReturned cell] setFormatter:formatter];
-	
 	[[finishedColumn dataCell] setFormatter:formatter];
 	[[lentColumn dataCell] setFormatter:formatter];
 	[[returnedColumn dataCell] setFormatter:formatter];
+
+	dateFormat = [self getDateLentFormatString];
+
+	if (dateFormat != nil)
+	{
+		formatter = [[NSDateFormatter alloc] initWithDateFormat:dateFormat allowNaturalLanguage:YES];
+
+		[[dateLent cell] setFormatter:formatter];
+		[[dateReturned cell] setFormatter:formatter];
+	}
 
 	/* Resize Main Scroller */
 	
@@ -1804,6 +1812,16 @@ typedef struct _monochromePixel
 	
 	return format;
 }
+
+- (NSString *) getDateLentFormatString
+{
+	NSString * format = [[NSUserDefaults standardUserDefaults] stringForKey:BOOKS_LENT_DATE_FORMAT];
+	
+	NSLog (@"format = %@", format);
+	
+	return format;
+}
+
 
 - (NSString *) getNow
 {
