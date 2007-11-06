@@ -1158,6 +1158,8 @@ typedef struct _monochromePixel
 			
 			if ([selects count] == 1)
 			{
+				NSLog (@"list = %@", [[selects objectAtIndex:0] valueForKey:@"listName"]);
+				
 				choice = NSRunAlertPanel (NSLocalizedString (@"Delete Selected Book?", nil), 
 							NSLocalizedString (@"Are you sure you want to delete the selected book?", nil), NSLocalizedString (@"No", nil), 
 							NSLocalizedString (@"Yes", nil), nil);
@@ -1865,5 +1867,151 @@ typedef struct _monochromePixel
 	
 	[compactor release];
 }
+
+- (IBAction) copy:(id) sender
+{
+	NSMutableArray * uuids = [NSMutableArray array];
+		
+	NSArray * books = [bookArrayController selectedObjects];
+			
+	NSEnumerator * iter = [books objectEnumerator];
+	BookManagedObject * book = nil;
+			
+	while ((book = [iter nextObject]) != nil)
+	{
+		NSLog (@"uuid = %@", [book valueForKey:@"id"]);
+		
+		[uuids addObject:[book valueForKey:@"id"]];
+	}
+
+	NSData * data = [NSArchiver archivedDataWithRootObject:uuids];
+
+	NSPasteboard * pasteboard = [NSPasteboard generalPasteboard];
+
+	NSMutableArray * types = [NSMutableArray arrayWithArray:[pasteboard types]];
+	[types addObject:BOOKS_COPY_TYPE];
+
+	[pasteboard declareTypes:types owner:nil];
+	
+	[pasteboard setData:[data retain] forType:BOOKS_COPY_TYPE];
+}
+
+
+- (IBAction) paste:(id) sender
+{
+	NSArray * objects = [collectionArrayController selectedObjects];
+	
+	if ([objects count] == 1)
+	{
+		ListManagedObject * list = [objects objectAtIndex:0];
+		
+		if (![list isKindOfClass:[SmartListManagedObject class]])
+		{
+			NSPasteboard * pasteboard = [NSPasteboard generalPasteboard];
+
+			NSArray * types = [NSArray arrayWithObject:BOOKS_COPY_TYPE];
+			NSString * bestType = [pasteboard availableTypeFromArray:types];
+			
+			if (bestType != nil)
+			{
+				NSData * data = [pasteboard dataForType:BOOKS_COPY_TYPE];
+
+				NSArray * uuids = [NSUnarchiver unarchiveObjectWithData:data];
+
+				if (uuids != nil)
+				{
+					NSManagedObjectContext * context = [self managedObjectContext];
+					NSManagedObjectModel * model = [self managedObjectModel];
+					NSEntityDescription * desc = [[model entitiesByName] objectForKey:@"Book"];
+					NSEntityDescription * fieldDesc = [[model entitiesByName] objectForKey:@"UserDefinedField"];
+					NSArray * props = [desc properties];
+
+					NSEnumerator * iter = [uuids objectEnumerator];
+					NSString * uuid = nil;
+					
+					while ((uuid = [iter nextObject]) != nil)
+					{
+						NSLog (@"uuid = %@", uuid);
+
+						NSFetchRequest * fetch = [[NSFetchRequest alloc] init];
+						[fetch setEntity:[NSEntityDescription entityForName:@"Book" inManagedObjectContext:[self managedObjectContext]]];
+
+						NSExpression * right = [NSExpression expressionForConstantValue:uuid];
+						NSExpression * left = [NSExpression expressionForKeyPath:@"id"];
+
+						NSPredicate * predicate = [NSComparisonPredicate predicateWithLeftExpression:left rightExpression:right
+													modifier:NSDirectPredicateModifier type:NSEqualToPredicateOperatorType 
+													options: (NSCaseInsensitivePredicateOption || NSDiacriticInsensitivePredicateOption)];
+
+
+						[fetch setPredicate:predicate];
+
+						NSError * error = nil;
+						NSArray * results = [[self managedObjectContext] executeFetchRequest:fetch error:&error];
+						
+						if ([results count] > 0)
+						{
+							NSLog (@"results = %@", results);
+
+							BookManagedObject * record = [results objectAtIndex:0];
+
+							[context lock];
+							BookManagedObject * object = [[BookManagedObject alloc] initWithEntity:desc insertIntoManagedObjectContext:context];
+
+							int j = 0;
+							for (j = 0; j < [props count]; j++)
+							{
+								NSPropertyDescription * propDesc = (NSPropertyDescription *) [props objectAtIndex:j];
+								NSString * name = [propDesc name];
+					
+								if ([propDesc isMemberOfClass:[NSAttributeDescription class]])
+									[object setValue:[record valueForKey:name] forKey:name];
+								else if ([name isEqualToString:@"userFields"])
+								{
+									NSArray * userFields = [[record valueForKey:@"userFields"] allObjects];
+						
+									NSMutableSet * objectFields = [object mutableSetValueForKey:@"userFields"];
+						
+									int k = 0;
+									for (k = 0; k < [userFields count]; k++)
+									{
+										NSManagedObject * fieldPair = [userFields objectAtIndex:k];
+										NSManagedObject * fieldObject = [[NSManagedObject alloc] initWithEntity:fieldDesc 
+											insertIntoManagedObjectContext:context];
+
+										[fieldObject setValue:[fieldPair valueForKey:@"key"] forKey:@"key"];
+										[fieldObject setValue:[fieldPair valueForKey:@"value"] forKey:@"value"];
+	
+										[objectFields addObject:fieldObject];
+									}
+								}
+							}
+
+							CFUUIDRef uuid = CFUUIDCreate (kCFAllocatorDefault);
+							NSString * uuidString = (NSString *) CFUUIDCreateString (kCFAllocatorDefault, uuid);
+		
+							[object setValue:uuidString forKey:@"id"];
+
+							NSData * cover = [record getCoverImage];
+							[object setCoverImage:[cover copyWithZone:NULL]];
+
+							[context insertObject:object];
+
+							[bookArrayController addObject:object];
+							[context unlock];
+						}
+			
+						[tableViewDelegate reloadBooksTable];
+					}
+				}
+			}
+			else
+			{
+				NSLog (@"data not found");
+			}
+		}
+	}
+}
+
 
 @end

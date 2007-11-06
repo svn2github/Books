@@ -8,3 +8,4 @@
  */
 
 #define BOOKS_LENT_DATE_FORMAT @"Books: Lent Date Format"
+#define BOOKS_COPY_TYPE	@"BookPBoardType"
