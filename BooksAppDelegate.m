@@ -1125,6 +1125,8 @@ typedef struct _monochromePixel
 				[self getInfoWindow:nil];
 			}
 
+			[infoWindow makeFirstResponder:responder];
+
 			[self save:sender];
 		}
 	}
@@ -2005,13 +2007,38 @@ typedef struct _monochromePixel
 					}
 				}
 			}
-			else
-			{
-				NSLog (@"data not found");
-			}
 		}
 	}
 }
 
+- (IBAction) selectPrevious:(id) sender
+{
+	[bookArrayController selectPrevious:sender];
+	[infoWindow makeFirstResponder:responder];
+}
 
+- (IBAction) selectNext:(id) sender
+{
+	[bookArrayController selectNext:sender];
+	[infoWindow makeFirstResponder:responder];
+}
+
+- (void)windowDidUpdate:(NSNotification *)notification
+{
+	NSResponder * newResponder = [infoWindow firstResponder];
+
+	if (responder == newResponder)
+		return;
+		
+	if (![newResponder isKindOfClass:[NSButton class]])
+	{
+		responder = newResponder;
+	}
+}
+
+- (void)sheetDidEnd:(NSWindow *)sheet returnCode:(int)returnCode contextInfo:(void *)contextInfo
+{
+	NSLog (@"restore %@", responder);
+	[infoWindow makeFirstResponder:responder];
+}
 @end

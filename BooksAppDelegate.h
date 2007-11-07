@@ -90,6 +90,7 @@
 	
 	IBOutlet NSComboBox * userFieldCombo;
 	IBOutlet NSTextField * datePublished;
+	NSResponder * responder;
 
 	IBOutlet NSTextField * dateAcquired;
 	IBOutlet NSTextField * dateStarted;
@@ -224,5 +225,8 @@
 
 - (IBAction) print:(id) sender;
 - (IBAction) compact:(id) sender;
+
+- (IBAction) selectPrevious:(id) sender;
+- (IBAction) selectNext:(id) sender;
 
 @end

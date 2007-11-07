@@ -99,7 +99,7 @@
 
 	[panel setTitle:pluginName];
 		
-	[NSApp beginSheet:panel modalForWindow:[((BooksAppDelegate *)[NSApp delegate]) infoWindow] modalDelegate:self didEndSelector:nil contextInfo:NULL];
+	[NSApp beginSheet:panel modalForWindow:[((BooksAppDelegate *)[NSApp delegate]) infoWindow] modalDelegate:[NSApp delegate] didEndSelector:@selector(sheetDidEnd: returnCode: contextInfo:) contextInfo:NULL];
 }
 
 - (void) tableViewSelectionDidChange: (NSNotification *) aNotification
@@ -172,6 +172,5 @@
 	NSURL * localhost = [NSURL URLWithString:@"http://localhost/"];
 	[mainFrame loadHTMLString:htmlString baseURL:localhost];
 }
-
 	
 @end

@@ -14,6 +14,7 @@
 
 - (void) tableViewSelectionDidChange: (NSNotification *) notification
 {
+
 	NSTableView * table = [notification object];
 
 	if (table == booksTable)
