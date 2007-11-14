@@ -803,8 +803,8 @@
 
 	[entry setValue:title forKey:@"Title"];
 	[entry setValue:description forKey:@"Description"];
-	[entry setValue:[[NSWorkspace sharedWorkspace] 
-		iconForFile:[filePath stringByAppendingPathComponent:[entry valueForKey:@"Location"]]] forKey:@"Icon"];
+	// [entry setValue:[[NSWorkspace sharedWorkspace] 
+	//	iconForFile:[filePath stringByAppendingPathComponent:[entry valueForKey:@"Location"]]] forKey:@"Icon"];
 
 	[fileSet addObject:entry];
 

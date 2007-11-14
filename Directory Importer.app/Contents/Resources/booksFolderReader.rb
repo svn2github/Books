@@ -45,6 +45,10 @@ listxml.elements().each("/exportData/Book") do |book_element|
 	book_element.elements().each("checkout") do |feedback|
 		book.add_element(feedback.deep_clone())
 	end
+	
+	book_element.elements().each("file") do |file|
+		book.add_element(file.deep_clone())
+	end
 end
 
 outputxml.write($stdout,0,false,false)
