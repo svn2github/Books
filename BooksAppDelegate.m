@@ -1160,8 +1160,6 @@ typedef struct _monochromePixel
 			
 			if ([selects count] == 1)
 			{
-				NSLog (@"list = %@", [[selects objectAtIndex:0] valueForKey:@"listName"]);
-				
 				choice = NSRunAlertPanel (NSLocalizedString (@"Delete Selected Book?", nil), 
 							NSLocalizedString (@"Are you sure you want to delete the selected book?", nil), NSLocalizedString (@"No", nil), 
 							NSLocalizedString (@"Yes", nil), nil);
@@ -1821,8 +1819,6 @@ typedef struct _monochromePixel
 {
 	NSString * format = [[NSUserDefaults standardUserDefaults] stringForKey:BOOKS_LENT_DATE_FORMAT];
 	
-	NSLog (@"format = %@", format);
-	
 	return format;
 }
 
@@ -1880,11 +1876,7 @@ typedef struct _monochromePixel
 	BookManagedObject * book = nil;
 			
 	while ((book = [iter nextObject]) != nil)
-	{
-		NSLog (@"uuid = %@", [book valueForKey:@"id"]);
-		
 		[uuids addObject:[book valueForKey:@"id"]];
-	}
 
 	NSData * data = [NSArchiver archivedDataWithRootObject:uuids];
 
@@ -1933,8 +1925,6 @@ typedef struct _monochromePixel
 					
 					while ((uuid = [iter nextObject]) != nil)
 					{
-						NSLog (@"uuid = %@", uuid);
-
 						NSFetchRequest * fetch = [[NSFetchRequest alloc] init];
 						[fetch setEntity:[NSEntityDescription entityForName:@"Book" inManagedObjectContext:[self managedObjectContext]]];
 
@@ -1953,8 +1943,6 @@ typedef struct _monochromePixel
 						
 						if ([results count] > 0)
 						{
-							NSLog (@"results = %@", results);
-
 							BookManagedObject * record = [results objectAtIndex:0];
 
 							[context lock];
@@ -2038,7 +2026,6 @@ typedef struct _monochromePixel
 
 - (void)sheetDidEnd:(NSWindow *)sheet returnCode:(int)returnCode contextInfo:(void *)contextInfo
 {
-	NSLog (@"restore %@", responder);
 	[infoWindow makeFirstResponder:responder];
 }
 @end
