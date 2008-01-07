@@ -108,4 +108,4 @@ listxml.elements().each("/list/book") do |book_element|
 	end
 end
 
-outputxml.write($stdout,0,false,false)
+outputxml.write($stdout) # ,0,false,false)
