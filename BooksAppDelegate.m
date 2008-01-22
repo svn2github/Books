@@ -1677,6 +1677,10 @@ typedef struct _monochromePixel
 			[toolbarDelegate setGetInfoLabel:NSLocalizedString (@"Hide Info", nil)];
 		}
 	}
+	else
+		NSRunAlertPanel (NSLocalizedString (@"Unable To Process Barcode", nil), NSLocalizedString (@"Books is unable to process the scanned barcode. Please try again.", nil), NSLocalizedString (@"OK", nil), nil, nil);
+
+	
 }
 
 - (IBAction) duplicateRecords:(id) sender
