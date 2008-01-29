@@ -1469,57 +1469,71 @@ typedef struct _monochromePixel
 	if (quickfillPlugins == nil)
 		[self initQuickfillPlugins];
 
-	NSString * pluginKey = [[NSUserDefaults standardUserDefaults] stringForKey:@"Default Quickfill Plugin"];
-
-	if (pluginKey == nil || [pluginKey isEqualToString:@""])
-	{
-		NSRunAlertPanel (NSLocalizedString (@"No Quickfill Plugin Selected", nil),  NSLocalizedString (@"No quickfill plugins have been selected. Select one in the preferences.", nil), NSLocalizedString (@"OK", nil), nil, nil);
-		
-		return;
-	}
-
-	NSBundle * quickfillPlugin = (NSBundle *) [quickfillPlugins objectForKey:pluginKey];
+	batchArray = [[NSMutableArray arrayWithArray:[bookArrayController selectedObjects]] retain];
 	
-	NSArray * books = [bookArrayController selectedObjects];
-	
-	if ([books count] == 0)
-		books = [bookArrayController arrangedObjects];
+	if ([batchArray count] == 0)
+		[batchArray addObjectsFromArray:[bookArrayController arrangedObjects]];
 
 	[progressIndicator setUsesThreadedAnimation:YES];
 	[progressIndicator startAnimation:self];
 
-	NSString * message = [NSString stringWithFormat:NSLocalizedString (@"Batch quickfilling %d items...", nil), [books count], nil];
+	NSString * message = [NSString stringWithFormat:NSLocalizedString (@"Batch quickfilling %d items...", nil), [batchArray count], nil];
 
 	[progressText setStringValue:message];
 	
 	[[NSApplication sharedApplication] beginSheet:progressView modalForWindow:mainWindow
 		modalDelegate:self didEndSelector:nil contextInfo:NULL];
+	
+	[NSTimer scheduledTimerWithTimeInterval:0.1 target:self selector:@selector(batch:) userInfo:
+				[NSDictionary dictionaryWithObject:[NSNumber numberWithInt:code] forKey:@"code"] repeats:NO];
+				
+	[self startQuickfill];
+}
 
-	quickfill = [[QuickfillPluginInterface alloc] init];
-
-	int i = 0;
-	for (i = 0; i < [books count]; i++)
+- (void) batch:(NSTimer *) theTimer
+{
+	NSDictionary * userInfo = [theTimer userInfo];
+	
+	NSString * pluginKey = [[NSUserDefaults standardUserDefaults] stringForKey:@"Default Quickfill Plugin"];
+	
+	if (pluginKey == nil || [pluginKey isEqualToString:@""])
+		NSRunAlertPanel (NSLocalizedString (@"No Quickfill Plugin Selected", nil),  NSLocalizedString (@"No quickfill plugins have been selected. Select one in the preferences.", nil), NSLocalizedString (@"OK", nil), nil, nil);
+	else if (batchArray != nil && [batchArray count] > 0)
 	{
-		[self startQuickfill];
+
+		NSBundle * quickfillPlugin = (NSBundle *) [quickfillPlugins objectForKey:pluginKey];
+
+		quickfill = [[QuickfillPluginInterface alloc] init];
 
 		BOOL replace = NO;
 		
-		if (code == NSAlertOtherReturn)
+		if ([[userInfo valueForKey:@"code"] intValue] == NSAlertOtherReturn)
 			replace = YES;
 
-		BookManagedObject * book = (BookManagedObject *) [books objectAtIndex:i];
+		BookManagedObject * book = (BookManagedObject *) [batchArray objectAtIndex:0];
 
-		message = [NSString stringWithFormat:NSLocalizedString (@"Quickfilling item %d of %d...", nil), i + 1, [books count], nil];
+		NSString * message = [NSString stringWithFormat:NSLocalizedString (@"Quickfilling items. %d remaining...", nil), [batchArray count], nil];
 		[progressText setStringValue:message];
 		[progressText setNeedsDisplay:YES];
 		[progressView display];
 
 		[quickfill batchImportFromBundle:quickfillPlugin forBook:book replace:replace];
+			
+		[batchArray removeObjectAtIndex:0];
+		
+		[quickfill release];
+		
+		[NSTimer scheduledTimerWithTimeInterval:0.1 target:self selector:@selector(batch:) userInfo:userInfo repeats:NO];
+		
+		return;
 	}
 
 	[[NSApplication sharedApplication] endSheet:progressView];
 	[progressView orderOut:self];
 	[progressIndicator stopAnimation:self];
+		
+	[batchArray release];
+	batchArray = nil;
 }
 
 - (IBAction) openFiles: (id) sender

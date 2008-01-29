@@ -25,35 +25,44 @@ bookcount = 0
 listxml.elements().each("/library/items/book") do |book_element|
 
 	book = collection.add_element("Book")
+	copy = book.add_element("copy")
 
 	book_element.attributes().each_attribute() do |attribute|
 		name = attribute.expanded_name
 		value = attribute.value
 	
-		field = book.add_element("field")
-		
 		newname = mapping[name]
 			
 		if (newname == nil)
 			newname = name
 		end
 
-		if (newname != "summary")
-			value = value.tr_s("\n", ", ")
+		if (newname == "location")
+			copy.attributes["location"] = value
+		elsif (newname == "currentValue")
+			copy.attributes["presentValue"] = value
+		elsif (newname == "purchaseDate")
+			copy.attributes["dateAcquired"] = value
+		else
+			field = book.add_element("field")
+		
+			if (newname != "summary")
+				value = value.tr_s("\n", ", ")
 
-			if (newname == "uuid")
-				cover = book.add_element("field")
+				if (newname == "uuid")
+					cover = book.add_element("field")
 				
-				cover.attributes["name"] = "coverImage"
+					cover.attributes["name"] = "coverImage"
 				
-				cover.add_text(filepath.sub("Library Media Data.xml", "Images/Large Covers/") + value);
+					cover.add_text(filepath.sub("Library Media Data.xml", "Images/Large Covers/") + value);
+				end
 			end
+	
+			field.attributes["name"] = newname
+			field.add_text(value)
 		end
 					
-		field.attributes["name"] = newname
-		field.add_text(value)
 	end
-
 end
 
 outputxml.write($stdout,0,false,false)

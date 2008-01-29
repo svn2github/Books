@@ -130,6 +130,9 @@
 
 	IBOutlet ViewControls * defaultViewControls;
 	IBOutlet ViewControls * galleryViewControls;
+	
+	NSMutableArray * batchArray;
+	NSTimer * batchTimer;
 }
 
 - (IBAction)preferences:(id)sender;
