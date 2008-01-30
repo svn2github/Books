@@ -51,13 +51,13 @@
 	
 	if ([[NSUserDefaults standardUserDefaults] boolForKey:@"Export Selected Items"])
 	{
-		books = [delegate getSelectedBooks];
+		books = [[delegate getSelectedBooks] retain];
 		lists = [NSArray array];
 		smartLists = [NSArray array];
 	}
 	else
 	{
-		books = [delegate getAllBooks];
+		books = [[delegate getAllBooks] retain];
 		lists = [delegate getAllLists];
 		smartLists = [delegate getAllSmartLists];
 	}
@@ -85,7 +85,7 @@
 		NSXMLDocument * xml = [[NSXMLDocument alloc] initWithXMLString:@"<exportData />" options:NSXMLDocumentTidyXML error:&error];
 		
 		NSXMLElement * root = [xml rootElement];
-
+		
 		int i = 0;
 		for (i = 0; i < [books count]; i++)
 		{
@@ -315,6 +315,8 @@
 
 		[[[NSApplication sharedApplication] delegate] endProgressWindow];
 	}
+
+	[books release];
 	
 	[pool release];
 
