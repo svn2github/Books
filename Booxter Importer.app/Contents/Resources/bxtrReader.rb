@@ -158,4 +158,6 @@ listxml.elements().each("/books/book") do |book_element|
 	end
 end
 
-outputxml.write($stdout,0,false,false)
+print(outputxml.to_s())
+
+# outputxml.write($stdout,0,false,false)
