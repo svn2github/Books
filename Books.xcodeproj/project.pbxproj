@@ -10,6 +10,7 @@
 		38030ACE08F4A0BD00B2AC82 /* SmartListRuleView.m in Sources */ = {isa = PBXBuildFile; fileRef = 38030ACD08F4A0BD00B2AC82 /* SmartListRuleView.m */; };
 		38030AD708F4A37A00B2AC82 /* SmartListWindowDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 38030AD608F4A37A00B2AC82 /* SmartListWindowDelegate.m */; };
 		38039DBF0A04EA5400DFA71F /* PluginManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 38039DBD0A04EA5400DFA71F /* PluginManager.m */; };
+		3806B9130D59028A00D20EDD /* BooksSpotlight.mdimporter in Resources */ = {isa = PBXBuildFile; fileRef = 3806B9060D59028A00D20EDD /* BooksSpotlight.mdimporter */; };
 		381119D008EDC407008FBAEB /* white.png in Resources */ = {isa = PBXBuildFile; fileRef = 381119CF08EDC407008FBAEB /* white.png */; };
 		381930480B43469600646B67 /* camera.png in Resources */ = {isa = PBXBuildFile; fileRef = 381930470B43469600646B67 /* camera.png */; };
 		381930510B43470C00646B67 /* QuickTime.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 381930500B43470C00646B67 /* QuickTime.framework */; };
@@ -208,6 +209,7 @@
 		38030AD608F4A37A00B2AC82 /* SmartListWindowDelegate.m */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.objc; path = SmartListWindowDelegate.m; sourceTree = "<group>"; };
 		38039DBC0A04EA5400DFA71F /* PluginManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PluginManager.h; sourceTree = "<group>"; };
 		38039DBD0A04EA5400DFA71F /* PluginManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PluginManager.m; sourceTree = "<group>"; };
+		3806B9060D59028A00D20EDD /* BooksSpotlight.mdimporter */ = {isa = PBXFileReference; lastKnownFileType = folder; path = BooksSpotlight.mdimporter; sourceTree = "<group>"; };
 		381119CF08EDC407008FBAEB /* white.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = white.png; sourceTree = "<group>"; };
 		3815D1070A8A96190085540E /* French */ = {isa = PBXFileReference; fileEncoding = 10; lastKnownFileType = text.plist.strings; name = French; path = French.lproj/Localizable.strings; sourceTree = "<group>"; };
 		3815D10A0A8A96220085540E /* French */ = {isa = PBXFileReference; fileEncoding = 10; lastKnownFileType = text.plist.strings; name = French; path = French.lproj/InfoPlist.strings; sourceTree = "<group>"; };
@@ -741,6 +743,7 @@
 		385E3DE9090C572100EA3DA1 /* Spotlight */ = {
 			isa = PBXGroup;
 			children = (
+				3806B9060D59028A00D20EDD /* BooksSpotlight.mdimporter */,
 			);
 			name = Spotlight;
 			sourceTree = "<group>";
@@ -1060,6 +1063,7 @@
 				38A904910C6A237F0025266C /* controls.png in Resources */,
 				389E7F100C7927B700E59C8D /* no-cover.png in Resources */,
 				381C719B0C970DC800A800E7 /* iPhoto Exporter.app in Resources */,
+				3806B9130D59028A00D20EDD /* BooksSpotlight.mdimporter in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
