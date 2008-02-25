@@ -528,7 +528,7 @@
 	NSArray * datesLent = [self getSecondaryFields:@"dateLent" fromSet:@"copiesOut"];
 	NSArray * datesDue = [self getSecondaryFields:@"dateDue" fromSet:@"copiesOut"];
 
-	NSMutableArray * records = [[NSMutableArray array] retain];
+	NSMutableArray * records = [[NSMutableArray alloc] init];
 
 	int i = 0;
 	for (i = 0; i < [borrowers count]; i++)
