@@ -110,6 +110,8 @@ else:
 	if (authors != ""):
 		queryString = queryString + ' and au="' + authors + '"'
 
+	queryString = queryString.replace ('ti="" and ', '')
+	
 conn = zoom.Connection ('z3950.loc.gov', 7090)
 conn.databaseName = 'VOYAGER'
 conn.preferredRecordSyntax = 'USMARC'

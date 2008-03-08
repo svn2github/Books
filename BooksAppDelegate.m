@@ -662,8 +662,6 @@ typedef struct _monochromePixel
 
 - (void) startUpdateTimer
 {
-	[self updateMainPane];
-	
 	if (timer != nil)
 	{
 		[timer invalidate];
@@ -671,13 +669,15 @@ typedef struct _monochromePixel
 		timer = nil;
 	}
 
-	timer = [[NSTimer scheduledTimerWithTimeInterval:1.0 target:self selector:NSSelectorFromString(@"refreshComboBoxes:") 
+	timer = [[NSTimer scheduledTimerWithTimeInterval:1.0 target:self selector:NSSelectorFromString(@"refreshUI:") 
 				userInfo:nil repeats:NO] retain];
 }
 
 
-- (void) refreshComboBoxes:(NSTimer *) theTimer
+- (void) refreshUI:(NSTimer *) theTimer
 {
+	[self updateMainPane];
+
 	NSFetchRequest * fetch = [[NSFetchRequest alloc] init];
 	[fetch setEntity:[NSEntityDescription entityForName:@"Book" inManagedObjectContext:[self managedObjectContext]]];
 
