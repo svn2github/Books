@@ -30,6 +30,7 @@
 #import "BookAuthorString.h"
 #import "CopyManagedObject.h"
 #import <AddressBook/AddressBook.h>
+#import "BooksDataFolder.h"
 
 @implementation BookManagedObject
 
@@ -304,8 +305,7 @@
 {
 	NSString * objId = [self valueForKey:@"id"];
 		
-	NSString * imagePath = [NSString stringWithFormat:@"%@%@%@.book-image", NSHomeDirectory (),
-								@"/Library/Application Support/Books/Images/", objId];
+	NSString * imagePath = [NSString stringWithFormat:@"%@%@%@.book-image", [BooksDataFolder booksDataFolder], @"/Images/", objId];
 								
 	return imagePath;
 }
@@ -315,27 +315,11 @@
 
 }
 
-/* - (NSString *) getHasCoverImage
-{
-	NSString * imagePath = [NSString stringWithFormat:@"%@%@%@.book-image", NSHomeDirectory (),
-							@"/Library/Application Support/Books/Images/", [self valueForKey:@"id"]];
-							
-	if ([[NSFileManager defaultManager] fileExistsAtPath:imagePath])
-		return @"YES";
-	else
-		return @"NO";
-} */
-
 - (NSData *) getCoverImage
 {
 	NSString * objId = [self valueForKey:@"id"];
 		
-	NSString * imagePath = [NSString stringWithFormat:@"%@%@%@.book-image", NSHomeDirectory (),
-								@"/Library/Application Support/Books/Images/", objId];
-
-	// if (imageData == nil)
-	//	imageData = [[NSData dataWithContentsOfFile:imagePath] retain];
-	// return imageData;
+	NSString * imagePath = [NSString stringWithFormat:@"%@%@%@.book-image", [BooksDataFolder booksDataFolder], @"/Images/", objId];
 
 	return [NSData dataWithContentsOfFile:imagePath];
 }
@@ -346,8 +330,7 @@
 	
 	NSString * objId = [self getObjectIdString];
 		
-	NSString * imagePath = [NSString stringWithFormat:@"%@%@%@.book-image", NSHomeDirectory (),
-							@"/Library/Application Support/Books/Images/", objId];
+	NSString * imagePath = [NSString stringWithFormat:@"%@%@%@.book-image", [BooksDataFolder booksDataFolder], @"/Images/", objId];
 							
 	if (![[NSFileManager defaultManager] fileExistsAtPath:[imagePath stringByDeletingLastPathComponent]])
 		[[NSFileManager defaultManager] createDirectoryAtPath:[imagePath stringByDeletingLastPathComponent] attributes:nil];
@@ -764,8 +747,7 @@
 		
 	NSString * objId = [self getObjectIdString];
 
-	NSString * filePath = [NSString stringWithFormat:@"%@%@%@/", NSHomeDirectory (),
-								@"/Library/Application Support/Books/Files/", objId, nil];
+	NSString * filePath = [NSString stringWithFormat:@"%@%@%@/", [BooksDataFolder booksDataFolder], @"/Files/", objId, nil];
 
 	if (![[NSFileManager defaultManager] fileExistsAtPath:filePath])
 		[[NSFileManager defaultManager] createDirectoryAtPath:filePath attributes:nil];
@@ -783,8 +765,7 @@
 	if (fileSet == nil)
 		[self getFiles];
 
-	NSString * filePath = [NSString stringWithFormat:@"%@%@%@/", NSHomeDirectory (),
-								@"/Library/Application Support/Books/Files/", [self getObjectIdString], nil];
+	NSString * filePath = [NSString stringWithFormat:@"%@%@%@/", [BooksDataFolder booksDataFolder], @"/Files/", [self getObjectIdString], nil];
 
 	NSMutableDictionary * entry = [NSMutableDictionary dictionary];
 
@@ -820,8 +801,7 @@
 	if (fileSet == nil)
 		[self getFiles];
 
-	NSString * filePath = [NSString stringWithFormat:@"%@%@%@/", NSHomeDirectory (),
-								@"/Library/Application Support/Books/Files/", [self getObjectIdString], nil];
+	NSString * filePath = [NSString stringWithFormat:@"%@%@%@/", [BooksDataFolder booksDataFolder], @"/Files/", [self getObjectIdString], nil];
 
 	int count = 0;
 	
@@ -858,8 +838,7 @@
 {
 	NSString * objId = [self getObjectIdString];
 
-	NSString * filePath = [NSString stringWithFormat:@"%@%@%@/", NSHomeDirectory (),
-							@"/Library/Application Support/Books/Files/", objId, nil];
+	NSString * filePath = [NSString stringWithFormat:@"%@%@%@/", [BooksDataFolder booksDataFolder], @"/Files/", objId, nil];
 
 	if (fileSet == nil)
 	{

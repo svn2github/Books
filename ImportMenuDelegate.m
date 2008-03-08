@@ -25,6 +25,7 @@
 
 #import "ImportMenuDelegate.h"
 #import "ImportPluginInterface.h"
+#import "BooksDataFolder.h"
 
 @implementation ImportMenuDelegate
 
@@ -33,7 +34,7 @@
 	NSString * appSupport = @"Library/Application Support/Books/Plugins/";
 	NSString * appPath = [[[NSBundle mainBundle] bundlePath] stringByAppendingString:@"/Contents/Resources/"];
 	
-	NSString * userPath = [NSHomeDirectory () stringByAppendingPathComponent:appSupport];
+	NSString * userPath = [[BooksDataFolder booksDataFolder] stringByAppendingPathComponent:@"/Plugins"];
 	NSString * sysPath = [@"/" stringByAppendingPathComponent:appSupport];
 
 	NSArray * paths = [NSArray arrayWithObjects:appPath, sysPath, userPath, nil];

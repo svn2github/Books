@@ -34,6 +34,7 @@
 #import "CoverWindowDelegate.h"
 #import "NotificationInterface.h"
 #import "BooksLibraryCompactor.h"
+#import "BooksDataFolder.h"
 
 typedef struct _monochromePixel
 { 
@@ -59,7 +60,7 @@ typedef struct _monochromePixel
     return managedObjectModel;
 }
 
-- (NSString *) applicationSupportFolder 
+/* - (NSString *) applicationSupportFolder 
 {
     NSString * applicationSupportFolder = nil;
     FSRef foundRef;
@@ -80,7 +81,7 @@ typedef struct _monochromePixel
     }
 	
     return applicationSupportFolder;
-}
+} */
 
 - (NSManagedObjectContext *) managedObjectContext
 {
@@ -96,7 +97,8 @@ typedef struct _monochromePixel
     }
     
 	fileManager = [NSFileManager defaultManager];
-    applicationSupportFolder = [self applicationSupportFolder];
+    // applicationSupportFolder = [self applicationSupportFolder];
+    applicationSupportFolder = [BooksDataFolder booksDataFolder];
     
 	if ( ![fileManager fileExistsAtPath:applicationSupportFolder isDirectory:NULL] ) 
 	{
@@ -519,8 +521,7 @@ typedef struct _monochromePixel
 		}
 	}
 
-	NSString * filePath = [NSString stringWithFormat:@"%@%@", NSHomeDirectory (),
-								@"/Library/Application Support/Books/Files/", nil];
+	NSString * filePath = [NSString stringWithFormat:@"%@%@", [BooksDataFolder booksDataFolder], @"/Files/", nil];
 
 	if (![[NSFileManager defaultManager] fileExistsAtPath:filePath])
 		[[NSFileManager defaultManager] createDirectoryAtPath:filePath attributes:nil];
@@ -763,7 +764,7 @@ typedef struct _monochromePixel
 	NSString * appSupport = @"Library/Application Support/Books/Plugins/";
 	NSString * appPath = [[[NSBundle mainBundle] bundlePath] stringByAppendingString:@"/Contents/Resources/"];
 	
-	NSString * userPath = [NSHomeDirectory () stringByAppendingPathComponent:appSupport];
+	NSString * userPath = [[BooksDataFolder booksDataFolder] stringByAppendingPathComponent:@"/Plugins"];
 	NSString * sysPath = [@"/" stringByAppendingPathComponent:appSupport];
 
 	NSArray * paths = [NSArray arrayWithObjects:appPath, sysPath, userPath, nil];
@@ -890,7 +891,7 @@ typedef struct _monochromePixel
 	NSString * appSupport = @"Library/Application Support/Books/Plugins/";
 	NSString * appPath = [[[NSBundle mainBundle] bundlePath] stringByAppendingString:@"/Contents/Resources/"];
 	
-	NSString * userPath = [NSHomeDirectory () stringByAppendingPathComponent:appSupport];
+	NSString * userPath = [[BooksDataFolder booksDataFolder] stringByAppendingPathComponent:@"/Plugins"];
 	NSString * sysPath = [@"/" stringByAppendingPathComponent:appSupport];
 
 	NSArray * paths = [NSArray arrayWithObjects:appPath, sysPath, userPath, nil];
@@ -970,7 +971,7 @@ typedef struct _monochromePixel
 	NSString * appSupport = @"Library/Application Support/Books/Plugins/";
 	NSString * appPath = [[[NSBundle mainBundle] bundlePath] stringByAppendingString:@"/Contents/Resources/"];
 	
-	NSString * userPath = [NSHomeDirectory () stringByAppendingPathComponent:appSupport];
+	NSString * userPath = [[BooksDataFolder booksDataFolder] stringByAppendingPathComponent:@"/Plugins"];
 	NSString * sysPath = [@"/" stringByAppendingPathComponent:appSupport];
 
 	NSArray * paths = [NSArray arrayWithObjects:appPath, sysPath, userPath, nil];
@@ -1546,8 +1547,7 @@ typedef struct _monochromePixel
 
 		BookManagedObject * book = (BookManagedObject *) [books objectAtIndex:0];
 
-		NSString * filePath = [NSString stringWithFormat:@"%@%@%@/", NSHomeDirectory (),
-								@"/Library/Application Support/Books/Files/", [book getObjectIdString], nil];
+		NSString * filePath = [NSString stringWithFormat:@"%@%@%@/", [BooksDataFolder booksDataFolder], @"/Files/", [book getObjectIdString], nil];
 	
 		int i = 0;
 		for (i = 0; i < [selectedFiles count]; i++)

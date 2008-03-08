@@ -9,6 +9,7 @@
 #import "BooksLibraryCompactor.h"
 #import "BookManagedObject.h"
 #import "BooksAppDelegate.h"
+#import "BooksDataFolder.h"
 
 @implementation BooksLibraryCompactor
 
@@ -33,8 +34,7 @@
 		[ids addObject:[book getId]];
 	}
 	
-	NSString * imagePath = [NSString stringWithFormat:@"%@%@", NSHomeDirectory (),
-								@"/Library/Application Support/Books/Images/", nil];
+	NSString * imagePath = [NSString stringWithFormat:@"%@%@", [BooksDataFolder booksDataFolder], @"/Images/", nil];
 							
 	NSArray * images = [[NSFileManager defaultManager] directoryContentsAtPath:imagePath];
 	
@@ -52,8 +52,7 @@
 		}
 	}
 
-	NSString * filePath = [NSString stringWithFormat:@"%@%@", NSHomeDirectory (),
-								@"/Library/Application Support/Books/Files/", nil];
+	NSString * filePath = [NSString stringWithFormat:@"%@%@", [BooksDataFolder booksDataFolder], @"/Files/", nil];
 
 	NSArray * files = [[NSFileManager defaultManager] directoryContentsAtPath:filePath];
 
