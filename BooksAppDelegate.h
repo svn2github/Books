@@ -191,7 +191,7 @@
 
 - (void) endProgressWindow;
 - (void) startProgressWindow: (NSString *) message;
-- (void) refreshComboBoxes:(NSTimer *) theTimer;
+// - (void) refreshComboBoxes:(NSTimer *) theTimer;
 
 - (BOOL)application:(NSApplication *)sender delegateHandlesKey:(NSString *)key;
 
