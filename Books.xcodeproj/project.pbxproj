@@ -464,6 +464,8 @@
 				383E541D0C3DD1C7000F06BF /* User Interface */,
 				77C8280B06725ACE000B614F /* BooksAppDelegate.h */,
 				77C8280C06725ACE000B614F /* BooksAppDelegate.m */,
+				380919CF0D81E54100BB368E /* BooksDataFolder.h */,
+				380919D00D81E54100BB368E /* BooksDataFolder.m */,
 			);
 			name = Classes;
 			sourceTree = "<group>";
