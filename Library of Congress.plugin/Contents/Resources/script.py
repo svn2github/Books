@@ -83,6 +83,8 @@ for field in fields:
 			loc = "" + field.firstChild.data
 		elif (field.getAttribute ("name") == "loc"):
 			loc = "" + field.firstChild.data
+		elif (field.getAttribute ("name").lower () == "lccn"):
+			loc = "" + field.firstChild.data
 
 queryString = ''
 
