@@ -50,7 +50,7 @@
 	if ([string isMemberOfClass:[SmartListNameString class]])
 		return NSOrderedAscending;
 	
-	return [[@"" stringByAppendingString:self] caseInsensitiveCompare:string];
+	return [[@"" stringByAppendingString:self] localizedCaseInsensitiveCompare:string];
 }
 
 @end

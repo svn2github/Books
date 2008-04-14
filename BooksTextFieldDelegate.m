@@ -99,7 +99,7 @@
 		
 		if (items != nil)
 		{
-			items = [items sortedArrayUsingSelector:@selector(caseInsensitiveCompare:)];
+			items = [items sortedArrayUsingSelector:@selector(localizedCaseInsensitiveCompare:)];
 	
 			[comboArrays setObject:items forKey:[box description]];
 		}

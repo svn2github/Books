@@ -717,7 +717,7 @@ typedef struct _monochromePixel
 		[[listCombos objectAtIndex:i] removeAllItems];
 
 		NSMutableArray * array = [NSMutableArray arrayWithArray:[[lists objectAtIndex:i] allObjects]];
-		[array sortUsingSelector:@selector(compare:)];
+		[array sortUsingSelector:@selector(localizedCaseInsensitiveCompare:)];
 		
 		[[listCombos objectAtIndex:i] addItemsWithObjectValues:array];
 	}
@@ -751,7 +751,7 @@ typedef struct _monochromePixel
 	if (quickfillPlugins == nil)
 		[self initQuickfillPlugins];
 
-	return [[quickfillPlugins allKeys] sortedArrayUsingSelector:@selector(caseInsensitiveCompare:)];
+	return [[quickfillPlugins allKeys] sortedArrayUsingSelector:@selector(localizedCaseInsensitiveCompare:)];
 }
 
 - (void) setQuickfillPlugins: (NSArray *) list
@@ -883,7 +883,7 @@ typedef struct _monochromePixel
 	if (importPlugins == nil)
 		[self initImportPlugins];
 
-	return [[importPlugins allKeys] sortedArrayUsingSelector:@selector(caseInsensitiveCompare:)];
+	return [[importPlugins allKeys] sortedArrayUsingSelector:@selector(localizedCaseInsensitiveCompare:)];
 }
 
 - (void) initImportPlugins
@@ -958,7 +958,7 @@ typedef struct _monochromePixel
 	if (exportPlugins == nil)
 		[self initExportPlugins];
 		
-	return [[exportPlugins allKeys] sortedArrayUsingSelector:@selector(caseInsensitiveCompare:)];
+	return [[exportPlugins allKeys] sortedArrayUsingSelector:@selector(localizedCaseInsensitiveCompare:)];
 }
 
 - (void) setExportPlugins: (NSArray *) list
@@ -1075,7 +1075,7 @@ typedef struct _monochromePixel
 	[collectionArrayController addObject:object];
 	
 	[collectionArrayController setSortDescriptors:
-		[NSArray arrayWithObject:[[NSSortDescriptor alloc] initWithKey:@"name" ascending:YES]]];
+		[NSArray arrayWithObject:[[NSSortDescriptor alloc] initWithKey:@"name" ascending:YES selector:@selector(localizedCaseInsensitiveCompare:)]]];
 	
 	[self save:sender];
 

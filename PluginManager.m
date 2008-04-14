@@ -95,7 +95,7 @@
 		NSString * name = [[[column headerCell] stringValue] lowercaseString];
 		
 		NSSortDescriptor * descriptor = [[NSSortDescriptor alloc] initWithKey:name ascending:YES 
-			selector:@selector(caseInsensitiveCompare:)];
+			selector:@selector(localizedCaseInsensitiveCompare:)];
 			
 		[column setSortDescriptorPrototype:descriptor];
 		
@@ -104,7 +104,7 @@
 
 	[pluginListTable setSortDescriptors:
 		[NSArray arrayWithObject:[[NSSortDescriptor alloc] initWithKey:@"name" ascending:YES 
-			selector:@selector(caseInsensitiveCompare:)]]];
+			selector:@selector(localizedCaseInsensitiveCompare:)]]];
 
 	[pluginListTable setAllowsEmptySelection:YES];
 	[pluginListTable deselectAll:self];

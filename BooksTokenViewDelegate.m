@@ -79,7 +79,7 @@
 		}
 	}
 	
-	[suggestions sortUsingSelector:@selector(compare:)];
+	[suggestions sortUsingSelector:@selector(localizedCaseInsensitiveCompare:)];
 	return suggestions;
 }
 

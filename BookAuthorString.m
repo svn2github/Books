@@ -32,9 +32,9 @@
 	BOOL sortAuthors = [[NSUserDefaults standardUserDefaults] boolForKey:@"Sort People Names"];
 
 	if (!sortAuthors)
-		return [self caseInsensitiveCompare:string];
+		return [self localizedCaseInsensitiveCompare:string];
 	else
-		return [[self getSortString] caseInsensitiveCompare:[string getSortString]];
+		return [[self getSortString] localizedCaseInsensitiveCompare:[string getSortString]];
 }
 
 - (NSString *) getSortString

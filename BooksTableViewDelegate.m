@@ -77,7 +77,7 @@
 		}
 		
 		[collectionArrayController setSortDescriptors:
-				[NSArray arrayWithObject:[[NSSortDescriptor alloc] initWithKey:@"name" ascending:YES]]];
+				[NSArray arrayWithObject:[[NSSortDescriptor alloc] initWithKey:@"name" ascending:YES selector:@selector(localizedCaseInsensitiveCompare:)]]];
 
 		NSArray * selectedObjects = [collectionArrayController selectedObjects];
 
@@ -105,7 +105,7 @@
 						if ([[sort valueForKey:@"ascend"] isEqual:@"YES"])
 							ascend = YES;
 
-						NSSortDescriptor * sortDesc = [[NSSortDescriptor alloc] initWithKey:[sort valueForKey:@"key"] ascending:ascend];
+						NSSortDescriptor * sortDesc = [[NSSortDescriptor alloc] initWithKey:[sort valueForKey:@"key"] ascending:ascend selector:@selector(localizedCaseInsensitiveCompare:)];
 						
 						[sortDescs addObject:sortDesc];
 					}
@@ -289,9 +289,9 @@
 		NSString * key = (NSString *) [dict objectForKey:@"key"];
 		
 		if ([[dict objectForKey:@"ascending"] isEqual:@"yes"])
-			descriptor = [[NSSortDescriptor alloc] initWithKey:key ascending:YES];
+			descriptor = [[NSSortDescriptor alloc] initWithKey:key ascending:YES selector:@selector(localizedCaseInsensitiveCompare:)];
 		else
-			descriptor = [[NSSortDescriptor alloc] initWithKey:key ascending:NO];
+			descriptor = [[NSSortDescriptor alloc] initWithKey:key ascending:NO selector:@selector(localizedCaseInsensitiveCompare:)];
 	
 		[sortDescriptors addObject:descriptor];
 	}
@@ -328,11 +328,11 @@
 		[listsTable addTableColumn:column];
 		[column setWidth:([listsTable frame].size.width - 16)];
 		[collectionArrayController setSortDescriptors:
-			[NSArray arrayWithObject:[[NSSortDescriptor alloc] initWithKey:@"name" ascending:YES]]];
+			[NSArray arrayWithObject:[[NSSortDescriptor alloc] initWithKey:@"name" ascending:YES selector:@selector(localizedCaseInsensitiveCompare:)]]];
 	}
 
 	[collectionArrayController setSortDescriptors:
-		[NSArray arrayWithObject:[[NSSortDescriptor alloc] initWithKey:@"name" ascending:YES]]];
+		[NSArray arrayWithObject:[[NSSortDescriptor alloc] initWithKey:@"name" ascending:YES selector:@selector(localizedCaseInsensitiveCompare:)]]];
 
 	oldColumns = [NSArray arrayWithArray:[booksTable tableColumns]];
 	
@@ -388,13 +388,13 @@
 			{
 				[[column dataCell] setFormatter:formatter];
 
-				NSSortDescriptor * sortDescriptor = [[NSSortDescriptor alloc] initWithKey:key ascending:YES];
+				NSSortDescriptor * sortDescriptor = [[NSSortDescriptor alloc] initWithKey:key ascending:YES selector:@selector(localizedCaseInsensitiveCompare:)];
 				
 				[column setSortDescriptorPrototype:sortDescriptor];
 			}
 			else
 			{
-				NSSortDescriptor * sortDescriptor = [[NSSortDescriptor alloc] initWithKey:key ascending:YES];
+				NSSortDescriptor * sortDescriptor = [[NSSortDescriptor alloc] initWithKey:key ascending:YES selector:@selector(localizedCaseInsensitiveCompare:)];
 				
 				[column setSortDescriptorPrototype:sortDescriptor];
 			}
@@ -428,7 +428,7 @@
 				[column bind:@"value" toObject:bookArrayController 
 					withKeyPath:[@"arrangedObjects." stringByAppendingString:fieldKey] options: nil];
 			
-				NSSortDescriptor * sortDescriptor = [[NSSortDescriptor alloc] initWithKey:fieldKey ascending:YES];
+				NSSortDescriptor * sortDescriptor = [[NSSortDescriptor alloc] initWithKey:fieldKey ascending:YES selector:@selector(localizedCaseInsensitiveCompare:)];
 				
 				[column setSortDescriptorPrototype:sortDescriptor];
 

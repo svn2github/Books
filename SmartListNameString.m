@@ -33,7 +33,7 @@
 	if ([string isMemberOfClass:[ListNameString class]])
 		return NSOrderedDescending;
 
-	return [[@"" stringByAppendingString:self] caseInsensitiveCompare:string];
+	return [[@"" stringByAppendingString:self] localizedCaseInsensitiveCompare:string];
 }
 
 @end

@@ -83,7 +83,7 @@
 
 - (NSComparisonResult) compare: (BookTitleString *) string
 {
-	return [[self getSortString] caseInsensitiveCompare:[string getSortString]];
+	return [[self getSortString] localizedCaseInsensitiveCompare:[string getSortString]];
 }
 
 @end
