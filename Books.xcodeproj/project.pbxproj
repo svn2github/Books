@@ -10,7 +10,6 @@
 		38030ACE08F4A0BD00B2AC82 /* SmartListRuleView.m in Sources */ = {isa = PBXBuildFile; fileRef = 38030ACD08F4A0BD00B2AC82 /* SmartListRuleView.m */; };
 		38030AD708F4A37A00B2AC82 /* SmartListWindowDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 38030AD608F4A37A00B2AC82 /* SmartListWindowDelegate.m */; };
 		38039DBF0A04EA5400DFA71F /* PluginManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 38039DBD0A04EA5400DFA71F /* PluginManager.m */; };
-		3806B9130D59028A00D20EDD /* BooksSpotlight.mdimporter in Resources */ = {isa = PBXBuildFile; fileRef = 3806B9060D59028A00D20EDD /* BooksSpotlight.mdimporter */; };
 		380919D10D81E54100BB368E /* BooksDataFolder.m in Sources */ = {isa = PBXBuildFile; fileRef = 380919D00D81E54100BB368E /* BooksDataFolder.m */; };
 		381119D008EDC407008FBAEB /* white.png in Resources */ = {isa = PBXBuildFile; fileRef = 381119CF08EDC407008FBAEB /* white.png */; };
 		381930480B43469600646B67 /* camera.png in Resources */ = {isa = PBXBuildFile; fileRef = 381930470B43469600646B67 /* camera.png */; };
@@ -77,6 +76,8 @@
 		38666DFC08E50E0C00071C56 /* WebKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 38666DFB08E50E0C00071C56 /* WebKit.framework */; };
 		38666EA408E516B300071C56 /* HtmlPageBuilder.m in Sources */ = {isa = PBXBuildFile; fileRef = 38666EA308E516B300071C56 /* HtmlPageBuilder.m */; };
 		38671CC408E44C0A0000E294 /* Books.icns in Resources */ = {isa = PBXBuildFile; fileRef = 38671CC308E44C0A0000E294 /* Books.icns */; };
+		387347A50DB4F674001CAAC7 /* Books.mdimporter in Resources */ = {isa = PBXBuildFile; fileRef = 387347960DB4F674001CAAC7 /* Books.mdimporter */; };
+		387347A60DB4F677001CAAC7 /* Books.mdimporter in CopyFiles */ = {isa = PBXBuildFile; fileRef = 387347960DB4F674001CAAC7 /* Books.mdimporter */; };
 		387468A8096D65CA0016A59A /* import-plugin.icns in Resources */ = {isa = PBXBuildFile; fileRef = 387468A7096D65CA0016A59A /* import-plugin.icns */; };
 		387468E7096D68EA0016A59A /* export-plugin.icns in Resources */ = {isa = PBXBuildFile; fileRef = 387468E6096D68EA0016A59A /* export-plugin.icns */; };
 		387469AE096D69E00016A59A /* Library of Congress Importer.app in Resources */ = {isa = PBXBuildFile; fileRef = 38746938096D69E00016A59A /* Library of Congress Importer.app */; };
@@ -182,6 +183,16 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		387347640DB4EDD6001CAAC7 /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = Contents/Library/Spotlight;
+			dstSubfolderSpec = 1;
+			files = (
+				387347A60DB4F677001CAAC7 /* Books.mdimporter in CopyFiles */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		387A01500A75CCFA00447E87 /* CopyFiles */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
@@ -209,7 +220,6 @@
 		38030AD608F4A37A00B2AC82 /* SmartListWindowDelegate.m */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.objc; path = SmartListWindowDelegate.m; sourceTree = "<group>"; };
 		38039DBC0A04EA5400DFA71F /* PluginManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PluginManager.h; sourceTree = "<group>"; };
 		38039DBD0A04EA5400DFA71F /* PluginManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PluginManager.m; sourceTree = "<group>"; };
-		3806B9060D59028A00D20EDD /* BooksSpotlight.mdimporter */ = {isa = PBXFileReference; lastKnownFileType = folder; path = BooksSpotlight.mdimporter; sourceTree = "<group>"; };
 		380919CF0D81E54100BB368E /* BooksDataFolder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BooksDataFolder.h; sourceTree = "<group>"; };
 		380919D00D81E54100BB368E /* BooksDataFolder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BooksDataFolder.m; sourceTree = "<group>"; };
 		381119CF08EDC407008FBAEB /* white.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = white.png; sourceTree = "<group>"; };
@@ -311,6 +321,7 @@
 		38666EA208E516B300071C56 /* HtmlPageBuilder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HtmlPageBuilder.h; sourceTree = "<group>"; };
 		38666EA308E516B300071C56 /* HtmlPageBuilder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HtmlPageBuilder.m; sourceTree = "<group>"; };
 		38671CC308E44C0A0000E294 /* Books.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = Books.icns; sourceTree = "<group>"; };
+		387347960DB4F674001CAAC7 /* Books.mdimporter */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Books.mdimporter; sourceTree = "<group>"; };
 		387468A7096D65CA0016A59A /* import-plugin.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = "import-plugin.icns"; sourceTree = "<group>"; };
 		387468E6096D68EA0016A59A /* export-plugin.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = "export-plugin.icns"; sourceTree = "<group>"; };
 		38746938096D69E00016A59A /* Library of Congress Importer.app */ = {isa = PBXFileReference; lastKnownFileType = wrapper.application; path = "Library of Congress Importer.app"; sourceTree = "<group>"; };
@@ -748,7 +759,7 @@
 		385E3DE9090C572100EA3DA1 /* Spotlight */ = {
 			isa = PBXGroup;
 			children = (
-				3806B9060D59028A00D20EDD /* BooksSpotlight.mdimporter */,
+				387347960DB4F674001CAAC7 /* Books.mdimporter */,
 			);
 			name = Spotlight;
 			sourceTree = "<group>";
@@ -955,6 +966,7 @@
 				8D11072E0486CEB800E47090 /* Frameworks */,
 				383291510A03F07700C98833 /* CopyFiles */,
 				387A01500A75CCFA00447E87 /* CopyFiles */,
+				387347640DB4EDD6001CAAC7 /* CopyFiles */,
 			);
 			buildRules = (
 			);
@@ -1060,13 +1072,13 @@
 				38A904910C6A237F0025266C /* controls.png in Resources */,
 				389E7F100C7927B700E59C8D /* no-cover.png in Resources */,
 				381C719B0C970DC800A800E7 /* iPhoto Exporter.app in Resources */,
-				3806B9130D59028A00D20EDD /* BooksSpotlight.mdimporter in Resources */,
 				385AF3F20D9DCDD100C51A9E /* Amazon CA (ECS4).plugin in Resources */,
 				385AF3F30D9DCDD100C51A9E /* Amazon DE (ECS4).plugin in Resources */,
 				385AF3F40D9DCDD100C51A9E /* Amazon FR (ECS4).plugin in Resources */,
 				385AF3F50D9DCDD100C51A9E /* Amazon JP (ECS4).plugin in Resources */,
 				385AF3F60D9DCDD100C51A9E /* Amazon UK (ECS4).plugin in Resources */,
 				385AF3F70D9DCDD100C51A9E /* Amazon US (ECS4).plugin in Resources */,
+				387347A50DB4F674001CAAC7 /* Books.mdimporter in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -16,13 +16,13 @@
 		</dict>
 	</array>
 	<key>CFBundleExecutable</key>
-	<string>BooksSpotlight</string>
+	<string>Books Metadata Importer</string>
 	<key>CFBundleIdentifier</key>
-	<string>net.aetherial.books.Books</string>
+	<string>net.aetherial.books.mdimporter</string>
 	<key>CFBundleInfoDictionaryVersion</key>
 	<string>6.0</string>
 	<key>CFBundleName</key>
-	<string>BooksSpotlight</string>
+	<string>Books Metadata Importer</string>
 	<key>CFBundleVersion</key>
 	<string>1.0</string>
 	<key>CFPlugInDynamicRegisterFunction</key>
@@ -31,14 +31,14 @@
 	<string>NO</string>
 	<key>CFPlugInFactories</key>
 	<dict>
-		<key>D7E5DB62-6D3E-42B1-B3EB-F044C25BEFBA</key>
+		<key>99C10FE3-1000-42AB-B5BB-12715F8B22BE</key>
 		<string>MetadataImporterPluginFactory</string>
 	</dict>
 	<key>CFPlugInTypes</key>
 	<dict>
 		<key>8B08C4BF-415B-11D8-B3F9-0003936726FC</key>
 		<array>
-			<string>D7E5DB62-6D3E-42B1-B3EB-F044C25BEFBA</string>
+			<string>99C10FE3-1000-42AB-B5BB-12715F8B22BE</string>
 		</array>
 	</dict>
 	<key>CFPlugInUnloadFunction</key>
