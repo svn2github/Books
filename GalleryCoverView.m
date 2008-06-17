@@ -170,7 +170,10 @@
 		
 		BOOL bigEnough = size.width > 64 && size.height > 64;
 		
-		if ((cachedData == nil || ![cachedData isEqualToData:data]) && data != nil && bigEnough)
+		NSLog (@"%d %d %d %d", (cachedData == nil), (![cachedData isEqualToData:data]), (data != nil), bigEnough);
+		
+		// if ((cachedData == nil || ![cachedData isEqualToData:data]) && data != nil && bigEnough)
+		if (data != nil && bigEnough)
 		{
 			[imageView setImage:image];
 			[imageView setImageFrameStyle:NSImageFramePhoto];
@@ -183,6 +186,7 @@
 		}
 		else
 		{
+			NSLog (@"no cover");
 			[imageView setImage:[NSImage imageNamed:@"no-cover"]];
 			[imageView setImageFrameStyle:NSImageFrameNone];
 			
@@ -234,7 +238,7 @@
 	
 	if (currentBook != nil)
 	{
-		[currentBook addObserver:self forKeyPath:@"coverImage" options:NSKeyValueObservingOptionNew context:NULL];
+		[currentBook addObserver:self forKeyPath:@"coverImage" options:0 context:NULL];
 		[currentBook addObserver:self forKeyPath:@"title" options:NSKeyValueObservingOptionNew context:NULL];
 	}
 
@@ -247,6 +251,8 @@
 {
     if ([keyPath isEqual:@"coverImage"])
 	{
+		NSLog (@"cover image updated");
+		
 		if (currentBook != nil)
 			[self updateImage];
 	}
