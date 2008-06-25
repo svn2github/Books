@@ -12,6 +12,12 @@
 		38039DBF0A04EA5400DFA71F /* PluginManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 38039DBD0A04EA5400DFA71F /* PluginManager.m */; };
 		380919D10D81E54100BB368E /* BooksDataFolder.m in Sources */ = {isa = PBXBuildFile; fileRef = 380919D00D81E54100BB368E /* BooksDataFolder.m */; };
 		381119D008EDC407008FBAEB /* white.png in Resources */ = {isa = PBXBuildFile; fileRef = 381119CF08EDC407008FBAEB /* white.png */; };
+		38143FE60E12E8FA005A52E8 /* SGChan.m in Sources */ = {isa = PBXBuildFile; fileRef = 38143FE00E12E8FA005A52E8 /* SGChan.m */; };
+		38143FE70E12E8FA005A52E8 /* SGVideo.m in Sources */ = {isa = PBXBuildFile; fileRef = 38143FE20E12E8FA005A52E8 /* SGVideo.m */; };
+		38143FE80E12E8FA005A52E8 /* SeqGrab.m in Sources */ = {isa = PBXBuildFile; fileRef = 38143FE50E12E8FA005A52E8 /* SeqGrab.m */; };
+		38143FED0E12E92F005A52E8 /* OpenGL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 38143FEB0E12E92F005A52E8 /* OpenGL.framework */; };
+		38143FEE0E12E92F005A52E8 /* QTKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 38143FEC0E12E92F005A52E8 /* QTKit.framework */; };
+		38143FF20E12E950005A52E8 /* SampleCIView.m in Sources */ = {isa = PBXBuildFile; fileRef = 38143FF10E12E950005A52E8 /* SampleCIView.m */; };
 		381930480B43469600646B67 /* camera.png in Resources */ = {isa = PBXBuildFile; fileRef = 381930470B43469600646B67 /* camera.png */; };
 		381930510B43470C00646B67 /* QuickTime.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 381930500B43470C00646B67 /* QuickTime.framework */; };
 		381930790B43474300646B67 /* Carbon.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 381930780B43474300646B67 /* Carbon.framework */; };
@@ -223,6 +229,17 @@
 		380919CF0D81E54100BB368E /* BooksDataFolder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BooksDataFolder.h; sourceTree = "<group>"; };
 		380919D00D81E54100BB368E /* BooksDataFolder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BooksDataFolder.m; sourceTree = "<group>"; };
 		381119CF08EDC407008FBAEB /* white.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = white.png; sourceTree = "<group>"; };
+		38143FE00E12E8FA005A52E8 /* SGChan.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SGChan.m; sourceTree = "<group>"; };
+		38143FE10E12E8FA005A52E8 /* SGChan.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SGChan.h; sourceTree = "<group>"; };
+		38143FE20E12E8FA005A52E8 /* SGVideo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SGVideo.m; sourceTree = "<group>"; };
+		38143FE30E12E8FA005A52E8 /* SGVideo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SGVideo.h; sourceTree = "<group>"; };
+		38143FE40E12E8FA005A52E8 /* SeqGrab.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SeqGrab.h; sourceTree = "<group>"; };
+		38143FE50E12E8FA005A52E8 /* SeqGrab.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SeqGrab.m; sourceTree = "<group>"; };
+		38143FEB0E12E92F005A52E8 /* OpenGL.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGL.framework; path = /System/Library/Frameworks/OpenGL.framework; sourceTree = "<absolute>"; };
+		38143FEC0E12E92F005A52E8 /* QTKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QTKit.framework; path = /System/Library/Frameworks/QTKit.framework; sourceTree = "<absolute>"; };
+		38143FF00E12E950005A52E8 /* SampleCIView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SampleCIView.h; sourceTree = "<group>"; };
+		38143FF10E12E950005A52E8 /* SampleCIView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SampleCIView.m; sourceTree = "<group>"; };
+		38143FF30E12E95D005A52E8 /* WhackedDebugMacros.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WhackedDebugMacros.h; sourceTree = "<group>"; };
 		3815D1070A8A96190085540E /* French */ = {isa = PBXFileReference; fileEncoding = 10; lastKnownFileType = text.plist.strings; name = French; path = French.lproj/Localizable.strings; sourceTree = "<group>"; };
 		3815D10A0A8A96220085540E /* French */ = {isa = PBXFileReference; fileEncoding = 10; lastKnownFileType = text.plist.strings; name = French; path = French.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		3815D10D0A8A962A0085540E /* French */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; name = French; path = French.lproj/MainMenu.strings; sourceTree = "<group>"; };
@@ -458,6 +475,8 @@
 				381930790B43474300646B67 /* Carbon.framework in Frameworks */,
 				38DE5E640BA1D3E100B4FEC0 /* Quartz.framework in Frameworks */,
 				3822F4FA0C34A48000475D9F /* Growl.framework in Frameworks */,
+				38143FED0E12E92F005A52E8 /* OpenGL.framework in Frameworks */,
+				38143FEE0E12E92F005A52E8 /* QTKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -484,6 +503,8 @@
 		1058C7A0FEA54F0111CA2CBB /* Linked Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				38143FEB0E12E92F005A52E8 /* OpenGL.framework */,
+				38143FEC0E12E92F005A52E8 /* QTKit.framework */,
 				3822F4F90C34A48000475D9F /* Growl.framework */,
 				38DE5E630BA1D3E100B4FEC0 /* Quartz.framework */,
 				381930780B43474300646B67 /* Carbon.framework */,
@@ -576,6 +597,15 @@
 		381930350B43466900646B67 /* Camera Scanner */ = {
 			isa = PBXGroup;
 			children = (
+				38143FF30E12E95D005A52E8 /* WhackedDebugMacros.h */,
+				38143FF00E12E950005A52E8 /* SampleCIView.h */,
+				38143FF10E12E950005A52E8 /* SampleCIView.m */,
+				38143FE00E12E8FA005A52E8 /* SGChan.m */,
+				38143FE10E12E8FA005A52E8 /* SGChan.h */,
+				38143FE20E12E8FA005A52E8 /* SGVideo.m */,
+				38143FE30E12E8FA005A52E8 /* SGVideo.h */,
+				38143FE40E12E8FA005A52E8 /* SeqGrab.h */,
+				38143FE50E12E8FA005A52E8 /* SeqGrab.m */,
 				382036770B4989F80022E60E /* MyiSightWindow.m */,
 				382036780B4989F80022E60E /* MyiSightWindow.h */,
 				382036790B4989F80022E60E /* MyGraphView.h */,
@@ -1137,6 +1167,10 @@
 				389F33D80C6997F300BE0FCA /* ViewControls.m in Sources */,
 				383B56800C7000B90090FCFF /* GalleryTextView.m in Sources */,
 				380919D10D81E54100BB368E /* BooksDataFolder.m in Sources */,
+				38143FE60E12E8FA005A52E8 /* SGChan.m in Sources */,
+				38143FE70E12E8FA005A52E8 /* SGVideo.m in Sources */,
+				38143FE80E12E8FA005A52E8 /* SeqGrab.m in Sources */,
+				38143FF20E12E950005A52E8 /* SampleCIView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

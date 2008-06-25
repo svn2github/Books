@@ -12,9 +12,9 @@
  */
 
 /*
-	File  MyBarcodeScanner.m is based on the sample file SonOfMunggrab.c from Apple SGDataProcSample
-	
-	Description: This example shows how to run the Sequence Grabber in record mode and use
+ File  MyBarcodeScanner.m is based on the sample file SonOfMunggrab.c from Apple SGDataProcSample
+ 
+ Description: This example shows how to run the Sequence Grabber in record mode and use
  a DataProc to get and modify the captured data. SonOfMunggrab calculates the
  frame rate using the time value stamp passed to the data proc then draws this
  rate onto the frame. This technique provides optimal performance, far better
@@ -26,18 +26,18 @@
  the same, this sample throws Carbon Events into the fray for better performance
  on Mac OS X.
  
-	Author:		km, era
+ Author:		km, era
  
-	Copyright: 	© Copyright 2000 - 2001 Apple Computer, Inc. All rights reserved.
-	
-	Disclaimer:	IMPORTANT:  This Apple software is supplied to you by Apple Computer, Inc.
+ Copyright: 	Â© Copyright 2000 - 2001 Apple Computer, Inc. All rights reserved.
+ 
+ Disclaimer:	IMPORTANT:  This Apple software is supplied to you by Apple Computer, Inc.
  ("Apple") in consideration of your agreement to the following terms, and your
  use, installation, modification or redistribution of this Apple software
  constitutes acceptance of these terms.  If you do not agree with these terms,
  please do not use, install, modify or redistribute this Apple software.
  
  In consideration of your agreement to abide by the following terms, and subject
- to these terms, Apple grants you a personal, non-exclusive license, under AppleÕs
+ to these terms, Apple grants you a personal, non-exclusive license, under Appleâ€™s
  copyrights in this original Apple software (the "Apple Software"), to use,
  reproduce, modify and redistribute the Apple Software, with or without
  modifications, in source and/or binary forms; provided that if you redistribute
@@ -59,13 +59,13 @@
  
  IN NO EVENT SHALL APPLE BE LIABLE FOR ANY SPECIAL, INDIRECT, INCIDENTAL OR
  CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE
-						GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION)
+ GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION)
  ARISING IN ANY WAY OUT OF THE USE, REPRODUCTION, MODIFICATION AND/OR DISTRIBUTION
  OF THE APPLE SOFTWARE, HOWEVER CAUSED AND WHETHER UNDER THEORY OF CONTRACT, TORT
  (INCLUDING NEGLIGENCE), STRICT LIABILITY OR OTHERWISE, EVEN IF APPLE HAS BEEN
  ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  
-	Change History (most recent first): <3> 3/28/02 DV source rect bug fix in DataProc
+ Change History (most recent first): <3> 3/28/02 DV source rect bug fix in DataProc
  <2> 7/08/01 carbonized and born as SonOfMunggrab
  <1> 1/13/00 initial release
  
@@ -73,15 +73,80 @@
 
 
 /*
-	A possible confusing aspect of the code is the use of  #DEBUG
-	The code behaves differently when compiled under the Debug build configuration than the release
-	DEBUG is defined in the other C Flags of the build rules at the target level.
-	Keep in mind that during DEBUG the iSight window needs to be clicked with the mouse or the enter key pressed
-	for a barcode scan to take place.
+ A possible confusing aspect of the code is the use of  #DEBUG
+ DEBUG is defined in the other C Flags of the build rules at the target level.
+ 
+ For careful debuging look for "CLICK_TO_SCAN" to uncomment a line that will only scan when the iSight window is clicked or the enter key pressed
  */
 
 #import <Cocoa/Cocoa.h>
-@class MyiSightWindow;
+//#import <QuickTime/QuickTime.h>
+//#import <QuickTime/QuickTime.h>
+//#import "SeqGrab.h"
+
+
+@class MyiSightWindow, SGVideo, MyGraphView, SeqGrab, SampleCIView, QTCaptureSession, SeqGrab;
+
+@interface MyBarcodeScanner : NSObject {
+@private
+	
+	id delegate;
+	NSString *lastBarcode, *previousSingleFrameOldScan;
+	BOOL stayOpen, newHighResiSight;
+	BOOL  mirrored;
+	int numberOfDigitsFound;
+	int frameCount;
+	/*
+	 These arrays hold possible barcode numbers. 
+	 The first row holds the possible digit for each of the 12 locations
+	 The second row holds if the number was even or odd decoded (This is information is present for the first 6 numbers, the last six have the same encoding)
+	 The 7th number on the second row holds the 13th digit; that whcih the previous 6 odd/even encodings combination represents. 
+	 The third row holds a number indicating the degree of sureness for that number, depending on how many times it was scanned.
+	 */
+	char numberArray[3][12], previousNumberLocalArray[3][12], previousNumberLocalArrayOLD[3][12];
+	
+	char globalFrequencyMatrix[10][13];
+	
+	//Use to limit the barcode scanning to only happening with a mouse click
+#if DEBUG
+	char previousNumberGlobalArray[3][12];
+	BOOL scanBarcode;
+	MyGraphView *graphView, *barcodeView;
+	CVImageBufferRef bufferForProcess;
+#endif DEBUG
+	
+	
+	SampleCIView *previewView;
+	//NSWindow *previewWindow;
+	//NSRect mPreviewBounds;
+		
+	QTCaptureSession *mCaptureSession;
+	
+	int firstScanOffset;
+	
+	SeqGrab *mGrabber;
+	
+	NSDate *lastDateScan;
+}
+
+- (void)scanForBarcodeWindow:(NSWindow *)aWindow;
+- (BOOL)closeiSight;
+
+//Singleton
++ (MyBarcodeScanner *)sharedInstance;
+
+- (void)setDelegate:(id)aDelegate;
+- (void)setStaysOpen:(BOOL)stayOpenValue;
+- (void)setMirrored:(BOOL)mirroredValue;
+- (void)setHighResiSight:(BOOL)aBool;
+
+#if DEBUG
+- (void)setScanBarcode:(BOOL)aBoolValue;
+#endif DEBUG
+
+
+@end
+
 
 //Protocol for those that use the barcode scanning, in this case MyController
 @protocol BarcodeScanning
@@ -92,48 +157,4 @@
 - (void)iSightWillClose;
 @end
 
-
-@interface MyBarcodeScanner : NSObject {
-	@private
-	
-	id delegate;
-	NSTimer *idleTimer;
-	MyiSightWindow *iSightWindow;
-	NSString *lastBarcode;
-	BOOL stayOpen;
-	int numberOfDigitsFound;
-
-	/*
-		These arrays hold possible barcode numbers. 
-		The first row holds the possible digit for each of the 12 locations
-		The second row holds if the number was even or odd decoded (This is information is present for the first 6 numbers, the last six have the same encoding)
-		The 7th number on the second row holds the 13th digit; that whcih the previous 6 odd/even encodings combination represents. 
-		The third row holds a number indicating the degree of sureness for that number, depending on how many times it was scanned.
-	 */
-	char previousNumberGlobalArray[3][12],  previousNumberLocalArray[3][12], numberArray[3][12];
-		
-	//Use to limit the barcode scanning to only happening with a mouse click
-#if DEBUG
-	BOOL scanBarcode;
-#endif DEBUG
-
-}
-
-//Singleton
-+ (MyBarcodeScanner *)sharedInstance;
-
-- (void)scanForBarcodeWindow:(NSWindow *)callingWindow;
-
-- (void)setDelegate:(id)aDelegate;
-- (void)setStaysOpen:(BOOL)stayOpenValue;
-- (void)setMirrored:(BOOL)mirroredValue;
-
-#if DEBUG
-- (void)setScanBarcode:(BOOL)aBoolValue;
-#endif DEBUG
-
-//Window delegate
-- (void)windowWillClose:(NSNotification *)aNotification;
-
-@end
 

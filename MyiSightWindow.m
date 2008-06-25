@@ -15,8 +15,8 @@
 
 - (BOOL)performKeyEquivalent:(NSEvent *)theEvent {
 	unichar characterHit = [[theEvent characters] characterAtIndex:0];
-	if ( characterHit == 27 || characterHit == 32 || characterHit == 127 || characterHit == 46) { //esc, delete, period
-		[self close];
+	if ( characterHit == 27 || characterHit == 32 || characterHit == 127 || characterHit == 46 || characterHit == 'w') { //esc, delete, period or w
+		[self performClose:self]; //Informs the delegate with windowShouldClose: to release the connection to the iSight
 		return YES;
 	}
 #if DEBUG

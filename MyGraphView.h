@@ -16,12 +16,13 @@
 
 
 @interface MyGraphView : NSView {
-	NSBezierPath *greenPath, *redPath, *bluePath;
+	NSMutableDictionary *pathsAndColor;
 }
 
 - (void)setGreenPath:(NSBezierPath *)aPath;
 - (void)setRedPath:(NSBezierPath *)aPath;
 - (void)setBluePath:(NSBezierPath *)aPath;
-
+- (void)setPath:(NSBezierPath *)aPath withColor:(NSColor *)aColor;
+-(void)removeAllPaths;
 
 @end
