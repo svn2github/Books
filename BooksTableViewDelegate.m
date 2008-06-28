@@ -105,7 +105,14 @@
 						if ([[sort valueForKey:@"ascend"] isEqual:@"YES"])
 							ascend = YES;
 
-						NSSortDescriptor * sortDesc = [[NSSortDescriptor alloc] initWithKey:[sort valueForKey:@"key"] ascending:ascend selector:@selector(localizedCaseInsensitiveCompare:)];
+						NSSortDescriptor * sortDesc = nil;
+
+						NSString * key = [sort valueForKey:@"key"];
+						
+						if ([key rangeOfString:@"date" options:NSCaseInsensitiveSearch].location != NSNotFound)
+							sortDesc = [[NSSortDescriptor alloc] initWithKey:key ascending:ascend selector:@selector(compare:)];
+						else
+							sortDesc = [[NSSortDescriptor alloc] initWithKey:key ascending:ascend selector:@selector(localizedCaseInsensitiveCompare:)];
 						
 						[sortDescs addObject:sortDesc];
 					}
@@ -287,11 +294,11 @@
 		NSSortDescriptor * descriptor = nil;
 		
 		NSString * key = (NSString *) [dict objectForKey:@"key"];
-		
-		if ([[dict objectForKey:@"ascending"] isEqual:@"yes"])
-			descriptor = [[NSSortDescriptor alloc] initWithKey:key ascending:YES selector:@selector(localizedCaseInsensitiveCompare:)];
+
+		if ([key rangeOfString:@"date" options:NSCaseInsensitiveSearch].location != NSNotFound)
+			descriptor = [[NSSortDescriptor alloc] initWithKey:key ascending:[[dict objectForKey:@"ascending"] isEqual:@"yes"] selector:@selector(compare:)];
 		else
-			descriptor = [[NSSortDescriptor alloc] initWithKey:key ascending:NO selector:@selector(localizedCaseInsensitiveCompare:)];
+			descriptor = [[NSSortDescriptor alloc] initWithKey:key ascending:[[dict objectForKey:@"ascending"] isEqual:@"yes"] selector:@selector(localizedCaseInsensitiveCompare:)];
 	
 		[sortDescriptors addObject:descriptor];
 	}
@@ -388,7 +395,7 @@
 			{
 				[[column dataCell] setFormatter:formatter];
 
-				NSSortDescriptor * sortDescriptor = [[NSSortDescriptor alloc] initWithKey:key ascending:YES selector:@selector(localizedCaseInsensitiveCompare:)];
+				NSSortDescriptor * sortDescriptor = [[NSSortDescriptor alloc] initWithKey:key ascending:YES selector:@selector(compare:)];
 				
 				[column setSortDescriptorPrototype:sortDescriptor];
 			}

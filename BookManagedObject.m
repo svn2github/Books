@@ -526,8 +526,8 @@
 		[records addObject:record];
 	}
 
-	NSSortDescriptor * lastNameDescriptor=[[[NSSortDescriptor alloc] initWithKey:@"dateLent" ascending:NO selector:@selector(localizedCaseInsensitiveCompare:)] autorelease];
-	NSArray * sortDescriptors=[NSArray arrayWithObject:lastNameDescriptor];
+	NSSortDescriptor * lastNameDescriptor = [[[NSSortDescriptor alloc] initWithKey:@"dateLent" ascending:NO selector:@selector(compare:)] autorelease];
+	NSArray * sortDescriptors = [NSArray arrayWithObject:lastNameDescriptor];
 
 	[records sortUsingDescriptors:sortDescriptors];
 	

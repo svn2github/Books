@@ -717,6 +717,7 @@ typedef struct _monochromePixel
 		[[listCombos objectAtIndex:i] removeAllItems];
 
 		NSMutableArray * array = [NSMutableArray arrayWithArray:[[lists objectAtIndex:i] allObjects]];
+		
 		[array sortUsingSelector:@selector(localizedCaseInsensitiveCompare:)];
 		
 		[[listCombos objectAtIndex:i] addItemsWithObjectValues:array];
