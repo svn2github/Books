@@ -24,6 +24,7 @@
 
 
 #import "BookTitleString.h"
+#import "BooksAppDelegate.h"
 
 @implementation BookTitleString
 
@@ -83,7 +84,10 @@
 
 - (NSComparisonResult) compare: (BookTitleString *) string
 {
-	return [[self getSortString] localizedCaseInsensitiveCompare:[string getSortString]];
+	if ([((BooksAppDelegate *) [NSApp delegate]) leopardOrBetter])
+		return [[self getSortString] localizedCaseInsensitiveCompare:[string getSortString]];
+	else
+		return [[self getSortString] caseInsensitiveCompare:[string getSortString]];
 }
 
 @end

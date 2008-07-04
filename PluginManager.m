@@ -93,19 +93,28 @@
 		NSTableColumn * column = [columns objectAtIndex:i];
 	
 		NSString * name = [[[column headerCell] stringValue] lowercaseString];
+
+		NSSortDescriptor * descriptor = nil;
 		
-		NSSortDescriptor * descriptor = [[NSSortDescriptor alloc] initWithKey:name ascending:YES 
-			selector:@selector(localizedCaseInsensitiveCompare:)];
+		if ([((BooksAppDelegate *) [NSApp delegate]) leopardOrBetter])
+			descriptor = [[NSSortDescriptor alloc] initWithKey:name ascending:YES selector:@selector(localizedCaseInsensitiveCompare:)];
+		else
+			descriptor = [[NSSortDescriptor alloc] initWithKey:name ascending:YES selector:@selector(caseInsensitiveCompare:)];
 			
 		[column setSortDescriptorPrototype:descriptor];
 		
 		[[column dataCell] setFont:[NSFont systemFontOfSize:11]];
 	}
 
-	[pluginListTable setSortDescriptors:
-		[NSArray arrayWithObject:[[NSSortDescriptor alloc] initWithKey:@"name" ascending:YES 
-			selector:@selector(localizedCaseInsensitiveCompare:)]]];
-
+	if ([((BooksAppDelegate *) [NSApp delegate]) leopardOrBetter])
+		[pluginListTable setSortDescriptors:[NSArray arrayWithObject:[[NSSortDescriptor alloc] initWithKey:@"name" 
+																								 ascending:YES 
+																								  selector:@selector(localizedCaseInsensitiveCompare:)]]];
+	else
+		[pluginListTable setSortDescriptors:[NSArray arrayWithObject:[[NSSortDescriptor alloc] initWithKey:@"name" 
+																								 ascending:YES 
+																								  selector:@selector(caseInsensitiveCompare:)]]];
+	
 	[pluginListTable setAllowsEmptySelection:YES];
 	[pluginListTable deselectAll:self];
 	[pluginListTable scrollRowToVisible:0];

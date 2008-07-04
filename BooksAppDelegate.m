@@ -83,6 +83,33 @@ typedef struct _monochromePixel
     return applicationSupportFolder;
 } */
 
+- (BOOL) leopardOrBetter
+{
+	return leopardOrBetter;
+}
+
+- (BooksAppDelegate *) init
+{
+	if (self = [super init])
+	{
+		leopardOrBetter = NO;
+
+		SInt32 MacVersion;
+		
+		if (Gestalt (gestaltSystemVersion, &MacVersion) == noErr)
+		{
+			if (MacVersion >= 0x1053)
+			{
+				NSLog (@"is Leopard");
+
+				leopardOrBetter = YES;
+			}
+		}
+	}
+	
+	return self;
+}
+
 - (NSManagedObjectContext *) managedObjectContext
 {
     NSError * error;
@@ -717,9 +744,12 @@ typedef struct _monochromePixel
 		[[listCombos objectAtIndex:i] removeAllItems];
 
 		NSMutableArray * array = [NSMutableArray arrayWithArray:[[lists objectAtIndex:i] allObjects]];
-		
-		[array sortUsingSelector:@selector(localizedCaseInsensitiveCompare:)];
-		
+
+		if ([self leopardOrBetter])
+			[array sortUsingSelector:@selector(localizedCaseInsensitiveCompare:)];
+		else
+			[array sortUsingSelector:@selector(caseInsensitiveCompare:)];
+			
 		[[listCombos objectAtIndex:i] addItemsWithObjectValues:array];
 	}
 }
@@ -751,8 +781,11 @@ typedef struct _monochromePixel
 {
 	if (quickfillPlugins == nil)
 		[self initQuickfillPlugins];
-
-	return [[quickfillPlugins allKeys] sortedArrayUsingSelector:@selector(localizedCaseInsensitiveCompare:)];
+	
+	if ([self leopardOrBetter])
+		return [[quickfillPlugins allKeys] sortedArrayUsingSelector:@selector(localizedCaseInsensitiveCompare:)];
+	else 
+		return [[quickfillPlugins allKeys] sortedArrayUsingSelector:@selector(caseInsensitiveCompare:)];
 }
 
 - (void) setQuickfillPlugins: (NSArray *) list
@@ -884,7 +917,10 @@ typedef struct _monochromePixel
 	if (importPlugins == nil)
 		[self initImportPlugins];
 
-	return [[importPlugins allKeys] sortedArrayUsingSelector:@selector(localizedCaseInsensitiveCompare:)];
+	if ([self leopardOrBetter])
+		return [[importPlugins allKeys] sortedArrayUsingSelector:@selector(localizedCaseInsensitiveCompare:)];
+	else
+		return [[importPlugins allKeys] sortedArrayUsingSelector:@selector(caseInsensitiveCompare:)];
 }
 
 - (void) initImportPlugins
@@ -958,8 +994,11 @@ typedef struct _monochromePixel
 {
 	if (exportPlugins == nil)
 		[self initExportPlugins];
-		
-	return [[exportPlugins allKeys] sortedArrayUsingSelector:@selector(localizedCaseInsensitiveCompare:)];
+	
+	if ([self leopardOrBetter])
+		return [[exportPlugins allKeys] sortedArrayUsingSelector:@selector(localizedCaseInsensitiveCompare:)];
+	else
+		return [[exportPlugins allKeys] sortedArrayUsingSelector:@selector(caseInsensitiveCompare:)];
 }
 
 - (void) setExportPlugins: (NSArray *) list
@@ -1075,8 +1114,14 @@ typedef struct _monochromePixel
 
 	[collectionArrayController addObject:object];
 	
-	[collectionArrayController setSortDescriptors:
-		[NSArray arrayWithObject:[[NSSortDescriptor alloc] initWithKey:@"name" ascending:YES selector:@selector(localizedCaseInsensitiveCompare:)]]];
+	if ([self leopardOrBetter])
+		[collectionArrayController setSortDescriptors:[NSArray arrayWithObject:[[NSSortDescriptor alloc] initWithKey:@"name" 
+																										   ascending:YES 
+																											selector:@selector(localizedCaseInsensitiveCompare:)]]];
+	else
+		[collectionArrayController setSortDescriptors:[NSArray arrayWithObject:[[NSSortDescriptor alloc] initWithKey:@"name" 
+																										   ascending:YES 
+																											selector:@selector(caseInsensitiveCompare:)]]];
 	
 	[self save:sender];
 

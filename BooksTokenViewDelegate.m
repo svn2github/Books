@@ -79,7 +79,11 @@
 		}
 	}
 	
-	[suggestions sortUsingSelector:@selector(localizedCaseInsensitiveCompare:)];
+	if ([((BooksAppDelegate *) [NSApp delegate]) leopardOrBetter])
+		[suggestions sortUsingSelector:@selector(localizedCaseInsensitiveCompare:)];
+	else
+		[suggestions sortUsingSelector:@selector(caseInsensitiveCompare:)];
+
 	return suggestions;
 }
 

@@ -99,7 +99,10 @@
 		
 		if (items != nil)
 		{
-			items = [items sortedArrayUsingSelector:@selector(localizedCaseInsensitiveCompare:)];
+			if ([((BooksAppDelegate *) [NSApp delegate]) leopardOrBetter])
+				items = [items sortedArrayUsingSelector:@selector(localizedCaseInsensitiveCompare:)];
+			else
+				items = [items sortedArrayUsingSelector:@selector(caseInsensitiveCompare:)];
 	
 			[comboArrays setObject:items forKey:[box description]];
 		}

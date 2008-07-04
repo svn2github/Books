@@ -25,6 +25,7 @@
 
 #import "PeopleArrayController.h"
 #import <AddressBook/AddressBook.h>
+#import "BooksAppDelegate.h"
 
 @implementation PeopleArrayController
 
@@ -61,7 +62,10 @@
 		}
 	}
 	
-	[people sortUsingDescriptors:[NSArray arrayWithObject:[[NSSortDescriptor alloc] initWithKey:@"name" ascending:YES selector:@selector(localizedCaseInsensitiveCompare:)]]];
+	if ([((BooksAppDelegate *) [NSApp delegate]) leopardOrBetter])
+		[people sortUsingDescriptors:[NSArray arrayWithObject:[[NSSortDescriptor alloc] initWithKey:@"name" ascending:YES selector:@selector(localizedCaseInsensitiveCompare:)]]];
+	else
+		[people sortUsingDescriptors:[NSArray arrayWithObject:[[NSSortDescriptor alloc] initWithKey:@"name" ascending:YES selector:@selector(caseInsensitiveCompare:)]]];
 	
 	return people;
 }

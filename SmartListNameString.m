@@ -24,7 +24,7 @@
 
 
 #import "SmartListNameString.h"
-
+#import "BooksAppDelegate.h"
 
 @implementation SmartListNameString
 
@@ -33,7 +33,10 @@
 	if ([string isMemberOfClass:[ListNameString class]])
 		return NSOrderedDescending;
 
-	return [[@"" stringByAppendingString:self] localizedCaseInsensitiveCompare:string];
+	if ([((BooksAppDelegate *) [NSApp delegate]) leopardOrBetter])
+		return [[@"" stringByAppendingString:self] localizedCaseInsensitiveCompare:string];
+	else
+		return [[@"" stringByAppendingString:self] caseInsensitiveCompare:string];
 }
 
 @end

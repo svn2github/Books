@@ -26,6 +26,7 @@
 #import "ExportMenuDelegate.h"
 #import "ExportPluginInterface.h"
 #import "BooksDataFolder.h"
+#import "BooksAppDelegate.h"
 
 @implementation ExportMenuDelegate
 
@@ -69,7 +70,11 @@
 		}
 	}
 
-	pluginKeys = [[plugins allKeys] sortedArrayUsingSelector:@selector(localizedCaseInsensitiveCompare:)];
+	if ([((BooksAppDelegate *) [NSApp delegate]) leopardOrBetter])
+		pluginKeys = [[plugins allKeys] sortedArrayUsingSelector:@selector(localizedCaseInsensitiveCompare:)];
+	else
+		pluginKeys = [[plugins allKeys] sortedArrayUsingSelector:@selector(caseInsensitiveCompare:)];
+		
 	[pluginKeys retain];
 }
 

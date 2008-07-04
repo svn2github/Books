@@ -24,6 +24,7 @@
 
 
 #import "BookAuthorString.h"
+#import "BooksAppDelegate.h"
 
 @implementation BookAuthorString
 
@@ -31,10 +32,12 @@
 {
 	BOOL sortAuthors = [[NSUserDefaults standardUserDefaults] boolForKey:@"Sort People Names"];
 
-	if (!sortAuthors)
+	if (!sortAuthors && [((BooksAppDelegate *) [NSApp delegate]) leopardOrBetter])
 		return [self localizedCaseInsensitiveCompare:string];
-	else
+	else if ([((BooksAppDelegate *) [NSApp delegate]) leopardOrBetter])
 		return [[self getSortString] localizedCaseInsensitiveCompare:[string getSortString]];
+
+	return [[self getSortString] caseInsensitiveCompare:[string getSortString]];
 }
 
 - (NSString *) getSortString

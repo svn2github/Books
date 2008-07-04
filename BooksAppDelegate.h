@@ -133,6 +133,8 @@
 	
 	NSMutableArray * batchArray;
 	NSTimer * batchTimer;
+	
+	BOOL leopardOrBetter;
 }
 
 - (IBAction)preferences:(id)sender;
@@ -231,5 +233,7 @@
 
 - (IBAction) selectPrevious:(id) sender;
 - (IBAction) selectNext:(id) sender;
+
+- (BOOL) leopardOrBetter;
 
 @end
