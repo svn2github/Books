@@ -1,0 +1,407 @@
+﻿/* No comment provided by engineer. */
+"%@ plugin. (No description provided.)" = "%@ プラグイン（説明なし）";
+
+/* No comment provided by engineer. */
+"<empty>" = "<空>";
+
+/* No comment provided by engineer. */
+"<p>Authors: " = "<p>著者：";
+
+/* No comment provided by engineer. */
+"<p>Date: " = "<p>日付：";
+
+/* No comment provided by engineer. */
+"<p>Format: " = "<p>判型：";
+
+/* No comment provided by engineer. */
+"<p>ISBN: " = "<p>ISBN：";
+
+/* No comment provided by engineer. */
+"<p>Publisher: " = "<p>出版社：";
+
+/* No comment provided by engineer. */
+"<p>Summary: " = "<p>要約：";
+
+/* No comment provided by engineer. */
+"Alert" = "警告";
+
+/* No comment provided by engineer. */
+"All" = "すべて";
+
+/* No comment provided by engineer. */
+"Any" = "いずれか";
+
+/* No comment provided by engineer. */
+"Are you sure you want to delete the selected books?" = "選択した書籍を削除してもよろしいですか？";
+
+/* No comment provided by engineer. */
+"Are you sure you want to delete this list? It still contains items." = "まだアイテムがあります。リストを削除してもよろしいですか？";
+
+/* No comment provided by engineer. */
+"Are you sure you want to download and install the selected plugin? It may take several minutes." = "選択したプラグインをダウンロード＆インストールしてもよろしいですか？この作業には数分かかる場合があります。";
+
+/* No comment provided by engineer. */
+"Author(s)" = "著者";
+
+/* No comment provided by engineer. */
+"Batch Quickfill" = "一括クイックフィル";
+
+/* No comment provided by engineer. */
+"Batch quickfilling %d items..." = "%d 個の要素をクイックフィル中...";
+
+/* No comment provided by engineer. */
+"Biography" = "伝記";
+
+/* No comment provided by engineer. */
+"Books - Loading..." = "Books - ロード中...";
+
+/* No comment provided by engineer. */
+"Books has finished importing %d records." = "Booksは %d レコードの読み込みを完了しました。";
+
+/* No comment provided by engineer. */
+"Books has finished searching %@. %d items found." = "Books は %@ の検索を完了しました。%d のアイテムが見つかりました。";
+
+/* No comment provided by engineer. */
+"Borrower" = "借り手";
+
+/* No comment provided by engineer. */
+"Camera Window" = "カメラウインドウ";
+
+/* No comment provided by engineer. */
+"Can Not Remove List" = "このリストは消去できません";
+
+/* No comment provided by engineer. */
+"Can't find application support folder" = "Application Support フォルダが見つかりません";
+
+/* No comment provided by engineer. */
+"Cancel" = "キャンセル";
+
+/* No comment provided by engineer. */
+"Compacting Data Files..." = "データファイルを最小化中...";
+
+/* No comment provided by engineer. */
+"Condition" = "状態";
+
+/* No comment provided by engineer. */
+"contains" = "が次を含む";
+
+/* No comment provided by engineer. */
+"Could not save changes while quitting. Quit anyway?" = "終了中は変更内容の保存ができません。それでも終了しますか？";
+
+/* No comment provided by engineer. */
+"Current Value" = "現在の価格";
+
+/* No comment provided by engineer. */
+"Date Acquired" = "入手日";
+
+/* No comment provided by engineer. */
+"Date Finished" = "読了日";
+
+/* No comment provided by engineer. */
+"Date Lent" = "貸出日";
+
+/* No comment provided by engineer. */
+"Date Published" = "出版日";
+
+/* No comment provided by engineer. */
+"Date Started" = "読み始め日";
+
+/* No comment provided by engineer. */
+"Delete" = "削除";
+
+/* No comment provided by engineer. */
+"Delete List" = "リストを削除";
+
+/* No comment provided by engineer. */
+"Delete Non-Empty List?" = "空ではないリストを削除しますか？";
+
+/* No comment provided by engineer. */
+"Delete Selected Books?" = "選択した書籍を削除しますか？";
+
+/* No comment provided by engineer. */
+"does not contain" = "が次を含まない";
+
+/* No comment provided by engineer. */
+"Downloading and installing plugin..." = "プラグインをダウンロード＆インストール中...";
+
+/* No comment provided by engineer. */
+"Duplicate" = "複製";
+
+/* No comment provided by engineer. */
+"Duplicate Book" = "書籍を複製";
+
+/* No comment provided by engineer. */
+"Edit Smart List" = "スマートリストを編集";
+
+/* No comment provided by engineer. */
+"Edition" = "版";
+
+/* No comment provided by engineer. */
+"Editor(s)" = "編集者";
+
+/* No comment provided by engineer. */
+"ends with" = "が次で終わる";
+
+/* No comment provided by engineer. */
+"Export Complete" = "書き出し完了";
+
+/* No comment provided by engineer. */
+"Exporting data to plugin..." = "プラグインにデータを書き出し中...";
+
+/* No comment provided by engineer. */
+"Fairy Tales" = "童話";
+
+/* No comment provided by engineer. */
+"Fantasy" = "ファンタジー";
+
+/* No comment provided by engineer. */
+"Folk Tales" = "民話";
+
+/* No comment provided by engineer. */
+"Format" = "判型";
+
+/* No comment provided by engineer. */
+"Gallery Controls" = "ギャラリーコントロール";
+
+/* No comment provided by engineer. */
+"Genre" = "ジャンル";
+
+/* No comment provided by engineer. */
+"Get Info" = "情報を取得";
+
+/* No comment provided by engineer. */
+"greater than" = "が次より大きい";
+
+/* No comment provided by engineer. */
+"Hide Cover" = "カバーを隠す";
+
+/* No comment provided by engineer. */
+"Hide Info" = "情報を隠す";
+
+/* No comment provided by engineer. */
+"Historical Fiction" = "歴史小説";
+
+/* No comment provided by engineer. */
+"http://www.google.com/search?q=*isbn*" = "http://www.google.co.jp/search?q=*isbn*";
+
+/* No comment provided by engineer. */
+"Illustrator(s)" = "イラスト";
+
+/* No comment provided by engineer. */
+"Import Complete" = "読み込み完了";
+
+/* No comment provided by engineer. */
+"Import Data" = "データを読み込む";
+
+/* No comment provided by engineer. */
+"Install Plugin?" = "プラグインをインストールしますか？";
+
+/* No comment provided by engineer. */
+"Installed" = "インストール済み";
+
+/* No comment provided by engineer. */
+"is" = "が次と同じ";
+
+/* No comment provided by engineer. */
+"is not" = "が次と異なる";
+
+/* No comment provided by engineer. */
+"ISBN" = "ISBN";
+
+/* No comment provided by engineer. */
+"Keep" = "保持";
+
+/* No comment provided by engineer. */
+"Keep or overwrite existing values?" = "既存データを保持しますか、それとも上書きしますか？";
+
+/* No comment provided by engineer. */
+"Keywords" = "キーワード";
+
+/* No comment provided by engineer. */
+"Length" = "ページ数";
+
+/* No comment provided by engineer. */
+"less than" = "が次より小さい";
+
+/* No comment provided by engineer. */
+"List Name" = "リスト名";
+
+/* No comment provided by engineer. */
+"Location" = "場所";
+
+/* No comment provided by engineer. */
+"Lookup Complete" = "ルックアップ完了";
+
+/* No comment provided by engineer. */
+"matches regexp" = "正規表現マッチ";
+
+/* No comment provided by engineer. */
+"More than ten books have been selected. Only opening the first ten..." = "10冊を超える書籍が選択されています。10冊目まで開きます…";
+
+/* No comment provided by engineer. */
+"My Books" = "マイブックス";
+
+/* No comment provided by engineer. */
+"Mystery" = "ミステリー";
+
+/* No comment provided by engineer. */
+"Myths & Legends" = "神話＆伝説";
+
+/* No comment provided by engineer. */
+"New Book" = "新規書籍";
+
+/* No comment provided by engineer. */
+"New List" = "新規リスト";
+
+/* No comment provided by engineer. */
+"New Smart List" = "新規スマートリスト";
+
+/* No comment provided by engineer. */
+"No" = "いいえ";
+
+/* No comment provided by engineer. */
+"No Controls Available" = "利用できるコントロールがありません";
+
+/* No comment provided by engineer. */
+"No operations available" = "利用できるオペレーションがありません";
+
+/* No comment provided by engineer. */
+"No Quickfill Plugin Selected" = "クイックフィル用プラグインが選択されていません";
+
+/* No comment provided by engineer. */
+"No quickfill plugins have been selected. Select one in the preferences." = "クイックフィル用プラグインが選択されていません。環境設定でプラグインをひとつ選択してください。";
+
+/* No comment provided by engineer. */
+"Non-Fiction" = "ノンフィクション";
+
+/* No comment provided by engineer. */
+"OK" = "OK";
+
+/* No comment provided by engineer. */
+"Only one book may be quickfilled at a time." = "クイックフィルできるのは1度に1冊の書籍のみです";
+
+/* No comment provided by engineer. */
+"Open Camera" = "カメラを開く";
+
+/* No comment provided by engineer. */
+"Overwrite" = "上書き";
+
+/* No comment provided by engineer. */
+"Owner" = "持ち主";
+
+/* No comment provided by engineer. */
+"Place Published" = "出版地";
+
+/* No comment provided by engineer. */
+"Please install the PDF Exporter from the Plugin Manager to enable printing." = "プリントを実行するには、プラグインマネージャから PDF Exporter をインストールしてください";
+
+/* No comment provided by engineer. */
+"Plugin Installed" = "プラグインがインストールされました";
+
+/* No comment provided by engineer. */
+"Poetry" = "詩歌";
+
+/* No comment provided by engineer. */
+"Publisher" = "出版社";
+
+/* No comment provided by engineer. */
+"Quickfilling item %d of %d..." = "%2$d 個のうち %1$d 個目のアイテムをクイックフィル中...";
+
+/* No comment provided by engineer. */
+"Quit" = "終了";
+
+/* No comment provided by engineer. */
+"Quit anyway" = "それでも終了";
+
+/* No comment provided by engineer. */
+"Rating" = "評価";
+
+/* No comment provided by engineer. */
+"Realistic Fiction" = "小説";
+
+/* No comment provided by engineer. */
+"Remove Book" = "書籍を取り除く";
+
+/* No comment provided by engineer. */
+"Remove List" = "リストを取り除く";
+
+/* No comment provided by engineer. */
+"Rename List" = "リストを名称変更";
+
+/* No comment provided by engineer. */
+"Returned On" = "返却日";
+
+/* No comment provided by engineer. */
+"Science Fiction" = "SF";
+
+/* No comment provided by engineer. */
+"Search Selected List" = "選択リスト内を検索";
+
+/* No comment provided by engineer. */
+"Series" = "シリーズ";
+
+/* No comment provided by engineer. */
+"Short Stories" = "短編小説";
+
+/* No comment provided by engineer. */
+"Show Cover" = "カバーを表示";
+
+/* No comment provided by engineer. */
+"Source" = "ソース";
+
+/* No comment provided by engineer. */
+"starts with" = "が次で始まる";
+
+/* No comment provided by engineer. */
+"Summary" = "要約";
+
+/* No comment provided by engineer. */
+"The new plugin has been installed. Please restart Books to use the new plugin." = "新しいプラグインがインストールされました。利用するためには Books を再起動してください";
+
+/* No comment provided by engineer. */
+"The remaining list can not be removed." = "最後のリストは取り除くことができません";
+
+/* No comment provided by engineer. */
+"Title" = "タイトル";
+
+/* No comment provided by engineer. */
+"Too Many Books Selected" = "選択された書籍が多すぎます";
+
+/* No comment provided by engineer. */
+"Translator(s)" = "訳者";
+
+/* No comment provided by engineer. */
+"Unable To Print" = "プリントできません";
+
+/* No comment provided by engineer. */
+"Untitled Book" = "タイトルのない書籍";
+
+/* No comment provided by engineer. */
+"Updating Spotlight index..." = "Spotlight のインデックスを更新中...";
+
+/* No comment provided by engineer. */
+"View" = "表示形式";
+
+/* No comment provided by engineer. */
+"View Inspector" = "インスペクタを表示";
+
+/* No comment provided by engineer. */
+"Yes" = "はい";
+
+/* No comment provided by engineer. */
+"Delete Selected Book?" = "選択した書籍を削除しますか？";
+
+/* No comment provided by engineer. */
+"Are you sure you want to delete the selected book?" = "選択した書籍を削除してもよろしいですか？";
+
+/* No comment provided by engineer. */
+"Unknown Condition" = "不明な状態";
+
+/* No comment provided by engineer. */
+"Unknown Value" = "不明な値";
+
+/* No comment provided by engineer. */
+"Unknown Source" = "不明なソース";
+
+/* No comment provided by engineer. */
+"Unknown Owner" = "不明な持ち主";
