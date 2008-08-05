@@ -229,6 +229,7 @@
 		[formatter setDateStyle:NSDateFormatterLongStyle];
 
 		fieldValue = [formatter stringFromDate:((NSDate *) fieldObject)];
+		[formatter release];
 	}
 
 	NSArray * map = [NSArray arrayWithObjects:@"title", @"series", @"authors", @"summary", @"genre", 

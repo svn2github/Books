@@ -193,6 +193,8 @@
 						[object setValue:[NSDate dateWithNaturalLanguageString:[[checkout attributeForName:@"dateDue"] stringValue]] forKey:@"dateDue"];
 
 						[checkoutSet addObject:object];
+						
+						[object release];
 					}
 
 					NSArray * copies = [book elementsForName:@"copy"];
@@ -215,6 +217,7 @@
 						[object setValue:[copy stringValue] forKey:@"inscription"];
 
 						[copiesSet addObject:object];
+						[object release];
 					}
 
 					NSArray * feedbacks = [book elementsForName:@"feedback"];
@@ -240,6 +243,7 @@
 						[object setValue:[feedback stringValue] forKey:@"comments"];
 
 						[feedbackSet addObject:object];
+						[object release];
 					}
 
 					[context lock];
@@ -286,6 +290,8 @@
 				}
 			}
 
+			[listObject release];
+			
 			[[[NSApplication sharedApplication] delegate] saveAction:self];
 
 			[[NSApplication sharedApplication] deactivate];

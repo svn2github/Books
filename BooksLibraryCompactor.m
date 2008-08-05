@@ -24,6 +24,8 @@
 	NSError * error = nil;
 	NSArray * books = [[((BooksAppDelegate *) [NSApp delegate]) managedObjectContext] executeFetchRequest:fetch error:&error];
 
+	[fetch release];
+	
 	NSMutableArray * ids = [NSMutableArray array];
 	
 	int i = 0;

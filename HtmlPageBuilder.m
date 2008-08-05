@@ -66,6 +66,7 @@
 					NSString * pluginName = (NSString *) [[pluginDict objectForKey:@"BooksPluginName"] copy];
 
 					[displayPlugins setObject:plugin forKey:pluginName];
+					[pluginName release];
 				}
 			}
 		}

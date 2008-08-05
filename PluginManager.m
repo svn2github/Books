@@ -103,17 +103,24 @@
 			
 		[column setSortDescriptorPrototype:descriptor];
 		
+		[descriptor release];
 		[[column dataCell] setFont:[NSFont systemFontOfSize:11]];
 	}
 
+	NSSortDescriptor * descriptor = nil;
+	
 	if ([((BooksAppDelegate *) [NSApp delegate]) leopardOrBetter])
-		[pluginListTable setSortDescriptors:[NSArray arrayWithObject:[[NSSortDescriptor alloc] initWithKey:@"name" 
-																								 ascending:YES 
-																								  selector:@selector(localizedCaseInsensitiveCompare:)]]];
+		descriptor = [[NSSortDescriptor alloc] initWithKey:@"name" 
+												 ascending:YES 
+												  selector:@selector(localizedCaseInsensitiveCompare:)];
 	else
-		[pluginListTable setSortDescriptors:[NSArray arrayWithObject:[[NSSortDescriptor alloc] initWithKey:@"name" 
-																								 ascending:YES 
-																								  selector:@selector(caseInsensitiveCompare:)]]];
+		descriptor = [[NSSortDescriptor alloc] initWithKey:@"name" 
+												 ascending:YES 
+												  selector:@selector(caseInsensitiveCompare:)];
+
+	[pluginListTable setSortDescriptors:[NSArray arrayWithObject:descriptor]];
+	
+	[descriptor release];
 	
 	[pluginListTable setAllowsEmptySelection:YES];
 	[pluginListTable deselectAll:self];
@@ -150,6 +157,8 @@
 			
 			if ([pluginDict objectForKey:@"BooksPluginType"] != nil && pluginName != nil)
 				[plugins setObject:[plugin infoDictionary] forKey:pluginName];
+			
+			[pluginName release];
 		}
 	}
 	

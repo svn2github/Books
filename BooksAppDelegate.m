@@ -158,7 +158,8 @@ typedef struct _monochromePixel
 	[fetch setPredicate:[NSPredicate predicateWithFormat:@"name != \"\""]];
 
 	NSArray * results = [[self managedObjectContext] executeFetchRequest:fetch error:&error];
-
+	[fetch release];
+	
 	if (results == nil || [results count] == 0)
 	{
 		NSEntityDescription * collectionDesc = [[[self managedObjectModel] entitiesByName] objectForKey:@"List"];
@@ -172,11 +173,13 @@ typedef struct _monochromePixel
 		[listObject setValue:NSLocalizedString (@"My Books", nil) forKey:@"name"];
 
 		NSMutableSet * items = [listObject mutableSetValueForKey:@"items"];
+		[listObject release];
 		
 		BookManagedObject * bookObject = [[BookManagedObject alloc] initWithEntity:bookDesc insertIntoManagedObjectContext:managedObjectContext];
 
 		[bookObject setValue:NSLocalizedString (@"New Book", nil) forKey:@"title"];
 		[items addObject:bookObject];
+		[bookObject release];
 
 		[managedObjectContext unlock];
 	}
@@ -404,6 +407,7 @@ typedef struct _monochromePixel
 	NSBundle * exportPlugin = nil;
 	
 	[NSThread detachNewThreadSelector:NSSelectorFromString(@"ExportToBundle") toTarget:export withObject:exportPlugin];
+	[export release];
 }
 
 - (void) setControlsView: (NSNotification *) msg
@@ -439,6 +443,8 @@ typedef struct _monochromePixel
 	
 	[mainWindow setToolbar:tb];
 	
+	[tb release];
+	
 	[tableViewDelegate updateBooksTable];
 	[tableViewDelegate restore];
 
@@ -454,7 +460,8 @@ typedef struct _monochromePixel
 	[[finishedColumn dataCell] setFormatter:formatter];
 	[[lentColumn dataCell] setFormatter:formatter];
 	[[returnedColumn dataCell] setFormatter:formatter];
-
+	[formatter release];
+	
 	dateFormat = [self getDateLentFormatString];
 
 	if (dateFormat != nil)
@@ -463,6 +470,7 @@ typedef struct _monochromePixel
 
 		[[dateLent cell] setFormatter:formatter];
 		[[dateReturned cell] setFormatter:formatter];
+		[formatter release];
 	}
 
 	/* Resize Main Scroller */
@@ -562,7 +570,9 @@ typedef struct _monochromePixel
 	[coverWindow setReleasedWhenClosed:NO];
 	[coverWindow setCanHide:YES];
 	
-	[coverWindow setDelegate:[[CoverWindowDelegate alloc] init]];
+	CoverWindowDelegate * cwd = [[CoverWindowDelegate alloc] init];
+	[coverWindow setDelegate:cwd];
+	[cwd release];
 	
 	[mainWindow makeKeyAndOrderFront:self];
 	
@@ -711,6 +721,7 @@ typedef struct _monochromePixel
 	NSError * error = nil;
 	NSArray * books = [[self managedObjectContext] executeFetchRequest:fetch error:&error];
 		
+	[fetch release];
 	NSMutableSet * userFieldNames = [NSMutableSet set];
 
 	[tokenDelegate updateTokens];
@@ -828,6 +839,7 @@ typedef struct _monochromePixel
 					NSString * pluginName = (NSString *) [[pluginDict objectForKey:@"BooksPluginName"] copy];
 
 					[quickfillPlugins setObject:plugin forKey:pluginName];
+					[pluginName release];
 				}
 			}
 		}
@@ -958,6 +970,7 @@ typedef struct _monochromePixel
 					NSString * pluginName = (NSString *) [[pluginDict objectForKey:@"BooksPluginName"] copy];
 
 					[importPlugins setObject:plugin forKey:pluginName];
+					[pluginName release];
 				}
 			}
 		}
@@ -988,6 +1001,7 @@ typedef struct _monochromePixel
 	ImportPluginInterface * import = [[ImportPluginInterface alloc] init];
 	
 	[NSThread detachNewThreadSelector:NSSelectorFromString(@"importFromBundle:") toTarget:import withObject:importPlugin];
+	[import release];
 }
 
 - (NSArray *) getExportPlugins
@@ -1041,6 +1055,7 @@ typedef struct _monochromePixel
 					NSString * pluginName = (NSString *) [[pluginDict objectForKey:@"BooksPluginName"] copy];
 
 					[exportPlugins setObject:plugin forKey:pluginName];
+					[pluginName release];
 				}
 			}
 		}
@@ -1096,6 +1111,7 @@ typedef struct _monochromePixel
 	[sc setValue:NSLocalizedString (@"New Smart List", nil) forKey:@"name"];
 	
 	[collectionArrayController addObject:sc];
+	[sc release];
 	
 	[self editSmartList:sender];
 
@@ -1114,14 +1130,17 @@ typedef struct _monochromePixel
 
 	[collectionArrayController addObject:object];
 	
+	NSSortDescriptor * sort = nil;
+	
 	if ([self leopardOrBetter])
-		[collectionArrayController setSortDescriptors:[NSArray arrayWithObject:[[NSSortDescriptor alloc] initWithKey:@"name" 
-																										   ascending:YES 
-																											selector:@selector(localizedCaseInsensitiveCompare:)]]];
+		sort = [[NSSortDescriptor alloc] initWithKey:@"name" ascending:YES selector:@selector(localizedCaseInsensitiveCompare:)];
 	else
-		[collectionArrayController setSortDescriptors:[NSArray arrayWithObject:[[NSSortDescriptor alloc] initWithKey:@"name" 
-																										   ascending:YES 
-																											selector:@selector(caseInsensitiveCompare:)]]];
+		sort = [[NSSortDescriptor alloc] initWithKey:@"name" ascending:YES selector:@selector(caseInsensitiveCompare:)];
+
+	[collectionArrayController setSortDescriptors:[NSArray arrayWithObject:sort]];
+	[sort release];
+	
+	[object release];
 	
 	[self save:sender];
 
@@ -1162,6 +1181,8 @@ typedef struct _monochromePixel
 			[bookArrayController addObject:object];
 			
 			[object addNewCopy];
+			
+			[object release];
 			
 			[context unlock];
 
@@ -1358,6 +1379,8 @@ typedef struct _monochromePixel
 
 	NSError * error = nil;
 	NSArray * results = [[self managedObjectContext] executeFetchRequest:fetch error:&error];
+	
+	[fetch release];
 
 	return [results retain];
 }
@@ -1374,7 +1397,7 @@ typedef struct _monochromePixel
 	NSMutableArray * results = [NSMutableArray array];
 	
 	NSArray * fetchedItems = [[self managedObjectContext] executeFetchRequest:fetch error:&error];
-
+	[fetch release];
 	int i = 0;
 	for (i = 0; i < [fetchedItems count]; i++)
 	{
@@ -1395,6 +1418,7 @@ typedef struct _monochromePixel
 
 	NSError * error = nil;
 	NSArray * results = [[self managedObjectContext] executeFetchRequest:fetch error:&error];
+	[fetch release];
 
 	return [results retain];
 }
@@ -1796,6 +1820,7 @@ typedef struct _monochromePixel
 							[fieldObject setValue:[fieldPair valueForKey:@"value"] forKey:@"value"];
 	
 							[objectFields addObject:fieldObject];
+							[fieldObject release];
 						}
 					}
 				}
@@ -1804,6 +1829,9 @@ typedef struct _monochromePixel
 				NSString * uuidString = (NSString *) CFUUIDCreateString (kCFAllocatorDefault, uuid);
 		
 				[object setValue:uuidString forKey:@"id"];
+				
+				[uuidString release];
+				CFRelease (uuid);
 
 				NSData * cover = [record getCoverImage];
 				[object setCoverImage:[cover copyWithZone:NULL]];
@@ -1811,6 +1839,7 @@ typedef struct _monochromePixel
 				[context insertObject:object];
 
 				[bookArrayController addObject:object];
+				[object release];
 				[context unlock];
 			}
 			
@@ -1860,13 +1889,17 @@ typedef struct _monochromePixel
 	
     [self didChangeValueForKey:@"now"];
 
+	NSDateFormatter * formatter = [[NSDateFormatter alloc] initWithDateFormat:format allowNaturalLanguage:YES];
+	
 	[tableViewDelegate updateBooksTable];
-	[[datePublished cell] setFormatter:[[NSDateFormatter alloc] initWithDateFormat:format allowNaturalLanguage:YES]];
-	[[dateAcquired cell] setFormatter:[[NSDateFormatter alloc] initWithDateFormat:format allowNaturalLanguage:YES]];
-	[[dateStarted cell] setFormatter:[[NSDateFormatter alloc] initWithDateFormat:format allowNaturalLanguage:YES]];
-	[[dateFinished cell] setFormatter:[[NSDateFormatter alloc] initWithDateFormat:format allowNaturalLanguage:YES]];
-	[[dateLent cell] setFormatter:[[NSDateFormatter alloc] initWithDateFormat:format allowNaturalLanguage:YES]];
-	[[dateReturned cell] setFormatter:[[NSDateFormatter alloc] initWithDateFormat:format allowNaturalLanguage:YES]];
+	[[datePublished cell] setFormatter:formatter];
+	[[dateAcquired cell] setFormatter:formatter];
+	[[dateStarted cell] setFormatter:formatter];
+	[[dateFinished cell] setFormatter:formatter];
+	[[dateLent cell] setFormatter:formatter];
+	[[dateReturned cell] setFormatter:formatter];
+	
+	[formatter release];
 }
 
 - (NSString *) getDateFormatString
@@ -1894,7 +1927,11 @@ typedef struct _monochromePixel
 	[NSDateFormatter setDefaultFormatterBehavior:NSDateFormatterBehavior10_4];
 	NSDateFormatter * formatter = [[NSDateFormatter alloc] initWithDateFormat:dateFormat allowNaturalLanguage:YES];
 
-	return [formatter stringFromDate:[NSDate date]];
+	NSString * dateString = [formatter stringFromDate:[NSDate date]];
+	
+	[formatter release];
+	
+	return dateString;
 }
 
 - (void) setNow: (NSString *) now
@@ -1913,6 +1950,7 @@ typedef struct _monochromePixel
 	{
 		ExportPluginInterface * export = [[ExportPluginInterface alloc] init];
 		[NSThread detachNewThreadSelector:NSSelectorFromString(@"exportToBundle:") toTarget:export withObject:exportPlugin];
+		[export release];
 	}
 	else
 	{
@@ -2005,6 +2043,8 @@ typedef struct _monochromePixel
 						NSError * error = nil;
 						NSArray * results = [[self managedObjectContext] executeFetchRequest:fetch error:&error];
 						
+						[fetch release];
+						
 						if ([results count] > 0)
 						{
 							BookManagedObject * record = [results objectAtIndex:0];
@@ -2037,6 +2077,7 @@ typedef struct _monochromePixel
 										[fieldObject setValue:[fieldPair valueForKey:@"value"] forKey:@"value"];
 	
 										[objectFields addObject:fieldObject];
+										[fieldObject release];
 									}
 								}
 							}
@@ -2045,6 +2086,9 @@ typedef struct _monochromePixel
 							NSString * uuidString = (NSString *) CFUUIDCreateString (kCFAllocatorDefault, uuid);
 		
 							[object setValue:uuidString forKey:@"id"];
+							
+							[uuidString release];
+							CFRelease (uuid);
 
 							NSData * cover = [record getCoverImage];
 							[object setCoverImage:[cover copyWithZone:NULL]];
@@ -2052,6 +2096,7 @@ typedef struct _monochromePixel
 							[context insertObject:object];
 
 							[bookArrayController addObject:object];
+							[object release];
 							[context unlock];
 						}
 			

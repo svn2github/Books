@@ -46,6 +46,7 @@
 {
 	NotificationInterface * notify = [[NotificationInterface alloc] init];
 	[GrowlApplicationBridge setGrowlDelegate:notify];
+	[notify release];
 }
 
 @end

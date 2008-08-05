@@ -111,6 +111,8 @@
 			
 			if (!([key isEqualToString:@"title"] && [value isEqual:NSLocalizedString (@"New Book", nil)]))
 				[element addChild:field];
+			
+			[field release];
 		}
 	}
 
@@ -131,12 +133,14 @@
 			[field setStringValue:valueString];
 
 			[element addChild:field];
+			[field release];
 		}
 	}
 
 	NSXMLDocument * document = [[NSXMLDocument alloc] initWithRootElement:element];
+	[element release];
 
-	return document;
+	return [document autorelease];
 }
 
 - (void) importFromBundle: (NSBundle *) bundle forBook: (BookManagedObject *) bookObject replace:(BOOL) doReplace

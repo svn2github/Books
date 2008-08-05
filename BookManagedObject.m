@@ -72,6 +72,7 @@
 		[object setValue:@"" forKey:@"inscription"];
 
 		[copiesSet addObject:object];
+		[object release];
 	}
 }
 
@@ -95,10 +96,14 @@
 		[isbnTemp replaceOccurrencesOfString:@" " withString:@"" options:NSCaseInsensitiveSearch 
 				range:NSMakeRange (0, [isbnTemp length])];
 
+		NSString * dashedIsbn = [NSString stringWithString:isbnTemp];
+		
 		[isbnTemp replaceOccurrencesOfString:@"-" withString:@"" options:NSCaseInsensitiveSearch 
 				range:NSMakeRange (0, [isbnTemp length])];
 
-		if ([isbnTemp length] < 12)
+		if ([isbnTemp length] == 10)
+			[self setPrimitiveValue:dashedIsbn forKey:@"isbn"];
+		else if ([isbnTemp length] < 12)
 			[self setPrimitiveValue:isbn forKey:@"isbn"];
 		else
 		{
@@ -295,6 +300,9 @@
 		
 		[self setValue:uuidString forKey:@"id"];
 		
+		CFRelease (uuid);
+		[uuidString release];
+		
 		return [self valueForKey:@"id"];
 	}
 	
@@ -402,7 +410,7 @@
 	{
 		NSArray * setArray = [set allObjects];
 		
-		NSMutableString * valueString = [[NSMutableString alloc] initWithString:@""];
+		NSMutableString * valueString = [NSMutableString stringWithString:@""];
 		
 		int i = 0;
 		for (i = 0; i < [setArray count]; i++)

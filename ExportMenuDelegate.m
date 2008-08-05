@@ -65,6 +65,7 @@
 					NSString * pluginName = (NSString *) [[pluginDict objectForKey:@"BooksPluginName"] copy];
 
 					[plugins setObject:plugin forKey:pluginName];
+					[pluginName release];
 				}
 			}
 		}
@@ -111,6 +112,8 @@
 	ExportPluginInterface * export = [[ExportPluginInterface alloc] init];
 	
 	[NSThread detachNewThreadSelector:NSSelectorFromString(@"exportToBundle:") toTarget:export withObject:exportPlugin];
+	
+	[export release];
 }
 
 @end

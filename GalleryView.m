@@ -139,6 +139,7 @@
 					GalleryCoverView * gcv = [[GalleryCoverView alloc] init];
 					[self addSubview:gcv];
 					[gcv setHidden:YES];
+					[gcv release];
 				}
 			}
 			

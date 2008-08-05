@@ -76,12 +76,19 @@
 			}
 		}
 		
+		NSSortDescriptor * sorter = nil;
 		if ([((BooksAppDelegate *) [NSApp delegate]) leopardOrBetter])
-			[collectionArrayController setSortDescriptors:
-				[NSArray arrayWithObject:[[NSSortDescriptor alloc] initWithKey:@"name" ascending:YES selector:@selector(localizedCaseInsensitiveCompare:)]]];
+		{
+			sorter = [[NSSortDescriptor alloc] initWithKey:@"name" ascending:YES selector:@selector(localizedCaseInsensitiveCompare:)];
+			[collectionArrayController setSortDescriptors:[NSArray arrayWithObject:sorter]];
+			[sorter release];
+		}
 		else
-			[collectionArrayController setSortDescriptors:
-			 [NSArray arrayWithObject:[[NSSortDescriptor alloc] initWithKey:@"name" ascending:YES selector:@selector(caseInsensitiveCompare:)]]];
+		{
+			sorter = [[NSSortDescriptor alloc] initWithKey:@"name" ascending:YES selector:@selector(caseInsensitiveCompare:)];
+			[collectionArrayController setSortDescriptors:[NSArray arrayWithObject:sorter]];
+			[sorter release];
+		}
 			
 		NSArray * selectedObjects = [collectionArrayController selectedObjects];
 
@@ -121,6 +128,8 @@
 							sortDesc = [[NSSortDescriptor alloc] initWithKey:key ascending:ascend selector:@selector(caseInsensitiveCompare:)];
 
 						[sortDescs addObject:sortDesc];
+						
+						[sortDesc release];
 					}
 
 					[booksTable setSortDescriptors:sortDescs];
@@ -309,6 +318,8 @@
 			descriptor = [[NSSortDescriptor alloc] initWithKey:key ascending:[[dict objectForKey:@"ascending"] isEqual:@"yes"] selector:@selector(caseInsensitiveCompare:)];
 
 		[sortDescriptors addObject:descriptor];
+		
+		[descriptor release];
 	}
 
 	[booksTable setSortDescriptors:sortDescriptors];
@@ -328,36 +339,48 @@
 	{
 		NSTableColumn * column = [[NSTableColumn alloc] initWithIdentifier:@"icon"];
 		[[column headerCell] setStringValue:@""];
-		[column setDataCell:[[NSImageCell alloc] init]];
+
+		NSImageCell * cell = [[NSImageCell alloc] init];
+		[column setDataCell:cell];
+		[cell release];
+		
 		[column bind:@"data" toObject:collectionArrayController withKeyPath:@"arrangedObjects.icon" options: nil];
 		[column setWidth:16.0];
 		[column setResizingMask:NSTableColumnNoResizing];
 		
 		[listsTable addTableColumn:column];
+		[column release];
 
 		column = [[NSTableColumn alloc] initWithIdentifier:@"name"];
 		[[column headerCell] setStringValue:@"Lists"];
 		[column bind:@"value" toObject:collectionArrayController withKeyPath:@"arrangedObjects.name" options: nil];
 		[column setResizingMask:NSTableColumnAutoresizingMask];
-		
-		[listsTable addTableColumn:column];
 		[column setWidth:([listsTable frame].size.width - 16)];
+
+		[listsTable addTableColumn:column];
+		[column release];
 		
+		NSSortDescriptor * sort = nil;
+
 		if ([((BooksAppDelegate *) [NSApp delegate]) leopardOrBetter])
-			[collectionArrayController setSortDescriptors:
-				[NSArray arrayWithObject:[[NSSortDescriptor alloc] initWithKey:@"name" ascending:YES selector:@selector(localizedCaseInsensitiveCompare:)]]];
+			sort = [[NSSortDescriptor alloc] initWithKey:@"name" ascending:YES selector:@selector(localizedCaseInsensitiveCompare:)];
 		else
-			[collectionArrayController setSortDescriptors:
-			 [NSArray arrayWithObject:[[NSSortDescriptor alloc] initWithKey:@"name" ascending:YES selector:@selector(caseInsensitiveCompare:)]]];
+			sort = [[NSSortDescriptor alloc] initWithKey:@"name" ascending:YES selector:@selector(caseInsensitiveCompare:)];
+
+		[collectionArrayController setSortDescriptors:[NSArray arrayWithObject:sort]];
+		[sort release];
 	}
 
+	NSSortDescriptor * sort = nil;
+	
 	if ([((BooksAppDelegate *) [NSApp delegate]) leopardOrBetter])
-		[collectionArrayController setSortDescriptors:
-			[NSArray arrayWithObject:[[NSSortDescriptor alloc] initWithKey:@"name" ascending:YES selector:@selector(localizedCaseInsensitiveCompare:)]]];
+		sort = [[NSSortDescriptor alloc] initWithKey:@"name" ascending:YES selector:@selector(localizedCaseInsensitiveCompare:)];
 	else
-		[collectionArrayController setSortDescriptors:
-		 [NSArray arrayWithObject:[[NSSortDescriptor alloc] initWithKey:@"name" ascending:YES selector:@selector(caseInsensitiveCompare:)]]];
+		sort = [[NSSortDescriptor alloc] initWithKey:@"name" ascending:YES selector:@selector(caseInsensitiveCompare:)];
 
+	[collectionArrayController setSortDescriptors:[NSArray arrayWithObject:sort]];
+	[sort release];
+	
 	oldColumns = [NSArray arrayWithArray:[booksTable tableColumns]];
 	
 	int i = 0;
@@ -415,6 +438,7 @@
 				NSSortDescriptor * sortDescriptor = [[NSSortDescriptor alloc] initWithKey:key ascending:YES selector:@selector(compare:)];
 				
 				[column setSortDescriptorPrototype:sortDescriptor];
+				[sortDescriptor release];
 			}
 			else
 			{
@@ -426,11 +450,15 @@
 					sortDescriptor = [[NSSortDescriptor alloc] initWithKey:key ascending:YES selector:@selector(caseInsensitiveCompare:)];
 					
 				[column setSortDescriptorPrototype:sortDescriptor];
+				
+				[sortDescriptor release];
 			}
 
+			[formatter release];
 			[column setEditable:NO];
 			
 			[booksTable addTableColumn:column];
+			[column release];
 		}
 	}
 	
@@ -465,10 +493,12 @@
 					sortDescriptor = [[NSSortDescriptor alloc] initWithKey:fieldKey ascending:YES selector:@selector(caseInsensitiveCompare:)];
 				
 				[column setSortDescriptorPrototype:sortDescriptor];
+				[sortDescriptor release];
 
 				[column setEditable:NO];
 			
 				[booksTable addTableColumn:column];
+				[column release];
 			}
 		}
 	}		

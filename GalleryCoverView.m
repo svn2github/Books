@@ -145,8 +145,6 @@
 
 - (void)drawRect:(NSRect)rect
 {
-	rect = [self frame];
-
 	[self setImageViewFrame];
 
 	GalleryView * gv = (GalleryView *) [self superview];

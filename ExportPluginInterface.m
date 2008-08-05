@@ -89,8 +89,6 @@
 		int i = 0;
 		for (i = 0; i < [books count]; i++)
 		{
-			NSAutoreleasePool * loopPool = [[NSAutoreleasePool alloc] init];
-			
 			BookManagedObject * book = [books objectAtIndex:i];
 			NSXMLElement * element = [[NSXMLElement alloc] initWithXMLString:@"<Book />" error:&error];
 
@@ -147,6 +145,7 @@
 					}
 
 					[element addChild:field];
+					[field release];
 				}
 			}
 
@@ -165,6 +164,8 @@
 				[field setStringValue:[[fieldPair valueForKey:@"value"] description]];
 
 				[element addChild:field];
+				
+				[field release];
 			}
 
 			NSArray * checkouts = [[book valueForKey:@"copiesOut"] allObjects];
@@ -188,6 +189,7 @@
 				[field addAttribute:dateLent];
 
 				[element addChild:field];
+				[field release];
 			}
 
 			NSArray * copies = [[book valueForKey:@"copies"] allObjects];
@@ -219,6 +221,7 @@
 				[field setStringValue:[[copy valueForKey:@"inscription"] description]];
 
 				[element addChild:field];
+				[field release];
 			}
 
 			NSArray * feedbacks = [[book valueForKey:@"feedback"] allObjects];
@@ -247,11 +250,11 @@
 				[field setStringValue:[[feedback valueForKey:@"comments"] description]];
 
 				[element addChild:field];
+				[field release];
 			}
 
 			[root addChild:element];
-			
-			[loopPool release];
+			[element release];
 		}
 	
 		for (i = 0; i < [lists count]; i++)
@@ -272,9 +275,11 @@
 				[bookElement addAttribute:[NSXMLNode attributeWithName:@"ref" stringValue:[book valueForKey:@"id"]]];
 				
 				[element addChild:bookElement];
+				[bookElement release];
 			}
 			
 			[root addChild:element];
+			[element release];
 		}
 
 		for (i = 0; i < [smartLists count]; i++)
@@ -296,15 +301,20 @@
 				[bookElement addAttribute:[NSXMLNode attributeWithName:@"ref" stringValue:[book valueForKey:@"id"]]];
 				
 				[element addChild:bookElement];
+				
+				[bookElement release];
 			}
 
 			[root addChild:element];
+			
+			[element release];
 		}
 		
 		[xml setCharacterEncoding:@"UTF-8"];
 		
 		NSData * xmlData = [xml XMLDataWithOptions:NSXMLDocumentTidyXML];
 
+		[xml release];
 		NSString * exportPath = [NSString stringWithFormat:@"%@/books-export.xml", path, nil];
 
 		[manager createFileAtPath:exportPath contents:xmlData attributes:nil];

@@ -61,11 +61,16 @@
 			}
 		}
 	}
+
+	NSSortDescriptor * descriptor = nil;
 	
 	if ([((BooksAppDelegate *) [NSApp delegate]) leopardOrBetter])
-		[people sortUsingDescriptors:[NSArray arrayWithObject:[[NSSortDescriptor alloc] initWithKey:@"name" ascending:YES selector:@selector(localizedCaseInsensitiveCompare:)]]];
+		descriptor = [[NSSortDescriptor alloc] initWithKey:@"name" ascending:YES selector:@selector(localizedCaseInsensitiveCompare:)];
 	else
-		[people sortUsingDescriptors:[NSArray arrayWithObject:[[NSSortDescriptor alloc] initWithKey:@"name" ascending:YES selector:@selector(caseInsensitiveCompare:)]]];
+		descriptor = [[NSSortDescriptor alloc] initWithKey:@"name" ascending:YES selector:@selector(caseInsensitiveCompare:)];
+
+	[people sortUsingDescriptors:[NSArray arrayWithObject:descriptor]];
+	[descriptor release];
 	
 	return people;
 }

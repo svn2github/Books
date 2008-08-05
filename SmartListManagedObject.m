@@ -80,6 +80,8 @@
 	
 	NSError * error = nil;
 	NSArray * results = [[self managedObjectContext] executeFetchRequest:fetch error:&error];
+
+	[fetch release];
 	
 	if (results != nil)
 		[set addObjectsFromArray:results];

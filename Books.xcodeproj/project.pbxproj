@@ -129,6 +129,7 @@
 		38CB899D08EF5761007981E6 /* SmartListManagedObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 38CB899C08EF5761007981E6 /* SmartListManagedObject.m */; };
 		38CBAC270959EADC00B418FB /* Library of Congress.plugin in Resources */ = {isa = PBXBuildFile; fileRef = 38CBABF10959EADC00B418FB /* Library of Congress.plugin */; };
 		38D0C90309057D8300672AA7 /* BookManagedObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 38D0C90209057D8300672AA7 /* BookManagedObject.m */; };
+		38DD78D00E48AD7800F38043 /* MainWindow.m in Sources */ = {isa = PBXBuildFile; fileRef = 38DD78CF0E48AD7800F38043 /* MainWindow.m */; };
 		38DE5E640BA1D3E100B4FEC0 /* Quartz.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 38DE5E630BA1D3E100B4FEC0 /* Quartz.framework */; };
 		38E0A87D0908958A00DAAA64 /* smartlist-small.png in Resources */ = {isa = PBXBuildFile; fileRef = 38E0A87C0908958A00DAAA64 /* smartlist-small.png */; };
 		38E94D22090A7639001C2A9E /* AppKitScripting.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 38E94D20090A7639001C2A9E /* AppKitScripting.framework */; };
@@ -413,6 +414,8 @@
 		38D0C90109057D8300672AA7 /* BookManagedObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BookManagedObject.h; sourceTree = "<group>"; };
 		38D0C90209057D8300672AA7 /* BookManagedObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BookManagedObject.m; sourceTree = "<group>"; };
 		38DD021E0CDFE07600C4272C /* BooksDefines.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BooksDefines.h; sourceTree = "<group>"; };
+		38DD78CE0E48AD7800F38043 /* MainWindow.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainWindow.h; sourceTree = "<group>"; };
+		38DD78CF0E48AD7800F38043 /* MainWindow.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainWindow.m; sourceTree = "<group>"; };
 		38DE5E630BA1D3E100B4FEC0 /* Quartz.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Quartz.framework; path = /System/Library/Frameworks/Quartz.framework; sourceTree = "<absolute>"; };
 		38DF3FF20B8DF59300D55EA4 /* Danish */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Danish; path = Danish.lproj/Localizable.strings; sourceTree = "<group>"; };
 		38DF3FFC0B8DF5B300D55EA4 /* Danish */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Danish; path = Danish.lproj/MainMenu.strings; sourceTree = "<group>"; };
@@ -718,6 +721,8 @@
 		383E55070C3DDA89000F06BF /* Main Window */ = {
 			isa = PBXGroup;
 			children = (
+				38DD78CE0E48AD7800F38043 /* MainWindow.h */,
+				38DD78CF0E48AD7800F38043 /* MainWindow.m */,
 				384061B10C5BD15B00E7D678 /* Gallery View */,
 				38666EA208E516B300071C56 /* HtmlPageBuilder.h */,
 				38666EA308E516B300071C56 /* HtmlPageBuilder.m */,
@@ -1194,6 +1199,7 @@
 				38143FE70E12E8FA005A52E8 /* SGVideo.m in Sources */,
 				38143FE80E12E8FA005A52E8 /* SeqGrab.m in Sources */,
 				38143FF20E12E950005A52E8 /* SampleCIView.m in Sources */,
+				38DD78D00E48AD7800F38043 /* MainWindow.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
