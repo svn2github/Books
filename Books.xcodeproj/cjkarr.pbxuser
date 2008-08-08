@@ -1,7 +1,7 @@
 // !$*UTF8*$!
 {
 	29B97313FDCFA39411CA2CEA /* Project object */ = {
-		activeBuildConfigurationName = Debug;
+		activeBuildConfigurationName = Release;
 		activeExecutable = 381311210907C1390081D7A7 /* Books */;
 		activeTarget = 8D1107260486CEB800E47090 /* Books */;
 		addToTargets = (
@@ -331,6 +331,8 @@
 			386147560D1A3A7100715381 = 386147560D1A3A7100715381 /* PBXTextBookmark */;
 			3861475B0D1A3A7100715381 = 3861475B0D1A3A7100715381 /* PBXTextBookmark */;
 			3861F0DF0E4C8933001C78BA /* PBXTextBookmark */ = 3861F0DF0E4C8933001C78BA /* PBXTextBookmark */;
+			3861F0E30E4C8950001C78BA /* PBXTextBookmark */ = 3861F0E30E4C8950001C78BA /* PBXTextBookmark */;
+			3861F0E70E4C89B2001C78BA /* PBXTextBookmark */ = 3861F0E70E4C89B2001C78BA /* PBXTextBookmark */;
 			3865945D0C6054CB0067A9B6 = 3865945D0C6054CB0067A9B6 /* PBXTextBookmark */;
 			3865945E0C6054CB0067A9B6 = 3865945E0C6054CB0067A9B6 /* PBXTextBookmark */;
 			386595560C60AC500067A9B6 = 386595560C60AC500067A9B6 /* PBXTextBookmark */;
@@ -1073,7 +1075,7 @@
 	};
 	3820367B0B4989F80022E60E /* MyBarcodeScanner.m */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {2190, 45150}}";
+			sepNavIntBoundsRect = "{{0, 0}, {2190, 45220}}";
 			sepNavSelRange = "{6964, 84}";
 			sepNavVisRange = "{5973, 1664}";
 			sepNavVisRect = "{{0, 3392}, {1055, 522}}";
@@ -2536,6 +2538,26 @@
 		vrLoc = 2424;
 	};
 	3861F0DF0E4C8933001C78BA /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 3820367B0B4989F80022E60E /* MyBarcodeScanner.m */;
+		name = "MyBarcodeScanner.m: 178";
+		rLen = 84;
+		rLoc = 6964;
+		rType = 0;
+		vrLen = 1664;
+		vrLoc = 5973;
+	};
+	3861F0E30E4C8950001C78BA /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 3820367B0B4989F80022E60E /* MyBarcodeScanner.m */;
+		name = "MyBarcodeScanner.m: 178";
+		rLen = 84;
+		rLoc = 6964;
+		rType = 0;
+		vrLen = 1664;
+		vrLoc = 5973;
+	};
+	3861F0E70E4C89B2001C78BA /* PBXTextBookmark */ = {
 		isa = PBXTextBookmark;
 		fRef = 3820367B0B4989F80022E60E /* MyBarcodeScanner.m */;
 		name = "MyBarcodeScanner.m: 178";

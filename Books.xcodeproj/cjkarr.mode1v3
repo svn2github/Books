@@ -334,7 +334,7 @@
 										<key>_historyCapacity</key>
 										<integer>0</integer>
 										<key>bookmark</key>
-										<string>3861F0DF0E4C8933001C78BA</string>
+										<string>3861F0E70E4C89B2001C78BA</string>
 										<key>history</key>
 										<array>
 											<string>3815D1510A8A97B00085540E</string>
@@ -786,6 +786,9 @@
 	<integer>5</integer>
 	<key>WindowOrderList</key>
 	<array>
+		<string>1C78EAAD065D492600B07095</string>
+		<string>1CD10A99069EF8BA00B06720</string>
+		<string>384A84DA0CDD43E80018DDBF</string>
 		<string>/Users/cjkarr/Desktop/Projects/Books/Books.xcodeproj</string>
 	</array>
 	<key>WindowString</key>
@@ -805,14 +808,12 @@
 					<key>Dock</key>
 					<array>
 						<dict>
-							<key>BecomeActive</key>
-							<true/>
 							<key>ContentConfiguration</key>
 							<dict>
 								<key>PBXProjectModuleGUID</key>
 								<string>1CD0528F0623707200166675</string>
 								<key>PBXProjectModuleLabel</key>
-								<string>MyBarcodeScanner.m</string>
+								<string></string>
 								<key>StatusBarVisibility</key>
 								<true/>
 							</dict>
@@ -868,7 +869,7 @@
 			<key>TableOfContents</key>
 			<array>
 				<string>384A84DA0CDD43E80018DDBF</string>
-				<string>380967640E4C7CEF00F6639A</string>
+				<string>3861F0E40E4C8950001C78BA</string>
 				<string>1CD0528F0623707200166675</string>
 				<string>XCMainBuildResultsModuleGUID</string>
 			</array>
@@ -988,13 +989,13 @@
 			<key>TableOfContents</key>
 			<array>
 				<string>1CD10A99069EF8BA00B06720</string>
-				<string>3809676C0E4C7D1200F6639A</string>
+				<string>3861F0E80E4C89B2001C78BA</string>
 				<string>1C162984064C10D400B95A72</string>
-				<string>3809676D0E4C7D1200F6639A</string>
-				<string>3809676E0E4C7D1200F6639A</string>
-				<string>3809676F0E4C7D1200F6639A</string>
-				<string>380967700E4C7D1200F6639A</string>
-				<string>380967710E4C7D1200F6639A</string>
+				<string>3861F0E90E4C89B2001C78BA</string>
+				<string>3861F0EA0E4C89B2001C78BA</string>
+				<string>3861F0EB0E4C89B2001C78BA</string>
+				<string>3861F0EC0E4C89B2001C78BA</string>
+				<string>3861F0ED0E4C89B2001C78BA</string>
 			</array>
 			<key>ToolbarConfiguration</key>
 			<string>xcode.toolbar.config.debugV3</string>
@@ -1150,7 +1151,7 @@
 			<key>TableOfContents</key>
 			<array>
 				<string>1C78EAAD065D492600B07095</string>
-				<string>380967720E4C7D1200F6639A</string>
+				<string>3861F0EE0E4C89B2001C78BA</string>
 				<string>1C78EAAC065D492600B07095</string>
 			</array>
 			<key>ToolbarConfiguration</key>
