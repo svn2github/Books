@@ -261,8 +261,6 @@
 						NSString * title = [[file attributeForName:@"name"] stringValue];
 						NSString * desc = [[file attributeForName:@"description"] stringValue];
 					
-						NSLog (@"title = %@", title);
-						
 						[bookObject addNewFile:location title:title description:desc];
 					}
 					

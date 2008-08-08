@@ -82,6 +82,11 @@
 	return sortString;
 }
 
+- (NSComparisonResult) localizedCaseInsensitiveCompare: (BookTitleString *) string
+{
+	return [[self getSortString] localizedCaseInsensitiveCompare:[string getSortString]];
+}
+
 - (NSComparisonResult) compare: (BookTitleString *) string
 {
 	if ([((BooksAppDelegate *) [NSApp delegate]) leopardOrBetter])

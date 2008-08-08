@@ -168,8 +168,6 @@
 		
 		BOOL bigEnough = size.width > 64 && size.height > 64;
 		
-		NSLog (@"%d %d %d %d", (cachedData == nil), (![cachedData isEqualToData:data]), (data != nil), bigEnough);
-		
 		// if ((cachedData == nil || ![cachedData isEqualToData:data]) && data != nil && bigEnough)
 		if (data != nil && bigEnough)
 		{
@@ -184,7 +182,6 @@
 		}
 		else
 		{
-			NSLog (@"no cover");
 			[imageView setImage:[NSImage imageNamed:@"no-cover"]];
 			[imageView setImageFrameStyle:NSImageFrameNone];
 			
@@ -249,8 +246,6 @@
 {
     if ([keyPath isEqual:@"coverImage"])
 	{
-		NSLog (@"cover image updated");
-		
 		if (currentBook != nil)
 			[self updateImage];
 	}

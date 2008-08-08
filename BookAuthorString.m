@@ -28,10 +28,20 @@
 
 @implementation BookAuthorString
 
+- (NSComparisonResult) localizedCaseInsensitiveCompare: (BookAuthorString *) string
+{
+	BOOL sortAuthors = [[NSUserDefaults standardUserDefaults] boolForKey:@"Sort People Names"];
+	
+	if (!sortAuthors)
+		return [[NSString stringWithString:self] localizedCaseInsensitiveCompare:string];
+	else
+		return [[self getSortString] localizedCaseInsensitiveCompare:[string getSortString]];
+}
+
 - (NSComparisonResult) compare: (BookAuthorString *) string
 {
 	BOOL sortAuthors = [[NSUserDefaults standardUserDefaults] boolForKey:@"Sort People Names"];
-
+	
 	if (!sortAuthors && [((BooksAppDelegate *) [NSApp delegate]) leopardOrBetter])
 		return [self localizedCaseInsensitiveCompare:string];
 	else if ([((BooksAppDelegate *) [NSApp delegate]) leopardOrBetter])
