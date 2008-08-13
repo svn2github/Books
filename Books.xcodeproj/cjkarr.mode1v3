@@ -334,7 +334,7 @@
 										<key>_historyCapacity</key>
 										<integer>0</integer>
 										<key>bookmark</key>
-										<string>3861F0E70E4C89B2001C78BA</string>
+										<string>3861F0F60E4C940D001C78BA</string>
 										<key>history</key>
 										<array>
 											<string>3815D1510A8A97B00085540E</string>
@@ -465,7 +465,7 @@
 											<string>38D00F2B0E49FAE100F30393</string>
 											<string>388395600E4C7B4700D0710C</string>
 											<string>380967690E4C7D1200F6639A</string>
-											<string>3809677D0E4C844B00F6639A</string>
+											<string>3861F0F00E4C89E9001C78BA</string>
 										</array>
 										<key>prevStack</key>
 										<array>
@@ -808,12 +808,14 @@
 					<key>Dock</key>
 					<array>
 						<dict>
+							<key>BecomeActive</key>
+							<true/>
 							<key>ContentConfiguration</key>
 							<dict>
 								<key>PBXProjectModuleGUID</key>
 								<string>1CD0528F0623707200166675</string>
 								<key>PBXProjectModuleLabel</key>
-								<string></string>
+								<string>MyBarcodeScanner.m</string>
 								<key>StatusBarVisibility</key>
 								<true/>
 							</dict>
