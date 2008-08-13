@@ -99,11 +99,7 @@ typedef struct _monochromePixel
 		if (Gestalt (gestaltSystemVersion, &MacVersion) == noErr)
 		{
 			if (MacVersion >= 0x1053)
-			{
-				NSLog (@"is Leopard");
-
 				leopardOrBetter = YES;
-			}
 		}
 	}
 	

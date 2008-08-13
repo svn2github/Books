@@ -175,15 +175,15 @@
 
 	[document release];
 	document = nil;
+
+	[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(finishImport:) 
+												 name:NSFileHandleReadToEndOfFileCompletionNotification 
+											   object:nil];
 	
 	[importTask launch];
 
 	lastSource = (NSString *) [bundle objectForInfoDictionaryKey:@"BooksPluginName"];
 	
-	[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(finishImport:) 
-		name:NSFileHandleReadToEndOfFileCompletionNotification 
-		object:nil];
-
 	[out readToEndOfFileInBackgroundAndNotify];
 }
 
@@ -197,7 +197,7 @@
 	NSDictionary * userInfo = [notification userInfo];
 
 	NSData * importData = [userInfo valueForKey:NSFileHandleNotificationDataItem];
-
+	
 	NSXMLDocument * xml = [[NSXMLDocument alloc] initWithData:importData options:NSXMLDocumentTidyXML error:nil];
 
 	QuickfillSearchWindow * quickfillWindow = [[NSApp delegate] getQuickfillResultsWindow];
