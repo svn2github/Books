@@ -227,6 +227,14 @@
 		</dict>
 		<dict>
 			<key>CLASS</key>
+			<string>MainWindow</string>
+			<key>LANGUAGE</key>
+			<string>ObjC</string>
+			<key>SUPERCLASS</key>
+			<string>NSWindow</string>
+		</dict>
+		<dict>
+			<key>CLASS</key>
 			<string>GalleryView</string>
 			<key>LANGUAGE</key>
 			<string>ObjC</string>
@@ -302,19 +310,6 @@
 			<string>ObjC</string>
 		</dict>
 		<dict>
-			<key>ACTIONS</key>
-			<dict>
-				<key>importFromMenuItem</key>
-				<string>NSMenuItem</string>
-			</dict>
-			<key>CLASS</key>
-			<string>ImportMenuDelegate</string>
-			<key>LANGUAGE</key>
-			<string>ObjC</string>
-			<key>SUPERCLASS</key>
-			<string>NSObject</string>
-		</dict>
-		<dict>
 			<key>CLASS</key>
 			<string>ViewControls</string>
 			<key>LANGUAGE</key>
@@ -324,6 +319,19 @@
 				<key>view</key>
 				<string>NSView</string>
 			</dict>
+			<key>SUPERCLASS</key>
+			<string>NSObject</string>
+		</dict>
+		<dict>
+			<key>ACTIONS</key>
+			<dict>
+				<key>importFromMenuItem</key>
+				<string>NSMenuItem</string>
+			</dict>
+			<key>CLASS</key>
+			<string>ImportMenuDelegate</string>
+			<key>LANGUAGE</key>
+			<string>ObjC</string>
 			<key>SUPERCLASS</key>
 			<string>NSObject</string>
 		</dict>

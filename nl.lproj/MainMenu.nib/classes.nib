@@ -227,6 +227,14 @@
 		</dict>
 		<dict>
 			<key>CLASS</key>
+			<string>MainWindow</string>
+			<key>LANGUAGE</key>
+			<string>ObjC</string>
+			<key>SUPERCLASS</key>
+			<string>NSWindow</string>
+		</dict>
+		<dict>
+			<key>CLASS</key>
 			<string>GalleryView</string>
 			<key>LANGUAGE</key>
 			<string>ObjC</string>
@@ -276,14 +284,6 @@
 		</dict>
 		<dict>
 			<key>CLASS</key>
-			<string>FirstResponder</string>
-			<key>LANGUAGE</key>
-			<string>ObjC</string>
-			<key>SUPERCLASS</key>
-			<string>NSObject</string>
-		</dict>
-		<dict>
-			<key>CLASS</key>
 			<string>BookListArrayController</string>
 			<key>LANGUAGE</key>
 			<string>ObjC</string>
@@ -297,24 +297,30 @@
 		</dict>
 		<dict>
 			<key>CLASS</key>
-			<string>MainWindowTableView</string>
+			<string>FirstResponder</string>
 			<key>LANGUAGE</key>
 			<string>ObjC</string>
-			<key>OUTLETS</key>
-			<dict>
-				<key>bookList</key>
-				<string>NSArrayController</string>
-				<key>listList</key>
-				<string>NSArrayController</string>
-			</dict>
 			<key>SUPERCLASS</key>
-			<string>NSTableView</string>
+			<string>NSObject</string>
 		</dict>
 		<dict>
 			<key>CLASS</key>
 			<string>NSObject</string>
 			<key>LANGUAGE</key>
 			<string>ObjC</string>
+		</dict>
+		<dict>
+			<key>CLASS</key>
+			<string>ViewControls</string>
+			<key>LANGUAGE</key>
+			<string>ObjC</string>
+			<key>OUTLETS</key>
+			<dict>
+				<key>view</key>
+				<string>NSView</string>
+			</dict>
+			<key>SUPERCLASS</key>
+			<string>NSObject</string>
 		</dict>
 		<dict>
 			<key>ACTIONS</key>
@@ -331,16 +337,18 @@
 		</dict>
 		<dict>
 			<key>CLASS</key>
-			<string>ViewControls</string>
+			<string>MainWindowTableView</string>
 			<key>LANGUAGE</key>
 			<string>ObjC</string>
 			<key>OUTLETS</key>
 			<dict>
-				<key>view</key>
-				<string>NSView</string>
+				<key>bookList</key>
+				<string>NSArrayController</string>
+				<key>listList</key>
+				<string>NSArrayController</string>
 			</dict>
 			<key>SUPERCLASS</key>
-			<string>NSObject</string>
+			<string>NSTableView</string>
 		</dict>
 		<dict>
 			<key>CLASS</key>

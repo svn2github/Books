@@ -227,6 +227,14 @@
 		</dict>
 		<dict>
 			<key>CLASS</key>
+			<string>MainWindow</string>
+			<key>LANGUAGE</key>
+			<string>ObjC</string>
+			<key>SUPERCLASS</key>
+			<string>NSWindow</string>
+		</dict>
+		<dict>
+			<key>CLASS</key>
 			<string>GalleryView</string>
 			<key>LANGUAGE</key>
 			<string>ObjC</string>

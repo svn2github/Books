@@ -227,6 +227,14 @@
 		</dict>
 		<dict>
 			<key>CLASS</key>
+			<string>MainWindow</string>
+			<key>LANGUAGE</key>
+			<string>ObjC</string>
+			<key>SUPERCLASS</key>
+			<string>NSWindow</string>
+		</dict>
+		<dict>
+			<key>CLASS</key>
 			<string>GalleryView</string>
 			<key>LANGUAGE</key>
 			<string>ObjC</string>
@@ -297,21 +305,6 @@
 		</dict>
 		<dict>
 			<key>CLASS</key>
-			<string>MainWindowTableView</string>
-			<key>LANGUAGE</key>
-			<string>ObjC</string>
-			<key>OUTLETS</key>
-			<dict>
-				<key>bookList</key>
-				<string>NSArrayController</string>
-				<key>listList</key>
-				<string>NSArrayController</string>
-			</dict>
-			<key>SUPERCLASS</key>
-			<string>NSTableView</string>
-		</dict>
-		<dict>
-			<key>CLASS</key>
 			<string>NSObject</string>
 			<key>LANGUAGE</key>
 			<string>ObjC</string>
@@ -341,6 +334,21 @@
 			<string>ObjC</string>
 			<key>SUPERCLASS</key>
 			<string>NSObject</string>
+		</dict>
+		<dict>
+			<key>CLASS</key>
+			<string>MainWindowTableView</string>
+			<key>LANGUAGE</key>
+			<string>ObjC</string>
+			<key>OUTLETS</key>
+			<dict>
+				<key>bookList</key>
+				<string>NSArrayController</string>
+				<key>listList</key>
+				<string>NSArrayController</string>
+			</dict>
+			<key>SUPERCLASS</key>
+			<string>NSTableView</string>
 		</dict>
 		<dict>
 			<key>CLASS</key>
