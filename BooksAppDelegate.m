@@ -568,7 +568,7 @@ typedef struct _monochromePixel
 	
 	CoverWindowDelegate * cwd = [[CoverWindowDelegate alloc] init];
 	[coverWindow setDelegate:cwd];
-	[cwd release];
+	// [cwd release];
 	
 	[mainWindow makeKeyAndOrderFront:self];
 	
