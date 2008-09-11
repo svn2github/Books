@@ -140,16 +140,19 @@ int getNumberStripesEAN(int number, double average);
 
 - (void)scanForBarcodeWindow:(NSWindow *)aWindow {
 	BOOL success = NO;
-	NSError *error;
+	NSError *error = nil;
 	CGSize displaySize; //To be able to mirror the image fast without calculation the size is based to the preview view
 	
+	NSLog (@"1");
 	// If the isight is already running then bring the window front
 	// 	if (mCaptureSession && [mCaptureSession isRunning] && [previewView window]) {
 	if ([previewView window]) {
 		[[previewView window] makeKeyAndOrderFront:self];
 		return;
 	}
-	
+
+	NSLog (@"2");
+
 	// We need at least version 721 of quicktime for the QTKit to installed
 	SInt32 quickTimeVersionNumber;
 	Gestalt(gestaltQuickTime, &quickTimeVersionNumber);
@@ -158,11 +161,14 @@ int getNumberStripesEAN(int number, double average);
 		NSRunAlertPanel(NSLocalizedStringWithDefaultValue(@"Action Required", nil, [NSBundle mainBundle], nil, nil), NSLocalizedStringWithDefaultValue(@"NoQuickTime721", nil, [NSBundle mainBundle], @"The version of QuickTime installed is lower than 7.2.1, please install the latest QuickTime from http://www.apple.com/quicktime/download ", nil), @"OK", nil, nil);
 		return;
 	}
-	
+
+	NSLog (@"3");
+
 	// Find a video device  
 	QTCaptureDevice *videoDevice = [QTCaptureDevice defaultInputDeviceWithMediaType:QTMediaTypeVideo];
 	success = [videoDevice open:&error];
 	
+	NSLog (@"4");
 	
 	// If a video input device can't be found or opened, try to find and open a muxed input device
 	if (!success) {
@@ -179,13 +185,17 @@ int getNumberStripesEAN(int number, double average);
 		success = [videoDevice open:&error];
 		//NSLog(@"%success: %d device: %@, id: %@", success, videoDevice, [videoDevice deviceUID]);
 	}
-	
+
+	NSLog (@"5 %@", error);
+
 	// Write error to the console log 
 	if (!success) {
 		videoDevice = nil;
 		NSLog(@"Error: video device not found: %@", [error localizedDescription]);
 	}
-	
+
+	NSLog (@"6");
+
 	
 	//Find out if it's the new built-in High res iSight
 	// imac 2.0 GHX 20inch first built-in version "ProductID_34049"
@@ -199,7 +209,9 @@ int getNumberStripesEAN(int number, double average);
 	BOOL setSizeOfBuffer = YES;
 	NSString *cameraDescription = [videoDevice modelUniqueID];
 	//NSLog(@"Device: %@", cameraDescription);
-	
+
+	NSLog (@"7");
+
 	if (cameraDescription && [cameraDescription rangeOfString:@"ProductID_34050"].location != NSNotFound) {
 		displaySize = CGSizeMake(1280.0, 1024.0);
 		newHighResiSight = YES;
@@ -230,7 +242,9 @@ int getNumberStripesEAN(int number, double average);
 		else
 			windowTitle = @"External Camera";
 	}
-	
+
+	NSLog (@"8");
+
 	
 	if (videoDevice == nil) {
 		NSRunAlertPanel(NSLocalizedStringWithDefaultValue(@"Action Required", nil, [NSBundle mainBundle], nil, nil), NSLocalizedStringWithDefaultValue(@"No iSight", nil, [NSBundle mainBundle], @"Please make sure your firewire camera is connected to your computer.", nil), @"OK", nil, nil);
@@ -271,6 +285,9 @@ int getNumberStripesEAN(int number, double average);
 			
 			[vide release]; // it was retained by its mGrabber
 		}
+		
+		NSLog (@"9");
+
 		
 	}
 	else {

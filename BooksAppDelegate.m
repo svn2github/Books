@@ -108,7 +108,7 @@ typedef struct _monochromePixel
 
 - (NSManagedObjectContext *) managedObjectContext
 {
-    NSError * error;
+    NSError * error = nil;
     NSString * applicationSupportFolder = nil;
     NSURL * url;
     NSFileManager * fileManager;
@@ -258,7 +258,7 @@ typedef struct _monochromePixel
 
 	[defaults setObject:viewRects forKey:@"Right Scroller Sizes"];
 
-    NSError *error;
+    NSError *error = nil;
     NSManagedObjectContext *context;
     int reply = NSTerminateNow;
     

@@ -116,7 +116,7 @@
 {
 	NSBundle * bundle = [NSBundle mainBundle];
 
-	NSError * error;
+	NSError * error = nil;
 
 	NSString * path = [bundle pathForResource:@"book" ofType:@"html"];
 	NSMutableString * html = [NSMutableString stringWithString:[NSString stringWithContentsOfFile:path 
@@ -230,7 +230,7 @@
 	NSBundle * bundle = [NSBundle mainBundle];
 	NSString * path = [bundle pathForResource:@"empty" ofType:@"html"];
 
-	NSError * error;
+	NSError * error = nil;
 
 	NSMutableString * html = [NSMutableString stringWithString:[NSString stringWithContentsOfFile:path 
 		encoding:NSUTF8StringEncoding error:&error]];
@@ -248,7 +248,7 @@
 	NSBundle * bundle = [NSBundle mainBundle];
 	NSString * path = [bundle pathForResource:@"multiple" ofType:@"html"];
 
-	NSError * error;
+	NSError * error = nil;
 
 	NSMutableString * html = [NSMutableString stringWithString:[NSString stringWithContentsOfFile:path 
 		encoding:NSUTF8StringEncoding error:&error]];

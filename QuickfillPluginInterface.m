@@ -230,8 +230,10 @@
 					NSXMLNode * nameAttribute = [bookField attributeForName:@"name"];
 
 					if ([[nameAttribute stringValue] isEqualToString:@"CoverImageURL"])
+					{
 						[nameAttribute setStringValue:@"coverImage"];
-						
+					}
+
 					[dict setValue:[bookField stringValue] forKey:[nameAttribute stringValue]];
 				}
 				
