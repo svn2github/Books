@@ -27,13 +27,13 @@
 
 @implementation QuickfillSearchWindow
 
-- (IBAction)doCancel:(id)sender
+- (IBAction) doCancel:(id)sender
 {
 	[[NSApplication sharedApplication] endSheet:panel];
 	[panel orderOut:nil];
 }
 
-- (IBAction)doSave:(id)sender
+- (IBAction) doSave:(id)sender
 {
 	if ([[quickfillResults selectedObjects] count] > 0)
 	{
@@ -51,7 +51,7 @@
 			NSString * key = [keys objectAtIndex:i];
 			NSString * value = [dict valueForKey:key];
 		
-			if (value != nil)
+			if (value != nil && ![key isEqualToString:@"coverData"])
 			{
 				BOOL replace = NO;
 				
@@ -67,7 +67,7 @@
 	[panel orderOut:nil];
 }
 
-- (IBAction)doSearch:(id)sender
+- (IBAction) doSearch:(id)sender
 {
 	[[NSApplication sharedApplication] endSheet:panel];
 	[panel orderOut:nil];
@@ -99,7 +99,9 @@
 
 	[panel setTitle:pluginName];
 		
-	[NSApp beginSheet:panel modalForWindow:[((BooksAppDelegate *)[NSApp delegate]) infoWindow] modalDelegate:[NSApp delegate] didEndSelector:@selector(sheetDidEnd: returnCode: contextInfo:) contextInfo:NULL];
+	[NSApp beginSheet:panel modalForWindow:[((BooksAppDelegate *)[NSApp delegate]) infoWindow] 
+		modalDelegate:[NSApp delegate] 
+	   didEndSelector:@selector(sheetDidEnd: returnCode: contextInfo:) contextInfo:NULL];
 }
 
 - (void) tableViewSelectionDidChange: (NSNotification *) aNotification

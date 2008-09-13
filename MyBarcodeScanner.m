@@ -162,13 +162,9 @@ int getNumberStripesEAN(int number, double average);
 		return;
 	}
 
-	NSLog (@"3");
-
 	// Find a video device  
 	QTCaptureDevice *videoDevice = [QTCaptureDevice defaultInputDeviceWithMediaType:QTMediaTypeVideo];
 	success = [videoDevice open:&error];
-	
-	NSLog (@"4");
 	
 	// If a video input device can't be found or opened, try to find and open a muxed input device
 	if (!success) {
@@ -186,16 +182,11 @@ int getNumberStripesEAN(int number, double average);
 		//NSLog(@"%success: %d device: %@, id: %@", success, videoDevice, [videoDevice deviceUID]);
 	}
 
-	NSLog (@"5 %@", error);
-
 	// Write error to the console log 
 	if (!success) {
 		videoDevice = nil;
 		NSLog(@"Error: video device not found: %@", [error localizedDescription]);
 	}
-
-	NSLog (@"6");
-
 	
 	//Find out if it's the new built-in High res iSight
 	// imac 2.0 GHX 20inch first built-in version "ProductID_34049"
@@ -209,8 +200,6 @@ int getNumberStripesEAN(int number, double average);
 	BOOL setSizeOfBuffer = YES;
 	NSString *cameraDescription = [videoDevice modelUniqueID];
 	//NSLog(@"Device: %@", cameraDescription);
-
-	NSLog (@"7");
 
 	if (cameraDescription && [cameraDescription rangeOfString:@"ProductID_34050"].location != NSNotFound) {
 		displaySize = CGSizeMake(1280.0, 1024.0);
@@ -243,9 +232,6 @@ int getNumberStripesEAN(int number, double average);
 			windowTitle = @"External Camera";
 	}
 
-	NSLog (@"8");
-
-	
 	if (videoDevice == nil) {
 		NSRunAlertPanel(NSLocalizedStringWithDefaultValue(@"Action Required", nil, [NSBundle mainBundle], nil, nil), NSLocalizedStringWithDefaultValue(@"No iSight", nil, [NSBundle mainBundle], @"Please make sure your firewire camera is connected to your computer.", nil), @"OK", nil, nil);
 		return;
@@ -285,10 +271,6 @@ int getNumberStripesEAN(int number, double average);
 			
 			[vide release]; // it was retained by its mGrabber
 		}
-		
-		NSLog (@"9");
-
-		
 	}
 	else {
 		

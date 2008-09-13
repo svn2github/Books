@@ -79,7 +79,7 @@
 	else if ([fieldName isEqualToString:NSLocalizedString (@"Translator(s)", nil)])
 		fieldName = @"translators";
 	else if ([fieldName isEqualToString:NSLocalizedString (@"List Name", nil)])
-		fieldName = @"listName";
+		fieldName = @"list.name";
 	else if ([fieldName isEqualToString:NSLocalizedString (@"Place Published", nil)])
 		fieldName = @"publishPlace";
 	else if ([fieldName isEqualToString:NSLocalizedString (@"Date Lent", nil)])
@@ -234,7 +234,7 @@
 
 	NSArray * map = [NSArray arrayWithObjects:@"title", @"series", @"authors", @"summary", @"genre", 
 					@"isbn", @"publishDate", @"keywords", @"publisher", @"translators", @"illustrators",
-					@"editors", @"publishPlace", @"length", @"edition", @"format", @"listName", @"dateLent", @"dateDue", nil];
+					@"editors", @"publishPlace", @"length", @"edition", @"format", @"list.name", @"dateLent", @"dateDue", nil];
 
 	[field selectItemAtIndex:[map indexOfObject:fieldName]];
 	[value setStringValue:fieldValue];

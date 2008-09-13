@@ -233,6 +233,12 @@
 					{
 						[nameAttribute setStringValue:@"coverImage"];
 					}
+					
+					if ([[nameAttribute stringValue] isEqualToString:@"coverImage"])
+					{
+						NSData * coverData = [NSData dataWithContentsOfURL:[NSURL URLWithString:[bookField stringValue]]];
+						[dict setObject:coverData forKey:@"coverData"];
+					}
 
 					[dict setValue:[bookField stringValue] forKey:[nameAttribute stringValue]];
 				}
