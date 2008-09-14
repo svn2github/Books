@@ -611,6 +611,8 @@ typedef struct _monochromePixel
 	}
 
 	[self updateMainPane];
+	
+	iSight = nil;
 }
 
 
@@ -1731,7 +1733,9 @@ typedef struct _monochromePixel
 
 - (IBAction) isight: (id)sender
 {
-	MyBarcodeScanner * iSight = [MyBarcodeScanner sharedInstance];
+	if (iSight == nil)
+		iSight = [[MyBarcodeScanner sharedInstance] retain];
+	
 	[iSight setStaysOpen:NO];
 	[iSight setDelegate:self];
 	
@@ -1759,8 +1763,6 @@ typedef struct _monochromePixel
 	}
 	else
 		NSRunAlertPanel (NSLocalizedString (@"Unable To Process Barcode", nil), NSLocalizedString (@"Books is unable to process the scanned barcode. Please try again.", nil), NSLocalizedString (@"OK", nil), nil, nil);
-
-	
 }
 
 - (IBAction) duplicateRecords:(id) sender

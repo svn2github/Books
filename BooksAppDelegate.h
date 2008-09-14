@@ -38,6 +38,8 @@
 #import "BooksTextFieldDelegate.h"
 #import "BooksTableViewDelegate.h"
 
+#import "MyBarcodeScanner.h"
+
 #define BOOKS_SHOW_INFO @"Books - Show Info Window"
 #define BOOKS_UPDATE_DETAILS @"Books - Update Details"
 #define BOOKS_STOP_QUICKFILL @"Books - Stop Quickfill"
@@ -135,6 +137,8 @@
 	NSTimer * batchTimer;
 	
 	BOOL leopardOrBetter;
+	
+	MyBarcodeScanner * iSight;
 }
 
 - (IBAction)preferences:(id)sender;
