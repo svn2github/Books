@@ -229,6 +229,8 @@
 			<key>Layout</key>
 			<array>
 				<dict>
+					<key>BecomeActive</key>
+					<true/>
 					<key>ContentConfiguration</key>
 					<dict>
 						<key>PBXBottomSmartGroupGIDs</key>
@@ -269,19 +271,20 @@
 								<string>29B97314FDCFA39411CA2CEA</string>
 								<string>080E96DDFE201D6D7F000001</string>
 								<string>29B97317FDCFA39411CA2CEA</string>
-								<string>38DF40420B8DF63700D55EA4</string>
+								<string>38666DA508E5087200071C56</string>
 								<string>1C37FBAC04509CD000000102</string>
 							</array>
 							<key>PBXSmartGroupTreeModuleOutlineStateSelectionKey</key>
 							<array>
 								<array>
-									<integer>10</integer>
-									<integer>2</integer>
+									<integer>34</integer>
+									<integer>19</integer>
+									<integer>13</integer>
 									<integer>0</integer>
 								</array>
 							</array>
 							<key>PBXSmartGroupTreeModuleOutlineStateVisibleRectKey</key>
-							<string>{{0, 0}, {264, 577}}</string>
+							<string>{{0, 224}, {264, 577}}</string>
 						</dict>
 						<key>PBXTopSmartGroupGIDs</key>
 						<array/>
@@ -313,14 +316,12 @@
 					<key>Dock</key>
 					<array>
 						<dict>
-							<key>BecomeActive</key>
-							<true/>
 							<key>ContentConfiguration</key>
 							<dict>
 								<key>PBXProjectModuleGUID</key>
 								<string>1CE0B20306471E060097A5F4</string>
 								<key>PBXProjectModuleLabel</key>
-								<string>BooksAppDelegate.m</string>
+								<string>Books.icns</string>
 								<key>PBXSplitModuleInNavigatorKey</key>
 								<dict>
 									<key>Split0</key>
@@ -328,11 +329,11 @@
 										<key>PBXProjectModuleGUID</key>
 										<string>1CE0B20406471E060097A5F4</string>
 										<key>PBXProjectModuleLabel</key>
-										<string>BooksAppDelegate.m</string>
+										<string>Books.icns</string>
 										<key>_historyCapacity</key>
 										<integer>0</integer>
 										<key>bookmark</key>
-										<string>38784C4C0E7D3D5B005E21B5</string>
+										<string>380E33610E82A9580084B1DF</string>
 										<key>history</key>
 										<array>
 											<string>3815D1510A8A97B00085540E</string>
@@ -450,7 +451,6 @@
 											<string>38BD3E0A0E55D10100369564</string>
 											<string>38BD3E0B0E55D10100369564</string>
 											<string>381B02B20E6C1EBC005F70C7</string>
-											<string>38C908A00E7C223200802ACB</string>
 											<string>38C908B70E7C26B600802ACB</string>
 											<string>38C908B80E7C26B600802ACB</string>
 											<string>38C908D30E7C2A0A00802ACB</string>
@@ -463,7 +463,9 @@
 											<string>38C908EB0E7C2BD800802ACB</string>
 											<string>38784C460E7D3D5B005E21B5</string>
 											<string>38784C470E7D3D5B005E21B5</string>
-											<string>38784C480E7D3D5B005E21B5</string>
+											<string>380E33580E828AA70084B1DF</string>
+											<string>380E335E0E82A9580084B1DF</string>
+											<string>380E335F0E82A9580084B1DF</string>
 										</array>
 										<key>prevStack</key>
 										<array>
@@ -593,9 +595,8 @@
 											<string>38DD78FD0E48B72500F38043</string>
 											<string>38DD78FE0E48B72500F38043</string>
 											<string>3894EAB50E48C1050068694D</string>
-											<string>38784C490E7D3D5B005E21B5</string>
-											<string>38784C4A0E7D3D5B005E21B5</string>
-											<string>38784C4B0E7D3D5B005E21B5</string>
+											<string>380E33590E828AA70084B1DF</string>
+											<string>380E33600E82A9580084B1DF</string>
 										</array>
 									</dict>
 									<key>SplitCount</key>
@@ -653,9 +654,9 @@
 			</array>
 			<key>TableOfContents</key>
 			<array>
-				<string>38784C4D0E7D3D5B005E21B5</string>
+				<string>380E335B0E828AA70084B1DF</string>
 				<string>1CE0B1FE06471DED0097A5F4</string>
-				<string>38784C4E0E7D3D5B005E21B5</string>
+				<string>380E335C0E828AA70084B1DF</string>
 				<string>1CE0B20306471E060097A5F4</string>
 				<string>1CE0B20506471E060097A5F4</string>
 			</array>
@@ -787,6 +788,10 @@
 	<integer>5</integer>
 	<key>WindowOrderList</key>
 	<array>
+		<string>380E33690E82A9580084B1DF</string>
+		<string>380E336A0E82A9580084B1DF</string>
+		<string>1C78EAAD065D492600B07095</string>
+		<string>1CD10A99069EF8BA00B06720</string>
 		<string>384A84DA0CDD43E80018DDBF</string>
 		<string>/Users/cjkarr/Desktop/Projects/Books/Books.xcodeproj</string>
 	</array>
@@ -868,7 +873,7 @@
 			<key>TableOfContents</key>
 			<array>
 				<string>384A84DA0CDD43E80018DDBF</string>
-				<string>38784C4F0E7D3D5B005E21B5</string>
+				<string>380E335D0E828AA70084B1DF</string>
 				<string>1CD0528F0623707200166675</string>
 				<string>XCMainBuildResultsModuleGUID</string>
 			</array>
@@ -988,13 +993,13 @@
 			<key>TableOfContents</key>
 			<array>
 				<string>1CD10A99069EF8BA00B06720</string>
-				<string>38C908A70E7C223200802ACB</string>
+				<string>380E33620E82A9580084B1DF</string>
 				<string>1C162984064C10D400B95A72</string>
-				<string>38C908A80E7C223200802ACB</string>
-				<string>38C908A90E7C223200802ACB</string>
-				<string>38C908AA0E7C223200802ACB</string>
-				<string>38C908AB0E7C223200802ACB</string>
-				<string>38C908AC0E7C223200802ACB</string>
+				<string>380E33630E82A9580084B1DF</string>
+				<string>380E33640E82A9580084B1DF</string>
+				<string>380E33650E82A9580084B1DF</string>
+				<string>380E33660E82A9580084B1DF</string>
+				<string>380E33670E82A9580084B1DF</string>
 			</array>
 			<key>ToolbarConfiguration</key>
 			<string>xcode.toolbar.config.debugV3</string>
@@ -1115,8 +1120,6 @@
 					<key>Dock</key>
 					<array>
 						<dict>
-							<key>BecomeActive</key>
-							<true/>
 							<key>ContentConfiguration</key>
 							<dict>
 								<key>PBXProjectModuleGUID</key>
@@ -1152,7 +1155,7 @@
 			<key>TableOfContents</key>
 			<array>
 				<string>1C78EAAD065D492600B07095</string>
-				<string>38C908AD0E7C223200802ACB</string>
+				<string>380E33680E82A9580084B1DF</string>
 				<string>1C78EAAC065D492600B07095</string>
 			</array>
 			<key>ToolbarConfiguration</key>
@@ -1162,7 +1165,7 @@
 			<key>WindowToolGUID</key>
 			<string>1C78EAAD065D492600B07095</string>
 			<key>WindowToolIsVisible</key>
-			<true/>
+			<false/>
 		</dict>
 		<dict>
 			<key>Identifier</key>

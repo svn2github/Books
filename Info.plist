@@ -58,11 +58,11 @@
 	<key>CFBundlePackageType</key>
 	<string>BOOK</string>
 	<key>CFBundleShortVersionString</key>
-	<string>3.2.0b5</string>
+	<string>3.2.0</string>
 	<key>CFBundleSignature</key>
 	<string>AETH</string>
 	<key>CFBundleVersion</key>
-	<string>3.2.0b5</string>
+	<string>3.2.0</string>
 	<key>NSAppleScriptEnabled</key>
 	<string>YES</string>
 	<key>NSMainNibFile</key>
