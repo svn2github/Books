@@ -140,7 +140,8 @@
 	NSXMLDocument * document = [[NSXMLDocument alloc] initWithRootElement:element];
 	[element release];
 
-	return [document autorelease];
+	// 9-18 return [document autorelease];
+	return document;
 }
 
 - (void) importFromBundle: (NSBundle *) bundle forBook: (BookManagedObject *) bookObject replace:(BOOL) doReplace
