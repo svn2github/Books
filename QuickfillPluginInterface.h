@@ -36,6 +36,8 @@
 	
 	NSString * executablePath;
 	NSString * lastSource;
+
+	NSFileHandle * out;
 }
 
 - (void) batchImportFromBundle: (NSBundle *) bundle forBook: (BookManagedObject *) bookObject replace:(BOOL) doReplace;
