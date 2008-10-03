@@ -119,6 +119,7 @@
 		38B16DAB0BA1FECE00216A44 /* CoverWindowDelegate.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 38B16DA90BA1FECE00216A44 /* CoverWindowDelegate.h */; };
 		38B16DAC0BA1FECE00216A44 /* CoverWindowDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 38B16DAA0BA1FECE00216A44 /* CoverWindowDelegate.m */; };
 		38B62EB20987D2D200A4A8AD /* Delicious Library Importer.app in Resources */ = {isa = PBXBuildFile; fileRef = 38B62EB10987D2D200A4A8AD /* Delicious Library Importer.app */; };
+		38BB8E870E95DE9B00920309 /* NoDPIImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 38BB8E860E95DE9B00920309 /* NoDPIImageView.m */; };
 		38BD42830BA069FA00F245D8 /* tiger.png in Resources */ = {isa = PBXBuildFile; fileRef = 38BD42820BA069FA00F245D8 /* tiger.png */; };
 		38BD42C10BA06CC800F245D8 /* corner.png in Resources */ = {isa = PBXBuildFile; fileRef = 38BD42C00BA06CC800F245D8 /* corner.png */; };
 		38C0D5020C3E152800DC777B /* BooksTableViewDelegate.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 38C0D5000C3E152800DC777B /* BooksTableViewDelegate.h */; };
@@ -430,6 +431,8 @@
 		38B16DA90BA1FECE00216A44 /* CoverWindowDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CoverWindowDelegate.h; sourceTree = "<group>"; };
 		38B16DAA0BA1FECE00216A44 /* CoverWindowDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CoverWindowDelegate.m; sourceTree = "<group>"; };
 		38B62EB10987D2D200A4A8AD /* Delicious Library Importer.app */ = {isa = PBXFileReference; lastKnownFileType = wrapper.application; path = "Delicious Library Importer.app"; sourceTree = "<group>"; };
+		38BB8E850E95DE9B00920309 /* NoDPIImageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NoDPIImageView.h; sourceTree = "<group>"; };
+		38BB8E860E95DE9B00920309 /* NoDPIImageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NoDPIImageView.m; sourceTree = "<group>"; };
 		38BD42820BA069FA00F245D8 /* tiger.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = tiger.png; sourceTree = "<group>"; };
 		38BD42C00BA06CC800F245D8 /* corner.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = corner.png; sourceTree = "<group>"; };
 		38C0D5000C3E152800DC777B /* BooksTableViewDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BooksTableViewDelegate.h; sourceTree = "<group>"; };
@@ -701,6 +704,7 @@
 		383E55030C3DDA3B000F06BF /* Windows */ = {
 			isa = PBXGroup;
 			children = (
+				38BB8E840E95DE7700920309 /* Misc */,
 				38C0D6290C3E1DE300DC777B /* Preferences */,
 				383E55F30C3DE470000F06BF /* Info Window */,
 				383E55070C3DDA89000F06BF /* Main Window */,
@@ -886,6 +890,15 @@
 				38EDC5C808EA23A300414B3D /* DefaultDisplay.plugin */,
 			);
 			name = "Display Plugins";
+			sourceTree = "<group>";
+		};
+		38BB8E840E95DE7700920309 /* Misc */ = {
+			isa = PBXGroup;
+			children = (
+				38BB8E850E95DE9B00920309 /* NoDPIImageView.h */,
+				38BB8E860E95DE9B00920309 /* NoDPIImageView.m */,
+			);
+			name = Misc;
 			sourceTree = "<group>";
 		};
 		38BD42BC0BA06CBB00F245D8 /* UI */ = {
@@ -1213,6 +1226,7 @@
 				38143FE80E12E8FA005A52E8 /* SeqGrab.m in Sources */,
 				38143FF20E12E950005A52E8 /* SampleCIView.m in Sources */,
 				38DD78D00E48AD7800F38043 /* MainWindow.m in Sources */,
+				38BB8E870E95DE9B00920309 /* NoDPIImageView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

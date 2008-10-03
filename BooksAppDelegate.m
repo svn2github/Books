@@ -379,8 +379,10 @@ typedef struct _monochromePixel
 			if (coverData != nil)
 			{
 				NSImage * cover = [[NSImage alloc] initWithData:coverData];
+				
+				NSImageRep * rep = [cover bestRepresentationForDevice:nil];
 
-				NSSize size = [cover size];
+				NSSize size = NSMakeSize ([rep pixelsWide], [rep pixelsHigh]);
 				[coverWindow setContentSize:size];
 				[coverWindow setContentAspectRatio:size];
 				[coverWindow setContentMaxSize:NSMakeSize(size.width * 2, size.height * 2)];

@@ -52,7 +52,7 @@
 	[importTask setLaunchPath:executablePath];
 	[importTask setCurrentDirectoryPath:[executablePath stringByDeletingLastPathComponent]];
 
-	NSFileHandle * out = [[stdoutPipe fileHandleForReading] retain];
+	out = [[stdoutPipe fileHandleForReading] retain];
 
 	NSXMLDocument * document = [self getXmlDocumentForBook:book];
 
@@ -181,36 +181,20 @@
 												 name:NSFileHandleReadToEndOfFileCompletionNotification 
 											   object:nil];
 
-	[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(gotData:) 
-												 name:NSFileHandleDataAvailableNotification 
-											   object:nil];
-	
 	[importTask launch];
 
 	lastSource = (NSString *) [bundle objectForInfoDictionaryKey:@"BooksPluginName"];
 
-	NSLog (@"reading");
-
 	[out readToEndOfFileInBackgroundAndNotify];
-	
-	NSLog (@"waiting...");
-}
-
-- (void) gotData: (NSNotification *) notification
-{
-	NSLog (@"got data");
 }
 
 - (void) finishImport: (NSNotification *) notification
 {
 	[out release];
 
-	NSLog (@"finish?");
-
 	if (cancelled)
 		return;
 		
-	NSLog (@"finishing");
 	[[NSNotificationCenter defaultCenter] removeObserver:self];
 	
 	NSDictionary * userInfo = [notification userInfo];
@@ -223,15 +207,12 @@
 
 	NSArrayController * quickfillArray = [quickfillWindow getArrayController];
 	[quickfillArray removeObjects:[quickfillArray arrangedObjects]];
-	NSLog (@"1");
 	
 	if (xml != nil)
 	{
 		NSXMLElement * root = (NSXMLElement *) [[xml rootElement] childAtIndex:0];
 
 		NSArray * bookList = [root elementsForName:@"Book"];
-
-		NSLog (@"1.1");
 
 		if ([bookList count] > 0)
 		{
@@ -243,8 +224,6 @@
 				NSMutableDictionary * dict = [NSMutableDictionary dictionary];
 		
 				NSArray * fields = [bookElement elementsForName:@"field"];
-
-				NSLog (@"1.2");
 
 				int j = 0;
 				for (j = 0; j < [fields count]; j++)
@@ -260,35 +239,25 @@
 					
 					if ([[nameAttribute stringValue] isEqualToString:@"coverImage"])
 					{
-						// NSData * coverData = [NSData dataWithContentsOfURL:[NSURL URLWithString:[bookField stringValue]]];
-						// [dict setObject:coverData forKey:@"coverData"];
-					
 						NSMutableString * urlString = [NSMutableString stringWithString:[bookField stringValue]];
-						[urlString replaceOccurrencesOfString:@" " withString:@"%2" options:0 
+						[urlString replaceOccurrencesOfString:@" " withString:@"%2" 
+													  options:0 
 														range:NSMakeRange(0, [urlString length])];
 						
 						NSLog (@"url => %@", urlString);
 						
-						NSImage * image = [[NSImage alloc] initByReferencingURL:[NSURL URLWithString:urlString]];
-						
-						if (image != nil)
-							[dict setObject:image forKey:@"coverImage"];
-						
-						[image release];
+						NSData * coverData = [NSData dataWithContentsOfURL:[NSURL URLWithString:urlString]];
+						[dict setObject:coverData forKey:@"coverData"];
 					}
 					else
 						[dict setValue:[bookField stringValue] forKey:[nameAttribute stringValue]];
 				}
-
-				NSLog (@"1.3");
 
 				[quickfillArray addObject:dict];
 			}
 			
 			[quickfillArray setSelectionIndexes:[NSIndexSet indexSetWithIndex:0]];
 		}
-
-		NSLog (@"1.4");
 
 		[xml release];
 		xml = nil;
@@ -300,8 +269,6 @@
 		[NotificationInterface sendMessage:desc withTitle:NSLocalizedString (@"Lookup Complete", nil)];
 	}
 
-	NSLog (@"2");
-
 	NSNotification * msg = [NSNotification notificationWithName:BOOKS_STOP_QUICKFILL object:nil];
 	[[NSNotificationCenter defaultCenter] postNotification:msg];
 
@@ -310,8 +277,6 @@
 
 - (void) killTask
 {
-	NSLog (@"kill");
-	
 	if (importTask != nil)
 		[importTask terminate];
 
@@ -322,8 +287,6 @@
 {
 	if (xml != nil)
 	{
-		NSLog (@"set data");
-		
 		NSXMLElement * root = (NSXMLElement *) [[xml rootElement] childAtIndex:0];
 
 		NSArray * bookList = [root elementsForName:@"Book"];

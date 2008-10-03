@@ -51,7 +51,7 @@
 		for (i = 0; i < [keys count]; i++)
 		{
 			NSString * key = [keys objectAtIndex:i];
-			NSString * value = [dict valueForKey:key];
+			NSObject * value = [dict valueForKey:key];
 		
 			if (value != nil && ![key isEqualToString:@"coverData"])
 			{
@@ -60,8 +60,10 @@
 				if ([[NSUserDefaults standardUserDefaults] boolForKey:@"Replace Existing Values"])
 					replace = YES;
 					
-				[book setValueFromString:value forKey:key replace:replace];
+				[book setValueFromString:((NSString *) value) forKey:key replace:replace];
 			}
+			else
+				[book setCoverImage:((NSData *) value)];
 		}
 	}
 	
