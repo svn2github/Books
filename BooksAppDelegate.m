@@ -1464,8 +1464,6 @@ typedef struct _monochromePixel
 
 - (id) asCreateNewList:(NSString *) listName
 {
-	NSLog (@" creating as new list");
-	
 	NSManagedObjectContext * context = [self managedObjectContext];
 	NSManagedObjectModel * model = [self managedObjectModel];
 

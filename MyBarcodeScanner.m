@@ -143,15 +143,12 @@ int getNumberStripesEAN(int number, double average);
 	NSError *error = nil;
 	CGSize displaySize; //To be able to mirror the image fast without calculation the size is based to the preview view
 	
-	NSLog (@"1");
 	// If the isight is already running then bring the window front
 	// 	if (mCaptureSession && [mCaptureSession isRunning] && [previewView window]) {
 	if ([previewView window]) {
 		[[previewView window] makeKeyAndOrderFront:self];
 		return;
 	}
-
-	NSLog (@"2");
 
 	// We need at least version 721 of quicktime for the QTKit to installed
 	SInt32 quickTimeVersionNumber;

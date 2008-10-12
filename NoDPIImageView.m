@@ -13,8 +13,6 @@
 
 - (void)setObjectValue:(id < NSCopying >)object
 {
-	NSLog (@"set object %@", object);
-	
 	NSImage * image = (NSImage *) object;
 	
 	if (image != nil)

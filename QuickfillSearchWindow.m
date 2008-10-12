@@ -29,8 +29,6 @@
 
 - (IBAction) doCancel:(id)sender
 {
-	NSLog (@"cancel");
-	
 	[[NSApplication sharedApplication] endSheet:panel];
 	[panel orderOut:nil];
 }

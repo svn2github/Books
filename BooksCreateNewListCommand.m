@@ -30,7 +30,6 @@
 - (id) performDefaultImplementation
 {
 	NSDictionary * args = [self evaluatedArguments];
-	NSLog (@"eval args %@", args);
 	
 	NSString * listName = nil;
 	

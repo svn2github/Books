@@ -244,8 +244,6 @@
 													  options:0 
 														range:NSMakeRange(0, [urlString length])];
 						
-						NSLog (@"url => %@", urlString);
-						
 						NSData * coverData = [NSData dataWithContentsOfURL:[NSURL URLWithString:urlString]];
 						[dict setObject:coverData forKey:@"coverData"];
 					}
