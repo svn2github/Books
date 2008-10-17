@@ -22,6 +22,8 @@
    SOFTWARE.
 */
 
+#import <QTKit/QTKit.h>
+
 #import "BooksDefines.h"
 #import "BooksAppDelegate.h"
 #import "ImportPluginInterface.h"
@@ -35,6 +37,10 @@
 #import "NotificationInterface.h"
 #import "BooksLibraryCompactor.h"
 #import "BooksDataFolder.h"
+
+#define CAMERA @"Camera"
+#define CAMERA_ID @"Camera_ID"
+#define CAMERA_NAME @"Camera_Name"
 
 typedef struct _monochromePixel
 { 
@@ -615,6 +621,37 @@ typedef struct _monochromePixel
 	[self updateMainPane];
 	
 	iSight = nil;
+	
+	if (cameras != nil)
+	{
+		NSArray * devices = [QTCaptureDevice inputDevices];
+		
+		NSLog (@"devices = %@", devices);
+		
+		NSDictionary * selected = [[NSUserDefaults standardUserDefaults] objectForKey:CAMERA];
+		
+		unsigned i = 0;
+		
+		for (i = 0; i < [devices count]; i++)
+		{
+			QTCaptureDevice * device = [devices objectAtIndex:i];
+		
+			NSLog (@"device = %@", [device localizedDisplayName]);
+			
+			if ([device hasMediaType:QTMediaTypeVideo])
+			{
+				NSMutableDictionary * deviceDict = [NSMutableDictionary dictionary];
+				
+				[deviceDict setValue:[device localizedDisplayName] forKeyPath:CAMERA_NAME];
+				[deviceDict setValue:[device uniqueID] forKey:CAMERA_ID];
+				
+				[cameras addObject:deviceDict];
+			}
+		}
+		
+		if (selected != nil)
+			[cameras setSelectedObjects:[NSArray arrayWithObject:selected]];
+	}
 }
 
 

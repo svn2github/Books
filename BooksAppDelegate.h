@@ -69,6 +69,8 @@
 	IBOutlet NSArrayController * bookArrayController;
 	IBOutlet NSObjectController * selectedBook;
 
+	IBOutlet NSArrayController * cameras;
+
 	IBOutlet WebView * detailsPane;
 
 	IBOutlet NSSplitView * splitView;

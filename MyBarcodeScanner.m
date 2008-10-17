@@ -48,6 +48,10 @@
 #define FIRST_LINE_SCAN ( bytesPerRow * (240 - (NUMBER_OF_LINES_SCANNED /2 * SPACING_BETWEEN_SCAN_LINE)))
 #define FIRST_LINE_SCAN_HIGH ( bytesPerRow * (240 - (NUMBER_OF_LINES_SCANNED /2 * SPACING_BETWEEN_SCAN_LINE))) + (bytesPerRow /4) 
 
+//Preferred scanning camera
+#define CAMERA @"Camera"
+#define CAMERA_ID @"Camera_ID"
+#define CAMERA_NAME @"Camera_Name"
 
 #ifdef DEBUG
 // #define CLICK_TO_SCAN  // Uncomment to have continous scanning during debug 
@@ -160,25 +164,46 @@ int getNumberStripesEAN(int number, double average);
 	}
 
 	// Find a video device  
-	QTCaptureDevice *videoDevice = [QTCaptureDevice defaultInputDeviceWithMediaType:QTMediaTypeVideo];
+
+	NSDictionary * camera = [[NSUserDefaults standardUserDefaults] objectForKey:CAMERA];
+	
+	NSString * deviceId = [camera valueForKey:CAMERA_ID];
+
+	QTCaptureDevice * videoDevice = nil; 
+	if (deviceId == nil || [deviceId isEqual:@""])
+		videoDevice = [QTCaptureDevice defaultInputDeviceWithMediaType:QTMediaTypeVideo];
+	else
+		videoDevice = [QTCaptureDevice deviceWithUniqueID:deviceId];
+	
 	success = [videoDevice open:&error];
 	
+	/* 
 	// If a video input device can't be found or opened, try to find and open a muxed input device
 	if (!success) {
-		/*//NSLog(@"Video device failed look for muxed");
+		//NSLog(@"Video device failed look for muxed");
 		 //NSLog(@"Avaliable devices:");
 		 NSEnumerator *enumDevice = [[QTCaptureDevice inputDevices] objectEnumerator];
 		 QTCaptureDevice *nextDevice;
 		 while (nextDevice = [enumDevice nextObject]) {
 		 //NSLog(@"%@", nextDevice);
 		 }
-		 */
 		
 		videoDevice = [QTCaptureDevice defaultInputDeviceWithMediaType:QTMediaTypeMuxed];
 		success = [videoDevice open:&error];
 		//NSLog(@"%success: %d device: %@, id: %@", success, videoDevice, [videoDevice deviceUID]);
 	}
-
+	 */
+	
+	if (videoDevice == nil)
+	{
+		NSRunAlertPanel (NSLocalizedString (@"Unable to open camera", nil), 
+						 [NSString stringWithFormat:NSLocalizedString (@"Unable to open %@. Please check your preferences.", nil), 
+						  [camera valueForKey:CAMERA_NAME], nil], 
+						 NSLocalizedString (@"OK", nil), nil, nil);
+		
+		return;
+	}
+	
 	// Write error to the console log 
 	if (!success) {
 		videoDevice = nil;
