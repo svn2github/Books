@@ -96,9 +96,13 @@
 				data = [NSData data];
 */		}
 		while ([data length] > 0);
+		
+		NSError * error = nil;
 			
 		// xml = [[NSXMLDocument alloc] initWithData:importData options:NSXMLDocumentTidyXML|NSXMLDocumentValidate error:nil];
-		xml = [[NSXMLDocument alloc] initWithData:importData options:NSXMLDocumentValidate error:nil];
+		xml = [[NSXMLDocument alloc] initWithData:importData options:NSXMLDocumentTidyXML error:&error];
+		
+		NSLog (@"error = %@", error);
 		
 		if (xml != nil)
 		{

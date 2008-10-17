@@ -33,7 +33,7 @@
 	return [store length];
 }
 
-- (unichar)characterAtIndex:(unsigned)index
+- (unichar) characterAtIndex:(unsigned)index
 {
 	return [store characterAtIndex:index];
 }
@@ -93,6 +93,11 @@
 		return [[self getSortString] localizedCaseInsensitiveCompare:[string getSortString]];
 	else
 		return [[self getSortString] caseInsensitiveCompare:[string getSortString]];
+}
+
+- (NSComparisonResult) caseInsensitiveCompare: (BookTitleString *) string
+{
+	return [[self getSortString] caseInsensitiveCompare:[string getSortString]];
 }
 
 @end

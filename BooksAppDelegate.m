@@ -626,8 +626,6 @@ typedef struct _monochromePixel
 	{
 		NSArray * devices = [QTCaptureDevice inputDevices];
 		
-		NSLog (@"devices = %@", devices);
-		
 		NSDictionary * selected = [[NSUserDefaults standardUserDefaults] objectForKey:CAMERA];
 		
 		unsigned i = 0;
@@ -638,7 +636,7 @@ typedef struct _monochromePixel
 		
 			NSLog (@"device = %@", [device localizedDisplayName]);
 			
-			if ([device hasMediaType:QTMediaTypeVideo])
+			if ([device hasMediaType:QTMediaTypeVideo] || [device hasMediaType:QTMediaTypeMuxed])
 			{
 				NSMutableDictionary * deviceDict = [NSMutableDictionary dictionary];
 				

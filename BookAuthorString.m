@@ -38,16 +38,19 @@
 		return [[self getSortString] localizedCaseInsensitiveCompare:[string getSortString]];
 }
 
+- (NSComparisonResult) caseInsensitiveCompare: (BookAuthorString *) string
+{
+	return [self localizedCaseInsensitiveCompare:string];
+}
+
 - (NSComparisonResult) compare: (BookAuthorString *) string
 {
 	BOOL sortAuthors = [[NSUserDefaults standardUserDefaults] boolForKey:@"Sort People Names"];
 	
 	if (!sortAuthors && [((BooksAppDelegate *) [NSApp delegate]) leopardOrBetter])
 		return [self localizedCaseInsensitiveCompare:string];
-	else if ([((BooksAppDelegate *) [NSApp delegate]) leopardOrBetter])
-		return [[self getSortString] localizedCaseInsensitiveCompare:[string getSortString]];
-
-	return [[self getSortString] caseInsensitiveCompare:[string getSortString]];
+	else
+		return [[self getSortString] caseInsensitiveCompare:[string getSortString]];
 }
 
 - (NSString *) getSortString
