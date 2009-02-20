@@ -32,7 +32,6 @@
 	NSMutableString * sortString;
 }
 
-- (NSComparisonResult) compare: (BookTitleString *) string;
 - (NSString *) getSortString;
 
 @end

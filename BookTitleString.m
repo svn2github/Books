@@ -82,22 +82,28 @@
 	return sortString;
 }
 
-- (NSComparisonResult) localizedCaseInsensitiveCompare: (BookTitleString *) string
+- (NSComparisonResult) localizedCaseInsensitiveCompare: (NSString *) string
 {
-	return [[self getSortString] localizedCaseInsensitiveCompare:[string getSortString]];
+	if ([string isKindOfClass:[BookTitleString class]])
+		return [[self getSortString] localizedCaseInsensitiveCompare:[((BookTitleString *) string) getSortString]];
+	else
+		return [[self getSortString] localizedCaseInsensitiveCompare:string];
 }
 
-- (NSComparisonResult) compare: (BookTitleString *) string
+- (NSComparisonResult) compare: (NSString *) string
 {
 	if ([((BooksAppDelegate *) [NSApp delegate]) leopardOrBetter])
-		return [[self getSortString] localizedCaseInsensitiveCompare:[string getSortString]];
+		return [self localizedCaseInsensitiveCompare:string];
 	else
-		return [[self getSortString] caseInsensitiveCompare:[string getSortString]];
+		return [self caseInsensitiveCompare:string];
 }
 
 - (NSComparisonResult) caseInsensitiveCompare: (BookTitleString *) string
 {
-	return [[self getSortString] caseInsensitiveCompare:[string getSortString]];
+	if ([string isKindOfClass:[BookTitleString class]])
+		return [[self getSortString] caseInsensitiveCompare:[((BookTitleString *) string) getSortString]];
+	else
+		return [[self getSortString] caseInsensitiveCompare:string];
 }
 
 - (void) dealloc
