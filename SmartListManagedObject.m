@@ -28,6 +28,20 @@
 
 @implementation SmartListManagedObject
 
+- (void) dealloc
+{
+	if (predicate != nil)
+		[predicate release];
+
+	if (listItems != nil)
+		[listItems release];
+
+	if (nextFetch != nil)
+		[nextFetch release];
+
+	[super dealloc];
+}
+
 - (NSPredicate *) getPredicate
 {
 	if (predicate == nil)

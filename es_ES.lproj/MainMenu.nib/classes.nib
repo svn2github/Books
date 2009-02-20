@@ -133,6 +133,8 @@
 			<dict>
 				<key>bookArrayController</key>
 				<string>NSArrayController</string>
+				<key>cameras</key>
+				<string>NSArrayController</string>
 				<key>collectionArrayController</key>
 				<string>NSArrayController</string>
 				<key>comboBoxDelegate</key>

@@ -44,6 +44,11 @@
     return self;
 }
 
+- (void) dealloc
+{
+	[super dealloc];
+}
+
 
 - (void) addNewCopy
 {
@@ -378,7 +383,7 @@
 
 	if (set != nil)
 	{
-		NSMutableArray * fields = [[NSMutableArray alloc] init];
+		NSMutableArray * fields = [NSMutableArray array];
 	
 		NSArray * setArray = [set allObjects];
 		
@@ -519,7 +524,7 @@
 	NSArray * datesLent = [self getSecondaryFields:@"dateLent" fromSet:@"copiesOut"];
 	NSArray * datesDue = [self getSecondaryFields:@"dateDue" fromSet:@"copiesOut"];
 
-	NSMutableArray * records = [[NSMutableArray alloc] init];
+	NSMutableArray * records = [NSMutableArray array];
 
 	int i = 0;
 	for (i = 0; i < [borrowers count]; i++)
@@ -546,7 +551,7 @@
 {
 	NSArray * records = [self getCheckOutsArray];
 
-	NSMutableString * string = [[NSMutableString alloc] init];
+	NSMutableString * string = [NSMutableString string];
 	
 	int i = 0;
 	for (i = 0; i < [records count]; i++)
@@ -897,7 +902,7 @@
 	NSString * string = (NSString *) [self valueForKey:field];
 	
 	if (string == nil)
-		return [[NSArray alloc] init];
+		return [NSArray array];
 		
 	return [[string componentsSeparatedByString:@";"] retain];
 }
@@ -1093,6 +1098,8 @@
 				[fieldObject setValue:value forKey:@"value"];
 			
 				[userFields addObject:fieldObject];
+				
+				[fieldObject release];
 			}
 			
 		NS_HANDLER

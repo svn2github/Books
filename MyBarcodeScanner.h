@@ -82,6 +82,7 @@
 #import <Cocoa/Cocoa.h>
 //#import <QuickTime/QuickTime.h>
 //#import <QuickTime/QuickTime.h>
+//#import "FrameReader.h"
 //#import "SeqGrab.h"
 
 
@@ -112,14 +113,16 @@
 	char previousNumberGlobalArray[3][12];
 	BOOL scanBarcode;
 	MyGraphView *graphView, *barcodeView;
-	CVImageBufferRef bufferForProcess;
+	//CVImageBufferRef bufferForProcess;
 #endif DEBUG
 	
 	
 	SampleCIView *previewView;
-	//NSWindow *previewWindow;
+	NSPanel *previewWindow;
 	//NSRect mPreviewBounds;
-		
+	
+	//FrameReader *frameReader;
+	
 	QTCaptureSession *mCaptureSession;
 	
 	int firstScanOffset;

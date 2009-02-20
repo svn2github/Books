@@ -28,6 +28,11 @@
 
 @implementation HtmlPageBuilder
 
+- (void) dealloc
+{
+	[super dealloc];
+}
+
 - (NSDictionary *) getDisplayPlugins
 {	
 	if (displayPlugins != nil)
@@ -218,6 +223,8 @@
 			}
 		}
 	}
+	
+	[formatter release];
 
 	[html replaceOccurrencesOfString:@"-bookdef-" withString:bookDef options:NSCaseInsensitiveSearch 
 		range:NSMakeRange (0, [html length])];

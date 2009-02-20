@@ -100,4 +100,9 @@
 	return [[self getSortString] caseInsensitiveCompare:[string getSortString]];
 }
 
+- (void) dealloc
+{
+	[super dealloc];
+}
+
 @end

@@ -46,6 +46,13 @@
 	return self;
 }
 
+- (void) dealloc
+{
+	[store release];
+
+	[super dealloc];
+}
+
 - (NSComparisonResult) compare: (NSString *) string
 {
 	if ([string isMemberOfClass:[SmartListNameString class]])

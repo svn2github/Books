@@ -29,6 +29,11 @@
 
 @implementation PeopleArrayController
 
+- (void) dealloc
+{
+	[super dealloc];
+}
+
 - (id) arrangedObjects
 {
 	if (people == nil)

@@ -39,8 +39,7 @@
 /*________________________________________________________________________________________
 */
 
-- (void)dealloc
-{
+- (void)dealloc {
     //NSLog(@"[SGChan dealloc] %p", self);
     SGDisposeChannel([mSG seqGrabComponent], mChan);
     [super dealloc];

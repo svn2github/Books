@@ -211,8 +211,7 @@ bail:
 /*___________________________________________________________________________________________
 */
 
-- (void)dealloc
-{
+- (void)dealloc {
     //NSLog(@"[SGVideo dealloc] %p", self);
     DisposeGWorld(mOffscreen);
     if (mDecompS)
@@ -599,7 +598,7 @@ bail:
 		//RELEVANT_SECTION
 		//Set clean aperture for new iSight, in order to zoom in on the image
 		if (newHighResiSight) {
-			NSMutableDictionary *aperture = [[NSMutableDictionary alloc] init];
+			NSMutableDictionary *aperture = [NSMutableDictionary dictionary];
 			[aperture setObject:[NSNumber numberWithFloat:1280] forKey:@"Width"];		
 			[aperture setObject:[NSNumber numberWithFloat:960] forKey:@"Height"];	
 			//[aperture setObject:[NSNumber numberWithFloat:0] forKey:@"HorizontalOffset"];		

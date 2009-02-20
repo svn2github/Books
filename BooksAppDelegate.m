@@ -112,6 +112,11 @@ typedef struct _monochromePixel
 	return self;
 }
 
+- (void) dealloc
+{
+	[super dealloc];
+}
+
 - (NSManagedObjectContext *) managedObjectContext
 {
     NSError * error = nil;
@@ -576,7 +581,6 @@ typedef struct _monochromePixel
 	
 	CoverWindowDelegate * cwd = [[CoverWindowDelegate alloc] init];
 	[coverWindow setDelegate:cwd];
-	// [cwd release];
 	
 	[mainWindow makeKeyAndOrderFront:self];
 	
@@ -1518,7 +1522,7 @@ typedef struct _monochromePixel
 
 	[tableViewDelegate reloadListsTable];
 
-	return object;
+	return [object autorelease];
 }
 
 - (id) asCreateNewSmartList:(NSString *) listName
@@ -1542,7 +1546,7 @@ typedef struct _monochromePixel
 
 	[tableViewDelegate reloadListsTable];
 
-	return object;
+	return [object autorelease];
 }
 
 - (BOOL)application:(NSApplication *)theApplication openFile:(NSString *)filename

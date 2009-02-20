@@ -23,6 +23,23 @@
 	return self;
 }
 
+- (void) dealloc
+{
+	[genreSet release];
+	[authorSet release];
+	[illustratorSet release];
+	[editorSet release];
+	[translatorSet release];
+	[keywordSet release];
+	[publisherSet release];
+
+	[comboArrays release];
+	[tokenList release];
+	[fieldList release];
+	
+	[super dealloc];
+}
+
 - (void) update
 {
 	int i = 0;

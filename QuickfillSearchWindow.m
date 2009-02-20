@@ -33,6 +33,11 @@
 	[panel orderOut:nil];
 }
 
+- (void) dealloc
+{
+	[super dealloc];
+}
+
 - (IBAction) doSave:(id)sender
 {
 	if ([[quickfillResults selectedObjects] count] > 0)

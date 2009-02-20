@@ -56,7 +56,7 @@
 										containerSpecifier: [delegate objectSpecifier]
 										key:@"booklists"];
 	
-	return specifier;
+	return [specifier autorelease];
 }
 
 - (BOOL) getCanAdd
@@ -79,5 +79,9 @@
 
 }
 
+- (void) dealloc
+{
+	[super dealloc];
+}
 
 @end

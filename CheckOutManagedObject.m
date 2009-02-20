@@ -29,6 +29,14 @@
 
 @implementation CheckOutManagedObject
 
+- (void) dealloc
+{
+	if (image != nil)
+		[image release];
+
+	[super dealloc];
+}
+
 - (void) didChangeValueForKey: (NSString *) key
 {
 	[super didChangeValueForKey:key];

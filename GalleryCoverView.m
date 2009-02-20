@@ -49,6 +49,14 @@
 	return self;
 }
 
+- (void) dealloc
+{
+	[imageView release];
+	[titleView release];
+	
+	[super dealloc];
+}
+
 - (NSRect) getBorder:(float) borderWidth
 {
 	NSSize borderSize = [imageView frame].size;
@@ -400,7 +408,7 @@
 		[menu addItemWithTitle:NSLocalizedString (@"New Book", nil) action:NSSelectorFromString(@"newBook:") keyEquivalent:@""];
 	}
 
-	return menu;
+	return [menu autorelease];
 }
 
 @end

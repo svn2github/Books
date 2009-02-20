@@ -188,7 +188,12 @@
 		[item setPaletteLabel:NSLocalizedString (@"View", nil)];
 	}
 	
-	return item;
+	return [item autorelease];
+}
+
+- (void) dealloc
+{
+	[super dealloc];
 }
 
 - (void) setGetCoverLabel:(NSString *) label

@@ -10,6 +10,17 @@
 
 @implementation FieldsTableViewDelegate
 
+- (void) dealloc
+{
+	if (listFields != nil)
+		[listFields release];
+	
+	if (bookFields != nil)
+		[bookFields release];
+	
+	[super dealloc];
+}
+
 - (void) setup
 {
 	NSArray * columns = [listFieldsTable tableColumns];

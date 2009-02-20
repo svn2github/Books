@@ -1,9 +1,9 @@
 
 
 #import "SeqGrab.h"
+#import "WhackedDebugMacros.h"
 #import "SGChan.h"
 #import "SGVideo.h"
-#import "WhackedDebugMacros.h"
 #import <sys/stat.h>
 
 
@@ -50,8 +50,7 @@ bail:
 /*________________________________________________________________________________________
 */
 
-- (void)dealloc
-{
+- (void)dealloc {
     //NSLog(@"[SeqGrab dealloc] %p", self);
 	[mChans release];
     CloseComponent(mSeqGrab);
@@ -199,7 +198,7 @@ startOver:
 				break;
 
 			default:
-				NSLog(@"[SeqGrab setSettings:] encountered an " "unrecognized chan type - \"%.4s\"", (char*)&type);
+				MyLog(@"[SeqGrab setSettings:] encountered an " "unrecognized chan type - \"%.4s\"", (char*)&type);
 		}
 	}
 	
@@ -269,7 +268,7 @@ bail:
     if (mStopRequested == YES)
     {
         [timer invalidate];
-		[timer release];
+		//[timer release];
     }
     else {
         err = SGIdle(mSeqGrab);
@@ -302,6 +301,7 @@ bail:
 	[[NSRunLoop currentRunLoop] addTimer:t forMode:NSDefaultRunLoopMode];
 	[[NSRunLoop currentRunLoop] addTimer:t forMode:NSModalPanelRunLoopMode];
 	[[NSRunLoop currentRunLoop] addTimer:t forMode:NSEventTrackingRunLoopMode];
+	[t autorelease];
     mStopRequested = NO;
 }
 

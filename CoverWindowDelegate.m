@@ -11,6 +11,11 @@
 
 @implementation CoverWindowDelegate
 
+- (void) dealloc
+{
+	[super dealloc];
+}
+
 - (void) setTarget:(NSWindow *) window
 {
 	target = window;

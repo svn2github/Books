@@ -30,6 +30,17 @@
 
 @implementation ImportMenuDelegate
 
+- (void) dealloc
+{
+	if (plugins != nil)
+		[plugins release];
+	
+	if (pluginKeys != nil)
+		[pluginKeys release];
+	
+	[super dealloc];
+}
+
 - (void) findPlugins
 {
 	NSString * appSupport = @"Library/Application Support/Books/Plugins/";

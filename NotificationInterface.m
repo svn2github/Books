@@ -12,7 +12,7 @@
 
 - (NSDictionary *) registrationDictionaryForGrowl
 {
-	NSMutableDictionary * dict = [[NSMutableDictionary alloc] init];
+	NSMutableDictionary * dict = [NSMutableDictionary dictionary];
 	
 	NSArray * all = [NSArray arrayWithObjects:NSLocalizedString (@"Lookup Complete", nil), 
 					NSLocalizedString (@"Import Complete", nil), NSLocalizedString (@"Export Complete", nil), nil];
@@ -46,7 +46,7 @@
 {
 	NotificationInterface * notify = [[NotificationInterface alloc] init];
 	[GrowlApplicationBridge setGrowlDelegate:notify];
-	// 9-18 [notify release];
+	[notify release];
 }
 
 @end

@@ -101,6 +101,12 @@
     return self;
 }
 
+- (void) dealloc
+{
+	[arrangedBooks release];
+	[super dealloc];
+}
+
 - (void) awakeFromNib
 {
 	[bookList addObserver:self forKeyPath:@"arrangedObjects" options:NSKeyValueObservingOptionNew context:NULL];

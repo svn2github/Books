@@ -31,6 +31,11 @@
 
 @implementation ImportPluginInterface
 
+- (void) dealloc
+{
+	[super dealloc];
+}
+
 - (void) importFromBundle: (NSBundle *) bundle
 {
 	NSNotificationCenter * noteCenter = [NSNotificationCenter defaultCenter];

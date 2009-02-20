@@ -9,6 +9,7 @@
 #import <QTKit/QTKit.h>
 #import "SeqGrab.h"
 #import "SGVideo.h"
+#import "MyController.h"
 
 #define BLACK_PIXEL 1
 #define WHITE_PIXEL 0
@@ -48,10 +49,6 @@
 #define FIRST_LINE_SCAN ( bytesPerRow * (240 - (NUMBER_OF_LINES_SCANNED /2 * SPACING_BETWEEN_SCAN_LINE)))
 #define FIRST_LINE_SCAN_HIGH ( bytesPerRow * (240 - (NUMBER_OF_LINES_SCANNED /2 * SPACING_BETWEEN_SCAN_LINE))) + (bytesPerRow /4) 
 
-//Preferred scanning camera
-#define CAMERA @"Camera"
-#define CAMERA_ID @"Camera_ID"
-#define CAMERA_NAME @"Camera_Name"
 
 #ifdef DEBUG
 // #define CLICK_TO_SCAN  // Uncomment to have continous scanning during debug 
@@ -146,14 +143,20 @@ int getNumberStripesEAN(int number, double average);
 	BOOL success = NO;
 	NSError *error = nil;
 	CGSize displaySize; //To be able to mirror the image fast without calculation the size is based to the preview view
+	BOOL useOldCapture = NO;
+	BOOL isLeopard = YES;
+	if ([self osVersion] < MKOSXLeopard)
+		isLeopard = NO;
+	BOOL setSizeOfBuffer = YES;
+	NSString *windowTitle = nil;
 	
 	// If the isight is already running then bring the window front
-	// 	if (mCaptureSession && [mCaptureSession isRunning] && [previewView window]) {
-	if ([previewView window]) {
-		[[previewView window] makeKeyAndOrderFront:self];
+	// 	if (mCaptureSession && [mCaptureSession isRunning] && previewWindow) {
+	if (previewWindow) {
+		[previewWindow makeKeyAndOrderFront:self];
 		return;
 	}
-
+	
 	// We need at least version 721 of quicktime for the QTKit to installed
 	SInt32 quickTimeVersionNumber;
 	Gestalt(gestaltQuickTime, &quickTimeVersionNumber);
@@ -162,68 +165,69 @@ int getNumberStripesEAN(int number, double average);
 		NSRunAlertPanel(NSLocalizedStringWithDefaultValue(@"Action Required", nil, [NSBundle mainBundle], nil, nil), NSLocalizedStringWithDefaultValue(@"NoQuickTime721", nil, [NSBundle mainBundle], @"The version of QuickTime installed is lower than 7.2.1, please install the latest QuickTime from http://www.apple.com/quicktime/download ", nil), @"OK", nil, nil);
 		return;
 	}
-
-	// Find a video device  
-
-	NSDictionary * camera = [[NSUserDefaults standardUserDefaults] objectForKey:CAMERA];
 	
-	NSString * deviceId = [camera valueForKey:CAMERA_ID];
-
-	QTCaptureDevice * videoDevice = nil; 
-	if (deviceId == nil || [deviceId isEqual:@""])
+	// Find a video device
+	// Use old capture method on Tiger always
+	QTCaptureDevice *videoDevice = nil;
+	//if (isLeopard) {
 		videoDevice = [QTCaptureDevice defaultInputDeviceWithMediaType:QTMediaTypeVideo];
-	else
-		videoDevice = [QTCaptureDevice deviceWithUniqueID:deviceId];
-	
-	success = [videoDevice open:&error];
-	
-	/* 
-	// If a video input device can't be found or opened, try to find and open a muxed input device
-	if (!success) {
-		//NSLog(@"Video device failed look for muxed");
-		 //NSLog(@"Avaliable devices:");
-		 NSEnumerator *enumDevice = [[QTCaptureDevice inputDevices] objectEnumerator];
-		 QTCaptureDevice *nextDevice;
-		 while (nextDevice = [enumDevice nextObject]) {
-		 //NSLog(@"%@", nextDevice);
-		 }
+		if (videoDevice)
+			success = [videoDevice open:&error];
 		
-		videoDevice = [QTCaptureDevice defaultInputDeviceWithMediaType:QTMediaTypeMuxed];
-		success = [videoDevice open:&error];
-		//NSLog(@"%success: %d device: %@, id: %@", success, videoDevice, [videoDevice deviceUID]);
-	}
-	 */
-	
-	if (videoDevice == nil)
-	{
-		NSRunAlertPanel (NSLocalizedString (@"Unable to open camera", nil), 
-						 [NSString stringWithFormat:NSLocalizedString (@"Unable to open %@. Please check your preferences.", nil), 
-						  [camera valueForKey:CAMERA_NAME], nil], 
-						 NSLocalizedString (@"OK", nil), nil, nil);
 		
-		return;
-	}
-	
-	// Write error to the console log 
-	if (!success) {
-		videoDevice = nil;
-		NSLog(@"Error: video device not found: %@", [error localizedDescription]);
-	}
+		// If a video input device can't be found or opened, try to find and open a muxed input device
+		if (!success) {
+			/*//NSLog(@"Video device failed look for muxed");
+			 //NSLog(@"Avaliable devices:");
+			 NSEnumerator *enumDevice = [[QTCaptureDevice inputDevices] objectEnumerator];
+			 QTCaptureDevice *nextDevice;
+			 while (nextDevice = [enumDevice nextObject]) {
+			 //NSLog(@"%@", nextDevice);
+			 }
+			 */
+			
+			videoDevice = [QTCaptureDevice defaultInputDeviceWithMediaType:QTMediaTypeMuxed];
+			//NSLog(@"%@ %@ %@", videoDevice, [videoDevice modelUniqueID], [videoDevice localizedDisplayName]);
+			if (videoDevice)
+				success = [videoDevice open:&error];
+			//NSLog(@"%success: %d device: %@", success, videoDevice);
+		}
+		
+		// Write error to the console log 
+		if (!success) {
+			videoDevice = nil;
+			DLog(@"Error: video device not found: %@", [error localizedDescription]);
+		}
+	//}
 	
 	//Find out if it's the new built-in High res iSight
 	// imac 2.0 GHX 20inch first built-in version "ProductID_34049"
 	// imac silver first high-res "ProductID_34050"
 	// "FireWire iSight" for the old external one
-	BOOL useOldCapture = NO;
-	BOOL isLeopard = YES;
-	NSString *windowTitle = nil;
-	if ([self osVersion] < 0x1050)
-		isLeopard = NO;
-	BOOL setSizeOfBuffer = YES;
 	NSString *cameraDescription = [videoDevice modelUniqueID];
+	NSString *cameraName = [videoDevice localizedDisplayName];
 	//NSLog(@"Device: %@", cameraDescription);
-
-	if (cameraDescription && [cameraDescription rangeOfString:@"ProductID_34050"].location != NSNotFound) {
+	//NSLog(@"Name: %@", [videoDevice localizedDisplayName]);
+	
+	int productIDNumber = 0;
+	int location = [cameraDescription rangeOfString:@"ProductID_"].location;
+	if (location != NSNotFound) {
+		NSString *idNumber = [cameraDescription substringFromIndex:location + 10];
+		productIDNumber = [idNumber intValue];
+	}
+	
+	// This device give a quarter image, can not get full 1280 x 1024 buffer
+	/*
+	if (cameraDescription && [cameraDescription rangeOfString:@"com.apple.QTKit.legacydevice"].location != NSNotFound) {
+			displaySize = CGSizeMake(1280.0, 1024.0);
+			newHighResiSight = NO;
+			setSizeOfBuffer = NO;
+			windowTitle = @"Legacy";		
+		}
+	*/
+	
+	// Apparently 34053 works well with the regular 640 x 480 version
+	if (cameraDescription && productIDNumber >= 34050 && productIDNumber <= 34054 && productIDNumber != 34053 && ([cameraDescription rangeOfString:@"VendorID_1452"].location != NSNotFound)) { // [cameraDescription rangeOfString:@"ProductID_34050"].location != NSNotFound) {
 		displaySize = CGSizeMake(1280.0, 1024.0);
 		newHighResiSight = YES;
 		setSizeOfBuffer = NO; // We let it choose 1280 x 1024 on it's own otherwise it squishies the image
@@ -239,7 +243,9 @@ int getNumberStripesEAN(int number, double average);
 		newHighResiSight = YES;
 		windowTitle = @"TerraCam X2";
 	}
-	else if (!isLeopard || (cameraDescription && [cameraDescription rangeOfString:@"PYRO WebCam"].location != NSNotFound)) { //PYRO WEBCAM, or tiger OS
+	else if (!isLeopard || (cameraDescription && ([cameraDescription rangeOfString:@"PYRO WebCam"].location != NSNotFound || [cameraDescription rangeOfString:@"ProductID_41271"].location != NSNotFound)) || (cameraName && [cameraDescription rangeOfString:@"MV500i"].location != NSNotFound)) { 
+		//PYRO WEBCAM,VendorID_1266 ProductID_41271 or tiger OS
+		// MV500i is Cannon camera that also needs the old iSight
 		displaySize = CGSizeMake(640.0, 480.0);
 		newHighResiSight = NO;
 		useOldCapture = YES;
@@ -253,15 +259,12 @@ int getNumberStripesEAN(int number, double average);
 		else
 			windowTitle = @"External Camera";
 	}
-
-	if (videoDevice == nil) {
-		NSRunAlertPanel(NSLocalizedStringWithDefaultValue(@"Action Required", nil, [NSBundle mainBundle], nil, nil), NSLocalizedStringWithDefaultValue(@"No iSight", nil, [NSBundle mainBundle], @"Please make sure your firewire camera is connected to your computer.", nil), @"OK", nil, nil);
-		return;
-	}
-	else if (useOldCapture) {
+	
+	
+	if (useOldCapture) {
 		//This is the old version that is used if running Tiger as the QTKit is not the same even though it's included with the new version of QuickTime on Tiger
 		
-		if ([videoDevice isOpen])
+		if (videoDevice && [videoDevice isOpen])
 			[videoDevice close];
 		
 		int bytesPerRow = displaySize.width * 2;
@@ -293,6 +296,11 @@ int getNumberStripesEAN(int number, double average);
 			
 			[vide release]; // it was retained by its mGrabber
 		}
+		
+	}
+	else if (videoDevice == nil) {
+		NSRunAlertPanel(NSLocalizedStringWithDefaultValue(@"Action Required", nil, [NSBundle mainBundle], nil, nil), NSLocalizedStringWithDefaultValue(@"No iSight", nil, [NSBundle mainBundle], @"Please make sure your firewire camera is connected to your computer.", nil), @"OK", nil, nil);
+		return;
 	}
 	else {
 		
@@ -370,7 +378,7 @@ int getNumberStripesEAN(int number, double average);
 				// Write error to the console log 
 				if (!success) {
 					videoDevice = nil;
-					NSLog(@"Error: video device could not be re-opened after changing settings: %@", [error localizedDescription]);
+					DLog(@"Error: video device could not be re-opened after changing settings: %@", [error localizedDescription]);
 					[self closeiSight];
 					return;
 				}
@@ -385,7 +393,7 @@ int getNumberStripesEAN(int number, double average);
 		success = [mCaptureSession addInput:mCaptureVideoDeviceInput error:&error];
 		[mCaptureVideoDeviceInput release];
 		if (!success) {
-			NSLog(@"Error: video device could not be added as input: %@", [error localizedDescription]);
+			DLog(@"Error: video device could not be added as input: %@", [error localizedDescription]);
 			[self closeiSight];
 			return;
 		}
@@ -428,7 +436,7 @@ int getNumberStripesEAN(int number, double average);
 		success = [mCaptureSession addOutput:mCaptureDecompress error:&error];
 		[mCaptureDecompress release];
 		if (!success) {
-			NSLog(@"Error: could not add output device: %@", [error localizedDescription]);
+			DLog(@"Error: could not add output device: %@", [error localizedDescription]);
 			[self closeiSight];
 			return;
 		}
@@ -465,7 +473,7 @@ int getNumberStripesEAN(int number, double average);
 	
 	// Here's where we create a window to hold 
 	// the sgvideo object's preview view
-	NSPanel *previewWindow = [[MyiSightWindow alloc] initWithContentRect:windowRect 
+	previewWindow = [[MyiSightWindow alloc] initWithContentRect:windowRect 
 															   styleMask:NSTitledWindowMask | NSClosableWindowMask
 																 backing:NSBackingStoreBuffered 
 																   defer:YES
@@ -517,8 +525,6 @@ int getNumberStripesEAN(int number, double average);
 	 [barcodeWindow makeKeyAndOrderFront:self];
 	 #endif DEBUG
 	 */
-	
-	
 }
 
 
@@ -526,7 +532,7 @@ int getNumberStripesEAN(int number, double average);
 	
 	//NSLog(@"Video frame incoming");
 	
-	if ([previewView window] != nil) {
+	if (previewWindow != nil) {
 		
 		//NSLog(@"create image");
 		CIImage * ciImage = [CIImage imageWithCVImageBuffer:videoFrame];
@@ -539,6 +545,13 @@ int getNumberStripesEAN(int number, double average);
 		
 		
 	}
+}
+
+- (void)dealloc {
+	[self closeiSight];
+	[delegate release]; delegate = nil;
+	//[previewWindow release];
+	[super dealloc];
 }
 
 
@@ -574,7 +587,10 @@ int getNumberStripesEAN(int number, double average);
 		
 		[lastBarcode release]; lastBarcode = nil;
 		
-		[[previewView window] close]; previewView = nil;		
+		//[previewWindow release];
+		[previewWindow close]; // NSWindow is released on close 
+		previewWindow = nil;
+		previewView = nil;		
 		
 		if ([delegate respondsToSelector:@selector(iSightWillClose)]) {
 			[delegate iSightWillClose];
@@ -644,7 +660,7 @@ int getNumberStripesEAN(int number, double average);
 	
 	CVReturn possibleError = CVPixelBufferLockBaseAddress(pixelBuffer, 0);
 	if (possibleError) {
-		NSLog (@"Error locking pixel bufffer, when looking for barcode.");
+		DLog(@"Error locking pixel bufffer, when looking for barcode.");
 		return;
 	}
 	
@@ -673,8 +689,11 @@ int getNumberStripesEAN(int number, double average);
 		
 		if (widthOfBuffer < 620) {
 			size_t heightOfBuffer = CVPixelBufferGetHeight(pixelBuffer);  //bytes per line
-			NSLog(@"Error: image capture size to small: %d x %d, bytes/row: %d", widthOfBuffer, heightOfBuffer, bytesPerRow);
+			CVPixelBufferUnlockBaseAddress(pixelBuffer, 0);
+
+			DLog(@"Error: image capture size too small: %d x %d, bytes/row: %d", widthOfBuffer, heightOfBuffer, bytesPerRow);
 			[self performSelectorOnMainThread:@selector(closeiSight) withObject:nil waitUntilDone:NO];
+			//NSRunAlertPanel(NSLocalizedStringWithDefaultValue(@"Confirmation", nil, FRAMEWORK_BUNDLE, nil, nil), @"The video resolution of this camera is not high enough for the barcode scanner, a minimum of 640 pixels wide is required.", @"OK",nil, nil);
 			return;
 		}
 	}
@@ -692,11 +711,11 @@ int getNumberStripesEAN(int number, double average);
 	
 	//[vide setGoodScan:NO];
 	[previewView setGoodScan:NO];
-	BOOL noMissingNumbers = NO;  //check local number as all digits where deciphered
+	//BOOL noMissingNumbers = NO;  //check local number as all digits where deciphered
 	BOOL noMissingNumbersOLD = NO;
 	
 	//clear local number
-	for (i = 0; i < 12; i = i++) {
+	for (i = 0; i < 12; i++) {
 		previousNumberLocalArray[0][i] = NOT_FOUND;
 		previousNumberLocalArray[2][i] = 0;
 		
@@ -828,7 +847,8 @@ int getNumberStripesEAN(int number, double average);
 				[self addParity:numberArray toParityMatrix:parityFrequencyMatrix];
 				//[vide setGoodScan:YES];
 				[previewView setGoodScan:YES];
-				noMissingNumbers = [self compareAgainstPreviousScans:numberArray previous:previousNumberLocalArray];
+				//noMissingNumbers = 
+				[self compareAgainstPreviousScans:numberArray previous:previousNumberLocalArray];
 			}
 			
 			//NSLog(@"Scanned %@  local:%@  j:%d", [self barcodeFromArray:numberArray], [self barcodeFromArray:previousNumberLocalArray], j);
@@ -1172,7 +1192,7 @@ int getNumberStripesEAN(int number, double average);
 	
 	BOOL lookformax = YES;
 	int mn = 256, mx = -256;
-	int mnpos, mxpos;
+	//int mnpos, mxpos;
 	int delta = 0; 
 	int index = startBarcode;
 	int peakNumber = 0;
@@ -1184,11 +1204,11 @@ int getNumberStripesEAN(int number, double average);
 		
 		if (current > mx) {
 			mx = current; 
-			mxpos = index;
+			//mxpos = index;
 		}
 		if (current < mn) {
 			mn = current; 
-			mnpos = index;
+			//mnpos = index;
 		}
 		
 		
@@ -1205,7 +1225,7 @@ int getNumberStripesEAN(int number, double average);
 				lookformax = NO;
 				
 				mn = current;
-				mnpos = index;
+				//mnpos = index;
 				
 			}
 		}
@@ -1218,7 +1238,7 @@ int getNumberStripesEAN(int number, double average);
 					*topMask = current;
 				
 				mx = current;
-				mxpos = index;
+				//mxpos = index;
 				lookformax = YES;
 			}
 		}
@@ -1226,8 +1246,8 @@ int getNumberStripesEAN(int number, double average);
 		index++;
 	}
 	
-	*bottomMask--;
-	*topMask++;
+	*--bottomMask;
+	*++topMask;
 }
 
 //given an array of pixel values and the first derivative as well as the area of the barcode it goes throw determining the bar lengths.
@@ -2136,8 +2156,8 @@ int getNumberStripesEAN(int number, double average) {
 
 - (void)clearGlobalFrequency {
 	int i, j;
-	for (i = 0; i < 10; i = i++) {
-		for (j = 0; j < 13; j = j++) {
+	for (i = 0; i < 10; i++) {
+		for (j = 0; j < 13; j++) {
 			globalFrequencyMatrix[i][j] = 0;
 		}
 	}	
@@ -2325,7 +2345,11 @@ static MyBarcodeScanner *sharedInstance = nil;
 	 searching for the barcode should be inserted around here.  */
 	
 	
-	CVPixelBufferLockBaseAddress(pixelBuffer, 0);
+	CVReturn possibleError = CVPixelBufferLockBaseAddress(pixelBuffer, 0);
+	if (possibleError) {
+		DLog(@"Error locking pixel bufffer old, when looking for barcode.");
+		return;
+	}
 	Ptr pixelBufferBaseAddress = (Ptr)CVPixelBufferGetBaseAddress(pixelBuffer); 
 	size_t bytesPerRow = CVPixelBufferGetBytesPerRow(pixelBuffer);  //bytes per line
 	//size_t bufferHeight = CVPixelBufferGetHeight(pixelBuffer); 
@@ -2355,7 +2379,7 @@ static MyBarcodeScanner *sharedInstance = nil;
 	BOOL noMissingNumbers = NO;  //check local number as all digits where deciphered
 	
 	//clear local number
-	for (i = 0; i < 12; i = i++) {
+	for (i = 0; i < 12; i++) {
 		previousNumberLocalArray[0][i] = NOT_FOUND;
 		previousNumberLocalArray[2][i] = 0;
 	}
@@ -2634,7 +2658,7 @@ static MyBarcodeScanner *sharedInstance = nil;
 	float averageBarWidth = barcodeThickness / 95.0;
 	//int peakValleyInformation[70][2] = {0};  //First row peak index, second height
 	int mn = 256, mx = -256;
-	int mnpos, mxpos;
+	//int mnpos, mxpos;
 	int delta = 0; 
 	//int delta = barcodeThickness / 100;  //Should be dependant on the width of the barcode
 	int lookformax = YES;
@@ -2667,11 +2691,11 @@ static MyBarcodeScanner *sharedInstance = nil;
 		
 		if (current > mx) {
 			mx = current; 
-			mxpos = index;
+			//mxpos = index;
 		}
 		if (current < mn) {
 			mn = current; 
-			mnpos = index;
+			//mnpos = index;
 		}
 		
 		
@@ -2723,7 +2747,7 @@ static MyBarcodeScanner *sharedInstance = nil;
 				peakNumber++;
 				
 				mn = current;
-				mnpos = index;
+				//mnpos = index;
 				lookformax = NO;
 				count = -1;
 				zeroDerivativeCloseToZero = 0;
@@ -2773,7 +2797,7 @@ static MyBarcodeScanner *sharedInstance = nil;
 				peakNumber++;
 				
 				mx = current;
-				mxpos = index;
+				//mxpos = index;
 				lookformax = YES;
 				zeroDerivativeCloseToZero = 0;
 			}
@@ -2832,7 +2856,7 @@ static MyBarcodeScanner *sharedInstance = nil;
 	float averageBarWidth = barcodeThickness / 95.0;
 	int peakValleyInformation[70][2] = {0};  //First row peak index, second height
 	int mn = 256, mx = -256;
-	int mnpos, mxpos;
+	//int mnpos, mxpos;
 	int delta = 0; 
 	//int delta = barcodeThickness / 100;  //Should be dependant on the width of the barcode
 	int lookformax = YES;
@@ -2842,7 +2866,7 @@ static MyBarcodeScanner *sharedInstance = nil;
 	int i, j;
 	NSBezierPath *aPath = [NSBezierPath bezierPath];
 	NSBezierPath *valleyPath = [NSBezierPath bezierPath];
-	NSBezierPath *blackPath = [NSBezierPath bezierPath];
+	NSBezierPath *blackPath; // = [NSBezierPath bezierPath];
 	
 	/*
 	 int newLine[640] = {0};
@@ -2865,11 +2889,11 @@ static MyBarcodeScanner *sharedInstance = nil;
 		
 		if (current > mx) {
 			mx = current; 
-			mxpos = index;
+			//mxpos = index;
 		}
 		if (current < mn) {
 			mn = current; 
-			mnpos = index;
+			//mnpos = index;
 		}
 		
 		
@@ -2921,7 +2945,7 @@ static MyBarcodeScanner *sharedInstance = nil;
 				peakNumber++;
 				
 				mn = current;
-				mnpos = index;
+				//mnpos = index;
 				lookformax = NO;
 				count = -1;
 				zeroDerivativeCloseToZero = 0;
@@ -2971,7 +2995,7 @@ static MyBarcodeScanner *sharedInstance = nil;
 				peakNumber++;
 				
 				mx = current;
-				mxpos = index;
+				//mxpos = index;
 				lookformax = YES;
 				zeroDerivativeCloseToZero = 0;
 			}
@@ -3132,8 +3156,8 @@ static MyBarcodeScanner *sharedInstance = nil;
 		int lastPeak = peakValleyInformation[peakNumber - 1][0], firstPeak = peakValleyInformation[0][0];
 		BOOL inBlack = YES;
 		int count = 0, largestCount = 0, smallestCount = 255;
-		k =0;
-		for (k=0, i = firstPeak; i < lastPeak; i++) {
+		
+		for (k = 0, i = firstPeak; i < lastPeak; i++) {
 			int nextColor = blackAndWhite[i];
 			if ((inBlack && nextColor == WHITE_PIXEL) || (!inBlack && nextColor == BLACK_PIXEL)) {
 				thickness[k] = count;

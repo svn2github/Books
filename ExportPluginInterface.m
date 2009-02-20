@@ -31,6 +31,11 @@
 
 @implementation ExportPluginInterface
 
+- (void) dealloc
+{
+	[super dealloc];
+}
+
 - (void) exportToBundle: (NSBundle *) bundle
 {
 	NSNotificationCenter * noteCenter = [NSNotificationCenter defaultCenter];
@@ -122,15 +127,21 @@
 						{
 							if ([key isEqualToString:@"coverImage"])
 							{
+								NSAutoreleasePool *innerPool = [[NSAutoreleasePool alloc] init];
+								
 								NSBitmapImageRep * rep = [NSBitmapImageRep imageRepWithData:(NSData *) value];
 	
 								NSData * pngData = [rep representationUsingType:NSPNGFileType properties:nil];
 
-								NSString * imagePath = [NSString stringWithFormat:@"%@/cover-%d-%d.png", path, i, j, nil];
+								NSString * imagePath = [[NSString alloc] initWithFormat:@"%@/cover-%d-%d.png", path, i, j, nil];
 
 								[manager createFileAtPath:imagePath contents:(NSData *) pngData attributes:nil];
-							
+
+								[innerPool release];
+								
 								[field setStringValue:[imagePath lastPathComponent]];
+								
+								[imagePath release];
 							}
 						}
 					}

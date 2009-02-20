@@ -26,6 +26,29 @@
 	return [super init];
 }
 
+- (void) dealloc
+{
+	if (genres != nil)
+		[genres release];
+
+	if (authors != nil)
+		[authors release];
+
+	if (editors != nil)
+		[editors release];
+
+	if (illustrators != nil)
+		[illustrators release];
+	
+	if (translators != nil)
+		[translators release];
+	
+	if (keywords != nil)
+		[keywords release];
+
+	[super dealloc];
+}
+
 - (void) setup
 {
 	NSCharacterSet * set = [NSCharacterSet characterSetWithCharactersInString:@";"];

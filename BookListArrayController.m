@@ -24,7 +24,7 @@
 
 
 #import "BookListArrayController.h"
-#import "SmartListManagedObject.h""
+#import "SmartListManagedObject.h"
 #import "BookManagedObject.h"
 
 @implementation BookListArrayController
@@ -98,6 +98,14 @@
 - (NSDragOperation)tableView:(NSTableView *)tableView validateDrop:(id <NSDraggingInfo>)info proposedRow:(int)row proposedDropOperation:(NSTableViewDropOperation)operation
 {
 	return NSDragOperationMove;
+}
+
+- (void) dealloc
+{
+	if (selectedRows != nil)
+		[selectedRows release];
+	
+	[super dealloc];
 }
 
 @end

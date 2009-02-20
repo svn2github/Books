@@ -19,6 +19,23 @@
 		</dict>
 		<dict>
 			<key>CLASS</key>
+			<string>SmartListRuleView</string>
+			<key>LANGUAGE</key>
+			<string>ObjC</string>
+			<key>OUTLETS</key>
+			<dict>
+				<key>field</key>
+				<string>NSPopUpButton</string>
+				<key>operation</key>
+				<string>NSPopUpButton</string>
+				<key>value</key>
+				<string>NSTextField</string>
+			</dict>
+			<key>SUPERCLASS</key>
+			<string>NSView</string>
+		</dict>
+		<dict>
+			<key>CLASS</key>
 			<string>BooksTokenViewDelegate</string>
 			<key>LANGUAGE</key>
 			<string>ObjC</string>
@@ -41,23 +58,6 @@
 			</dict>
 			<key>SUPERCLASS</key>
 			<string>NSObject</string>
-		</dict>
-		<dict>
-			<key>CLASS</key>
-			<string>SmartListRuleView</string>
-			<key>LANGUAGE</key>
-			<string>ObjC</string>
-			<key>OUTLETS</key>
-			<dict>
-				<key>field</key>
-				<string>NSPopUpButton</string>
-				<key>operation</key>
-				<string>NSPopUpButton</string>
-				<key>value</key>
-				<string>NSTextField</string>
-			</dict>
-			<key>SUPERCLASS</key>
-			<string>NSView</string>
 		</dict>
 		<dict>
 			<key>ACTIONS</key>
@@ -132,6 +132,8 @@
 			<key>OUTLETS</key>
 			<dict>
 				<key>bookArrayController</key>
+				<string>NSArrayController</string>
+				<key>cameras</key>
 				<string>NSArrayController</string>
 				<key>collectionArrayController</key>
 				<string>NSArrayController</string>
@@ -305,24 +307,22 @@
 		</dict>
 		<dict>
 			<key>CLASS</key>
-			<string>MainWindowTableView</string>
+			<string>NSObject</string>
+			<key>LANGUAGE</key>
+			<string>ObjC</string>
+		</dict>
+		<dict>
+			<key>CLASS</key>
+			<string>ViewControls</string>
 			<key>LANGUAGE</key>
 			<string>ObjC</string>
 			<key>OUTLETS</key>
 			<dict>
-				<key>bookList</key>
-				<string>NSArrayController</string>
-				<key>listList</key>
-				<string>NSArrayController</string>
+				<key>view</key>
+				<string>NSView</string>
 			</dict>
 			<key>SUPERCLASS</key>
-			<string>NSTableView</string>
-		</dict>
-		<dict>
-			<key>CLASS</key>
 			<string>NSObject</string>
-			<key>LANGUAGE</key>
-			<string>ObjC</string>
 		</dict>
 		<dict>
 			<key>ACTIONS</key>
@@ -339,16 +339,18 @@
 		</dict>
 		<dict>
 			<key>CLASS</key>
-			<string>ViewControls</string>
+			<string>MainWindowTableView</string>
 			<key>LANGUAGE</key>
 			<string>ObjC</string>
 			<key>OUTLETS</key>
 			<dict>
-				<key>view</key>
-				<string>NSView</string>
+				<key>bookList</key>
+				<string>NSArrayController</string>
+				<key>listList</key>
+				<string>NSArrayController</string>
 			</dict>
 			<key>SUPERCLASS</key>
-			<string>NSObject</string>
+			<string>NSTableView</string>
 		</dict>
 		<dict>
 			<key>CLASS</key>

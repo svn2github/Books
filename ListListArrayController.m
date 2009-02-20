@@ -24,7 +24,7 @@
 
 
 #import "ListListArrayController.h"
-#import "SmartListManagedObject.h""
+#import "SmartListManagedObject.h"
 #import "BooksAppDelegate.h"
 
 @implementation ListListArrayController

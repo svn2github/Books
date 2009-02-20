@@ -12,6 +12,11 @@
 
 @implementation BooksTableViewDelegate
 
+- (void) dealloc
+{
+	[super dealloc];
+}
+
 - (void) tableViewSelectionDidChange: (NSNotification *) notification
 {
 	NSTableView * table = [notification object];

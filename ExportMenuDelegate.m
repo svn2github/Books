@@ -116,4 +116,16 @@
 	[export release];
 }
 
+- (void) dealloc
+{
+	if (plugins != nil)
+		[plugins release];
+	
+	if (pluginKeys != nil)
+		[pluginKeys release];
+	
+	[super dealloc];
+}
+
+
 @end

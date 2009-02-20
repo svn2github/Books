@@ -1514,7 +1514,7 @@
 				38328ED608859AFD00091C9B /* Default */,
 			);
 			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Debug;
+			defaultConfigurationName = Release;
 		};
 		38328ED708859AFD00091C9B /* Build configuration list for PBXProject "Books" */ = {
 			isa = XCConfigurationList;
@@ -1524,7 +1524,7 @@
 				38328EDA08859AFD00091C9B /* Default */,
 			);
 			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Debug;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

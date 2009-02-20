@@ -22,12 +22,16 @@
    SOFTWARE.
 */
 
-
 #import "PluginManager.h"
 #import "BooksAppDelegate.h"
 #import "BooksDataFolder.h"
 
 @implementation PluginManager
+
+- (void) dealloc
+{
+	[super dealloc];
+}
 
 - (NSArray *) getManagedPlugins
 {
@@ -141,7 +145,7 @@
 
 	NSString * path;
  
-	NSMutableDictionary * plugins = [[NSMutableDictionary alloc] init];
+	NSMutableDictionary * plugins = [NSMutableDictionary dictionary];
  
 	while (path = [pathEnum nextObject])
 	{
