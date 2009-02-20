@@ -74,9 +74,7 @@
 	if (image == nil)
 		image = [NSData data];
 	
-	[image retain];
-	
-	return image;
+	return [image autorelease];
 }
 
 - (void) setImage:(NSData *) data
@@ -103,8 +101,5 @@
 
 	[self didChangeValueForKey:@"borrower"];
 }
-
-
-
 
 @end
