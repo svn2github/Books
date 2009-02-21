@@ -66,15 +66,15 @@
 			if (firstName != nil && lastName != nil)
 			{
 				if ([borrower isEqual:name])
-					image = [person imageData];
+					image = [[person imageData] retain];
 			}
 		}
 	}
 	
 	if (image == nil)
-		image = [NSData data];
+		image = [[NSData data] retain];
 	
-	return [image autorelease];
+	return image;
 }
 
 - (void) setImage:(NSData *) data
