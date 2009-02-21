@@ -659,12 +659,21 @@
 {
 	NSObject * value = nil;
 
-	NS_DURING
+	/* NS_DURING
 		value = [super valueForKey:key];
 	NS_HANDLER
 		value = [self customValueForKey:key];
-	NS_ENDHANDLER
+	NS_ENDHANDLER */
 
+	@try
+	{
+		value = [super valueForKey:key];
+	}
+	@catch (NSException * ex)
+	{
+		value = [self customValueForKey:key];
+	}
+	
 	return value;
 }
 
@@ -990,11 +999,20 @@
 	
 	NSObject * value = nil;
 
-	NS_DURING
+	/* NS_DURING
 		value = [bookObject valueForKey:key];
 	NS_HANDLER
 		value = @"";
-	NS_ENDHANDLER
+	NS_ENDHANDLER */
+
+	@try
+	{
+		value = [bookObject valueForKey:key];
+	}
+	@catch (NSException * ex)
+	{
+		value = @"";
+	}
 
 	if ([[key lowercaseString] isEqual:@"isbn"])
 		key = @"isbn";
@@ -1066,10 +1084,14 @@
 	
 	[context lock];
 
-	NS_DURING
+	@try
+	{
 		[bookObject setValue:value forKey:key];
-	NS_HANDLER
-		NS_DURING
+	}
+	@catch (NSException * ex)
+	{
+		@try
+		{
 			BooksAppDelegate * delegate = [[NSApplication sharedApplication] delegate];
 			
 			NSMutableSet * userFields = [bookObject mutableSetValueForKey:@"userFields"];
@@ -1101,11 +1123,12 @@
 				
 				[fieldObject release];
 			}
-			
-		NS_HANDLER
-			NSLog (@"%@", [localException reason]);
-		NS_ENDHANDLER
-	NS_ENDHANDLER
+		}
+		@catch (NSException * ex)
+		{
+			NSLog (@"%@", [ex reason]);
+		}
+	}
 
 	[context unlock];
 
