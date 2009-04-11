@@ -116,6 +116,8 @@
 		38A54BEA09003CA2005018C3 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 38A54BE909003CA2005018C3 /* QuartzCore.framework */; };
 		38A904910C6A237F0025266C /* controls.png in Resources */ = {isa = PBXBuildFile; fileRef = 38A904900C6A237F0025266C /* controls.png */; };
 		38AC633C0BEA7CF3004F8DB4 /* dupe.png in Resources */ = {isa = PBXBuildFile; fileRef = 38AC633B0BEA7CF3004F8DB4 /* dupe.png */; };
+		38AD2ABC0F8D423B0053475B /* NDHotKeyEvent.m in Sources */ = {isa = PBXBuildFile; fileRef = 38AD2ABA0F8D423B0053475B /* NDHotKeyEvent.m */; };
+		38AD2ACA0F8D42880053475B /* InfoWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = 38AD2AC90F8D42880053475B /* InfoWindowController.m */; };
 		38B16DAB0BA1FECE00216A44 /* CoverWindowDelegate.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 38B16DA90BA1FECE00216A44 /* CoverWindowDelegate.h */; };
 		38B16DAC0BA1FECE00216A44 /* CoverWindowDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 38B16DAA0BA1FECE00216A44 /* CoverWindowDelegate.m */; };
 		38B62EB20987D2D200A4A8AD /* Delicious Library Importer.app in Resources */ = {isa = PBXBuildFile; fileRef = 38B62EB10987D2D200A4A8AD /* Delicious Library Importer.app */; };
@@ -428,6 +430,10 @@
 		38A54BE909003CA2005018C3 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = /System/Library/Frameworks/QuartzCore.framework; sourceTree = "<absolute>"; };
 		38A904900C6A237F0025266C /* controls.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = controls.png; sourceTree = "<group>"; };
 		38AC633B0BEA7CF3004F8DB4 /* dupe.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = dupe.png; sourceTree = "<group>"; };
+		38AD2ABA0F8D423B0053475B /* NDHotKeyEvent.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NDHotKeyEvent.m; sourceTree = "<group>"; };
+		38AD2ABB0F8D423B0053475B /* NDHotKeyEvent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NDHotKeyEvent.h; sourceTree = "<group>"; };
+		38AD2AC80F8D42880053475B /* InfoWindowController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InfoWindowController.h; sourceTree = "<group>"; };
+		38AD2AC90F8D42880053475B /* InfoWindowController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InfoWindowController.m; sourceTree = "<group>"; };
 		38B16DA90BA1FECE00216A44 /* CoverWindowDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CoverWindowDelegate.h; sourceTree = "<group>"; };
 		38B16DAA0BA1FECE00216A44 /* CoverWindowDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CoverWindowDelegate.m; sourceTree = "<group>"; };
 		38B62EB10987D2D200A4A8AD /* Delicious Library Importer.app */ = {isa = PBXFileReference; lastKnownFileType = wrapper.application; path = "Delicious Library Importer.app"; sourceTree = "<group>"; };
@@ -646,6 +652,7 @@
 		3822F3BC0C34990D00475D9F /* Third Party Integration */ = {
 			isa = PBXGroup;
 			children = (
+				38AD2AB20F8D422E0053475B /* NDHotKeyEvent */,
 				3822F3C40C34994A00475D9F /* Notifications */,
 				381930350B43466900646B67 /* Camera Scanner */,
 			);
@@ -744,6 +751,8 @@
 			isa = PBXGroup;
 			children = (
 				383E55F40C3DE477000F06BF /* Controls */,
+				38AD2AC80F8D42880053475B /* InfoWindowController.h */,
+				38AD2AC90F8D42880053475B /* InfoWindowController.m */,
 			);
 			name = "Info Window";
 			sourceTree = "<group>";
@@ -890,6 +899,15 @@
 				38EDC5C808EA23A300414B3D /* DefaultDisplay.plugin */,
 			);
 			name = "Display Plugins";
+			sourceTree = "<group>";
+		};
+		38AD2AB20F8D422E0053475B /* NDHotKeyEvent */ = {
+			isa = PBXGroup;
+			children = (
+				38AD2ABA0F8D423B0053475B /* NDHotKeyEvent.m */,
+				38AD2ABB0F8D423B0053475B /* NDHotKeyEvent.h */,
+			);
+			name = NDHotKeyEvent;
 			sourceTree = "<group>";
 		};
 		38BB8E840E95DE7700920309 /* Misc */ = {
@@ -1227,6 +1245,8 @@
 				38143FF20E12E950005A52E8 /* SampleCIView.m in Sources */,
 				38DD78D00E48AD7800F38043 /* MainWindow.m in Sources */,
 				38BB8E870E95DE9B00920309 /* NoDPIImageView.m in Sources */,
+				38AD2ABC0F8D423B0053475B /* NDHotKeyEvent.m in Sources */,
+				38AD2ACA0F8D42880053475B /* InfoWindowController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

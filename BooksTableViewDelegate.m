@@ -81,19 +81,9 @@
 			}
 		}
 		
-		NSSortDescriptor * sorter = nil;
-		if ([((BooksAppDelegate *) [NSApp delegate]) leopardOrBetter])
-		{
-			sorter = [[NSSortDescriptor alloc] initWithKey:@"name" ascending:YES selector:@selector(localizedCaseInsensitiveCompare:)];
-			[collectionArrayController setSortDescriptors:[NSArray arrayWithObject:sorter]];
-			[sorter release];
-		}
-		else
-		{
-			sorter = [[NSSortDescriptor alloc] initWithKey:@"name" ascending:YES selector:@selector(caseInsensitiveCompare:)];
-			[collectionArrayController setSortDescriptors:[NSArray arrayWithObject:sorter]];
-			[sorter release];
-		}
+		NSSortDescriptor * sorter = [[NSSortDescriptor alloc] initWithKey:@"name" ascending:YES selector:@selector(compare:)];
+		[collectionArrayController setSortDescriptors:[NSArray arrayWithObject:sorter]];
+		[sorter release];
 			
 		NSArray * selectedObjects = [collectionArrayController selectedObjects];
 
@@ -315,12 +305,12 @@
 		
 		NSString * key = (NSString *) [dict objectForKey:@"key"];
 
-		if ([key rangeOfString:@"date" options:NSCaseInsensitiveSearch].location != NSNotFound)
+		// if ([key rangeOfString:@"date" options:NSCaseInsensitiveSearch].location != NSNotFound)
 			descriptor = [[NSSortDescriptor alloc] initWithKey:key ascending:[[dict objectForKey:@"ascending"] isEqual:@"yes"] selector:@selector(compare:)];
-		else if ([((BooksAppDelegate *) [NSApp delegate]) leopardOrBetter])
-			descriptor = [[NSSortDescriptor alloc] initWithKey:key ascending:[[dict objectForKey:@"ascending"] isEqual:@"yes"] selector:@selector(localizedCaseInsensitiveCompare:)];
-		else
-			descriptor = [[NSSortDescriptor alloc] initWithKey:key ascending:[[dict objectForKey:@"ascending"] isEqual:@"yes"] selector:@selector(caseInsensitiveCompare:)];
+		// else if ([((BooksAppDelegate *) [NSApp delegate]) leopardOrBetter])
+		// 	descriptor = [[NSSortDescriptor alloc] initWithKey:key ascending:[[dict objectForKey:@"ascending"] isEqual:@"yes"] selector:@selector(localizedCaseInsensitiveCompare:)];
+		// else
+		//	descriptor = [[NSSortDescriptor alloc] initWithKey:key ascending:[[dict objectForKey:@"ascending"] isEqual:@"yes"] selector:@selector(caseInsensitiveCompare:)];
 
 		[sortDescriptors addObject:descriptor];
 		
@@ -367,11 +357,13 @@
 		
 		NSSortDescriptor * sort = nil;
 
-		if ([((BooksAppDelegate *) [NSApp delegate]) leopardOrBetter])
-			sort = [[NSSortDescriptor alloc] initWithKey:@"name" ascending:YES selector:@selector(localizedCaseInsensitiveCompare:)];
-		else
-			sort = [[NSSortDescriptor alloc] initWithKey:@"name" ascending:YES selector:@selector(caseInsensitiveCompare:)];
+		// if ([((BooksAppDelegate *) [NSApp delegate]) leopardOrBetter])
+		// 	sort = [[NSSortDescriptor alloc] initWithKey:@"name" ascending:YES selector:@selector(localizedCaseInsensitiveCompare:)];
+		// else
+		// 	sort = [[NSSortDescriptor alloc] initWithKey:@"name" ascending:YES selector:@selector(caseInsensitiveCompare:)];
 
+		sort = [[NSSortDescriptor alloc] initWithKey:@"name" ascending:YES selector:@selector(compare:)];
+		
 		[collectionArrayController setSortDescriptors:[NSArray arrayWithObject:sort]];
 		[sort release];
 	}

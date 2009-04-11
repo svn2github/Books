@@ -22,7 +22,6 @@
    SOFTWARE.
 */
 
-
 #import "BookTitleString.h"
 #import "BooksAppDelegate.h"
 
@@ -82,28 +81,16 @@
 	return sortString;
 }
 
-- (NSComparisonResult) localizedCaseInsensitiveCompare: (NSString *) string
-{
-	if ([string isKindOfClass:[BookTitleString class]])
-		return [[self getSortString] localizedCaseInsensitiveCompare:[((BookTitleString *) string) getSortString]];
-	else
-		return [[self getSortString] localizedCaseInsensitiveCompare:string];
-}
-
 - (NSComparisonResult) compare: (NSString *) string
 {
-	if ([((BooksAppDelegate *) [NSApp delegate]) leopardOrBetter])
-		return [self localizedCaseInsensitiveCompare:string];
-	else
-		return [self caseInsensitiveCompare:string];
-}
-
-- (NSComparisonResult) caseInsensitiveCompare: (BookTitleString *) string
-{
 	if ([string isKindOfClass:[BookTitleString class]])
-		return [[self getSortString] caseInsensitiveCompare:[((BookTitleString *) string) getSortString]];
+		string = [((BookTitleString *) string) getSortString];
+	
+	if ([((BooksAppDelegate *) [NSApp delegate]) leopardOrBetter])
+		return [[self getSortString] compare:string options:NSNumericSearch|NSCaseInsensitiveSearch 
+									   range:NSMakeRange(0, [self length]) locale:[NSLocale currentLocale]];
 	else
-		return [[self getSortString] caseInsensitiveCompare:string];
+		return [[self getSortString] compare:string options:NSNumericSearch|NSCaseInsensitiveSearch];
 }
 
 - (void) dealloc

@@ -450,14 +450,6 @@
 			<string>NSObject</string>
 		</dict>
 		<dict>
-			<key>CLASS</key>
-			<string>NoDPIImageView</string>
-			<key>LANGUAGE</key>
-			<string>ObjC</string>
-			<key>SUPERCLASS</key>
-			<string>NSImageView</string>
-		</dict>
-		<dict>
 			<key>ACTIONS</key>
 			<dict>
 				<key>checkForUpdates</key>
@@ -469,6 +461,14 @@
 			<string>ObjC</string>
 			<key>SUPERCLASS</key>
 			<string>NSObject</string>
+		</dict>
+		<dict>
+			<key>CLASS</key>
+			<string>NoDPIImageView</string>
+			<key>LANGUAGE</key>
+			<string>ObjC</string>
+			<key>SUPERCLASS</key>
+			<string>NSImageView</string>
 		</dict>
 		<dict>
 			<key>ACTIONS</key>
@@ -492,6 +492,21 @@
 				<string>NSTableView</string>
 				<key>pluginManagerWindow</key>
 				<string>NSWindow</string>
+			</dict>
+			<key>SUPERCLASS</key>
+			<string>NSObject</string>
+		</dict>
+		<dict>
+			<key>CLASS</key>
+			<string>InfoWindowController</string>
+			<key>LANGUAGE</key>
+			<string>ObjC</string>
+			<key>OUTLETS</key>
+			<dict>
+				<key>quickfillName</key>
+				<string>NSView</string>
+				<key>tabView</key>
+				<string>NSTabView</string>
 			</dict>
 			<key>SUPERCLASS</key>
 			<string>NSObject</string>

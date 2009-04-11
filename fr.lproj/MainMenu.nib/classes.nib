@@ -19,23 +19,6 @@
 		</dict>
 		<dict>
 			<key>CLASS</key>
-			<string>SmartListRuleView</string>
-			<key>LANGUAGE</key>
-			<string>ObjC</string>
-			<key>OUTLETS</key>
-			<dict>
-				<key>field</key>
-				<string>NSPopUpButton</string>
-				<key>operation</key>
-				<string>NSPopUpButton</string>
-				<key>value</key>
-				<string>NSTextField</string>
-			</dict>
-			<key>SUPERCLASS</key>
-			<string>NSView</string>
-		</dict>
-		<dict>
-			<key>CLASS</key>
 			<string>BooksTokenViewDelegate</string>
 			<key>LANGUAGE</key>
 			<string>ObjC</string>
@@ -58,6 +41,23 @@
 			</dict>
 			<key>SUPERCLASS</key>
 			<string>NSObject</string>
+		</dict>
+		<dict>
+			<key>CLASS</key>
+			<string>SmartListRuleView</string>
+			<key>LANGUAGE</key>
+			<string>ObjC</string>
+			<key>OUTLETS</key>
+			<dict>
+				<key>field</key>
+				<string>NSPopUpButton</string>
+				<key>operation</key>
+				<string>NSPopUpButton</string>
+				<key>value</key>
+				<string>NSTextField</string>
+			</dict>
+			<key>SUPERCLASS</key>
+			<string>NSView</string>
 		</dict>
 		<dict>
 			<key>ACTIONS</key>
@@ -312,19 +312,6 @@
 			<string>ObjC</string>
 		</dict>
 		<dict>
-			<key>CLASS</key>
-			<string>ViewControls</string>
-			<key>LANGUAGE</key>
-			<string>ObjC</string>
-			<key>OUTLETS</key>
-			<dict>
-				<key>view</key>
-				<string>NSView</string>
-			</dict>
-			<key>SUPERCLASS</key>
-			<string>NSObject</string>
-		</dict>
-		<dict>
 			<key>ACTIONS</key>
 			<dict>
 				<key>importFromMenuItem</key>
@@ -334,6 +321,19 @@
 			<string>ImportMenuDelegate</string>
 			<key>LANGUAGE</key>
 			<string>ObjC</string>
+			<key>SUPERCLASS</key>
+			<string>NSObject</string>
+		</dict>
+		<dict>
+			<key>CLASS</key>
+			<string>ViewControls</string>
+			<key>LANGUAGE</key>
+			<string>ObjC</string>
+			<key>OUTLETS</key>
+			<dict>
+				<key>view</key>
+				<string>NSView</string>
+			</dict>
 			<key>SUPERCLASS</key>
 			<string>NSObject</string>
 		</dict>
@@ -492,6 +492,21 @@
 				<string>NSTableView</string>
 				<key>pluginManagerWindow</key>
 				<string>NSWindow</string>
+			</dict>
+			<key>SUPERCLASS</key>
+			<string>NSObject</string>
+		</dict>
+		<dict>
+			<key>CLASS</key>
+			<string>InfoWindowController</string>
+			<key>LANGUAGE</key>
+			<string>ObjC</string>
+			<key>OUTLETS</key>
+			<dict>
+				<key>quickfillName</key>
+				<string>NSView</string>
+				<key>tabView</key>
+				<string>NSTabView</string>
 			</dict>
 			<key>SUPERCLASS</key>
 			<string>NSObject</string>

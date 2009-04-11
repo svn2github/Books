@@ -795,10 +795,7 @@ typedef struct _monochromePixel
 
 		NSMutableArray * array = [NSMutableArray arrayWithArray:[[lists objectAtIndex:i] allObjects]];
 
-		if ([self leopardOrBetter])
-			[array sortUsingSelector:@selector(localizedCaseInsensitiveCompare:)];
-		else
-			[array sortUsingSelector:@selector(caseInsensitiveCompare:)];
+		[array sortUsingSelector:@selector(compare:)];
 			
 		[[listCombos objectAtIndex:i] addItemsWithObjectValues:array];
 	}

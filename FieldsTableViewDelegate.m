@@ -62,7 +62,7 @@
 	
 	NSArray * defaultFields = [[NSUserDefaults standardUserDefaults] arrayForKey:@"Display Fields"];
 
-	NSArray * fieldTitles = [NSArray arrayWithObjects:NSLocalizedString (@"Title", nil), 
+	NSArray * fieldTitles = [NSArray arrayWithObjects:NSLocalizedString (@"Title", nil), NSLocalizedString (@"Summary", nil),
 							NSLocalizedString (@"Series", nil), NSLocalizedString (@"Genre", nil), 
 							NSLocalizedString (@"ISBN", nil), NSLocalizedString (@"Author(s)", nil), 
 							NSLocalizedString (@"Date Published", nil),	NSLocalizedString (@"Keywords", nil), 
@@ -83,7 +83,7 @@
 
 	if (listFields == nil || [listFields count] != [fieldTitles count])
 	{
-		NSArray * fieldKeys = [NSArray arrayWithObjects:@"title", @"series", @"genre", @"isbn", @"authors", @"publishDate", 
+		NSArray * fieldKeys = [NSArray arrayWithObjects:@"title", @"summary", @"series", @"genre", @"isbn", @"authors", @"publishDate", 
 			@"keywords", @"publisher", @"translators", @"illustrators", @"editors", @"publishPlace", 
 			@"length", @"edition", @"format", @"location", @"rating", @"condition", @"source", @"owner", @"currentValue", 
 			@"rating", @"borrower", @"dateLent", @"dateDue", @"dateAcquired", @"dateFinished", @"dateStarted", nil];
@@ -116,7 +116,7 @@
 	
 	NSArray * defaultFields = [[NSUserDefaults standardUserDefaults] arrayForKey:@"Display Fields"];
 
-	NSArray * fieldTitles = [NSArray arrayWithObjects:NSLocalizedString (@"Title", nil), 
+	NSArray * fieldTitles = [NSArray arrayWithObjects:NSLocalizedString (@"Title", nil), NSLocalizedString (@"Summary", nil),
 							NSLocalizedString (@"Series", nil), NSLocalizedString (@"Genre", nil), 
 							NSLocalizedString (@"ISBN", nil), NSLocalizedString (@"Author(s)", nil), 
 							NSLocalizedString (@"Date Published", nil),	NSLocalizedString (@"Keywords", nil), 
@@ -137,7 +137,7 @@
 
 	if (bookFields == nil || [bookFields count] != [fieldTitles count])
 	{
-		NSArray * fieldKeys = [NSArray arrayWithObjects:@"title", @"series", @"genre", @"isbn", @"authors", @"publishDate", 
+		NSArray * fieldKeys = [NSArray arrayWithObjects:@"title", @"summary", @"series", @"genre", @"isbn", @"authors", @"publishDate", 
 			@"keywords", @"publisher", @"translators", @"illustrators", @"editors", @"publishPlace", 
 			@"length", @"edition", @"format", @"location", @"rating", @"condition", @"source", @"owner", @"currentValue", 
 			@"rating", @"borrower", @"dateLent", @"dateDue", @"dateAcquired", @"dateFinished", @"dateStarted", nil];
