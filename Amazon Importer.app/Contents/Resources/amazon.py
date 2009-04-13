@@ -80,8 +80,8 @@ try:
 except ImportError:
     pass
 
-LICENSE_KEY = "1M21AJ49MF6Y0DJ4D1G2"
-ASSOCIATE = "aetherialnu0a-20"
+LICENSE_KEY = None
+ASSOCIATE = "webservices-20"
 HTTP_PROXY = None
 LOCALE = "us"
 
@@ -105,9 +105,7 @@ _supportedLocales = {
         "us" : (None, "xml.amazon.com"),   
         "uk" : ("uk", "xml-eu.amazon.com"),
         "de" : ("de", "xml-eu.amazon.com"),
-        "jp" : ("jp", "xml.amazon.co.jp"),
-        "ca" : ("ca", "xml.amazon.ca"),
-        "fr" : ("fr", "xml.amazon.fr")
+        "jp" : ("jp", "xml.amazon.co.jp")
     }
 
 ## administrative functions
@@ -216,13 +214,11 @@ def unmarshal(element):
         if element.tagName == 'SalesRank':
             rc = rc.replace('.', '')
             rc = rc.replace(',', '')
-            rc = rc.replace(' ', '')
             rc = int(rc)
     return rc
 
-def buildURL(search_type, keyword, product_line, type, page, license_key, locale, associate, mode):
+def buildURL(search_type, keyword, product_line, type, page, license_key, locale, associate):
     _checkLocaleSupported(locale)
-	
     url = "http://" + _supportedLocales[locale][1] + "/onca/xml3?f=xml"
     url += "&t=%s" % associate
     url += "&dev-t=%s" % license_key.strip()
@@ -232,7 +228,7 @@ def buildURL(search_type, keyword, product_line, type, page, license_key, locale
     if page:
         url += "&page=%s" % page
     if product_line:
-        url += "&mode=%s" % mode
+        url += "&mode=%s" % product_line
     url += "&%s=%s" % (search_type, urllib.quote(keyword))
     return url
 
@@ -241,7 +237,7 @@ def buildURL(search_type, keyword, product_line, type, page, license_key, locale
 
 
 def search(search_type, keyword, product_line, type = "heavy", page = None,
-           license_key=None, http_proxy = None, locale = None, associate = None, mode = None):
+           license_key=None, http_proxy = None, locale = None, associate = None):
     """search Amazon
 
     You need a license key to call this function; see
@@ -290,7 +286,7 @@ def search(search_type, keyword, product_line, type = "heavy", page = None,
     locale = getLocale(locale)
     associate = getAssociate(associate)
     url = buildURL(search_type, keyword, product_line, type, page, 
-            license_key, locale, associate, mode)
+            license_key, locale, associate)
     proxies = getProxies(http_proxy)
     u = urllib.FancyURLopener(proxies)
     usock = u.open(url)
@@ -315,54 +311,54 @@ def search(search_type, keyword, product_line, type = "heavy", page = None,
         else:            
             return data.Details
 
-def searchByKeyword(keyword, product_line="books", type="heavy", page=1, license_key=None, http_proxy=None, locale=None, associate=None, mode="books"):
-    return search("KeywordSearch", keyword, product_line, type, page, license_key, http_proxy, locale, associate, mode)
+def searchByKeyword(keyword, product_line="books", type="heavy", page=1, license_key=None, http_proxy=None, locale=None, associate=None):
+    return search("KeywordSearch", keyword, product_line, type, page, license_key, http_proxy, locale, associate)
 
-def browseBestSellers(browse_node, product_line="books", type="heavy", page=1, license_key=None, http_proxy=None, locale=None, associate=None, mode="books"):
-    return search("BrowseNodeSearch", browse_node, product_line, type, page, license_key, http_proxy, locale, associate, mode)
+def browseBestSellers(browse_node, product_line="books", type="heavy", page=1, license_key=None, http_proxy=None, locale=None, associate=None):
+    return search("BrowseNodeSearch", browse_node, product_line, type, page, license_key, http_proxy, locale, associate)
 
-def searchByASIN(ASIN, type="heavy", license_key=None, http_proxy=None, locale=None, associate=None, mode="books"):
-    return search("AsinSearch", ASIN, None, type, None, license_key, http_proxy, locale, associate, mode)
+def searchByASIN(ASIN, type="heavy", license_key=None, http_proxy=None, locale=None, associate=None):
+    return search("AsinSearch", ASIN, None, type, None, license_key, http_proxy, locale, associate)
 
-def searchByUPC(UPC, type="heavy", license_key=None, http_proxy=None, locale=None, associate=None, mode="books"):
-    return search("UpcSearch", UPC, None, type, None, license_key, http_proxy, locale, associate, mode)
+def searchByUPC(UPC, type="heavy", license_key=None, http_proxy=None, locale=None, associate=None):
+    return search("UpcSearch", UPC, None, type, None, license_key, http_proxy, locale, associate)
 
-def searchByAuthor(author, type="heavy", page=1, license_key=None, http_proxy=None, locale=None, associate=None, mode="books"):
-    return search("AuthorSearch", author, "books", type, page, license_key, http_proxy, locale, associate, mode)
+def searchByAuthor(author, type="heavy", page=1, license_key=None, http_proxy=None, locale=None, associate=None):
+    return search("AuthorSearch", author, "books", type, page, license_key, http_proxy, locale, associate)
 
-def searchByArtist(artist, product_line="music", type="heavy", page=1, license_key=None, http_proxy=None, locale=None, associate=None, mode="books"):
+def searchByArtist(artist, product_line="music", type="heavy", page=1, license_key=None, http_proxy=None, locale=None, associate=None):
     if product_line not in ("music", "classical"):
         raise AmazonError, "product_line must be in ('music', 'classical')"
-    return search("ArtistSearch", artist, product_line, type, page, license_key, http_proxy, locale, associate, mode)
+    return search("ArtistSearch", artist, product_line, type, page, license_key, http_proxy, locale, associate)
 
-def searchByActor(actor, product_line="dvd", type="heavy", page=1, license_key=None, http_proxy=None, locale=None, associate=None, mode="books"):
+def searchByActor(actor, product_line="dvd", type="heavy", page=1, license_key=None, http_proxy=None, locale=None, associate=None):
     if product_line not in ("dvd", "vhs", "video"):
         raise AmazonError, "product_line must be in ('dvd', 'vhs', 'video')"
-    return search("ActorSearch", actor, product_line, type, page, license_key, http_proxy, locale, associate, mode)
+    return search("ActorSearch", actor, product_line, type, page, license_key, http_proxy, locale, associate)
 
-def searchByDirector(director, product_line="dvd", type="heavy", page=1, license_key=None, http_proxy=None, locale=None, associate=None, mode="books"):
+def searchByDirector(director, product_line="dvd", type="heavy", page=1, license_key=None, http_proxy=None, locale=None, associate=None):
     if product_line not in ("dvd", "vhs", "video"):
         raise AmazonError, "product_line must be in ('dvd', 'vhs', 'video')"
-    return search("DirectorSearch", director, product_line, type, page, license_key, http_proxy, locale, associate, mode)
+    return search("DirectorSearch", director, product_line, type, page, license_key, http_proxy, locale, associate)
 
-def searchByManufacturer(manufacturer, product_line="pc-hardware", type="heavy", page=1, license_key=None, http_proxy=None, locale=None, associate=None, mode="books"):
+def searchByManufacturer(manufacturer, product_line="pc-hardware", type="heavy", page=1, license_key=None, http_proxy=None, locale=None, associate=None):
     if product_line not in ("electronics", "kitchen", "videogames", "software", "photo", "pc-hardware"):
         raise AmazonError, "product_line must be in ('electronics', 'kitchen', 'videogames', 'software', 'photo', 'pc-hardware')"
-    return search("ManufacturerSearch", manufacturer, product_line, type, page, license_key, http_proxy, locale, associate, mode)
+    return search("ManufacturerSearch", manufacturer, product_line, type, page, license_key, http_proxy, locale, associate)
 
-def searchByListMania(listManiaID, type="heavy", page=1, license_key=None, http_proxy=None, locale=None, associate=None, mode="books"):
-    return search("ListManiaSearch", listManiaID, None, type, page, license_key, http_proxy, locale, associate, mode)
+def searchByListMania(listManiaID, type="heavy", page=1, license_key=None, http_proxy=None, locale=None, associate=None):
+    return search("ListManiaSearch", listManiaID, None, type, page, license_key, http_proxy, locale, associate)
 
-def searchSimilar(ASIN, type="heavy", page=1, license_key=None, http_proxy=None, locale=None, associate=None, mode="books"):
-    return search("SimilaritySearch", ASIN, None, type, page, license_key, http_proxy, locale, associate, mode)
+def searchSimilar(ASIN, type="heavy", page=1, license_key=None, http_proxy=None, locale=None, associate=None):
+    return search("SimilaritySearch", ASIN, None, type, page, license_key, http_proxy, locale, associate)
 
-def searchByWishlist(wishlistID, type="heavy", page=1, license_key=None, http_proxy=None, locale=None, associate=None, mode="books"):
-    return search("WishlistSearch", wishlistID, None, type, page, license_key, http_proxy, locale, associate,mode)
+def searchByWishlist(wishlistID, type="heavy", page=1, license_key=None, http_proxy=None, locale=None, associate=None):
+    return search("WishlistSearch", wishlistID, None, type, page, license_key, http_proxy, locale, associate)
 
-def searchByPower(keyword, product_line="books", type="heavy", page=1, license_key=None, http_proxy=None, locale=None, associate=None, mode="books"):
-    return search("PowerSearch", keyword, product_line, type, page, license_key, http_proxy, locale, associate, mode)
+def searchByPower(keyword, product_line="books", type="heavy", page=1, license_key=None, http_proxy=None, locale=None, associate=None):
+    return search("PowerSearch", keyword, product_line, type, page, license_key, http_proxy, locale, associate)
     # >>> RecentKing = amazon.searchByPower('author:Stephen King and pubdate:2003')
     # >>> SnowCrash = amazon.searchByPower('title:Snow Crash')
 
-def searchByBlended(keyword, type="heavy", page=1, license_key=None, http_proxy=None, locale=None, associate=None, mode="books"):
-    return search("BlendedSearch", keyword, None, type, page, license_key, http_proxy, locale, associate, mode)
+def searchByBlended(keyword, type="heavy", page=1, license_key=None, http_proxy=None, locale=None, associate=None):
+    return search("BlendedSearch", keyword, None, type, page, license_key, http_proxy, locale, associate)

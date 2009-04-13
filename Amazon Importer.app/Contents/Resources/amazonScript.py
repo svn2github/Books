@@ -1,9 +1,11 @@
 #!/usr/bin/python
 
-from amazon import Bag
 from xml.dom.minidom import Document
+from xml.parsers.expat import *
 
-import amazon
+from ecs import *
+import ecs
+
 import sys
 
 localeArgs = sys.argv[1]
@@ -11,36 +13,27 @@ fieldArgs = sys.argv[2]
 query = sys.argv[3]
 
 fieldMap = {
-	  "Asin" : "ASIN",
-      "Authors" : "Authors",
-      "ImageUrlLarge" : "CoverImageURL",
-      "ImageUrlMedium" : "ImageUrlMedium",
-      "ImageUrlSmall" : "ImageUrlSmall",
-      "Isbn" : "ISBN",
-      "ListPrice" : "originalValue",
+	  "ASIN" : "ISBN",
+      "Author" : "authors",
       "Manufacturer" : "publisher",
-      "Media" : "format",
-      "OurPrice" : "presentValue",
-      "UsedPrice" : "UsedPrice",
-      "ProductName" : "title",
-      "ReleaseDate" : "publishDate",
-      "URL" : "url",
-      "ProductDescription" : "summary",
-	  "Catalog" : "Catalog"
+      "Title" : "title",
+      "DetailPageURL" : "url",
 	}
 
 locales = localeArgs.split(",")
 fields = fieldArgs.split (",");
+
+ecs.setLicenseKey('1M21AJ49MF6Y0DJ4D1G2')
 
 doc = Document ()
 root = doc.createElement ("importedData")
 doc.appendChild (root)
 
 for searchLocale in locales:
-	searchMode = "books"
+	searchMode = "Books"
 	
 	if (searchLocale != "us"):
-		searchMode = "books-" + searchLocale
+		searchMode = "Books-" + searchLocale
 		
 	for searchField in fields:
 
@@ -52,41 +45,43 @@ for searchLocale in locales:
 			pythonBooks = None;
 	
 			if searchField == "authors":
-				pythonBooks = amazon.searchByAuthor (query, locale=searchLocale, mode=searchMode)
+				pythonBooks = ecs.ItemSearch('', Author=query, SearchIndex=searchMode)
 			elif searchField == "asin":
-				pythonBooks = amazon.searchByASIN (query, locale=searchLocale, mode=searchMode)
-			elif searchField == "upc":
-				pythonBooks = amazon.searchByUPC (query, locale=searchLocale, mode=searchMode)
+				pythonBooks = ecs.ItemLookup(query)
 			else:
-				pythonBooks = amazon.searchByKeyword (query, locale=searchLocale, mode=searchMode)
+				pythonBooks = ecs.ItemSearch('', Title=query, SearchIndex=searchMode)
 
 			for book in pythonBooks:
-				bookElement = doc.createElement ("Book")
-				bookElement.setAttribute ("title", book.ProductName)
-			
-				for key in fieldMap.keys():
-					name = fieldMap[key]
-				
-					if name == None:
-						name = key
-
-					value = None
+				try:
+					bookElement = doc.createElement ("Book")
+					# book = ecs.ItemLookup(book.ASIN)[0]
+		
+					bookElement.setAttribute ("title", book.Title)
 					
-					try:
-						value = getattr(book, key)
-					except AttributeError:
-						pass
+					print (book.Title + ": " + str(dir(book)))
+				
+					for key in fieldMap.keys():
+						name = fieldMap[key]
+					
+						if name == None:
+							name = key
+
+						value = None
+					
+						try:
+							value = getattr(book, key)
+						except AttributeError:
+							pass
 						
-					if (value != None):
-						if (isinstance (value, Bag)):
-							if (key == "Authors"):
+						if (value != None):
+							if (key == "Author"):
 								authors = ""
-							
-								if (isinstance (value.Author, list)):
-									for author in value.Author:
+								
+								if (isinstance (value, list)):
+									for author in value:
 										authors += author + ", "
 								else:
-									authors += value.Author
+									authors += value
 
 								fieldElement = doc.createElement ("field")
 								fieldElement.setAttribute ("name", "authors");
@@ -95,16 +90,19 @@ for searchLocale in locales:
 						
 								fieldElement.appendChild (textElement)
 								bookElement.appendChild (fieldElement)
-						else:
-							fieldElement = doc.createElement ("field")
-							fieldElement.setAttribute ("name", name);
-
-							textElement = doc.createTextNode (value)
-						
-							fieldElement.appendChild (textElement)
-							bookElement.appendChild (fieldElement)
+							else:
+								fieldElement = doc.createElement ("field")
+								fieldElement.setAttribute ("name", name);
+	
+								textElement = doc.createTextNode (value)
+							
+								fieldElement.appendChild (textElement)
+								bookElement.appendChild (fieldElement)
 				
-				collection.appendChild (bookElement)
+					collection.appendChild (bookElement)
+				except ExpatError:
+					pass
+				
 
 print doc.toprettyxml(encoding="UTF-8", indent=" ")
 
