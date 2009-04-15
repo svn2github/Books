@@ -527,6 +527,7 @@
 		38FEE0B00F96336300A232A4 /* ru */ = {isa = PBXFileReference; lastKnownFileType = wrapper.nib; name = ru; path = ru.lproj/MainMenu.nib; sourceTree = "<group>"; };
 		38FEE0B10F96336600A232A4 /* zh_CN */ = {isa = PBXFileReference; lastKnownFileType = wrapper.nib; name = zh_CN; path = zh_CN.lproj/MainMenu.nib; sourceTree = "<group>"; };
 		38FEE0B20F96336D00A232A4 /* de */ = {isa = PBXFileReference; lastKnownFileType = folder; name = de; path = "de.lproj/Books Help"; sourceTree = "<group>"; };
+		38FEE0ED0F96363800A232A4 /* pl */ = {isa = PBXFileReference; lastKnownFileType = folder; name = pl; path = "pl.lproj/Books Help"; sourceTree = "<group>"; };
 		770B37EC0679A11B001EADE2 /* Books_DataModel.xcdatamodel */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = wrapper.xcdatamodel; path = Books_DataModel.xcdatamodel; sourceTree = "<group>"; };
 		77C82804067257F0000B614F /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = /System/Library/Frameworks/CoreData.framework; sourceTree = "<absolute>"; };
 		77C8280B06725ACE000B614F /* BooksAppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BooksAppDelegate.h; sourceTree = "<group>"; };
@@ -1357,6 +1358,7 @@
 			children = (
 				388395030E4C7A1700D0710C /* English */,
 				38FEE0B20F96336D00A232A4 /* de */,
+				38FEE0ED0F96363800A232A4 /* pl */,
 			);
 			name = "Books Help";
 			sourceTree = "<group>";

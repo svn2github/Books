@@ -327,19 +327,6 @@
 			<string>ObjC</string>
 		</dict>
 		<dict>
-			<key>ACTIONS</key>
-			<dict>
-				<key>importFromMenuItem</key>
-				<string>NSMenuItem</string>
-			</dict>
-			<key>CLASS</key>
-			<string>ImportMenuDelegate</string>
-			<key>LANGUAGE</key>
-			<string>ObjC</string>
-			<key>SUPERCLASS</key>
-			<string>NSObject</string>
-		</dict>
-		<dict>
 			<key>CLASS</key>
 			<string>ViewControls</string>
 			<key>LANGUAGE</key>
@@ -349,6 +336,19 @@
 				<key>view</key>
 				<string>NSView</string>
 			</dict>
+			<key>SUPERCLASS</key>
+			<string>NSObject</string>
+		</dict>
+		<dict>
+			<key>ACTIONS</key>
+			<dict>
+				<key>importFromMenuItem</key>
+				<string>NSMenuItem</string>
+			</dict>
+			<key>CLASS</key>
+			<string>ImportMenuDelegate</string>
+			<key>LANGUAGE</key>
+			<string>ObjC</string>
 			<key>SUPERCLASS</key>
 			<string>NSObject</string>
 		</dict>
@@ -471,6 +471,21 @@
 			<string>NSImageView</string>
 		</dict>
 		<dict>
+			<key>CLASS</key>
+			<string>InfoWindowController</string>
+			<key>LANGUAGE</key>
+			<string>ObjC</string>
+			<key>OUTLETS</key>
+			<dict>
+				<key>quickfillName</key>
+				<string>NSView</string>
+				<key>tabView</key>
+				<string>NSTabView</string>
+			</dict>
+			<key>SUPERCLASS</key>
+			<string>NSObject</string>
+		</dict>
+		<dict>
 			<key>ACTIONS</key>
 			<dict>
 				<key>fetchOnlineList</key>
@@ -492,21 +507,6 @@
 				<string>NSTableView</string>
 				<key>pluginManagerWindow</key>
 				<string>NSWindow</string>
-			</dict>
-			<key>SUPERCLASS</key>
-			<string>NSObject</string>
-		</dict>
-		<dict>
-			<key>CLASS</key>
-			<string>InfoWindowController</string>
-			<key>LANGUAGE</key>
-			<string>ObjC</string>
-			<key>OUTLETS</key>
-			<dict>
-				<key>quickfillName</key>
-				<string>NSView</string>
-				<key>tabView</key>
-				<string>NSTabView</string>
 			</dict>
 			<key>SUPERCLASS</key>
 			<string>NSObject</string>

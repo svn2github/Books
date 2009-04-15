@@ -7,11 +7,9 @@
 	<key>IBLastKnownRelativeProjectPath</key>
 	<string>../Books.xcodeproj</string>
 	<key>IBOldestOS</key>
-	<integer>4</integer>
+	<integer>5</integer>
 	<key>IBOpenObjects</key>
-	<array>
-		<integer>3938</integer>
-	</array>
+	<array/>
 	<key>IBSystem Version</key>
 	<string>9G55</string>
 	<key>targetFramework</key>
