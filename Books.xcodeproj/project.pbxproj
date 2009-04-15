@@ -88,7 +88,6 @@
 		387468E7096D68EA0016A59A /* export-plugin.icns in Resources */ = {isa = PBXBuildFile; fileRef = 387468E6096D68EA0016A59A /* export-plugin.icns */; };
 		387469AE096D69E00016A59A /* Library of Congress Importer.app in Resources */ = {isa = PBXBuildFile; fileRef = 38746938096D69E00016A59A /* Library of Congress Importer.app */; };
 		387469AF096D69E00016A59A /* Directory Importer.app in Resources */ = {isa = PBXBuildFile; fileRef = 38746976096D69E00016A59A /* Directory Importer.app */; };
-		387469B1096D69E00016A59A /* Amazon Importer.app in Resources */ = {isa = PBXBuildFile; fileRef = 3874699B096D69E00016A59A /* Amazon Importer.app */; };
 		38769B4B0C5EBB1500853EDB /* control-arrow.png in Resources */ = {isa = PBXBuildFile; fileRef = 38769B4A0C5EBB1500853EDB /* control-arrow.png */; };
 		3878AF29088FE45E00C72EB3 /* ImportPluginInterface.m in Sources */ = {isa = PBXBuildFile; fileRef = 3878AF28088FE45E00C72EB3 /* ImportPluginInterface.m */; };
 		387A013C0A75CC9300447E87 /* Sparkle.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 387A013B0A75CC9300447E87 /* Sparkle.framework */; };
@@ -120,7 +119,6 @@
 		38AD2ACA0F8D42880053475B /* InfoWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = 38AD2AC90F8D42880053475B /* InfoWindowController.m */; };
 		38B16DAB0BA1FECE00216A44 /* CoverWindowDelegate.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 38B16DA90BA1FECE00216A44 /* CoverWindowDelegate.h */; };
 		38B16DAC0BA1FECE00216A44 /* CoverWindowDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 38B16DAA0BA1FECE00216A44 /* CoverWindowDelegate.m */; };
-		38B62EB20987D2D200A4A8AD /* Delicious Library Importer.app in Resources */ = {isa = PBXBuildFile; fileRef = 38B62EB10987D2D200A4A8AD /* Delicious Library Importer.app */; };
 		38BB8E870E95DE9B00920309 /* NoDPIImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 38BB8E860E95DE9B00920309 /* NoDPIImageView.m */; };
 		38BD42830BA069FA00F245D8 /* tiger.png in Resources */ = {isa = PBXBuildFile; fileRef = 38BD42820BA069FA00F245D8 /* tiger.png */; };
 		38BD42C10BA06CC800F245D8 /* corner.png in Resources */ = {isa = PBXBuildFile; fileRef = 38BD42C00BA06CC800F245D8 /* corner.png */; };
@@ -146,7 +144,6 @@
 		38F1A7EC0C4BC3CA001F2F4A /* BooksTextFieldDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 38F1A7EA0C4BC3CA001F2F4A /* BooksTextFieldDelegate.m */; };
 		38F3318F09805B0400155EBA /* BookAuthorString.m in Sources */ = {isa = PBXBuildFile; fileRef = 38F3318D09805B0400155EBA /* BookAuthorString.m */; };
 		38F4DAF80C64BF5500C3805D /* gallery.png in Resources */ = {isa = PBXBuildFile; fileRef = 38F4DAF70C64BF5500C3805D /* gallery.png */; };
-		38F509BB09AAE0A50048C340 /* Booxter Importer.app in Resources */ = {isa = PBXBuildFile; fileRef = 38F509BA09AAE0A50048C340 /* Booxter Importer.app */; };
 		38F5751B08F7420400119232 /* BookListArrayController.m in Sources */ = {isa = PBXBuildFile; fileRef = 38F5751A08F7420400119232 /* BookListArrayController.m */; };
 		38F5753108F745EB00119232 /* ListListArrayController.m in Sources */ = {isa = PBXBuildFile; fileRef = 38F5753008F745EB00119232 /* ListListArrayController.m */; };
 		38F95C7F09E5557000082453 /* Tab-Delimited Text Importer.app in Resources */ = {isa = PBXBuildFile; fileRef = 38F95C7E09E5557000082453 /* Tab-Delimited Text Importer.app */; };
@@ -314,7 +311,6 @@
 		387468E6096D68EA0016A59A /* export-plugin.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = "export-plugin.icns"; sourceTree = "<group>"; };
 		38746938096D69E00016A59A /* Library of Congress Importer.app */ = {isa = PBXFileReference; lastKnownFileType = wrapper.application; path = "Library of Congress Importer.app"; sourceTree = "<group>"; };
 		38746976096D69E00016A59A /* Directory Importer.app */ = {isa = PBXFileReference; lastKnownFileType = wrapper.application; path = "Directory Importer.app"; sourceTree = "<group>"; };
-		3874699B096D69E00016A59A /* Amazon Importer.app */ = {isa = PBXFileReference; lastKnownFileType = wrapper.application; path = "Amazon Importer.app"; sourceTree = "<group>"; };
 		38769B4A0C5EBB1500853EDB /* control-arrow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "control-arrow.png"; sourceTree = "<group>"; };
 		3878AF27088FE45E00C72EB3 /* ImportPluginInterface.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImportPluginInterface.h; sourceTree = "<group>"; };
 		3878AF28088FE45E00C72EB3 /* ImportPluginInterface.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ImportPluginInterface.m; sourceTree = "<group>"; };
@@ -436,7 +432,6 @@
 		38AD2AC90F8D42880053475B /* InfoWindowController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InfoWindowController.m; sourceTree = "<group>"; };
 		38B16DA90BA1FECE00216A44 /* CoverWindowDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CoverWindowDelegate.h; sourceTree = "<group>"; };
 		38B16DAA0BA1FECE00216A44 /* CoverWindowDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CoverWindowDelegate.m; sourceTree = "<group>"; };
-		38B62EB10987D2D200A4A8AD /* Delicious Library Importer.app */ = {isa = PBXFileReference; lastKnownFileType = wrapper.application; path = "Delicious Library Importer.app"; sourceTree = "<group>"; };
 		38BB8E850E95DE9B00920309 /* NoDPIImageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NoDPIImageView.h; sourceTree = "<group>"; };
 		38BB8E860E95DE9B00920309 /* NoDPIImageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NoDPIImageView.m; sourceTree = "<group>"; };
 		38BD42820BA069FA00F245D8 /* tiger.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = tiger.png; sourceTree = "<group>"; };
@@ -470,7 +465,6 @@
 		38F3318C09805B0400155EBA /* BookAuthorString.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BookAuthorString.h; sourceTree = "<group>"; };
 		38F3318D09805B0400155EBA /* BookAuthorString.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BookAuthorString.m; sourceTree = "<group>"; };
 		38F4DAF70C64BF5500C3805D /* gallery.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = gallery.png; sourceTree = "<group>"; };
-		38F509BA09AAE0A50048C340 /* Booxter Importer.app */ = {isa = PBXFileReference; lastKnownFileType = wrapper.application; path = "Booxter Importer.app"; sourceTree = "<group>"; };
 		38F5751908F7420400119232 /* BookListArrayController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BookListArrayController.h; sourceTree = "<group>"; };
 		38F5751A08F7420400119232 /* BookListArrayController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BookListArrayController.m; sourceTree = "<group>"; };
 		38F5752F08F745EB00119232 /* ListListArrayController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ListListArrayController.h; sourceTree = "<group>"; };
@@ -924,11 +918,8 @@
 				388AD1CE09F95BEE00BDEDD3 /* Books 2.0 Importer.app */,
 				38F95C7E09E5557000082453 /* Tab-Delimited Text Importer.app */,
 				3886622E09BB79B7001EB1EB /* UIEE Importer.app */,
-				38F509BA09AAE0A50048C340 /* Booxter Importer.app */,
-				38B62EB10987D2D200A4A8AD /* Delicious Library Importer.app */,
 				38746938096D69E00016A59A /* Library of Congress Importer.app */,
 				38746976096D69E00016A59A /* Directory Importer.app */,
-				3874699B096D69E00016A59A /* Amazon Importer.app */,
 			);
 			name = "Import Plugins";
 			sourceTree = "<group>";
@@ -1197,10 +1188,7 @@
 				387468E7096D68EA0016A59A /* export-plugin.icns in Resources */,
 				387469AE096D69E00016A59A /* Library of Congress Importer.app in Resources */,
 				387469AF096D69E00016A59A /* Directory Importer.app in Resources */,
-				387469B1096D69E00016A59A /* Amazon Importer.app in Resources */,
-				38B62EB20987D2D200A4A8AD /* Delicious Library Importer.app in Resources */,
 				3898563609A93A1400F44932 /* iPod Exporter.app in Resources */,
-				38F509BB09AAE0A50048C340 /* Booxter Importer.app in Resources */,
 				382611B209BB5BA7006B3CD7 /* ISBNdb.plugin in Resources */,
 				3886622F09BB79B7001EB1EB /* UIEE Importer.app in Resources */,
 				38F95C7F09E5557000082453 /* Tab-Delimited Text Importer.app in Resources */,
