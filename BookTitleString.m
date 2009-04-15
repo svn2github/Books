@@ -71,12 +71,19 @@
 			{
 				sortString = [[NSMutableString alloc] initWithString:[self substringFromIndex:[ignore length]]];
 				
+				[sortString replaceOccurrencesOfString:@": the " withString:@": " options:NSCaseInsensitiveSearch range:NSMakeRange(0, [sortString length])];
+				[sortString replaceOccurrencesOfString:@": a " withString:@": " options:NSCaseInsensitiveSearch range:NSMakeRange(0, [sortString length])];
+				[sortString replaceOccurrencesOfString:@": an " withString:@": " options:NSCaseInsensitiveSearch range:NSMakeRange(0, [sortString length])];
+				
 				return sortString;
 			}
 		}
 	}
 	
 	sortString = [[NSMutableString alloc] initWithString:[self description]];
+	[sortString replaceOccurrencesOfString:@": the " withString:@": " options:NSCaseInsensitiveSearch range:NSMakeRange(0, [sortString length])];
+	[sortString replaceOccurrencesOfString:@": a " withString:@": " options:NSCaseInsensitiveSearch range:NSMakeRange(0, [sortString length])];
+	[sortString replaceOccurrencesOfString:@": an " withString:@": " options:NSCaseInsensitiveSearch range:NSMakeRange(0, [sortString length])];
 	
 	return sortString;
 }
