@@ -440,8 +440,23 @@ typedef struct _monochromePixel
 	[controlsPanel setFrame:newRect display:YES animate:YES];
 }
 
+- (void)webView:(WebView *)sender decidePolicyForNavigationAction:(NSDictionary *)actionInformation
+        request:(NSURLRequest *)request frame:(WebFrame *)frame decisionListener:(id <WebPolicyDecisionListener>)listener
+{
+	if ([[[request URL] scheme] isEqual:@"file"] || [[[request URL] host] isEqual:@"localhost"])
+	{
+		[listener use];
+	}
+	else 
+	{
+		[listener ignore];
+		[[NSWorkspace sharedWorkspace] openURL:[request URL]];
+	}
+}
+
 - (void) awakeFromNib
 {
+	[detailsPane setPolicyDelegate:self];
 	NSUserDefaults * defaults = [NSUserDefaults standardUserDefaults];
 	
 	NSToolbar * tb = [[NSToolbar alloc] initWithIdentifier:@"main"];
