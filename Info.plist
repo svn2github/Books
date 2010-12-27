@@ -58,11 +58,11 @@
 	<key>CFBundlePackageType</key>
 	<string>BOOK</string>
 	<key>CFBundleShortVersionString</key>
-	<string>3.2.5c</string>
+	<string>3.2.5d</string>
 	<key>CFBundleSignature</key>
 	<string>AETH</string>
 	<key>CFBundleVersion</key>
-	<string>3.2.5c</string>
+	<string>3.2.5d</string>
 	<key>NSAppleScriptEnabled</key>
 	<string>YES</string>
 	<key>NSMainNibFile</key>
@@ -72,7 +72,7 @@
 	<key>OSAScriptingDefinition</key>
 	<string>Books.sdef</string>
 	<key>SUFeedURL</key>
-	<string>http://books.aetherial.net/downloads/appcast.xml</string>
+	<string>http://legacy.audacious-software.com/products/books/dist/appcast.xml</string>
 	<key>SmartCrashReports_CompanyName</key>
 	<string>Chris Karr</string>
 	<key>SmartCrashReports_EmailTicket</key>

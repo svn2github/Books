@@ -1107,6 +1107,7 @@
 			isa = PBXProject;
 			buildConfigurationList = 38328ED708859AFD00091C9B /* Build configuration list for PBXProject "Books" */;
 			compatibilityVersion = "Xcode 2.4";
+			developmentRegion = English;
 			hasScannedForEncodings = 1;
 			knownRegions = (
 				English,
